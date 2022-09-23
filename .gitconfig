@@ -1,0 +1,15 @@
+[credential]
+    helper = store
+[core]
+    editor = nvim
+[user]
+    name = Pratham Patel
+    email = thefirst1322@gmail.com
+[color]
+    ui = auto
+[init]
+    defaultBranch = master
+[push]
+    default = simple
+[diff]
+    tool = meld

@@ -1,0 +1,14 @@
+--yes-playlist
+--no-keep-fragments
+--hls-use-mpegts
+--no-windows-filenames
+--no-continue
+--no-mtime
+--no-write-description
+--console-title
+--write-subs
+--restrict-filename
+--trim-filenames 200
+--format 'bestvideo*+bestaudio/b'
+--no-overwrites
+--output '%(playlist_index)s__%(title)s,%(width)s_%(height)s_%(fps)s,%(duration_string)s,%(id)s.%(ext)s'

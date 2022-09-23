@@ -1,0 +1,9 @@
+[Unit]
+Description=Notify the user regarding HDDs upon boot
+
+[Service]
+ExecStart=/usr/bin/bash /home/pratham/.scripts/flameboi/hdd/on_boot.sh &
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

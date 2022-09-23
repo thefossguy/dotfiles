@@ -1,0 +1,8 @@
+key_bindings:
+  - { key: Left,           mods: Alt,                             chars: "\x1b[1;5D"       }
+  - { key: Right,          mods: Alt,                             chars: "\x1b[1;5C"       }
+  - { key: L,              mods: Control,                         chars: "\x0c"            }
+  - { key: Key6,           mods: Control,                         chars: "\x1e"            }
+  - { key: V,              mods: Command,                         action: Paste            }
+  - { key: C,              mods: Command,                         action: Copy             }
+  - { key: Key0,           mods: Command,                         action: ResetFontSize    }
