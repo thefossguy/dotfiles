@@ -121,6 +121,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         alias sentinel="ssh ubuntu@sentinel.lan"
         alias clear="/usr/bin/clear && printf '\e[3J'"
         alias confont="setfont /usr/share/consolefonts/Lat2-Terminus28x14.psf.gz"
+        alias drivetemp="sudo hdparm -CH /dev/sda /dev/sdb /dev/sdc /dev/sdd"
         alias containerupdate='podman auto-update --dry-run --format="{{.Unit}}\t{{.Updated}}"'
         alias containerdisableall="systemctl --user disable container-gitea-chitragupta container-hugo-vaikunthnatham container-nextcloud-chitragupta container-hugo-mahayogi container-gitea-govinda container-nextcloud-govinda container-transmission-raadhe container-caddy-vishwambhar"
     alias containerenableall="systemctl --user enable container-gitea-chitragupta container-hugo-vaikunthnatham container-nextcloud-chitragupta container-hugo-mahayogi container-gitea-govinda container-nextcloud-govinda container-transmission-raadhe container-caddy-vishwambhar"
@@ -162,6 +163,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
 
     elif [[ "$NAME" == "Ubuntu" && "$MACHINE_HOSTNAME" == "sentinel" ]]; then
+        alias drivetemp="sudo hdparm -CH /dev/sda /dev/sdb /dev/sdc /dev/sdd"
     fi
 
 elif [[ "$OSTYPE" == "darwin"* ]];then
