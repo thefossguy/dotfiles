@@ -6,30 +6,43 @@ call plug#begin('~/.vim/plugged')
 " base16 theme
 Plug 'chriskempson/base16-vim'
 
-" ncm2 (Neovim-only auto-complete)
-"Plug 'roxma/nvim-yarp'
-"Plug 'ncm2/ncm2'
-"Plug 'ncm2/ncm2-bufword'
-"Plug 'ncm2/ncm2-path'
+" collection of common configurations for the Nvim LSP client
+Plug 'neovim/nvim-lspconfig'
 
-" Fuzzy finder
+" auto-complete
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+" for vsnip
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+
+" fuzzy finder
 Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+" optional
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
 " vim ripgrep
 Plug 'jremmen/vim-ripgrep'
 
-" .rs
+" official rust plugin
 Plug 'rust-lang/rust.vim'
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'dense-analysis/ale'
+" to enable more of the features of rust-analyzer, such as inlay hints and more!
+Plug 'simrat39/rust-tools.nvim'
 
-"Plug 'wuelnerdotexe/vim-enfocado'
-"Plug 'tpope/vim-fugitive'
+" git wrapper
+Plug 'tpope/vim-fugitive'
+
+" src tree view
 Plug 'preservim/nerdtree'
-"Plug 'pineapplegiant/spaceduck'
-"Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 
 call plug#end()
 
@@ -40,7 +53,7 @@ call plug#end()
 " dealing with files
 syntax on
 filetype plugin indent on
-set colorcolumn=72
+set colorcolumn=80
 set autoindent expandtab tabstop=4 shiftwidth=4
 set encoding=utf-8
 
@@ -53,8 +66,8 @@ set spell
 set termguicolors
 set cursorline
 let base16colorspace=256
-colorscheme base16-gruvbox-dark-hard
 colorscheme base16-google-dark
+"colorscheme base16-gruvbox-dark-hard
 "set cursorcolumn
 
 "set clipboard=unnamed,unnamedplus
@@ -83,40 +96,58 @@ set pastetoggle=<F2>
 
 
 " ==============================================================================
-" Auto-complete (ncm2)
-" ==============================================================================
-" enable ncm2 for all buffers
-"autocmd BufEnter * call ncm2#enable_for_buffer()
-
-" IMPORTANT: :help Ncm2PopupOpen for more information
-"set completeopt=noinsert,menuone,noselect
-
-" ncm2: CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
-"inoremap <c-c> <ESC>
-
-" When the <Enter> key is pressed while the popup menu is visible, it only
-" hides the menu. Use this mapping to close the menu and also start a new
-" line.
-"inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
-
-" Use <TAB> to select the popup menu:
-"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-"inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-
-" ==============================================================================
 " Rust
 " ==============================================================================
+" Set updatetime for CursorHold
+" 300ms of no cursor movement to trigger CursorHold
+set updatetime=300
+
+" have a fixed column for the diagnostics to appear in
+" this removes the jitter when warnings/errors flow in
+set signcolumn=yes
+
+" Set completeopt to have a better completion experience
+" :help completeopt
+" menuone: popup even when there's only one match
+" noinsert: Do not insert text until a selection is made
+" noselect: Do not select, force user to select one from the menu
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing extra messages when using completion
+set shortmess+=c
+
+" Show diagnostic popup on cursor hold
+autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+
+" format-on-write
+autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)
+
+" use 4 spaces for indent rust
+autocmd FileType rust setlocal expandtab shiftwidth=4 softtabstop=4
+
 let g:rustfmt_autosave = 1
 let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
-"let g:ale_linters = {'rust': ['analyzer']}
-"au Filetype rust set colorcolumn=80
-"au Filetype c set colorcolumn=80
-"let g:LanguageClient_serverCommands = {
-"      \ 'rust': ['rust-analyzer'],
-"      \ }
-"let g:ale_linters = {'rust': ['rustc', 'rls']}
+
+luafile ~/.config/nvim/lua/simrat39__rust-tools.lua
+luafile ~/.config/nvim/lua/hrsh7th__nvim-cmp.lua
+
+
+" ==============================================================================
+" Indentation
+" ==============================================================================
+" use 2 spaces for indentation of specific file types
+autocmd FileType lua setlocal expandtab shiftwidth=2 softtabstop=2
+autocmd FileType json setlocal expandtab shiftwidth=2 softtabstop=2
+
+" use 4 spaces for indentation of specific file types
+autocmd FileType bash setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd FileType c setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd FileType gitconfig setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd FileType sh setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd FileType vim setlocal expandtab shiftwidth=4 softtabstop=4
+autocmd FileType yaml setlocal expandtab shiftwidth=4 softtabstop=4
 
 
 " ==============================================================================
@@ -200,9 +231,25 @@ nnoremap <C-H> <C-W><C-H>
 "enable nerdtree with ^\
 map <C-Bslash> :NERDTreeToggle<CR>
 
+" RUST
+" Code navigation shortcuts
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
+" code actions
+nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
+" Goto previous/next diagnostic warning/error
+nnoremap <silent> g[ <cmd>lua vim.diagnostic.goto_prev()<CR>
+nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>
+
 
 " ==============================================================================
 " change highlight color when yanking
 " ==============================================================================
 au TextYankPost * silent! lua vim.highlight.on_yank {higroup="Visual", timeout=250}
-
