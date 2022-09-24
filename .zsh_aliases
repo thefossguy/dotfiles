@@ -15,8 +15,6 @@ alias vim="nvim"
 alias ytdown="yt-dlp --config-location $HOME/.config/yt-dlp/norm_config --external-downloader aria2c"
 alias playdl="yt-dlp --config-location $HOME/.config/yt-dlp/plst_config --external-downloader aria2c"
 alias ytslow="yt-dlp --config-location $HOME/.config/yt-dlp/norm_config --no-part --concurrent-fragments 1 --limit-rate 4M"
-alias gitaddpush="git remote set-url --add --push origin"
-alias gitaddpull="git remote set-url --add --pull origin"
 
 if command -v batcat > /dev/null; then
     alias bat="batcat"
@@ -37,6 +35,21 @@ togif() {
     ffmpeg -i "$1" -pix_fmt rgb24 "$1".gif
 }
 
+gitaddpush() {
+    git ls-remote --quiet --exit-code origin >/dev/null 2>&1
+    if [[ $? -ne 0 ]]; then
+        git remote add origin "$1"
+    fi
+    git remote set-url --add --push origin "$1"
+}
+
+gitaddpull() {
+    git ls-remote --quiet --exit-code origin >/dev/null 2>&1
+    if [[ $? -ne 0 ]]; then
+        git remote add origin "$1"
+    fi
+    git remote set-url --add --pull origin "$1"
+}
 
 
 # Linux specific things
