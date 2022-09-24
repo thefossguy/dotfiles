@@ -62,6 +62,7 @@ then
         source $ZSH_SYNTAX_HIGH
     fi
 
+    export LANG=en_IN.UTF-8
 
     source /etc/os-release
     MACHINE_HOSTNAME=$(cat /etc/hostname)
@@ -85,8 +86,6 @@ then
             (/dev/pts/[0-9]) ;;
         esac
 
-        export LC_ALL=en_US.UTF-8
-        export LANG=en_US.UTF-8
     fi
 
 
@@ -97,8 +96,6 @@ then
             (/dev/pts/[0-9]) ;;
         esac
 
-        export LC_ALL=en_US.UTF-8
-        export LANG=en_US.UTF-8
     fi
 
 # stuff for macOS
