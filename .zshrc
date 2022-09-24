@@ -53,8 +53,7 @@ PROMPT=$'\n%F{11}─┬─[%f %F{5}%y %f%F{white}%? %D %*%f %F{11}]%f
 
 
 # common stuff for Linux
-if [[ "$OSTYPE" == "linux-gnu"* ]]
-then
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     
     # syntax highlighting
     ZSH_SYNTAX_HIGH="/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
@@ -99,8 +98,7 @@ then
     fi
 
 # stuff for macOS
-elif [[ "$OSTYPE" == "darwin"* ]]
-then
+elif [[ "$OSTYPE" == "darwin"* ]]; then
 
     # syntax highlighting
     ZSH_SYNTAX_HIGH="/usr/local/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"

@@ -1,10 +1,10 @@
 configuration {
-	font: "Fira Code 14";
-	show-icons: true;
-	terminal: "alacritty";
-	/*icon-theme: ;*/
-	sidebar-mode: false;
-	click-to-exit: true;
-	show-match: true;
-	theme: "gruvbox-dark-hard";
+    font: "Fira Code 14";
+    show-icons: true;
+    terminal: "alacritty";
+    /*icon-theme: ;*/
+    sidebar-mode: false;
+    click-to-exit: true;
+    show-match: true;
+    theme: "gruvbox-dark-hard";
 }

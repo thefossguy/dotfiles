@@ -7,34 +7,34 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 
 bspc monitor -d work virtualization music other extra extraa
 
-bspc config border_width		6
-bspc config window_gap			12
+bspc config border_width              6
+bspc config window_gap                12
 
-bspc config focused_border_color	\#FF0000
-bspc config active_border_color		\#FFFFFF
-bspc config normal_border_color		\#FFFFFF #08C96B
-bspc config presel_border_color		\#A57FE8
+bspc config focused_border_color      \#FF0000
+bspc config active_border_color       \#FFFFFF
+bspc config normal_border_color       \#FFFFFF #08C96B
+bspc config presel_border_color       \#A57FE8
 
-bspc config split_ratio			0.5
+bspc config split_ratio               0.5
 
-bspc config borderless_monocle		false
-bspc config gapless_monocle		true
+bspc config borderless_monocle        false
+bspc config gapless_monocle           true
 
-bspc config left_padding		8
-bspc config bottom_padding		8
-bspc config top_padding			8
-bspc config right_padding		8
+bspc config left_padding              8
+bspc config bottom_padding            8
+bspc config top_padding               8
+bspc config right_padding             8
 
-bspc config left_monocle_padding	6
-bspc config bottom_monocle_padding	6
-bspc config top_monocle_padding		6
-bspc config right_monocle_padding	6
+bspc config left_monocle_padding      6
+bspc config bottom_monocle_padding    6
+bspc config top_monocle_padding       6
+bspc config right_monocle_padding     6
 
-bspc config focus_follows_pointer	false
-bspc config pointer_follows_focus	false
-bspc config pointer_follows_monitor	false
+bspc config focus_follows_pointer     false
+bspc config pointer_follows_focus     false
+bspc config pointer_follows_monitor   false
 
-bspc config center_pseudo_tiled		false
+bspc config center_pseudo_tiled       false
 
 bspc rule -a mpv state=floating
 bspc rule -a "Nvidia-settings" state=floating

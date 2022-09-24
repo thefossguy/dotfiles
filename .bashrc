@@ -1,5 +1,5 @@
 if [[ "$OSTYPE" == "freebsd"* ]]; then
-	echo "FreeBSD"
+    echo "WIP: FreeBSD"
 elif [[ "$OSTYPE" == "openbsd"* ]]; then
-	echo "OpenBSD"
+    echo "WIP: OpenBSD"
 fi
