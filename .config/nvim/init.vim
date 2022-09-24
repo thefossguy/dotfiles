@@ -6,9 +6,6 @@ call plug#begin('~/.vim/plugged')
 " base16 theme
 Plug 'chriskempson/base16-vim'
 
-" collection of common configurations for the Nvim LSP client
-Plug 'neovim/nvim-lspconfig'
-
 " auto-complete
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -129,7 +126,7 @@ let g:rustfmt_autosave = 1
 let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
 
-luafile ~/.config/nvim/lua/simrat39__rust-tools.lua
+luafile ~/.config/nvim/lua/simrat39__rust-tools.nvim.lua
 luafile ~/.config/nvim/lua/hrsh7th__nvim-cmp.lua
 
 
