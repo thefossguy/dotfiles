@@ -24,7 +24,7 @@ sh autogen.sh
 if [[ $? -eq 0 ]]; then
     ./configure
 
-    if [][ $? -eq 0 ]; then
+    if [[ $? -eq 0 ]]; then
         make -j1 rpm-utils rpm-dkms
 
         if [[ $? -eq 0 ]]; then
