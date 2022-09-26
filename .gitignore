@@ -1,3 +1,9 @@
 # macOS junk
 .DS_Store
 ._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+# compiled C/C++ files
+*.out
