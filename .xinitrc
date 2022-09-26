@@ -2,7 +2,7 @@
 
 USER_X_RESOURCES=$HOME/.Xresources
 if [[ -f "$USER_X_RESOURCES" ]]; then
-	xrdb -merge "$USER_X_RESOURCES"
+    xrdb -merge "$USER_X_RESOURCES"
 fi
 
 xsetroot -cursor_name left_ptr &
