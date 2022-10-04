@@ -141,8 +141,30 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         alias containerupdate='podman auto-update --dry-run --format="{{.Unit}}\t{{.Updated}}"'
         alias containerfreeall="podman system prune -a"
         alias containerdisableall="systemctl --user disable container-gitea-chitragupta container-hugo-vaikunthnatham container-nextcloud-chitragupta container-hugo-mahayogi container-gitea-govinda container-nextcloud-govinda container-transmission-raadhe container-caddy-vishwambhar"
-    alias containerenableall="systemctl --user enable container-gitea-chitragupta container-hugo-vaikunthnatham container-nextcloud-chitragupta container-hugo-mahayogi container-gitea-govinda container-nextcloud-govinda container-transmission-raadhe container-caddy-vishwambhar"
-        
+        alias containerenableall="systemctl --user enable container-gitea-chitragupta container-hugo-vaikunthnatham container-nextcloud-chitragupta container-hugo-mahayogi container-gitea-govinda container-nextcloud-govinda container-transmission-raadhe container-caddy-vishwambhar"
+
+        containerstopall() {
+            ALL_CONTAINERS=(
+                "container-caddy-vishwambhar.service" \
+                "container-transmission-raadhe.service" \
+                "container-nextcloud-govinda.service" \
+                "container-gitea-govinda.service" \
+                "container-nextcloud-chitragupta.service" \
+                "container-gitea-chitragupta.service" \
+                "container-hugo-vaikunthnatham.service" \
+                "container-hugo-mahayogi.service" \
+            )
+
+            for INDV_SERVICE in ${ALL_CONTAINERS[@]}; do
+                CHECK_ENABLEMENT=$(systemctl --user is-enabled "${INDV_SERVICE}")
+                STAT_CMP="enabled"
+
+                # check if a service is NOT enabled
+                if [[ "$CHECK_ENABLEMENT" != "$STAT_CMP" ]]; then
+                    systemctl --user is-active --quiet service "${INDV_SERVICE}" && systemctl --user stop "${INDV_SERVICE}" && echo "${INDV_SERVICE}: stopped"
+                fi
+            done
+        }
 
         containerstats() {
             systemctl --user status \
