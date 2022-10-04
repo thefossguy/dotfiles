@@ -42,7 +42,7 @@ if [ $? -eq 0 ]; then
 			${NORMAL}
 
 			Recreate the ZFS cache file:
-			${BOLD}zpool set cachefile=/etc/zfs/zpool.cache trayimurti${NORMAL}\n"
+			${BOLD}sudo zpool set cachefile=/etc/zfs/zpool.cache trayimurti${NORMAL}\n"
 
 			fi
 	fi
