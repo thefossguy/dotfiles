@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+source /etc/os-release
+
+if [[ "$ID" == "centos" ]]; then
+    sudo dnf install epel-release gcc make autoconf automake libtool rpm-build libtirpc-devel libblkid-devel libuuid-devel libudev-devel openssl-devel zlib-devel libaio-devel libattr-devel elfutils-libelf-devel kernel-devel-$(uname -r) python3 python3-devel python3-setuptools python3-cffi libffi-devel git ncompress libcurl-devel -y
+    sudo dnf install --enablerepo=epel --enablerepo=powertools python3-packaging dkms -y
+elif [[ "$ID" == "fedora" ]]; then
+    sudo dnf install autoconf automake dkms elfutils-libelf-devel gcc git kernel-devel-$(uname -r) kernel-rpm-macros libaio-devel libattr-devel libblkid-devel libcurl-devel libffi-devel libtirpc-devel libtool libudev-devel libuuid-devel make ncompress openssl-devel python3 python3-cffi python3-devel python3-packaging python3-setuptools rpm-build zlib-devel -y
+fi
+
 BOLD=$(tput bold)
 NORMAL=$(tput sgr0)
 OPENZFS_DIR=$HOME/openzfs
@@ -15,7 +24,6 @@ if [[ ! -d $OPENZFS_DIR ]]; then
 	fi
 fi
 
-sudo dnf install autoconf automake dkms elfutils-libelf-devel gcc git kernel-devel-$(uname -r) kernel-rpm-macros libaio-devel libattr-devel libblkid-devel libcurl-devel libffi-devel libtirpc-devel libtool libudev-devel libuuid-devel make ncompress openssl-devel python3 python3-cffi python3-devel python3-packaging python3-setuptools rpm-build zlib-devel -y
 
 cd $OPENZFS_DIR
 
