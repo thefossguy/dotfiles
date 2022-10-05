@@ -2,7 +2,7 @@
 
 source /etc/os-release
 
-if [[ "$ID" == "centos" ]]; then
+if [[ "$ID" == "centos" || "$ID" == "rocky" ]]; then
     sudo dnf install epel-release gcc make autoconf automake libtool rpm-build libtirpc-devel libblkid-devel libuuid-devel libudev-devel openssl-devel zlib-devel libaio-devel libattr-devel elfutils-libelf-devel kernel-devel-$(uname -r) python3 python3-devel python3-setuptools python3-cffi libffi-devel git ncompress libcurl-devel -y
     sudo dnf install --enablerepo=epel --enablerepo=powertools python3-packaging dkms -y
 elif [[ "$ID" == "fedora" ]]; then
