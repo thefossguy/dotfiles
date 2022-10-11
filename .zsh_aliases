@@ -203,6 +203,9 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
     elif [[ "$NAME" == "Ubuntu" && "$MACHINE_HOSTNAME" == "sentinel" ]]; then
         alias drivetemp="sudo hdparm -CH /dev/sda /dev/sdb /dev/sdc /dev/sdd"
+    elif [[ "$NAME" == "Arch Linux" && "$MACHINE_HOSTNAME" == "flameboi" ]]; then
+        alias pacman="pacman --color always"
+        alias pkgshowfiles="pacman --color always --query --list"
     fi
 
 elif [[ "$OSTYPE" == "darwin"* ]];then
