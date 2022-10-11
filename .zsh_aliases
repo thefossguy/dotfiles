@@ -140,13 +140,12 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         alias drivetemp="sudo hdparm -CH /dev/sda /dev/sdb /dev/sdc /dev/sdd"
         alias containerupdate='podman auto-update --dry-run --format="{{.Unit}}\t{{.Updated}}"'
         alias containerfreeall="podman system prune -a"
-        alias containerdisableall="systemctl --user disable container-gitea-chitragupta container-hugo-vaikunthnatham container-nextcloud-chitragupta container-hugo-mahayogi container-gitea-govinda container-nextcloud-govinda container-transmission-raadhe container-caddy-vishwambhar"
-        alias containerenableall="systemctl --user enable container-gitea-chitragupta container-hugo-vaikunthnatham container-nextcloud-chitragupta container-hugo-mahayogi container-gitea-govinda container-nextcloud-govinda container-transmission-raadhe container-caddy-vishwambhar"
+        alias containerdisableall="systemctl --user disable container-gitea-chitragupta container-hugo-vaikunthnatham container-nextcloud-chitragupta container-hugo-mahayogi container-gitea-govinda container-nextcloud-govinda container-caddy-vishwambhar"
+        alias containerenableall="systemctl --user enable container-gitea-chitragupta container-hugo-vaikunthnatham container-nextcloud-chitragupta container-hugo-mahayogi container-gitea-govinda container-nextcloud-govinda container-caddy-vishwambhar"
 
         containerstopall() {
             ALL_CONTAINERS=(
                 "container-caddy-vishwambhar.service" \
-                "container-transmission-raadhe.service" \
                 "container-nextcloud-govinda.service" \
                 "container-gitea-govinda.service" \
                 "container-nextcloud-chitragupta.service" \

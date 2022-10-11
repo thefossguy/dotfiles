@@ -2,13 +2,12 @@
 
 # systemd services for each of my podman container
 CONTAINER_SERVICES=(
-    "container-gitea-chitragupta.service" \
+    "container-nextcloud-govinda.service" \
     "container-gitea-govinda.service" \
+    "container-gitea-chitragupta.service" \
+    "container-nextcloud-chitragupta.service" \
     "container-hugo-mahayogi.service" \
     "container-hugo-vaikunthnatham.service" \
-    "container-nextcloud-chitragupta.service" \
-    "container-nextcloud-govinda.service" \
-    "container-transmission-raadhe.service" \
     "container-caddy-vishwambhar.service" \
 )
 
