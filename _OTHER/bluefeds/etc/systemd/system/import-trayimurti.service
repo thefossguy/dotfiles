@@ -1,0 +1,10 @@
+[Unit]
+Description=Import /trayimurti on boot
+
+[Service]
+ExecStart=/usr/bin/bash /home/pratham/.scripts/_bluefeds/systemd/check-trayimurti.sh
+ExecStart=/usr/bin/bash /home/pratham/.scripts/systemd/check-trayimurti.sh
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
