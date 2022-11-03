@@ -117,7 +117,10 @@ set shortmess+=c
 autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 
 " format-on-write
-autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)
+" `vim.lsp.buf.formatting_sync` is depricated
+" but it is still present until Debian switches to a compatible version
+"autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_sync(nil, 200)
+autocmd BufWritePre *.rs lua vim.lsp.buf.format(nil, 200)
 
 " use 4 spaces for indent rust
 autocmd FileType rust setlocal expandtab shiftwidth=4 softtabstop=4
