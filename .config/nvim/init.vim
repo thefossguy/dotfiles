@@ -89,7 +89,7 @@ set showmatch
 
 set pastetoggle=<F2>
 "prevent trackpad mis{click,touche}s
-set mouse=off
+set mouse=
 "set viminfo=
 
 
