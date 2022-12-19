@@ -88,7 +88,8 @@ set wildmenu
 set showmatch
 
 set pastetoggle=<F2>
-"set guifont=Fira\ Code:h12
+"prevent trackpad mis{click,touche}s
+set mouse=
 "set viminfo=
 
 
