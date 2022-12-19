@@ -1,0 +1,26 @@
+#!/usr/bin/env zsh
+# ~/.config/zsh_confs/XX_alias_funcs: my alias functions
+
+towebp() {
+    cwebp -q 80 "$1" -o "$1".webp
+}
+
+togif() {
+    ffmpeg -i "$1" -pix_fmt rgb24 "$1".gif
+}
+
+gitaddpush() {
+    git ls-remote --quiet --exit-code origin >/dev/null 2>&1
+    if [[ $? -ne 0 ]]; then
+        git remote add origin "$1"
+    fi
+    git remote set-url --add --push origin "$1"
+}
+
+gitaddpull() {
+    git ls-remote --quiet --exit-code origin >/dev/null 2>&1
+        if [[ $? -ne 0 ]]; then
+            git remote add origin "$1"
+        fi
+    git remote set-url --add --pull origin "$1"
+}

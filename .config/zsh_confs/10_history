@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+# ~/.config/zsh_confs/01_history: zsh history file
+
+# export variables
+export HISTFILE=$HOME/.sh_history
+export HISTFILESIZE=10000
+export HISTSIZE=10000
+export SAVEHIST=10000
+
+# refer to `https://zsh.sourceforge.io/Doc/Release/Options.html#History`
+setopt APPEND_HISTORY
+setopt BANG_HIST
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_NO_FUNCTIONS
+setopt HIST_SAVE_BY_COPY
+setopt INC_APPEND_HISTORY

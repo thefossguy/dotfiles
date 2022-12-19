@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+# ~/.config/zsh_confs/XX_syntax_highlight: zsh file for syntax highlighting
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+
+    MACHINE_HOSTNAME=$(cat /etc/hostname)
+
+    if [[ "$MACHINE_HOSTNAME" == "flameboi" ]]; then
+        ZSH_SYNTAX_HIGHLIGHT_PATH="/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    elif [[ "$MACHINE_HOSTNAME" == "sentinel" || "$MACHINE_HOSTNAME" == "bluefeds" ]]; then
+        ZSH_SYNTAX_HIGHLIGHT_PATH="/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    fi
+
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    ZSH_SYNTAX_HIGHLIGHT_PATH="/usr/local/opt/zsh-fast-syntax-highlighting/share/zsh-fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+fi
+
+source ZSH_SYNTAX_HIGHLIGHT_PATH
