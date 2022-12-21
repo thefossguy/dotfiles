@@ -36,6 +36,7 @@ if command -v rustup > /dev/null; then
     [[ -d "$RUSTUP_PATH" ]] && export PATH=$RUSTUP_PATH:$PATH
     # rust-analyzer is in $RUSTUP_PATH instead of $HOME/.cargo/bin :(
     # rust-analyzer needs to be in $PATH for good Rust support in Neovim
+    # see https://github.com/rust-lang/rustup/issues/2411
 fi
 typeset -U PATH
 
