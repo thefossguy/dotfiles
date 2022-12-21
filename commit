@@ -1,9 +1,0 @@
-changes made in this commit related to zsh:
- - remove the shebang, not much useful
- - setup sudo alias of doas with a trailing space
- - zsh does not have readarray, remove the alias, will just use the GUI launcher
- - add host vasudev for check in syntax highlighting
- - declare ZSH_CONFS_DIRECTORY before it is used
- - add keybinds for various keys like PgDown, PgUp, F*
- - fix syntax error of using "else if" when "elif" is correct
- - remove the pts* case for fonts, it is not useful
