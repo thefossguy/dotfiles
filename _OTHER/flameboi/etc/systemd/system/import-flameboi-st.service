@@ -1,0 +1,9 @@
+[Unit]
+Description=Import /flameboi_st on boot
+
+[Service]
+ExecStart=/usr/bin/bash /home/pratham/.scripts/_flameboi/zfs/check-flameboi-st.sh
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

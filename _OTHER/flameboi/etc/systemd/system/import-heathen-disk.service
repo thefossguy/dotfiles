@@ -1,0 +1,9 @@
+[Unit]
+Description=Import /heathen_disk on boot
+
+[Service]
+ExecStart=/usr/bin/bash /home/pratham/.scripts/_flameboi/zfs/check-heathen-disk.sh
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

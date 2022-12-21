@@ -3,7 +3,7 @@ Description=Put HDDs to sleep after waking up from suspend
 After=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target graphical.target
 
 [Service]
-ExecStart=/usr/bin/bash /home/pratham/.scripts/flameboi/hdd/on_resume.sh &
+ExecStart=/usr/bin/bash /home/pratham/.scripts/_flameboi/hdd/on_resume.sh &
 Type=simple
 
 [Install]
