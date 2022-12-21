@@ -6,15 +6,14 @@ case $- in
     *) return;;
 esac
 
+# directory where most of my zsh files are stored
+ZSH_CONFS_DIRECTORY=$HOME/.config/zsh_confs
 HISTORY_CONF=$ZSH_CONFS_DIRECTORY/10_history
 ALIASES_CONF=$ZSH_CONFS_DIRECTORY/20_aliases
 SYNTAX_HIGHLIGHT_CONF=$ZSH_CONFS_DIRECTORY/90_syntax_highlight
 
 # for using comments in interactive shell
 setopt INTERACTIVECOMMENTS
-
-# directory where most of my zsh files are stored
-ZSH_CONFS_DIRECTORY="$HOME/.config/zsh_confs"
 
 # load options related to history
 [ -f $HISTORY_CONF ] && source $HISTORY_CONF
@@ -23,16 +22,34 @@ ZSH_CONFS_DIRECTORY="$HOME/.config/zsh_confs"
 ZLE_REMOVE_SUFFIX_CHARS=""
 
 # key-bindings
-if [[ -f "$HOME/.zkbd/$TERM" ]]; then
-    source $HOME/.zkbd/$TERM
+if [[ -f "$HOME/.zkbd/xterm-256color" ]]; then
+    source $HOME/.zkbd/xterm-256color
 
     [[ -n ${key[Home]} ]] && bindkey "${key[Home]}" beginning-of-line
     [[ -n ${key[End]} ]] && bindkey "${key[End]}" end-of-line
     [[ -n ${key[Delete]} ]] && bindkey "${key[Delete]}" delete-char
+    [[ -n ${key[PageUp]} ]] && bindkey "${key[PageUp]}" backward-word
+    [[ -n ${key[PageDown]} ]] && bindkey "${key[PageDown]}" forward-word
+    [[ -n ${key[Insert]} ]] && bindkey "${key[Insert]}" vi-replace
+
+    # disable all fn keys
+    # re-enable them when needed
+    [[ -n ${key[F1]} ]] && bindkey "${key[F1]}" ""
+    [[ -n ${key[F2]} ]] && bindkey "${key[F2]}" ""
+    [[ -n ${key[F3]} ]] && bindkey "${key[F3]}" ""
+    [[ -n ${key[F4]} ]] && bindkey "${key[F4]}" ""
+    [[ -n ${key[F5]} ]] && bindkey "${key[F5]}" ""
+    [[ -n ${key[F6]} ]] && bindkey "${key[F6]}" ""
+    [[ -n ${key[F7]} ]] && bindkey "${key[F7]}" ""
+    [[ -n ${key[F8]} ]] && bindkey "${key[F8]}" ""
+    [[ -n ${key[F9]} ]] && bindkey "${key[F9]}" ""
+    [[ -n ${key[F10]} ]] && bindkey "${key[F10]}" ""
+    [[ -n ${key[F11]} ]] && bindkey "${key[F11]}" ""
+    [[ -n ${key[F12]} ]] && bindkey "${key[F12]}" ""
 fi
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
-bindkey '^i' expand-or-complete-prefix
+bindkey "^i" expand-or-complete-prefix
 
 # prompt
 PROMPT=$'\n%F{11}─┬─[%f %F{5}%y %f%F{white}%? %D %*%f %F{11}]%f
@@ -51,11 +68,10 @@ if [[ "$MACHINE_HOSTNAME" == "flameboi" ]]; then
     autuload -Uz compinit
     compinit
     # End of lines added by compinstall
-else if [[ "$MACHINE_HOSTNAME" == "bluefeds" || "$MACHINE_HOSTNAME" == "sentinel" ]]; then
+elif [[ "$MACHINE_HOSTNAME" == "bluefeds" || "$MACHINE_HOSTNAME" == "sentinel" ]]; then
     # use bigger fonts on the console
     case $(tty) in
         (/dev/tty[0-9]) setfont /usr/share/consolefonts/Lat2-Terminus28x14.psf.gz;;
-        (/dev/pts[0-9]) ;;
     esac
 fi
 

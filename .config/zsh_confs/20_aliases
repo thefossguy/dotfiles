@@ -1,5 +1,4 @@
-#!/usr/bin/env zsh
-# ~/.config/zsh_confs/XX_aliases: my [zsh] shell aliases
+# ~/.config/zsh_confs/20_aliases: my [zsh] shell aliases
 
 # hostname
 MACHINE_HOSTNAME=$(cat /etc/hostname)
@@ -61,7 +60,7 @@ fi
 
 if command -v doas > /dev/null; then
     unalias sudo
-    alias sudo="doas"
+    alias sudo="doas "
 fi
 
 # OS/hostname specific aliases
@@ -90,25 +89,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # aliases for flatpak
     alias flatpakupdates="flatpak remote-ls --updates flathub"
     alias flatpakautoremove="flatpak remove --unused --delete-data"
-    # generate `flatpak run <name>`
-    if command -v flatpak > /dev/null; then
-        # Get a list of flatpak applications in the reverse domain name format
-        readarray -t ids < <(flatpak list --app --columns=application)
-        for id in "${ids[@]}"; do
-
-            # Take everything past the last dot (the name)
-            name="${id##*.}"
-            # Make it lowercase to approximate binary name
-            binary="${name,,}"
-
-            # If there is not already a command at that name
-            if ! command -v "${binary}" > /dev/null; then
-
-                # Create an alias that runs the flatpak
-                alias "$binary=flatpak run \"$id\""
-            fi
-        done
-    fi
 
     # other common aliases
     alias tmux="/usr/bin/tmux -f $HOME/.config/tmux/tmux.conf"
