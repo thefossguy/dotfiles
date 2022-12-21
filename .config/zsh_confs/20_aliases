@@ -226,4 +226,5 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 # source functions
-source $HOME/.config/zsh_confs/21_alias_funcs
+ALIAS_FUNC_CONF=$HOME/.config/zsh_confs/21_alias_funcs
+[ -f $ALIAS_FUNC_CONF ] && source $ALIAS_FUNC_CONF

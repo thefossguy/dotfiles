@@ -6,6 +6,10 @@ case $- in
     *) return;;
 esac
 
+HISTORY_CONF=$ZSH_CONFS_DIRECTORY/10_history
+ALIASES_CONF=$ZSH_CONFS_DIRECTORY/20_aliases
+SYNTAX_HIGHLIGHT_CONF=$ZSH_CONFS_DIRECTORY/90_syntax_highlight
+
 # for using comments in interactive shell
 setopt INTERACTIVECOMMENTS
 
@@ -13,7 +17,7 @@ setopt INTERACTIVECOMMENTS
 ZSH_CONFS_DIRECTORY="$HOME/.config/zsh_confs"
 
 # load options related to history
-source $ZSH_CONFS_DIRECTORY/10_history
+[ -f $HISTORY_CONF ] && source $HISTORY_CONF
 
 # keep the space after tab completion
 ZLE_REMOVE_SUFFIX_CHARS=""
@@ -56,7 +60,7 @@ else if [[ "$MACHINE_HOSTNAME" == "bluefeds" || "$MACHINE_HOSTNAME" == "sentinel
 fi
 
 # source aliases
-source $ZSH_CONFS_DIRECTORY/20_aliases
+[ -f $ALIASES_CONF ] && source $ALIASES_CONF
 
 # source zsh syntax highlighting
-source $ZSH_CONFS_DIRECTORY/90_syntax_highlight
+[ -f $SYNTAX_HIGHLIGHT_CONF ] && source $SYNTAX_HIGHLIGHT_CONF
