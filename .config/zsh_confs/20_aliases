@@ -12,7 +12,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     export EDITOR=/usr/bin/nvim
     export SYSTEMD_EDITOR=/usr/bin/nvim
 
-    if [[ "$MACHINE_HOSTNAME" == "flameboi" ]]; then
+    if [[ "$MACHINE_HOSTNAME" == "flameboi" || "$MACHINE_HOSTNAME" == "vasudev" ]]; then
         export LESS=SRX
     fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
@@ -97,7 +97,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias mpv="/usr/bin/mpv --geometry=60% --vo=gpu --hwdec=vaapi"
     alias pbcopy="xsel --clipboard --input"
 
-    if [[ "$MACHINE_HOSTNAME" == "flameboi" ]]; then
+    if [[ "$MACHINE_HOSTNAME" == "flameboi" || "$MACHINE_HOSTNAME" == "vasudev" ]]; then
         alias drivetemp="sudo hdparm -CH /dev/sda /dev/sdb /dev/sdc /dev/sdd"
 
         # aliases useful when using a WM
