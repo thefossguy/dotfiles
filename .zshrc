@@ -65,7 +65,7 @@ if [[ "$MACHINE_HOSTNAME" == "flameboi" ]]; then
     zstyle ':completion:*' group-name ''
     zstyle compinstall filename "$HOME/.zshrc"
 
-    autuload -Uz compinit
+    autoload -Uz compinit
     compinit
     # End of lines added by compinstall
 elif [[ "$MACHINE_HOSTNAME" == "bluefeds" || "$MACHINE_HOSTNAME" == "sentinel" ]]; then
