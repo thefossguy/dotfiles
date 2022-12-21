@@ -61,7 +61,7 @@ MACHINE_HOSTNAME=$(cat /etc/hostname)
 
 if [[ "$MACHINE_HOSTNAME" == "flameboi" ]]; then
     # The following lines were added by compinstall
-    zstyle ':completion:*' completer _alternative _approximate _arguments _complete _expand _ignored 
+    zstyle ':completion:*' completer _arguments _complete _expand _ignored
     zstyle ':completion:*' group-name ''
     zstyle compinstall filename "$HOME/.zshrc"
 
