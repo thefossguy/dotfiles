@@ -80,7 +80,12 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # ssh related aliases
     alias flameboi="ssh pratham@flameboi.lan"
     alias sentinel="ssh ubuntu@sentinel.lan"
-    alias bluefeds="ssh pratham@bluefeds.lan"
+    alias reddish="ssh pratham@reddish.lan"
+
+    # ping related aliases
+    alias pingflameboi="ping 10.0.0.13"
+    alias pingsentinel="ping 10.0.0.14"
+    alias pingreddish="ping 10.0.0.19"
 
     # aliases for flatpak
     alias flatpakupdates="flatpak remote-ls --updates flathub"
@@ -112,7 +117,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
             find "$OWNDIR" -type f -name "*.DS_Store" -exec rm -iv {} \;
         }
 
-    elif [[ "$MACHINE_HOSTNAME" == "bluefeds" ]]; then
+    elif [[ "$MACHINE_HOSTNAME" == "reddish" ]]; then
         alias clear="/usr/bin/clear && printf '\e[3J'"
         alias drivetemp="sudo hdparm -CH /dev/sda /dev/sdb"
 
