@@ -6,8 +6,12 @@ if [[ ${EUID} -ne 0 || ${UID} -ne 0 ]]; then
     exit 1
 fi
 
-if [[ -f /usr/sbin/zpool ]]; then
-    if [[ ! -d /flameboi_st ]]; then
-        /usr/sbin/zpool import 16601987433518749526
+if ! lsmod | grep "zfs" &> /dev/null ; then
+    sleep 10
+fi
+
+if [[ -f /usr/local/sbin/zpool ]]; then
+    if [[ ! -d /flameboi_st/Downloads || ! -d /flameboi_st/_home || ! -d /flameboi_st/vm-store ]]; then
+        /usr/local/sbin/zpool import 16601987433518749526
     fi
 fi
