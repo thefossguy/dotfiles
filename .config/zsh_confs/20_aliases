@@ -17,14 +17,6 @@ fi
 
 # add dir to PATH if present
 # precedence from top (lowest) to bottom (highest)
-[[ -d "$HOME/.local/bin" ]] && export PATH=$HOME/.local/bin:$PATH
-[[ -d "$HOME/.cargo/bin" ]] && export PATH=$HOME/.cargo/bin:$PATH
-[[ -d /usr/local/sbin ]] && export PATH=/usr/local/sbin:$PATH
-[[ -d /usr/sbin ]] && export PATH=/usr/sbin:$PATH
-[[ -d /sbin ]] && export PATH=/sbin:$PATH
-[[ -d /usr/local/bin ]] && export PATH=/usr/local/bin:$PATH
-[[ -d /usr/bin ]] && export PATH=/usr/bin:$PATH
-[[ -d /bin ]] && export PATH=/bin:$PATH
 if command -v rustup > /dev/null; then
     RUSTUP_TRIPLET=$(rustup show active-toolchain | awk '{print $1}')
     RUSTUP_PATH="$HOME/.rustup/toolchains/$RUSTUP_TRIPLET/bin"
@@ -33,6 +25,14 @@ if command -v rustup > /dev/null; then
     # rust-analyzer needs to be in $PATH for good Rust support in Neovim
     # see https://github.com/rust-lang/rustup/issues/2411
 fi
+[[ -d "$HOME/.cargo/bin" ]] && export PATH=$HOME/.cargo/bin:$PATH
+[[ -d "$HOME/.local/bin" ]] && export PATH=$HOME/.local/bin:$PATH
+[[ -d /usr/local/sbin ]] && export PATH=/usr/local/sbin:$PATH
+[[ -d /usr/sbin ]] && export PATH=/usr/sbin:$PATH
+[[ -d /sbin ]] && export PATH=/sbin:$PATH
+[[ -d /usr/local/bin ]] && export PATH=/usr/local/bin:$PATH
+[[ -d /usr/bin ]] && export PATH=/usr/bin:$PATH
+[[ -d /bin ]] && export PATH=/bin:$PATH
 typeset -U PATH
 
 # common aliases
@@ -130,6 +130,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
             "container-nextcloud-chitragupta.service" \
             "container-hugo-mahayogi.service" \
             "container-gotify-akashvani.service" \
+            "container-uptime-vishnu.service" \
             "container-transmission-raadhe.service" \
         )
         alias containerupdate="podman auto-update --dry-run | grep -v 'false'"
@@ -160,8 +161,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
             TOTAL_RUNNING=$(podman ps --format '{{.Names}}' | wc -l)
             TOTAL_CONTAINERS=$(podman container list -a --format '{{.Names}}' | wc -l)
 
-            echo -e "Running:\t${TOTAL_RUNNING}/9"
-            echo -e "Containers:\t${TOTAL_CONTAINERS}/9"
+            echo -e "Running:\t${TOTAL_RUNNING}/10"
+            echo -e "Containers:\t${TOTAL_CONTAINERS}/10"
         }
 
         # rebuild ZFS DKMS automatically/manually
