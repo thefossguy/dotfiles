@@ -6,11 +6,12 @@ if [[ ${EUID} -ne 0 || ${UID} -ne 0 ]]; then
     exit 1
 fi
 
-if [[ -f /usr/sbin/zpool ]]; then
-    if [[ ! -d /trayimurti/containers &&
-        ! -d /trayimurti/sanaatana-dharma &&
-        ! -d /trayimurti/torrents &&
-        ! -d /trayimurti/containers/volumes ]]; then
-        /usr/sbin/zpool import 8797010937679026602
+if ! lsmod | grep "zfs" &> /dev/null ; then
+    sleep 10
+fi
+
+if [[ -f /sbin/zpool ]]; then
+    if [[ ! -d /trayimurti/containers/volumes/caddy || ! -d /trayimurti/containers/volumes/nextcloud || ! -d /trayimurti/containers/volumes/gitea ]]; then
+        /sbin/zpool import 9345246849197696133
     fi
 fi
