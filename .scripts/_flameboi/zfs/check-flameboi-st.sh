@@ -10,8 +10,8 @@ if ! lsmod | grep "zfs" &> /dev/null ; then
     sleep 10
 fi
 
-if [[ -f /usr/local/sbin/zpool ]]; then
+if [[ -f /bin/zpool ]]; then
     if [[ ! -d /flameboi_st/Downloads || ! -d /flameboi_st/_home || ! -d /flameboi_st/vm-store ]]; then
-        /usr/local/sbin/zpool import 16601987433518749526
+        /bin/zpool import 16601987433518749526
     fi
 fi

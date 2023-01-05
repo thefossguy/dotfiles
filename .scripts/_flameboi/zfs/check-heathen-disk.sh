@@ -10,8 +10,8 @@ if ! lsmod | grep "zfs" &> /dev/null ; then
     sleep 10
 fi
 
-if [[ -f /usr/local/sbin/zpool ]]; then
+if [[ -f /bin/zpool ]]; then
     if [[ ! -d heathen_disk/personal || ! -d heathen_disk/personal/backup ||  ! -d heathen_disk/work ]]; then
-        /usr/local/sbin/zpool import 12327394492612946617
+        /bin/zpool import 12327394492612946617
     fi
 fi
