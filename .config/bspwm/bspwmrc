@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-bash $HOME/.config/feh/fehbg &
-bash $HOME/.config/polybar/launch.sh &
-
-pgrep -x sxhkd > /dev/null || sxhkd &
+$HOME/.config/feh/fehbg &
+$HOME/.config/polybar/launch.sh &
+/usr/bin/bitwarden-desktop &
 
 bspc monitor -d work virtualization music other extra extraa
 

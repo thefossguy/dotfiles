@@ -6,5 +6,5 @@ configuration {
     sidebar-mode: false;
     click-to-exit: true;
     show-match: true;
-    theme: "gruvbox-dark-hard";
 }
+@theme "gruvbox-dark-hard"
