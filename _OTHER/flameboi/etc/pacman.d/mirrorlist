@@ -3,28 +3,28 @@
 ################################################################################
 
 # With:       reflector --connection-timeout 2 --latest 100 --sort age --fastest 20 --protocol https
-# When:       2023-01-08 03:37:05 UTC
+# When:       2023-01-09 14:26:07 UTC
 # From:       https://archlinux.org/mirrors/status/json/
-# Retrieved:  2023-01-08 03:37:05 UTC
-# Last Check: 2023-01-08 03:16:57 UTC
+# Retrieved:  2023-01-09 14:26:07 UTC
+# Last Check: 2023-01-09 14:13:39 UTC
 
-Server = https://mirror.chaoticum.net/arch/$repo/os/$arch
-Server = https://packages.oth-regensburg.de/archlinux/$repo/os/$arch
-Server = https://mirror.srv.fail/archlinux/$repo/os/$arch
-Server = https://in-mirror.garudalinux.org/archlinux/$repo/os/$arch
-Server = https://fastmirror.pp.ua/archlinux/$repo/os/$arch
-Server = https://mirror.thekinrar.fr/archlinux/$repo/os/$arch
+Server = https://mirror.osbeck.com/archlinux/$repo/os/$arch
 Server = https://mirrors.nxtgen.com/archlinux-mirror/$repo/os/$arch
-Server = https://mirror.dogado.de/archlinux/$repo/os/$arch
-Server = https://mirror.cmt.de/archlinux/$repo/os/$arch
-Server = https://mirror.pagenotfound.de/archlinux/$repo/os/$arch
+Server = https://iad.mirrors.misaka.one/archlinux/$repo/os/$arch
+Server = https://mirrors.janbruckner.de/archlinux/$repo/os/$arch
+Server = https://irltoolkit.mm.fcix.net/archlinux/$repo/os/$arch
+Server = https://coresite.mm.fcix.net/archlinux/$repo/os/$arch
+Server = https://ziply.mm.fcix.net/archlinux/$repo/os/$arch
+Server = https://mirrors.vectair.net/archlinux/$repo/os/$arch
 Server = https://mirrors.xtom.de/archlinux/$repo/os/$arch
+Server = https://syd.mirror.rackspace.com/archlinux/$repo/os/$arch
 Server = https://hkg.mirror.rackspace.com/archlinux/$repo/os/$arch
-Server = https://arch.yhtez.xyz/$repo/os/$arch
 Server = https://mirror.jingk.ai/archlinux/$repo/os/$arch
-Server = https://mirror.xtom.com.hk/archlinux/$repo/os/$arch
 Server = https://arch.lucassymons.net/$repo/os/$arch
 Server = https://mirror.wuki.li/archlinux/$repo/os/$arch
-Server = https://mirror.cj2.nl/archlinux/$repo/os/$arch
-Server = https://ftp.spline.inf.fu-berlin.de/mirrors/archlinux/$repo/os/$arch
-Server = https://mirror.netweaver.uk/archlinux/$repo/os/$arch
+Server = https://mirror.clientvps.com/archlinux/$repo/os/$arch
+Server = https://mirrors.xtom.nl/archlinux/$repo/os/$arch
+Server = https://os.codefionn.eu/archlinux/$repo/os/$arch
+Server = https://archlinux.koyanet.lv/archlinux/$repo/os/$arch
+Server = https://mirror.sabay.com.kh/archlinux/$repo/os/$arch
+Server = https://repo.skni.umcs.pl/archlinux/$repo/os/$arch
