@@ -10,9 +10,9 @@ xrandr -s 3840x2160+0+0
 nvidia-settings --assign CurrentMetaMode="3840x2160+0+0 { ForceFullCompositionPipeline = On }"
 
 pgrep -x dunst > /dev/null || dunst &
-pgrep -x picom > /dev/null || picom --experimental-backends --no-fading-openclose &
-pkill -USR1 -x sxhkd &
+pgrep -x picom > /dev/null || picom &
+pgrep -x sxhkd > /dev/null || sxhkd &
 
 notify-send -u normal "Login manager" "Welcome, $(whoami)"
 
-exec bspwm
+exec bspwm -c $HOME/.config/bspwm/bspwmrc
