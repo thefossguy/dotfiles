@@ -12,6 +12,7 @@ nvidia-settings --assign CurrentMetaMode="3840x2160+0+0 { ForceFullCompositionPi
 pgrep -x dunst > /dev/null || dunst &
 pgrep -x picom > /dev/null || picom --fade-exclude 'class_g = "xsecurelock"' &
 pgrep -x sxhkd > /dev/null || sxhkd &
+pgrep -x lxpolkit > /dev/null || lxpolkit &
 
 notify-send -u normal "Login manager" "Welcome, $(whoami)"
 
