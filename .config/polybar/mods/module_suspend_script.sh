@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-i3lock-fancy &
+xsecurelock &
 systemctl suspend

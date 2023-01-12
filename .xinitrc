@@ -10,7 +10,7 @@ xrandr -s 3840x2160+0+0
 nvidia-settings --assign CurrentMetaMode="3840x2160+0+0 { ForceFullCompositionPipeline = On }"
 
 pgrep -x dunst > /dev/null || dunst &
-pgrep -x picom > /dev/null || picom &
+pgrep -x picom > /dev/null || picom --fade-exclude 'class_g = "xsecurelock"' &
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 notify-send -u normal "Login manager" "Welcome, $(whoami)"
