@@ -43,7 +43,7 @@ super + bracket{left,right}
 # [ to decrease volume by 10%
 # ] to increase volume by 10%
 super + shift + bracket{left,right}
-    {bash $HOME/.config/sxhkd/mods/module_alsa.sh down,bash $HOME/.config/sxhkd/mods/module_alsa.sh up}
+    {pamixer -d 10,pamixer -i 10}
 
 # switch between nodes (locally)
 alt + {_,shift} + Tab
