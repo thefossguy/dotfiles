@@ -4,8 +4,8 @@ super + space
 
 # Return to launch terminal emulator
 # b to launch browser
-super + {Return,b}
-    {alacritty,firefox}
+super + {Return,b,v}
+    {alacritty,firefox,virt-manager}
 
 # w to reload/relaunch feh/change bg
 # p to reload/relaunch polybar
