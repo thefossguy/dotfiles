@@ -2,9 +2,8 @@
 
 $HOME/.config/feh/fehbg &
 $HOME/.config/polybar/launch.sh &
-/usr/bin/bitwarden-desktop &
 
-bspc monitor -d work virtualization music other extra extraa
+bspc monitor -d work virtualization bg-apps other extra extraa
 
 bspc config border_width              6
 bspc config window_gap                12
@@ -40,3 +39,14 @@ bspc rule -a "Nvidia-settings" state=floating
 
 bspc rule -a "VirtualBox Machine" state=pseudo_tiled
 bspc rule -a "Virt-manager" state=psuedo_tiled
+
+bspc desktop --focus ^3
+gnome-disks &
+sleep 2
+bspc desktop --focus ^1
+firefox &
+sleep 2
+alacritty &
+bitwarden-desktop &
+
+notify-send -u normal "Login manager" "Welcome, $(whoami)"
