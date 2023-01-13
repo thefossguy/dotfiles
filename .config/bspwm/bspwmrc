@@ -43,6 +43,9 @@ bspc rule -a "Virt-manager" state=psuedo_tiled
 bspc desktop --focus ^3
 gnome-disks &
 sleep 2
+bspc desktop --focus ^2
+virt-manager &
+sleep 1
 bspc desktop --focus ^1
 firefox &
 sleep 2
