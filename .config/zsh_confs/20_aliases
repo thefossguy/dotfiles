@@ -37,7 +37,7 @@ typeset -U PATH
 alias flushSSH="ssh-keygen -R"
 alias mtr='mtr --show-ips --displaymode 0 -o "LDR AGJMXI"'
 alias update="source $HOME/.zshrc" # other files are sourced automatically
-alias custcp="rsync --verbose --recursive --size-only --human-readable --perms --progress --stats --itemize-changes"
+alias custcp="rsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
 alias pysort="$HOME/.scripts/common-scripts/sort.py"
 alias download="aria2c -x 16 -k 1M --file-allocation=none --continue=false"
 alias vim="nvim"
@@ -80,6 +80,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias flameboi="ssh pratham@flameboi.lan"
     alias sentinel="ssh ubuntu@sentinel.lan"
     alias reddish="ssh pratham@reddish.lan"
+    alias rustyvm="ssh pratham@192.168.122.9"
 
     # ping related aliases
     alias pingflameboi="ping 10.0.0.13"
