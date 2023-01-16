@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+/usr/sbin/hdparm -S 60 /dev/sda
+/usr/sbin/hdparm -S 60 /dev/sdb
+/usr/sbin/hdparm -S 60 /dev/sdc
+/usr/sbin/hdparm -S 60 /dev/sdd
+
 /usr/bin/updatedb &
 sleep 600s
 
