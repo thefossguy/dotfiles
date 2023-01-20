@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-sleep 2
 xsecurelock &
-sleep 2
+sleep 5
 systemctl suspend
