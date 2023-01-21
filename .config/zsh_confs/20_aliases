@@ -101,12 +101,21 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias pbcopy="xsel --clipboard --input"
 
     if [[ "$MACHINE_HOSTNAME" == "flameboi" || "$MACHINE_HOSTNAME" == "vasudev" ]]; then
+        alias suslock="$HOME/.config/polybar/mods/module_suspend_script.sh"
         alias drivetemp="sudo hdparm -CH /dev/sda /dev/sdb /dev/sdc /dev/sdd"
-        alias pkgfile="pacman -Qo"
         alias paru="LESS=SRX paru"
 
+        alias pacrm="pacman -Rsu"
+        alias pacinstall="pacman -S"
+
+        alias pkgupgrade="pacman -Syyu"
+        alias pkgsearch="pacman -Ss"
+        alias pkgrevdeps="pacman -Sii"
+        alias pkgfileof="pacman -Qo"
+        alias pkgshowfiles="pacman -Fl"
+        alias pkgautoremove="pacman -R $(pacman -Qdt | choose 0)"
+
         # aliases useful when using a WM
-        alias suslock="$HOME/.config/polybar/mods/module_suspend_script.sh"
         alias gnomecontrolcenter="XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
         alias gnomecc="XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 
