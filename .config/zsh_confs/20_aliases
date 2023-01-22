@@ -82,7 +82,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias flameboi="ssh pratham@flameboi.lan"
     alias sentinel="ssh ubuntu@sentinel.lan"
     alias reddish="ssh pratham@reddish.lan"
-    alias rustyvm="ssh pratham@192.168.122.9"
+    alias rustyvm="ssh pratham@rusty.vm"
 
     # ping related aliases
     alias pingflameboi="ping 10.0.0.13"
