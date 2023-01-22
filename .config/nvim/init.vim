@@ -6,6 +6,9 @@ call plug#begin('~/.vim/plugged')
 " base16 theme
 Plug 'chriskempson/base16-vim'
 
+" treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 " auto-complete
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
