@@ -134,7 +134,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         alias drivetemp="sudo hdparm -CH /dev/sda /dev/sdb"
 
         # aliases for container management
-        ALL_CONTAINERS=("container-caddy-vishwambhar.service" \
+        ALL_CONTAINERS=("container-uptime-vishnu.service" \
+            "container-caddy-vishwambhar.service" \
             "container-gitea-govinda.service" \
             "container-gitea-chitragupta.service" \
             "container-hugo-vaikunthnatham.service" \
@@ -142,7 +143,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
             "container-nextcloud-chitragupta.service" \
             "container-hugo-mahayogi.service" \
             "container-gotify-akashvani.service" \
-            "container-uptime-vishnu.service" \
             "container-transmission-raadhe.service" \
         )
         alias containerupdate="podman auto-update --dry-run | grep -v 'false'"
