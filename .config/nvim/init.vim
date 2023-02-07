@@ -235,6 +235,11 @@ nnoremap <C-H> <C-W><C-H>
 "enable nerdtree with ^\
 map <C-Bslash> :NERDTreeToggle<CR>
 
+" enable clipboard access for Neovide
+nnoremap <D-V> "+p
+nnoremap <C-S-V> "+p
+
+
 " RUST
 " Code navigation shortcuts
 nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
