@@ -42,9 +42,12 @@ Plug 'simrat39/rust-tools.nvim'
 Plug 'tpope/vim-fugitive'
 
 " src tree view
-Plug 'preservim/nerdtree'
+Plug 'nvim-tree/nvim-tree.lua'
+Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
 
 call plug#end()
+" lua require("setup"
+luafile ~/.config/nvim/lua/setup.lua
 
 
 " ==============================================================================
@@ -53,6 +56,7 @@ call plug#end()
 " dealing with files
 syntax on
 filetype plugin indent on
+set paste
 set colorcolumn=80
 set autoindent expandtab tabstop=4 shiftwidth=4
 set encoding=utf-8
@@ -232,12 +236,10 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-"enable nerdtree with ^\
-map <C-Bslash> :NERDTreeToggle<CR>
-
-" enable clipboard access for Neovide
-nnoremap <D-V> "+p
-nnoremap <C-S-V> "+p
+" neovide (GUI) clipboard
+nnoremap <C-S-V> "+P
+" handle Ctrl+Shift+V in GUI somehow
+" inoremap <C-S-V> "+P
 
 
 " RUST
