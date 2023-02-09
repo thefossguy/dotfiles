@@ -4,7 +4,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
     MACHINE_HOSTNAME=$(cat /etc/hostname)
 
-    if [[ "$MACHINE_HOSTNAME" == "flameboi" || "$MACHINE_HOSTNAME" == "vasudev" ]]; then
+    if [[ "$MACHINE_HOSTNAME" == "flameboi" || "$MACHINE_HOSTNAME" == "rustyvm" || "$MACHINE_HOSTNAME" == "vasudev" ]]; then
         ZSH_SYNTAX_HIGHLIGHT_PATH="/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
     elif [[ "$MACHINE_HOSTNAME" == "sentinel" || "$MACHINE_HOSTNAME" == "bluefeds" ]]; then
         ZSH_SYNTAX_HIGHLIGHT_PATH="/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
