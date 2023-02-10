@@ -1,3 +1,112 @@
+--------------------------------------------------------------------------------
+-- nvim-tree setup
+--------------------------------------------------------------------------------
+
+require("nvim-tree").setup({
+ auto_reload_on_write = true,
+ disable_netrw = false,
+ hijack_netrw = true,
+ sort_by = "case_sensitive",
+ view = {
+   width = 30,
+   number = true,
+   relativenumber = true,
+   mappings = {
+     list = {
+       { key = "u", action = "dir_up" },
+     },
+   },
+ },
+ renderer = {
+   group_empty = false,
+   highlight_git = true,
+     icons = {
+       symlink_arrow = " ➛ ",
+     glyphs = {
+       modified = "●",
+       git = {
+         unstaged = "✗",
+         staged = "✓",
+         unmerged = "",
+         renamed = "➜",
+         untracked = "[ ]",
+         deleted = "",
+         ignored = "◌",
+       },
+     },
+   },
+   special_files = { "Cargo.toml", "README.md", "Readme.md", "readme.md" },
+   symlink_destination = true,
+ },
+ filters = {
+   dotfiles = true,
+ },
+})
+
+
+-- open nvim-tree
+-- this function checks if all of the arguments provided to Neovim
+-- are either file(s) or director(y|ies)
+-- returns true only if an argv is file
+function dir_or_file()
+  local iter = 0
+  while iter < vim.fn.argc() do
+    local fpath = io.open(vim.fn.argv(iter), "r")
+    iter = iter + 1
+    if fpath ~= nil then
+      io.close(fpath)
+      return true
+    end
+  end
+end
+
+-- open the tree if no files are specified in argv
+local open_tree = dir_or_file()
+if open_tree ~= true then
+  require("nvim-tree.api").tree.open()
+end
+
+
+--------------------------------------------------------------------------------
+-- nvim-cmp setup
+--------------------------------------------------------------------------------
+
+-- Set up nvim-cmp.
+local cmp = require'cmp'
+
+cmp.setup({
+  snippet = {
+    -- REQUIRED - you must specify a snippet engine
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+    end,
+  },
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<Tab>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'vsnip' },
+  }, {
+    { name = 'buffer' },
+  })
+})
+
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+require("lspconfig")["rust_analyzer"].setup {
+  cmd = {"rust-analyzer"},
+  filetypes = {"rust"},
+  capabilities = capabilities,
+}
+
+
+--------------------------------------------------------------------------------
+-- rust-tools.nvim setup
+--------------------------------------------------------------------------------
 local opts = {
   tools = { -- rust-tools options
 

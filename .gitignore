@@ -7,3 +7,6 @@ Thumbs.db
 
 # compiled C/C++ files
 *.out
+
+# Packer.nvim related file
+.config/nvim/plugin/packer_compiled.lua
