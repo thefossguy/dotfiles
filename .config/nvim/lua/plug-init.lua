@@ -56,7 +56,13 @@ return require("packer").startup(function(use)
   }
 
   -- parser/highlighter
-  use { "nvim-treesitter/nvim-treesitter", cmd = "TSUpdate" }	
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    run = function()
+      local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
+      ts_update()
+    end,
+  }
 
   -- Rust lang
   use {
