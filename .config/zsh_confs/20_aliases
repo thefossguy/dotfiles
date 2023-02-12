@@ -82,6 +82,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias flameboi="ssh pratham@flameboi.lan"
     alias sentinel="ssh ubuntu@sentinel.lan"
     alias reddish="ssh pratham@reddish.lan"
+    alias vasudev="ssh pratham@vasu.dev"
     alias rustyvm="ssh pratham@rusty.vm"
 
     # ping related aliases
@@ -99,6 +100,12 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias pmount="mount -o gid=pratham,uid=pratham"
     alias mpv="/usr/bin/mpv --geometry=60% --vo=gpu --hwdec=vaapi"
     alias pbcopy="xsel --clipboard --input"
+    if command -v doas > /dev/null; then
+        alias serialterm="clear && doas picocom -b 115200 /dev/ttyUSB0"
+    else
+        alias serialterm="clear && sudo picocom -b 115200 /dev/ttyUSB0"
+    fi
+
 
     if [[ "$MACHINE_HOSTNAME" == "flameboi" || "$MACHINE_HOSTNAME" == "vasudev" || "$MACHINE_HOSTNAME" == "rustyvm" ]]; then
         alias suslock="$HOME/.config/polybar/mods/module_suspend_script.sh"
