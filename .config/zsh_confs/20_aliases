@@ -152,8 +152,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
             "container-nextcloud-chitragupta.service" \
             "container-hugo-mahayogi.service" \
             "container-gotify-akashvani.service" \
-            "container-transmission-raadhe.service" \
-        )
+            "container-transmission-raadhe.service")
+
         alias containerupdate="podman auto-update --dry-run | grep -v 'false'"
         alias containerpruneimages="podman system prune -a"
 
@@ -173,6 +173,15 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
             for INDV_CONTAINER in "${ALL_CONTAINERS[@]}"; do
                 if [[ $(systemctl --user is-enabled "$INDV_CONTAINER") -eq 0 ]]; then
                     systemctl --user is-active --quiet service "$INDV_CONTAINER" && systemctl --user stop "$INDV_CONTAINER" && echo "$INDV_CONTAINER: stopped"
+                fi
+            done
+        }
+
+        containerstartall() {
+            for (( idx=${#ALL_CONTAINERS[@]} ; idx>0 ; idx-- )) ; do
+                INDV_CONTAINER=${ALL_CONTAINERS[idx]}
+                if [[ $(systemctl --user is-enabled "$INDV_CONTAINER") -eq 0 ]]; then
+                    systemctl --user restart "$INDV_CONTAINER" && echo "$INDV_CONTAINER: started"
                 fi
             done
         }
