@@ -66,12 +66,12 @@ fi
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # common ls aliases
     alias l="ls --group-directories-first --color=auto -v"
-    alias ll="ls --group-directories-first --color=auto -1lv"
-    alias la="ls --group-directories-first --color=auto -1Av"
+    alias ll="ls --group-directories-first --color=auto -1lv --time-style=long-iso"
+    alias la="ls --group-directories-first --color=auto -1Av --time-style=long-iso"
     alias lo="ls --group-directories-first --color=auto -1v"
-    alias llh="ls --group-directories-first --color=auto -1hlv"
-    alias lah="ls --group-directories-first --color=auto -1Ahlv"
-    alias ldt="ls --group-directories-first --color=auto -1Altv"
+    alias llh="ls --group-directories-first --color=auto -1hlv --time-style=long-iso"
+    alias lah="ls --group-directories-first --color=auto -1Ahlv --time-style=long-iso"
+    alias ldt="ls --group-directories-first --color=auto -1Altv --time-style=long-iso"
 
     # common grep aliases
     alias grep="grep --color=auto"
@@ -221,12 +221,12 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 
     # aliases for ls
     alias l="/usr/local/bin/gls --group-directories-first --color=auto -v"
-    alias ll="/usr/local/bin/gls --group-directories-first --color=auto -1lv"
-    alias la="/usr/local/bin/gls --group-directories-first --color=auto -1Av"
+    alias ll="/usr/local/bin/gls --group-directories-first --color=auto -1lv --time-style=long-iso"
+    alias la="/usr/local/bin/gls --group-directories-first --color=auto -1Av --time-style=long-iso"
     alias lo="/usr/local/bin/gls --group-directories-first --color=auto -1v"
-    alias llh="/usr/local/bin/gls --group-directories-first --color=auto -1hlv"
-    alias lah="/usr/local/bin/gls --group-directories-first --color=auto -1Ahlv"
-    alias ldt="/usr/local/bin/gls --group-directories-first --color=auto -1Altv"
+    alias llh="/usr/local/bin/gls --group-directories-first --color=auto -1hlv --time-style=long-iso"
+    alias lah="/usr/local/bin/gls --group-directories-first --color=auto -1Ahlv --time-style=long-iso"
+    alias ldt="/usr/local/bin/gls --group-directories-first --color=auto -1Altv --time-style=long-iso"
 
     # aliases for grep
     alias grep="/usr/local/bin/ggrep --color=auto"
