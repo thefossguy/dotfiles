@@ -14,12 +14,6 @@ vim.api.nvim_create_autocmd({"BufWritePre"}, {
   command = "lua vim.lsp.buf.format(nil, 200)",
 })
 
--- run `cargo run` upon `:w`
-vim.api.nvim_create_autocmd({"BufWritePost"}, {
-  pattern = {"*.rs"},
-  command = "!cargo run",
-})
-
 
 -- indentation (2 spaces)
 vim.api.nvim_create_autocmd("FileType", {
