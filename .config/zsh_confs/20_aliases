@@ -48,6 +48,7 @@ alias ytdown="yt-dlp --config-location $HOME/.config/yt-dlp/norm_config --extern
 alias playdl="yt-dlp --config-location $HOME/.config/yt-dlp/plst_config --external-downloader aria2c"
 alias ytslow="yt-dlp --config-location $HOME/.config/yt-dlp/norm_config --no-part --concurrent-fragments 1 --limit-rate 4M"
 alias gcommitm="git commit -m"
+alias unxz="unxz -k"
 alias clearxclip="xsel -bc"
 alias olddig="dig"
 alias dig="dog"
