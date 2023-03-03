@@ -82,11 +82,12 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias grepi="grep --color=auto -i"
 
     # ssh related aliases
-    alias flameboi="ssh pratham@flameboi.lan"
-    alias sentinel="ssh ubuntu@sentinel.lan"
-    alias reddish="ssh pratham@reddish.lan"
-    alias vasudev="ssh pratham@vasu.dev"
-    alias rustyvm="ssh pratham@rusty.vm"
+    alias flameboi="ssh flameboi.lan"
+    alias sentinel="ssh sentinel.lan"
+    alias reddish="ssh reddish.lan"
+    alias vasudev="ssh vasu.dev"
+    alias riscyrock="ssh riscy.rock"
+    alias rustyvm="ssh rusty.vm"
 
     # ping related aliases
     alias pingflameboi="ping 10.0.0.13"
