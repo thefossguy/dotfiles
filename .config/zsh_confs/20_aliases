@@ -105,9 +105,9 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias mpv="/usr/bin/mpv --geometry=60% --vo=gpu --hwdec=vaapi"
     alias pbcopy="xsel --clipboard --input"
     if command -v doas > /dev/null; then
-        alias serialterm="clear && doas picocom -b 115200 /dev/ttyUSB0"
+        alias serialterm="clear && doas picocom --quiet -b 115200 /dev/ttyUSB0"
     else
-        alias serialterm="clear && sudo picocom -b 115200 /dev/ttyUSB0"
+        alias serialterm="clear && sudo picocom --quiet -b 115200 /dev/ttyUSB0"
     fi
 
 
