@@ -19,6 +19,12 @@ vim.api.nvim_create_autocmd({'BufWritePre'}, {
 
 -- set indentation to 2 spaces for special file types
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = {'*.lua'},
-  command = 'setlocal autoindent expandtabe tabstop=2 shiftwidth=2 softtabstop=2',
+  pattern = {'*.lua', '*.yml', '*.yaml'},
+  command = 'setlocal autoindent expandtab tabstop=2 shiftwidth=2 softtabstop=2',
+})
+
+-- set indentation to 4 spaces for special file types
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = {'*.rs', '*.toml', '*.bash', '*.dash', '*.c', '*.cpp', '*.h'},
+  command = 'setlocal autoindent expandtab tabstop=4 shiftwidth=4 softtabstop=4',
 })
