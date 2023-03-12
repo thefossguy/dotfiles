@@ -1,59 +1,62 @@
 -- appearance
 vim.cmd.colorscheme 'base16-google-dark'
-vim.o.colorcolumn = '80'
-vim.o.cursorcolumn = true
-vim.o.cursorline = true
-vim.o.termguicolors = true
-vim.o.title = true
-vim.o.signcolumn = 'yes'
-vim.o.showmatch = true
+vim.opt.colorcolumn = '80'
+vim.opt.cursorcolumn = true
+vim.opt.cursorline = true
+vim.opt.termguicolors = true
+vim.opt.title = true
+vim.opt.signcolumn = 'yes'
+vim.opt.showmatch = true
 
 -- indentation
-vim.o.autoindent = true
-vim.o.expandtab = true
-vim.o.tabstop = '4'
-vim.o.shiftwidth = '4'
-vim.o.softtabstop = '4'
-vim.o.breakindent = true
+vim.opt.autoindent = true
+vim.opt.expandtab = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+vim.opt.breakindent = true
 
 -- line numbers
-vim.o.number = true
-vim.o.relativenumber = true
+vim.opt.number = true
+vim.opt.relativenumber = true
 
 -- behaviour
-vim.o.splitright = true -- open splits in right
-vim.o.wildmenu = true -- completion in typing vim commands
-vim.o.encoding = 'utf-8'
+vim.opt.splitright = true -- open splits in right
+vim.opt.wildmenu = true -- completion in typing vim commands
+vim.opt.encoding = 'utf-8'
 
 -- show command that is being typed with `:<cmd>`
-vim.o.showcmd = true
+vim.opt.showcmd = true
 
 -- spelling
-vim.o.spell = true
+vim.opt.spell = true
 
 -- search related opts
-vim.o.incsearch = true
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.o.hlsearch = true
-vim.o.nogdefault = true
+vim.opt.incsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.hlsearch = true
+vim.o.nogdefault = true -- diable global substitution by default, let me specify it
 
 -- speed up
-vim.o.timeout = true
+vim.opt.timeout = true
 vim.o.timeoutlen = '300'
 vim.o.updatetime = '250'
 vim.o.noswapfile = true
 
 -- auto-completion
-vim.o.completeopt = 'menuone,preview,noinsert,noselect'
+vim.opt.completeopt = 'menuone,preview,noinsert,noselect'
 
 -- disable messages like 'match 1 of 2', 'the only match', 'pattern not found', etc
--- vim.o.shortmess:append('c')
+vim.opt.shortmess:append('c')
 
 -- undo
 vim.o.undolevels = '200'
-vim.o.undodir = vim.fn.expand('~/.nvim/undodir')
-vim.o.undofile = true
+vim.opt.undodir = vim.fn.expand('~/.nvim/undodir')
+vim.opt.undofile = true
 
 -- disable mouse
-vim.o.mouse = 'a'
+vim.opt.mouse = 'a'
+
+-- clipboard
+vim.opt.clipboard:append('unnamedplus')
