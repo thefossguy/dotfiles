@@ -2,18 +2,18 @@
 -- nvim-tree
 --------------------------------------------------------------------------------
 
-require("nvim-tree").setup({
+require('nvim-tree').setup({
   auto_reload_on_write = true,
   disable_netrw = false,
   hijack_netrw = true,
-  sort_by = "case_sensitive",
+  sort_by = 'case_sensitive',
   view = {
     width = 30,
     number = true,
     relativenumber = true,
     mappings = {
       list = {
-        { key = "u", action = "dir_up" },
+        { key = 'u', action = 'dir_up' },
       },
     },
   },
@@ -21,21 +21,21 @@ require("nvim-tree").setup({
     group_empty = false,
     highlight_git = true,
     icons = {
-      symlink_arrow = " ➛ ",
+      symlink_arrow = ' ➛ ',
       glyphs = {
-        modified = "●",
+        modified = '●',
         git = {
-          unstaged = "✗",
-          staged = "✓",
-          unmerged = "",
-          renamed = "➜",
-          untracked = "[ ]",
-          deleted = "",
-          ignored = "◌",
+          unstaged = '✗',
+          staged = '✓',
+          unmerged = '',
+          renamed = '➜',
+          untracked = '[ ]',
+          deleted = '',
+          ignored = '◌',
         },
       },
     },
-    special_files = { "Cargo.toml", "README.md", "Readme.md", "readme.md" },
+    special_files = { 'Cargo.toml', 'README.md', 'Readme.md', 'readme.md' },
     symlink_destination = true,
   },
   filters = {
@@ -55,7 +55,7 @@ cmp.setup({
   snippet = {
     -- REQUIRED - you must specify a snippet engine
     expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      vim.fn['vsnip#anonymous'](args.body) -- for `vsnip` users
     end,
   },
   window = {
@@ -63,7 +63,9 @@ cmp.setup({
     documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
-    ['<Tab>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    -- accept currently selected item
+    -- set `select` to `false` to only confirm explicitly selected items
+    ['<Tab>'] = cmp.mapping.confirm({ select = true }),
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
@@ -73,10 +75,10 @@ cmp.setup({
   })
 })
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-require("lspconfig")["rust_analyzer"].setup {
-  cmd = {"rust-analyzer"},
-  filetypes = {"rust"},
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+require('lspconfig')['rust_analyzer'].setup {
+  cmd = {'rust-analyzer'},
+  filetypes = {'rust'},
   capabilities = capabilities,
 }
 --]]
@@ -91,22 +93,22 @@ local opts = {
 
     -- how to execute terminal commands
     -- options right now: termopen / quickfix
-    executor = require("rust-tools/executors").termopen,
+    executor = require('rust-tools/executors').termopen,
 
     -- callback to execute once rust-analyzer is done initializing the workspace
-    -- The callback receives one parameter indicating the `health` of the server: "ok" | "warning" | "error"
+    -- the callback receives one parameter indicating the `health` of the server: 'ok' | 'warning' | 'error'
     on_initialized = nil,
 
-    -- automatically call RustReloadWorkspace when writing to a Cargo.toml file.
+    -- automatically call RustReloadWorkspace when writing to a Cargo.toml file
     reload_workspace_from_cargo_toml = true,
 
-    -- These apply to the default RustSetInlayHints command
+    -- these apply to the default RustSetInlayHints command
     inlay_hints = {
       -- automatically set inlay hints (type hints)
       -- default: true
       auto = true,
 
-      -- Only show inlay hints for the current line
+      -- only show inlay hints for the current line
       only_current_line = false,
 
       -- whether to show parameter hints with the inlay hints or not
@@ -114,12 +116,12 @@ local opts = {
       show_parameter_hints = true,
 
       -- prefix for parameter hints
-      -- default: "<-"
-      parameter_hints_prefix = "<- ",
+      -- default: '<-'
+      parameter_hints_prefix = '<- ',
 
       -- prefix for all the other hints (type, chaining)
-      -- default: "=>"
-      other_hints_prefix = "=> ",
+      -- default: '=>'
+      other_hints_prefix = '=> ',
 
       -- whether to align to the length of the longest line in the file
       max_len_align = false,
@@ -133,8 +135,8 @@ local opts = {
       -- padding from the right if right_align is true
       right_align_padding = 7,
 
-      -- The color of the hints
-      highlight = "Comment",
+      -- the color of the hints
+      highlight = 'Comment',
     },
 
     -- options same as lsp hover / vim.lsp.util.open_floating_preview()
@@ -143,14 +145,14 @@ local opts = {
       -- the border that is used for the hover window
       -- see vim.api.nvim_open_win()
       border = {
-        { "╭", "FloatBorder" },
-        { "─", "FloatBorder" },
-        { "╮", "FloatBorder" },
-        { "│", "FloatBorder" },
-        { "╯", "FloatBorder" },
-        { "─", "FloatBorder" },
-        { "╰", "FloatBorder" },
-        { "│", "FloatBorder" },
+        { '╭', 'FloatBorder' },
+        { '─', 'FloatBorder' },
+        { '╮', 'FloatBorder' },
+        { '│', 'FloatBorder' },
+        { '╯', 'FloatBorder' },
+        { '─', 'FloatBorder' },
+        { '╰', 'FloatBorder' },
+        { '│', 'FloatBorder' },
       },
 
       -- whether the hover action window gets automatically focused
@@ -161,10 +163,10 @@ local opts = {
     -- settings for showing the crate graph based on graphviz and the dot
     -- command
     crate_graph = {
-      -- Backend used for displaying the graph
+      -- backend used for displaying the graph
       -- see: https://graphviz.org/docs/outputs/
       -- default: x11
-      backend = "x11",
+      backend = 'x11',
       -- where to store the output, nil for no output stored (relative
       -- path from pwd)
       -- default: nil
@@ -174,64 +176,64 @@ local opts = {
       -- default: true
       full = true,
 
-      -- List of backends found on: https://graphviz.org/docs/outputs/
-      -- Is used for input validation and autocompletion
-      -- Last updated: 2021-08-26
+      -- list of backends found on: https://graphviz.org/docs/outputs/
+      -- is used for input validation and autocompletion
+      -- last updated: 2021-08-26
       enabled_graphviz_backends = {
-        "bmp",
-        "cgimage",
-        "canon",
-        "dot",
-        "gv",
-        "xdot",
-        "xdot1.2",
-        "xdot1.4",
-        "eps",
-        "exr",
-        "fig",
-        "gd",
-        "gd2",
-        "gif",
-        "gtk",
-        "ico",
-        "cmap",
-        "ismap",
-        "imap",
-        "cmapx",
-        "imap_np",
-        "cmapx_np",
-        "jpg",
-        "jpeg",
-        "jpe",
-        "jp2",
-        "json",
-        "json0",
-        "dot_json",
-        "xdot_json",
-        "pdf",
-        "pic",
-        "pct",
-        "pict",
-        "plain",
-        "plain-ext",
-        "png",
-        "pov",
-        "ps",
-        "ps2",
-        "psd",
-        "sgi",
-        "svg",
-        "svgz",
-        "tga",
-        "tiff",
-        "tif",
-        "tk",
-        "vml",
-        "vmlz",
-        "wbmp",
-        "webp",
-        "xlib",
-        "x11",
+        'bmp',
+        'cgimage',
+        'canon',
+        'dot',
+        'gv',
+        'xdot',
+        'xdot1.2',
+        'xdot1.4',
+        'eps',
+        'exr',
+        'fig',
+        'gd',
+        'gd2',
+        'gif',
+        'gtk',
+        'ico',
+        'cmap',
+        'ismap',
+        'imap',
+        'cmapx',
+        'imap_np',
+        'cmapx_np',
+        'jpg',
+        'jpeg',
+        'jpe',
+        'jp2',
+        'json',
+        'json0',
+        'dot_json',
+        'xdot_json',
+        'pdf',
+        'pic',
+        'pct',
+        'pict',
+        'plain',
+        'plain-ext',
+        'png',
+        'pov',
+        'ps',
+        'ps2',
+        'psd',
+        'sgi',
+        'svg',
+        'svgz',
+        'tga',
+        'tiff',
+        'tif',
+        'tk',
+        'vml',
+        'vmlz',
+        'wbmp',
+        'webp',
+        'xlib',
+        'x11',
       },
     },
   },
@@ -248,23 +250,20 @@ local opts = {
   -- debugging stuff
   dap = {
     adapter = {
-      type = "executable",
-      command = "lldb-vscode",
-      name = "rt_lldb",
+      type = 'executable',
+      command = 'lldb-vscode',
+      name = 'rt_lldb',
     },
   },
 }
 
 require('rust-tools').setup(opts)
 
--- Set inlay hints for the current buffer
+-- set inlay hints for the current buffer
 require('rust-tools').inlay_hints.set()
--- Unset inlay hints for the current buffer
---require('rust-tools').inlay_hints.unset()
--- Enable inlay hints auto update and set them for all the buffers
+
+-- enable inlay hints auto update and set them for all the buffers
 require('rust-tools').inlay_hints.enable()
--- Disable inlay hints auto update and unset them for all buffers
---require('rust-tools').inlay_hints.disable()
 
 -- RustRunnables
 require('rust-tools').runnables.runnables()
@@ -291,7 +290,7 @@ require('telescope').setup {
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
+  -- you can pass additional configuration to telescope to change theme, layout, etc
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
     winblend = 10,
     previewer = false,
@@ -310,12 +309,13 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 --------------------------------------------------------------------------------
 
 require('nvim-treesitter.configs').setup {
-  -- Add languages to be installed here that you want installed for treesitter
+  -- add languages to be installed here that you want installed for treesitter
   -- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
   ensure_installed = { 'bash', 'c', 'cmake', 'comment', 'cpp', 'devicetree', 'diff', 'git_rebase', 'gitcommit', 'gitignore', 'go', 'help', 'html', 'lua', 'make', 'markdown', 'nix', 'python', 'regex', 'rust', 'toml', 'tsx', 'typescript', 'vim', 'yaml' },
   -- 
 
-  -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
+  -- autoinstall languages that are not installed
+  -- defaults to false (but you can change for yourself!)
   auto_install = false,
 
   highlight = { enable = true },
@@ -332,9 +332,9 @@ require('nvim-treesitter.configs').setup {
   textobjects = {
     select = {
       enable = true,
-      lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+      lookahead = true, -- automatically jump forward to textobj, similar to targets.vim
       keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
+        -- you can use the capture groups defined in textobjects.scm
         ['aa'] = '@parameter.outer',
         ['ia'] = '@parameter.inner',
         ['af'] = '@function.outer',
@@ -375,21 +375,22 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
--- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+-- diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
--- LSP settings.
---  This function gets run when an LSP connects to a particular buffer.
+-- LSP settings
+--  this function gets run when an LSP connects to a particular buffer
 local on_attach = function(_, bufnr)
-  -- NOTE: Remember that lua is a real programming language, and as such it is possible
+  -- NOTE: remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
-  -- many times.
+  -- many times
   --
-  -- In this case, we create a function that lets us more easily define mappings specific
-  -- for LSP related items. It sets the mode, buffer and description for us each time.
+  -- in this case, we create a function that lets us more easily define
+  -- mappings specific for LSP related items
+  -- it sets the mode, buffer and description for us each time
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
@@ -408,11 +409,11 @@ local on_attach = function(_, bufnr)
   nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
   nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
-  -- See `:help K` for why this keymap
+  -- see `:help K` for why this keymap
   nmap(')', vim.lsp.buf.hover, 'Hover Documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
-  -- Lesser used LSP functionality
+  -- lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
   nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
   nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
@@ -420,17 +421,18 @@ local on_attach = function(_, bufnr)
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
 
-  -- Create a command `:Format` local to the LSP buffer
+  -- create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
 end
 
--- Enable the following language servers
---  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
+-- enable the following language servers
+--  feel free to add/remove any LSPs that you want here they will automatically be installed
 --
---  Add any additional override configuration in the following tables. They will be passed to
---  the `settings` field of the server config. You must look up that documentation yourself.
+--  add any additional override configuration in the following tables
+--  they will be passed to the `settings` field of the server config
+--  you must look up that documentation yourself
 local servers = {
   -- clangd = {},
   -- gopls = {},
@@ -446,17 +448,17 @@ local servers = {
   },
 }
 
--- Setup neovim lua configuration
+-- setup neovim lua configuration
 require('neodev').setup()
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
--- Setup mason so it can manage external tooling
+-- setup mason so it can manage external tooling
 require('mason').setup()
 
--- Ensure the servers above are installed
+-- ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
 
 mason_lspconfig.setup {

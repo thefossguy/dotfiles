@@ -35,7 +35,7 @@ require('lazy').setup({
     -- end,
   },
 
-  { -- Rust
+  { -- Rust lang
     'rust-lang/rust.vim',
     'simrat39/rust-tools.nvim',
   },
@@ -71,7 +71,7 @@ require('lazy').setup({
   { -- adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
-      -- See `:help gitsigns.txt`
+      -- see `:help gitsigns.txt`
       signs = {
         add = { text = '+' },
         change = { text = '~' },
@@ -84,7 +84,7 @@ require('lazy').setup({
 
   { -- set lualine as statusline
     'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
+    -- see `:help lualine.txt`
     opts = {
       options = {
         icons_enabled = true,
@@ -131,17 +131,17 @@ require('lazy').setup({
   { -- add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     -- enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
+    -- see `:help indent_blankline.txt`
     opts = {
       char = '┊',
       show_trailing_blankline_indent = false,
     },
   },
 
-  -- "gc" to comment visual regions/lines
+  -- 'gc' to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
-  -- fuzzy Finder (files, lsp, etc)
+  -- fuzzy finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' } },
 
   { -- highlight, edit, and navigate code
