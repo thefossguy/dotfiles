@@ -71,8 +71,8 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'vsnip' },
   }, {
-    { name = 'buffer' },
-  })
+      { name = 'buffer' },
+    })
 })
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -521,5 +521,71 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+  },
+}
+
+
+--------------------------------------------------------------------------------
+-- nightfox.nvim
+--------------------------------------------------------------------------------
+
+require('nightfox').setup({
+  options = {
+    compile_path = vim.fn.stdpath('cache') .. '/nightfox',
+    compile_file_suffix = '_compiled',
+    transparent = false,
+    terminal_colors = true,
+    dim_inactive = false,
+    module_default = true,
+    colorblind = {
+      enable = true,
+      -- Only show simulated colorblind colors and not diff shifted
+      simulate_only = true,
+      severity = {
+        protan = 1,  -- red
+        deutan = 1,  -- green
+        tritan = 0,  -- blue
+      },
+    },
+    styles = {
+      -- :help attr-list
+      comments = 'NONE',
+      conditionals = 'bold,standout',
+      constants = 'bold,standout',
+      functions = 'bold',
+      keywords = 'bold',
+      numbers = 'NONE',
+      operators = 'NONE',
+      strings = 'NONE',
+      types = 'NONE',
+      variables = 'NONE',
+    },
+    inverse = {
+      match_paren = false,
+      visual = false,
+      search = false,
+    },
+  },
+  palettes = {},
+  specs = {},
+  groups = {},
+})
+
+--------------------------------------------------------------------------------
+-- indent-blankline.nvim
+--------------------------------------------------------------------------------
+
+require('indent_blankline').setup {
+  show_current_context = true,
+  show_current_context_start = true,
+  space_char_blankline = ' ',
+
+  char_highlight_list = {
+    'IndentBlanklineIndent1',
+    'IndentBlanklineIndent2',
+    'IndentBlanklineIndent3',
+    'IndentBlanklineIndent4',
+    'IndentBlanklineIndent5',
+    'IndentBlanklineIndent6',
   },
 }

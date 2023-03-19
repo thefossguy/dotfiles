@@ -29,10 +29,7 @@ require('lazy').setup({
   'tpope/vim-sleuth',
 
   { -- theme
-    'chriskempson/base16-vim',
-    -- config = function()
-    --   vim.cmd.colorscheme 'base16-google-dark'
-    -- end,
+    'EdenEast/nightfox.nvim'
   },
 
   { -- Rust lang
@@ -132,10 +129,12 @@ require('lazy').setup({
     'lukas-reineke/indent-blankline.nvim',
     -- enable `lukas-reineke/indent-blankline.nvim`
     -- see `:help indent_blankline.txt`
+    --[[
     opts = {
       char = '┊',
       show_trailing_blankline_indent = false,
     },
+    --]]
   },
 
   -- 'gc' to comment visual regions/lines
