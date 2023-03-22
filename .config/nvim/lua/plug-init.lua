@@ -15,6 +15,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+
 --------------------------------------------------------------------------------
 -- install plugins
 --------------------------------------------------------------------------------
@@ -28,13 +29,16 @@ require('lazy').setup({
   -- detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
-  { -- theme
-    'EdenEast/nightfox.nvim'
-  },
+  -- theme
+  'EdenEast/nightfox.nvim',
 
   { -- Rust lang
     'rust-lang/rust.vim',
     'simrat39/rust-tools.nvim',
+
+    -- debugging
+    'nvim-lua/plenary.nvim',
+    'mfussenegger/nvim-dap',
   },
 
   { -- tree view
@@ -155,3 +159,4 @@ require('lazy').setup({
   },
 
 }, {})
+
