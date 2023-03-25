@@ -519,52 +519,66 @@ cmp.setup {
 
 
 --------------------------------------------------------------------------------
--- nightfox.nvim
+-- catppuccin.nvim
 --------------------------------------------------------------------------------
 
---[[
-require('nightfox').setup({
-  options = {
-    compile_path = vim.fn.stdpath('cache') .. '/nightfox',
-    compile_file_suffix = '_compiled',
-    transparent = false,
-    terminal_colors = true,
-    dim_inactive = false,
-    module_default = true,
-    colorblind = {
-      enable = true,
-      -- Only show simulated colorblind colors and not diff shifted
-      simulate_only = true,
-      severity = {
-        protan = 1,  -- red
-        deutan = 1,  -- green
-        tritan = 0,  -- blue
-      },
-    },
-    styles = {
-      -- :help attr-list
-      comments = 'NONE',
-      conditionals = 'bold,standout',
-      constants = 'bold,standout',
-      functions = 'bold',
-      keywords = 'bold',
-      numbers = 'NONE',
-      operators = 'NONE',
-      strings = 'NONE',
-      types = 'NONE',
-      variables = 'NONE',
-    },
-    inverse = {
-      match_paren = false,
-      visual = false,
-      search = false,
+require("catppuccin").setup {
+  flavour = "mocha", -- latte, frappe, macciato, mocha
+  background = {
+    light = "latte",
+    dark = "mocha",
+  },
+  transparent_background = false,
+  show_end_of_buffer = false,
+  term_colors = false,
+  dim_inactive = {
+    enabled = false,
+    shade = "dark",
+    percentage = 0.15,
+  },
+  no_italic = false, -- force no_italic
+  no_bold = false,
+  styles = {
+    comments = { "italic" },
+    conditionals = { "italic" },
+    loops = {},
+    functions = {},
+    keywords = {},
+    strings = {},
+    variables = { "bold" },
+    numbers = {},
+    booleans = { "italic" },
+    properties = {},
+    types = {},
+    operators = { "bold" },
+  },
+  color_overrides = {
+    mocha = {
+      base = "#000000",
+      mantle = "#000000",
+      crust = "#000000",
     },
   },
-  palettes = {},
-  specs = {},
-  groups = {},
-})
---]]
+  highlight_overrides = {
+    mocha = function(C)
+    return {
+        TabLineSel = { bg = C.pink },
+        CmpBorder = {fg = C.surface },
+        Pmenu = { bg = C.none },
+        TelescopeBorder = { link = "FloatBorder" },
+      }
+    end,
+  },
+  custom_highlights = {},
+  integrations = {
+    cmp = true,
+    gitsigns = true,
+    nvimtree = false,
+    telescope = true,
+    markdown = true,
+    mason = true,
+  },
+}
 
 --------------------------------------------------------------------------------
 -- indent-blankline.nvim

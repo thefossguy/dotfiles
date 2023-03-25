@@ -30,7 +30,7 @@ require('lazy').setup({
   'tpope/vim-sleuth',
 
   -- theme
-  'EdenEast/nightfox.nvim',
+  { "catppuccin/nvim", name = "catppuccin" },
 
   { -- Rust lang
     'rust-lang/rust.vim',
@@ -159,4 +159,3 @@ require('lazy').setup({
   },
 
 }, {})
-

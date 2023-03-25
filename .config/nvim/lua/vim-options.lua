@@ -1,5 +1,5 @@
 -- appearance
-vim.cmd.colorscheme 'carbonfox'
+vim.cmd.colorscheme 'catppuccin'
 vim.opt.colorcolumn = '80'
 vim.opt.cursorcolumn = true
 vim.opt.cursorline = true
