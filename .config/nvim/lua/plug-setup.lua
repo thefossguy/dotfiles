@@ -439,13 +439,6 @@ local servers = {
   -- pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
-
-  lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-    },
-  },
 }
 
 -- setup neovim lua configuration
@@ -529,6 +522,7 @@ cmp.setup {
 -- nightfox.nvim
 --------------------------------------------------------------------------------
 
+--[[
 require('nightfox').setup({
   options = {
     compile_path = vim.fn.stdpath('cache') .. '/nightfox',
@@ -570,6 +564,7 @@ require('nightfox').setup({
   specs = {},
   groups = {},
 })
+--]]
 
 --------------------------------------------------------------------------------
 -- indent-blankline.nvim
