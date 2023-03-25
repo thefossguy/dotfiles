@@ -1,5 +1,6 @@
 [Unit]
 Description=Ensure that the VM pools are available
+After=libvirtd.service
 
 [Service]
 ExecStart=/usr/bin/bash /home/pratham/.scripts/_flameboi/virt/ensure-pool-online-status.sh
