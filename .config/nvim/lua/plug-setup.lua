@@ -575,7 +575,7 @@ require("catppuccin").setup {
     gitsigns = true,
     nvimtree = false,
     telescope = true,
-    markdown = true,
+    --markdown = true,
     mason = true,
   },
 }

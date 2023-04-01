@@ -39,6 +39,15 @@ require('lazy').setup({
     -- debugging
     'nvim-lua/plenary.nvim',
     'mfussenegger/nvim-dap',
+
+    -- for crates.io
+    {
+      'Saecki/crates.nvim',
+      tag = 'v0.3.0',
+      config = function()
+        require('crates').setup()
+      end
+    },
   },
 
   { -- tree view
