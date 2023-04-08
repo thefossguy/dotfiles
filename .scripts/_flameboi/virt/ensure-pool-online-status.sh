@@ -11,7 +11,7 @@ for POOL in "${ALL_VIRT_POOLS[@]}"; do
 
         if [[ $? -ne 0 ]]; then
             echo "$POOL: not running"
-            systemctl restart libvirtd && POOL_OK=true
+            systemctl restart libvirtd
         else
             echo "$POOL: OK"
             POOL_OK=true
