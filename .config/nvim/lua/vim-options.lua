@@ -9,7 +9,7 @@ vim.opt.signcolumn = 'yes'
 vim.opt.showmatch = true
 
 vim.opt.list = true
-vim.opt.listchars:append('space:⋅')
+-- vim.opt.listchars:append('space:⋅')
 vim.opt.listchars:append('precedes:«')
 vim.opt.listchars:append('extends:»')
 vim.opt.listchars:append('trail:␣')
