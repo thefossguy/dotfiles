@@ -21,10 +21,8 @@ fi
 # add dir to PATH if present
 # precedence from top (lowest) to bottom (highest)
 if command -v rustup > /dev/null; then
-    RUSTUP_TRIPLET=$(rustup show active-toolchain | awk '{print $1}')
-    RUSTUP_PATH="$HOME/.rustup/toolchains/$RUSTUP_TRIPLET/bin"
-    [[ -d "$RUSTUP_PATH" ]] && export PATH=$RUSTUP_PATH:$PATH
-    # rust-analyzer is in $RUSTUP_PATH instead of $HOME/.cargo/bin :(
+    which rust-analyzer > /dev/null || export PATH="$(rustc --print sysroot)/bin":$PATH
+    # rust-analyzer is in "$(rustc --print sysroot)/bin" instead of $HOME/.cargo/bin :(
     # rust-analyzer needs to be in $PATH for good Rust support in Neovim
     # see https://github.com/rust-lang/rustup/issues/2411
 fi
