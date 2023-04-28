@@ -53,6 +53,8 @@ alias gcommitm="git commit -m"
 alias unxz="unxz -k"
 alias clearxclip="xsel -bc"
 alias olddig="dig"
+alias digdig="dig"
+alias vvim="/usr/bin/vim"
 alias dig="dog"
 alias sudo="sudo "
 
