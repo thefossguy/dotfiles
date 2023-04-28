@@ -311,7 +311,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 require('nvim-treesitter.configs').setup {
   -- add languages to be installed here that you want installed for treesitter
   -- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
-  ensure_installed = { 'bash', 'c', 'cmake', 'comment', 'cpp', 'devicetree', 'diff', 'git_rebase', 'gitcommit', 'gitignore', 'go', 'help', 'html', 'lua', 'make', 'markdown', 'nix', 'python', 'regex', 'rust', 'toml', 'tsx', 'typescript', 'vim', 'yaml' },
+  ensure_installed = { 'bash', 'c', 'cmake', 'comment', 'cpp', 'devicetree', 'diff', 'git_rebase', 'gitcommit', 'gitignore', 'go', 'html', 'lua', 'make', 'markdown', 'nix', 'python', 'regex', 'rust', 'toml', 'tsx', 'typescript', 'vim', 'yaml' },
   -- 
 
   -- autoinstall languages that are not installed
