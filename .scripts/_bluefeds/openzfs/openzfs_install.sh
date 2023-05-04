@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
+set -x
 source /etc/os-release
 
-if [[ "$ID" == "centos" || "$ID" == "rocky" ]]; then
+if [[ "$ID" == "centos" || "$ID" == "rocky" || "$ID" == "rhel" ]]; then
     sudo dnf install gcc make autoconf automake libtool rpm-build libtirpc-devel libblkid-devel libuuid-devel libudev-devel openssl-devel zlib-devel libaio-devel libattr-devel elfutils-libelf-devel kernel-devel-matched python3 python3-devel python3-setuptools python3-cffi libffi-devel git libcurl-devel python3-packaging dkms bind-utils -y
 elif [[ "$ID" == "fedora" ]]; then
     sudo dnf install autoconf automake dkms elfutils-libelf-devel gcc git kernel-devel-$(uname -r) kernel-rpm-macros libaio-devel libattr-devel libblkid-devel libcurl-devel libffi-devel libtirpc-devel libtool libudev-devel libuuid-devel make ncompress openssl-devel python3 python3-cffi python3-devel python3-packaging python3-setuptools rpm-build zlib-devel -y
