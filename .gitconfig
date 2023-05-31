@@ -5,6 +5,9 @@
 [user]
     name = Pratham Patel
     email = thefirst1322@gmail.com
+#    signingkey =
+#[commit]
+#    gpgsign = true
 [color]
     ui = auto
 [init]
@@ -13,3 +16,12 @@
     default = simple
 [diff]
     tool = meld
+[status]
+    short = true
+[gpg]
+    program = gpg2
+[blame]
+    date = iso8601
+    showEmail = true
+[log]
+    date = iso8601
