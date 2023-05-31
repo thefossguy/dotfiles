@@ -4,7 +4,7 @@
 MACHINE_HOSTNAME=$(cat /etc/hostname)
 
 # export everything first
-export TERM="xterm-256color"
+#export TERM="xterm-256color"
 export TIMEFMT=$'\nJob\t%J\n\nCPU\t%P\nuser\t%U\nsystem\t%S\ntotal\t%E'
 export LANG=en_IN.UTF-8
 
