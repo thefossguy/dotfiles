@@ -51,9 +51,9 @@ alias rgiv="rg --hidden -vi"
 alias gcommitm="git commit -m"
 alias unxz="unxz -k"
 alias clearxclip="xsel -bc"
-alias olddig="dig"
-alias digdig="dig"
-alias dig="dog"
+alias olddig="/usr/bin/dig"
+alias digdig="/usr/bin/dig"
+alias dig="/usr/bin/dog"
 alias sudo="sudo "
 
 if command -v batcat > /dev/null; then
