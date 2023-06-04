@@ -1,12 +1,37 @@
-# macOS junk
-.DS_Store
 ._*
-.Spotlight-V100
-.Trashes
-Thumbs.db
-
-# compiled C/C++ files
-*.out
-
-# package manager cache
+.bash_history
+.bash_logout
+.bash_profile
+.cache/*
+.cargo/*
+.config/*.xml*
+.config/.gsd-keyboard.settings-ported
+.config/btop/*
+.config/dconf/*
+.config/dleyna-renderer-service.conf
+.config/evolution/*
+.config/GNOME-xdg-terminals.list
+.config/gtk-3.0/bookmarks
+.config/ibus/*
 .config/nvim/lazy-lock.json
+.config/pulse/*
+.config/user-dirs.dirs
+.config/xdg-terminals.list
+.DS_Store
+.lldb/*
+.local/share/*
+.local/state/*
+.mozilla/*
+.nvim/undodir/*
+.profile
+.rustup/*
+.sh_history
+.Spotlight-V100
+.ssh/*
+.Trashes
+.xsel.log
+.zcompdump
+.zshenv
+Downloads/*
+my-git-repos/*
+Thumbs.db
