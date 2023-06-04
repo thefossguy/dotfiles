@@ -12,19 +12,32 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.g.rustfmt_autosave = 1
 vim.g.rustfmt_emit_files = 1
 vim.g.rustfmt_fail_silently = 0
-vim.api.nvim_create_autocmd({'BufWritePre'}, {
+vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = {'*.rs'},
   command = 'lua vim.lsp.buf.format(nil, 200)',
 })
 
 -- set indentation to 2 spaces for special file types
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = {'*.lua', '*.yml', '*.yaml'},
+  pattern = {
+    '*.lua',
+    '*.yaml',
+    '*.yml',
+  },
   command = 'setlocal autoindent expandtab tabstop=2 shiftwidth=2 softtabstop=2',
 })
 
 -- set indentation to 4 spaces for special file types
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = {'*.rs', '*.toml', '*.bash', '*.dash', '*.c', '*.cpp', '*.h'},
+  pattern = {
+    '*.bash',
+    '*.c',
+    '*.cpp',
+    '*.dash',
+    '*.h',
+    '*.rs',
+    '*.sh',
+    '*.toml',
+  },
   command = 'setlocal autoindent expandtab tabstop=4 shiftwidth=4 softtabstop=4',
 })
