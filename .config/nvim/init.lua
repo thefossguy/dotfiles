@@ -14,7 +14,7 @@ vim.g.maplocalleader = ' '
 
 
 -- initialize the package manager
-require('plug-init')
+require('plugins/init')
 -- setup the plugins
 require('plug-setup')
 -- load the options, autocmds, key bindings and statusline
