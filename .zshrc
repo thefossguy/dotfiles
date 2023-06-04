@@ -56,24 +56,14 @@ PROMPT=$'\n%F{11}─┬─[%f %F{5}%y %f%F{white}%? %D %*%f %F{11}]%f
 %F{11} ├─[%f %F{red}%m:%f %F{white}%n%f %F{8}▶%f %F{cyan}%/%f %F{11}]%f
 %F{11} ╰─>%F{11}%f '
 
-# common stuff...
-MACHINE_HOSTNAME=$(cat /etc/hostname)
+# The following lines were added by compinstall
+zstyle ':completion:*' completer _arguments _complete _expand _ignored
+zstyle ':completion:*' group-name ''
+zstyle compinstall filename "$HOME/.zshrc"
 
-if [[ "$MACHINE_HOSTNAME" == "flameboi" ]]; then
-    # The following lines were added by compinstall
-    zstyle ':completion:*' completer _arguments _complete _expand _ignored
-    zstyle ':completion:*' group-name ''
-    zstyle compinstall filename "$HOME/.zshrc"
-
-    autoload -Uz compinit
-    compinit
-    # End of lines added by compinstall
-elif [[ "$MACHINE_HOSTNAME" == "bluefeds" || "$MACHINE_HOSTNAME" == "sentinel" ]]; then
-    # use bigger fonts on the console
-    case $(tty) in
-        (/dev/tty[0-9]) setfont /usr/share/consolefonts/Lat2-Terminus28x14.psf.gz;;
-    esac
-fi
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
 
 # source aliases
 [ -f $ALIASES_CONF ] && source $ALIASES_CONF
