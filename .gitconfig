@@ -16,8 +16,6 @@
     default = simple
 [diff]
     tool = meld
-[status]
-    short = true
 [gpg]
     program = gpg2
 [blame]
