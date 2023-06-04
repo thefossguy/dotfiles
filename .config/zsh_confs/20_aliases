@@ -15,7 +15,6 @@ if command -v nvim > /dev/null; then
     elif [[ "$OSTYPE" == "darwin"* ]]; then
         export EDITOR=/usr/local/bin/nvim
     fi
-    alias vim="nvim"
 fi
 
 # add dir to PATH if present
@@ -54,7 +53,6 @@ alias unxz="unxz -k"
 alias clearxclip="xsel -bc"
 alias olddig="dig"
 alias digdig="dig"
-alias vvim="/usr/bin/vim"
 alias dig="dog"
 alias sudo="sudo "
 
