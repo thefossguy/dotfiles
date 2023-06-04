@@ -13,11 +13,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 
--- initialize the package manager
 require('plugins/init')
--- setup the plugins
-require('plug-setup')
--- load the options, autocmds, key bindings and statusline
 require('vim-options')
 require('autocmds')
 require('key-mappings')
