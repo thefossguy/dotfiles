@@ -20,4 +20,4 @@ require('plug-setup')
 -- load the options, autocmds, key bindings and statusline
 require('vim-options')
 require('autocmds')
-require('key-bindings')
+require('key-mappings')

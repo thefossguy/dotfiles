@@ -17,13 +17,13 @@ vim.keymap.set({'n', 'v', 'i', 'c'}, '<C-l>', '<C-n><C-w>l')
 vim.keymap.set({'n', 'i'}, '<C-S-V>', '\'+P')
 
 -- idk what this is
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>')
 
 -- remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
--- `cargo run` when `<leader>[r|R]'
+-- `cargo run` when '<leader>[r|R]'
 vim.keymap.set('n', '<leader>r', ':!cargo run<CR>')
 vim.keymap.set('n', '<leader>R', ':!cargo run<CR>')
 
