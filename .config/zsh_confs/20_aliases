@@ -34,7 +34,7 @@ fi
 typeset -U PATH
 
 # common aliases
-alias dotfiles="git --git-dir=$HOME/my-git-repos/dotfiles --work-tree=$HOME"
+alias dotfiles="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 alias flushSSH="ssh-keygen -R"
 alias mtr='mtr --show-ips --displaymode 0 -o "LDR AGJMXI"'
 alias update="source $HOME/.zshrc" # other files are sourced automatically
