@@ -56,14 +56,10 @@ alias olddig="/usr/bin/dig"
 alias digdig="/usr/bin/dig"
 alias dig="/usr/bin/dog"
 alias sudo="sudo "
+alias doas="doas "
 
 if command -v batcat > /dev/null; then
     alias bat="batcat"
-fi
-
-if command -v doas > /dev/null; then
-    unalias sudo
-    alias sudo="doas "
 fi
 
 # OS/hostname specific aliases
@@ -116,7 +112,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
     if [[ "$MACHINE_HOSTNAME" == "flameboi" || "$MACHINE_HOSTNAME" == "vasudev" || "$MACHINE_HOSTNAME" == "rustyvm" ]]; then
         alias suslock="$HOME/.config/polybar/mods/module_suspend_script.sh"
-        alias drivetemp="sudo hdparm -CH /dev/sda /dev/sdb /dev/sdc /dev/sdd"
+        alias drivetemp="hdparm -CH /dev/sda /dev/sdb /dev/sdc /dev/sdd"
         alias paru="LESS=SRX paru"
         alias undeb="dpkg-deb -xv"
 
@@ -146,7 +142,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
     elif [[ "$MACHINE_HOSTNAME" == "reddish" ]]; then
         alias clear="/usr/bin/clear && printf '\e[3J'"
-        alias drivetemp="sudo hdparm -CH /dev/sda /dev/sdb"
+        alias drivetemp="hdparm -CH /dev/sda /dev/sdb"
 
         # aliases for container management
         ALL_CONTAINERS=("container-uptime-vishnu.service" \
