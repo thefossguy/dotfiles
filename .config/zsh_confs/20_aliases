@@ -100,7 +100,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias flatpakautoremove="flatpak remove --unused --delete-data"
 
     # other common aliases
-    alias tmux="/usr/bin/tmux -f $HOME/.config/tmux/tmux.conf"
     alias ping="ping -W 0.1 -O"
     alias pmount="mount -o gid=pratham,uid=pratham"
     alias mpv="/usr/bin/mpv --geometry=60% --vo=gpu --hwdec=vaapi"
