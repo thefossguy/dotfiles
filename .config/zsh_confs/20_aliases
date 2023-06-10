@@ -10,10 +10,10 @@ export LANG=en_IN.UTF-8
 
 if command -v nvim > /dev/null; then
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-            export EDITOR=/usr/bin/nvim
-            export SYSTEMD_EDITOR=/usr/bin/nvim
+            export EDITOR=$(command -v nvim)
+            export SYSTEMD_EDITOR=$(command -v nvim)
     elif [[ "$OSTYPE" == "darwin"* ]]; then
-        export EDITOR=/usr/local/bin/nvim
+        export EDITOR=$(command -v nvim)
     fi
 fi
 
