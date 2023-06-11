@@ -112,7 +112,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
 
     if [[ "$MACHINE_HOSTNAME" == "flameboi" || "$MACHINE_HOSTNAME" == "vasudev" || "$MACHINE_HOSTNAME" == "rustyvm" ]]; then
-        alias suslock="$HOME/.config/polybar/mods/module_suspend_script.sh"
+        alias suslock="$HOME/.local/scripts/window-manager/lock-and-suspend.sh"
         alias drivetemp="hdparm -CH /dev/sda /dev/sdb /dev/sdc /dev/sdd"
         alias paru="LESS=SRX paru"
         alias undeb="dpkg-deb -xv"

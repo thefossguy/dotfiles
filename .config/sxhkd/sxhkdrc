@@ -11,7 +11,7 @@ super + {Return,b,v}
 # p to reload/relaunch polybar
 # Escape to turn screen off and lock the computer
 super + shift + {w,p,Escape}
-    {bash $HOME/.config/feh/fehbg &,bash $HOME/.config/polybar/launch.sh &,bash $HOME/.config/sxhkd/mods/module_lock_script.sh}
+    {bash $HOME/.config/feh/fehbg &,bash $HOME/.local/scripts/window-manager/launch-polybar.sh &,bash $HOME/.local/scripts/window-manager/lock-screen.sh}
 
 # c to reload config
 # q to quit selected window
