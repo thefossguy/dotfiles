@@ -41,7 +41,7 @@ alias flushSSH="ssh-keygen -R"
 alias mtr='mtr --show-ips --displaymode 0 -o "LDR AGJMXI"'
 alias update="source $HOME/.zshrc" # other files are sourced automatically
 alias custcp="rsync --fsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
-alias pysort="$HOME/.local/scripts/sort.py"
+alias pysort="$HOME/.local/scripts/other-common-scripts/sort.py"
 alias download="aria2c -x 16 -k 1M --file-allocation=none --continue=false --seed-time=0"
 alias showsslvalidity="~/.scripts/common-scripts/domain_ssl_validity.sh"
 alias ytdown="yt-dlp --config-location $HOME/.config/yt-dlp/norm_config --external-downloader aria2c"
