@@ -18,6 +18,7 @@
 .config/pulse/*
 .config/user-dirs.dirs
 .config/xdg-terminals.list
+.dotfiles/
 .DS_Store
 .lldb/*
 .local/share/*
