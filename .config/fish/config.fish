@@ -24,8 +24,6 @@ if status is-interactive
     alias unxz="unxz -k"
     alias clearxclip="xsel -bc"
     alias clearwclip="wl-copy --clear"
-    alias olddig="$(command -v dig)"
-    alias digdig="$(command -v dig)"
     alias dig="$(command -v dog)"
     alias sudo="sudo "
     alias doas="doas "
@@ -68,6 +66,11 @@ if status is-interactive
 
     if test $(command -v batcat > /dev/null)
         alias bat="$(command -v batcat)"
+    end
+
+    if test $(command -v dig > /dev/null)
+        alias olddig="$(command -v dig)"
+        alias digdig="$(command -v dig)"
     end
 
     # TODO: functions in $HOME/.local/scripts/common-shell-scripts
