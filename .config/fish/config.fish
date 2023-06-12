@@ -54,14 +54,6 @@ if status is-interactive
     alias drivetemp="sudo hdparm -CH /dev/sda /dev/sdb /dev/sdc /dev/sdd"
     alias paru="LESS=SRX paru"
     alias undeb="dpkg-deb -xv"
-    alias pacrm="pacman -Rsu"
-    alias pacinstall="pacman -S"
-    alias pkgupgrade="pacman -Syyu"
-    alias pkgsearch="pacman -Ss"
-    alias pkgrevdeps="pacman -Sii"
-    alias pkgfileof="pacman -Qo"
-    alias pkgshowfiles="pacman -Fl"
-    alias pkgautoremove="pacman -R $(pacman -Qdtq)"
     alias clear="clear && printf '\e[3J'"
 
     if test $(command -v batcat > /dev/null)
