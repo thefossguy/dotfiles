@@ -1,10 +1,9 @@
 if status is-interactive
-    #set -g FUNCTIONS_DIR $HOME/.local/scripts/common-shell-scripts
     set fish_greeting # disable the "new user" prompt
 
     set -gx EDITOR "$(command -v nvim)"
     set -gx SYSTEMD_EDITOR "$(command -v nvim)"
-    set -g FUNCTIONS_DIR "$HOME/my-git-repos/dotfiles/.local/scripts/common-shell-scripts"
+    set -g FUNCTIONS_DIR "$HOME/.local/scripts/common-shell-scripts"
 
     # common aliases
     alias dotfiles="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
