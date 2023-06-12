@@ -62,7 +62,7 @@ if status is-interactive
     alias pkgfileof="pacman -Qo"
     alias pkgshowfiles="pacman -Fl"
     alias pkgautoremove="pacman -R $(pacman -Qdtq)"
-    alias clear="$(command -v clear) && clear && printf '\e[3J'"
+    alias clear="clear && printf '\e[3J'"
 
     if test $(command -v batcat > /dev/null)
         alias bat="$(command -v batcat)"
