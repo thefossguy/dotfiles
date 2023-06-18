@@ -45,7 +45,7 @@ if status is-interactive
     alias ping="ping -W 0.1 -O"
     alias mpv="mpv --geometry=60% --vo=gpu --hwdec=vaapi"
     alias serialterm="clear && sudo picocom --quiet -b 115200 /dev/ttyUSB0"
-    alias suslock="$HOME/.local/scripts/window-manager/lock-and-suspend.sh"
+    alias suslock="bash $HOME/.local/scripts/window-manager/lock-and-suspend.sh"
     alias drivetemp="hdparm -CH /dev/sda /dev/sdb /dev/sdc /dev/sdd"
     alias paru="LESS=SRX paru"
     alias undeb="dpkg-deb -xv"
