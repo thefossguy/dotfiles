@@ -9,6 +9,7 @@
 .config/btop/*
 .config/dconf/*
 .config/dleyna-renderer-service.conf
+.config/environment.d/
 .config/evolution/*
 .config/fish/*
 .config/GNOME-xdg-terminals.list
@@ -26,6 +27,7 @@
 .local/share/*
 .local/state/*
 .mozilla/*
+.nix*
 .nvim/undodir/*
 .profile
 .rustup/*
