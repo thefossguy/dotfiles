@@ -1,8 +1,6 @@
 if status is-interactive
     set fish_greeting # disable the "new user" prompt
 
-    set -gx EDITOR "$(command -v nvim)"
-    set -gx SYSTEMD_EDITOR "$(command -v nvim)"
     set -g FUNCTIONS_DIR "$HOME/.local/scripts/common-shell-scripts"
 
     # common aliases
