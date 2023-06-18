@@ -37,6 +37,7 @@ vim.opt.relativenumber = true
 vim.opt.splitright = true -- open splits in right
 vim.opt.wildmenu = true -- completion in typing vim commands
 vim.opt.encoding = 'utf-8'
+vim.g.loaded_perl_provider = 0;
 
 -- show command that is being typed with `:<cmd>`
 vim.opt.showcmd = true
