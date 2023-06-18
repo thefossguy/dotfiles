@@ -21,6 +21,7 @@
 .config/xdg-terminals.list
 .dotfiles/
 .DS_Store
+.lesshst
 .lldb/*
 .local/share/*
 .local/state/*
