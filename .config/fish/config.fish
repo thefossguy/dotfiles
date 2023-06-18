@@ -48,7 +48,6 @@ if status is-interactive
     alias suslock="bash $HOME/.local/scripts/window-manager/lock-and-suspend.sh"
     alias drivetemp="hdparm -CH /dev/sda /dev/sdb /dev/sdc /dev/sdd"
     alias paru="LESS=SRX paru"
-    alias undeb="dpkg-deb -xv"
     alias clear="clear && printf '\e[3J'"
 
     if test $(command -v batcat > /dev/null)
