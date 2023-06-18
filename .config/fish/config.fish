@@ -12,7 +12,7 @@ if status is-interactive
     alias mtr="mtr --show-ips --displaymode 0 -o \"LDR AGJMXI\""
     alias update="source $HOME/.config/fish/config.fish"
     alias custcp="rsync --fsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
-    alias pysort="$HOME/.local/scripts/other-common-scripts/sort.py"
+    alias pysort="python3 $HOME/.local/scripts/other-common-scripts/sort.py"
     alias download="aria2c -x 16 -k 1M --file-allocation=none --continue=false --seed-time=0"
     alias ytdown="yt-dlp --config-location $HOME/.config/yt-dlp/norm_config --external-downloader aria2c"
     alias playdl="yt-dlp --config-location $HOME/.config/yt-dlp/plst_config --external-downloader aria2c"
