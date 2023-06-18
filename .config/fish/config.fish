@@ -22,8 +22,6 @@ if status is-interactive
     alias rgvi="rg --hidden -vi"
     alias rgiv="rg --hidden -vi"
     alias unxz="unxz -k"
-    alias clearxclip="xsel -bc"
-    alias clearwclip="wl-copy --clear"
     alias dig="$(command -v dog)"
     alias l="ls --group-directories-first --color=auto -v"
     alias ll="ls --group-directories-first --color=auto -1lv --time-style=long-iso"
@@ -61,6 +59,14 @@ if status is-interactive
     if test $(command -v dig > /dev/null)
         alias olddig="$(command -v dig)"
         alias digdig="$(command -v dig)"
+    end
+
+    if test $XDG_SESSION_TYPE = "x11"
+        alias clearclipboard="xsel -bc"
+        alias pbcopy="xsel --clipboard --input"
+    else if test $XDG_SESSION_TYPE = "wayland"
+        alias clearclipboard="wl-copy --clear"
+        alias pbcopy="wl-copy"
     end
 
     # TODO: functions in $HOME/.local/scripts/common-shell-scripts
