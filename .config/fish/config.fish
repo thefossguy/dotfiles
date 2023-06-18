@@ -1,4 +1,25 @@
+function get_dotfiles
+    if not test -d $HOME/.dotfiles
+        git clone --depth 1 --bare https://git.thefossguy.com/thefossguy/dotfiles.git $HOME/.dotfiles
+        git --get-dir=$HOME/.dotfiles --work-tree=$HOME checkout -f
+        rm -rf $HOME/.dotfiles
+    end
+end
+
+function mk_ssh_keys
+    if not test -d $HOME/.ssh
+        mkdir $HOME/.ssh
+        chmod 700 $HOME/.ssh
+    end
+
+    pushd $HOME/.ssh
+    ssh-keygen -t ed25519 -f $argv
+    popd
+end
+
 if status is-interactive
+    get_dotfiles
+
     set fish_greeting # disable the "new user" prompt
 
     set -g FUNCTIONS_DIR "$HOME/.local/scripts/common-shell-scripts"
