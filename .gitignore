@@ -10,7 +10,7 @@
 .config/dconf/*
 .config/dleyna-renderer-service.conf
 .config/evolution/*
-.config/fish/fish_variables
+.config/fish/*
 .config/GNOME-xdg-terminals.list
 .config/gtk-3.0/bookmarks
 .config/htop/*
