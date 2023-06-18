@@ -4,6 +4,7 @@ if status is-interactive
     set -g FUNCTIONS_DIR "$HOME/.local/scripts/common-shell-scripts"
 
     # common aliases
+    alias showdiskusage="bash $HOME/.local/scripts/other-common-scripts/showdiskusage.sh"
     alias dotfiles="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
     alias nixrebuild="nixos-rebuild boot"
     alias nixupgrade="nixos-rebuild boot --upgrade"
