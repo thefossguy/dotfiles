@@ -109,15 +109,12 @@ end, { desc = 'Telescope: [/] Fuzzily search in the current buffer' })
 
 require('nvim-treesitter.configs').setup({
   ensure_installed = {
-    'bash',
     'c',
-    'cpp',
     'lua',
     'make',
     'markdown',
     'markdown_inline',
     'nix',
-    'python',
     'regex',
     'rust',
     'toml',
