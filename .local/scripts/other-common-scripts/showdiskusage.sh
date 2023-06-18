@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ROOT_DEVICE="/dev/$(lsblk | grep '/boot' | cut -c 7- | choose 0)"
+ROOT_DEVICE="/dev/$(ls -l /dev/root | choose -1)"
 
 if [[ ${ROOT_DEVICE} =~ "mmcblk" || ${ROOT_DEVICE} =~ "nvme" ]]; then
     ROOT_DEVICE=$(echo ${ROOT_DEVICE} | rev | sed -r 's/^.{2}//' | rev)
