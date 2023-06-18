@@ -42,6 +42,7 @@ if status is-interactive
     alias pingflameboi="ping 10.0.0.13"
     alias pingsentinel="ping 10.0.0.14"
     alias pingreddish="ping 10.0.0.19"
+    alias ping="ping -W 0.1 -O"
     alias flatpakupdates="flatpak remote-ls --updates flathub"
     alias flatpakautoremove="flatpak remove --unused --delete-data"
     alias mpv="mpv --geometry=60% --vo=gpu --hwdec=vaapi"
