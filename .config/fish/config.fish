@@ -156,6 +156,6 @@ function fish_prompt
     if test -d ".git"
         echo -sne [(whoami)@(prompt_hostname)\ :\ (set_color blue)(pwd)(set_color brwhite)\ $status(set_color brred)(fish_git_prompt)(set_color normal)]\n$prompt_symbol\ 
     else
-        echo -sne [(whoami)@(prompt_hostname):(set_color blue)(pwd)(set_color brwhite)\ $status(set_color normal)]\n$prompt_symbol\ 
+        echo -sne [(whoami)@(prompt_hostname)\ :\ (set_color blue)(pwd)(set_color brwhite)\ $status(set_color normal)]\n$prompt_symbol\ 
     end
 end
