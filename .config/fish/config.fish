@@ -96,8 +96,6 @@ if status is-interactive
 end
 
 function fish_prompt
-    #[pratham@nixvm:~]$
-    #echo "[$(whoami)@$(prompt_hostname):$(set_color blue)$(prompt_pwd)$(set_color red)$(fish_git_prompt) $(set_color yellow)$prompt_symbol ]$(set_color normal) "
     set -l prompt_symbol '$'
     fish_is_root_user; and set prompt_symbol '#'
 
