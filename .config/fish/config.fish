@@ -8,6 +8,7 @@ if status is-interactive
     alias dotfiles="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
     alias nixrebuild="nixos-rebuild boot"
     alias nixupgrade="nixos-rebuild boot --upgrade"
+    alias nixgarbageclean="nix-collect-garbage -d"
     alias mtr="mtr --show-ips --displaymode 0 -o \"LDR AGJMXI\""
     alias update="source $HOME/.config/fish/config.fish"
     alias custcp="rsync --fsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
