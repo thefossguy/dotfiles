@@ -17,17 +17,41 @@ function mk_ssh_keys
     popd
 end
 
-function sudo -d "sudo wrapper that handles aliases"
-    if functions -q -- $argv[1]
-        set -l new_args (string join ' ' -- (string escape -- $argv))
-        set argv fish -c "$new_args"
-    end
+function fish_load_sudo_alias
+    function sudo
+        if functions -q -- "$argv[1]"
+            # Create a string which quotes each of the original arguments
+            # so that they can be safely passed into the new fish
+            # instance that is called by sudo.
+            set cmdline (
+                for arg in $argv
+                    printf "\"%s\" " $arg
+                end
+            )
 
-    command sudo $argv
+            # We need to pass the function source to another fish instance.
+            # Since it is multi-line, any attempt to store the function in a
+            # variable results in an array, which also can't be passed to
+            # another fish instance.
+            #
+            # So first we escape the existing function (mostly in case it
+            # has '\n' literals in it, then we join it on "\n".
+            #
+            # After passing it into fish, the new shell splits it,
+            # unescapes it, and passes the function declaration to
+            # `source`, which loads it into memory in the new shell.
+            set -x function_src (string join "\n" (string escape --style=var (functions "$argv[1]")))
+            set argv fish -c 'string unescape --style=var (string split "\n" $function_src) | source; '$cmdline
+            command sudo -E $argv
+        else
+            command sudo $argv
+        end
+    end
 end
 
 if status is-interactive
     get_dotfiles
+    fish_load_sudo_alias
 
     set fish_greeting # disable the "new user" prompt
 
@@ -130,7 +154,7 @@ function fish_prompt
     fish_is_root_user; and set prompt_symbol '#'
 
     if test -d ".git"
-        echo -sne [(whoami)@(prompt_hostname):(set_color blue)(pwd)(set_color brwhite)\ $status(set_color brred)(fish_git_prompt)(set_color normal)]\n$prompt_symbol\ 
+        echo -sne [(whoami)@(prompt_hostname)\ :\ (set_color blue)(pwd)(set_color brwhite)\ $status(set_color brred)(fish_git_prompt)(set_color normal)]\n$prompt_symbol\ 
     else
         echo -sne [(whoami)@(prompt_hostname):(set_color blue)(pwd)(set_color brwhite)\ $status(set_color normal)]\n$prompt_symbol\ 
     end
