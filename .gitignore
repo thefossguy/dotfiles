@@ -1,5 +1,5 @@
+.*history
 ._*
-.bash_history
 .bash_logout
 .bash_profile
 .cache/*
@@ -29,7 +29,6 @@
 .nvim/undodir/*
 .profile
 .rustup/*
-.sh_history
 .Spotlight-V100
 .ssh/*
 .Trashes
