@@ -1,22 +1,22 @@
 #!/usr/bin/env bash
 
-if command -q flatpak; then
+if command -v flatpak > /dev/null; then
     flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     flatpak repair --user
     flatpak update --user --assumeyes --noninteractive
     flatpak install --user --or-update --assumeyes --noninteractive \
-        com.bitwarden.desktop                $(: # Bitwarden) \
-        com.brave.Browser                    $(: # Brave) \
-        com.discordapp.Discord               $(: # Discord) \
-        com.github.tchx84.Flatseal           $(: # Flatseal; OFFICIAL) \
-        fr.handbrake.ghb                     $(: # Handbrake; OFFICIAL) \
-        io.gitlab.librewolf-community        $(: # LibreWolf) \
-        io.mpv.Mpv                           $(: # MPV) \
-        org.gnome.gitlab.YaLTeR.Identity     $(: # Identity \(compare images\); OFFICIAL) \
-        org.gnome.gitlab.YaLTeR.VideoTrimmer $(: # Video Trimmer; OFFICIAL) \
-        org.gnome.Logs                       $(: # Logs; OFFICIAL) \
-        org.gnome.meld                       $(: # Meld (shows diff)) \
-        org.mozilla.firefox                  $(: # Firefox; OFFICIAL) \
-        org.raspberrypi.rpi-imager           $(: # Raspberry Pi Imager)
+        com.bitwarden.desktop                \
+        com.brave.Browser                    \
+        com.discordapp.Discord               \
+        com.github.tchx84.Flatseal           \
+        fr.handbrake.ghb                     \
+        io.gitlab.librewolf-community        \
+        io.mpv.Mpv                           \
+        org.gnome.gitlab.YaLTeR.Identity     \
+        org.gnome.gitlab.YaLTeR.VideoTrimmer \
+        org.gnome.Logs                       \
+        org.gnome.meld                       \
+        org.mozilla.firefox                  \
+        org.raspberrypi.rpi-imager
     flatpak uninstall --user --unused --assumeyes --noninteractive --delete-data
 fi
