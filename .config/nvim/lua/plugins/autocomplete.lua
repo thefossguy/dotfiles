@@ -196,8 +196,7 @@ require('neodev').setup({})
 
 local lspconfig = require('lspconfig')
 
---[[
-lspconfig.lua_ls.setup({
+lspconfig.sumneko_lua.setup({
   settings = {
     Lua = {
       runtime = {
@@ -207,7 +206,8 @@ lspconfig.lua_ls.setup({
         globals = {'vim'},
       },
       workspace = {
-        library = vim.api.nvim_get_runtime_file("", true),
+        library = vim.api.nvim_get_runtime_file('', true),
+        checkThirdParty = false,
       },
       telemetry = {
         enable = false,
@@ -215,7 +215,6 @@ lspconfig.lua_ls.setup({
     },
   },
 })
---]]
 
 lspconfig.pylsp.setup({
   settings = {
@@ -229,6 +228,10 @@ lspconfig.pylsp.setup({
     },
   },
 })
+
+lspconfig.nil_ls.setup({})
+lspconfig.bashls.setup({})
+lspconfig.clangd.setup({})
 
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
