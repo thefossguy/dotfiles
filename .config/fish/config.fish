@@ -1,22 +1,3 @@
-function get_dotfiles
-    if not test -d $HOME/.dotfiles
-        git clone --depth 1 --bare https://git.thefossguy.com/thefossguy/dotfiles.git $HOME/.dotfiles
-        git --get-dir=$HOME/.dotfiles --work-tree=$HOME checkout -f
-        rm -rf $HOME/.dotfiles
-    end
-end
-
-function mk_ssh_keys
-    if not test -d $HOME/.ssh
-        mkdir $HOME/.ssh
-        chmod 700 $HOME/.ssh
-    end
-
-    pushd $HOME/.ssh
-    ssh-keygen -t ed25519 -f $argv
-    popd
-end
-
 function fish_load_sudo_alias
     function sudo
         if functions -q -- "$argv[1]"
@@ -49,9 +30,12 @@ function fish_load_sudo_alias
     end
 end
 
-if status is-interactive
-    get_dotfiles
+function initial_fish_setup
     fish_load_sudo_alias
+end
+
+if status is-interactive
+    initial_fish_setup # call all "setup functions" here
 
     set fish_greeting # disable the "new user" prompt
 
