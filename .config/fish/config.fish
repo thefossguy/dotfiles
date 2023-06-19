@@ -104,13 +104,14 @@ if status is-interactive
     alias paru="LESS=SRX paru"
     alias clear="clear && printf '\e[3J'"
 
-    if test $(command -v batcat > /dev/null)
+    if command -q batcat
         alias bat="$(command -v batcat)"
     end
 
-    if test $(command -v dig > /dev/null)
+    if command -q dig
         alias olddig="$(command -v dig)"
         alias digdig="$(command -v dig)"
+        alias dig="$(command -v dog)"
     end
 
     if test $XDG_SESSION_TYPE = "x11"
