@@ -114,6 +114,11 @@ if status is-interactive
         alias dig="$(command -v dog)"
     end
 
+    if command -q nvim
+        alias vvim="$(command -v vim)"
+        alias vim="$(command -v nvim)"
+    end
+
     if test $XDG_SESSION_TYPE = "x11"
         alias clearclipboard="xsel -bc"
         alias pbcopy="xsel --clipboard --input"
