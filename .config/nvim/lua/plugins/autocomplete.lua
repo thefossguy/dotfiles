@@ -81,7 +81,7 @@ require('telescope').setup({
 
 require('nvim-mapper').setup({
   no_map = true, -- assign the default keymap '<leader>MM'
-  search_path = os.getenv("HOME") .. '/.config/nvim/lua',
+  search_path = os.getenv('HOME') .. '/.config/nvim/lua',
   action_on_enter = 'definition', -- definition, execute
 })
 require('telescope').load_extension('mapper')

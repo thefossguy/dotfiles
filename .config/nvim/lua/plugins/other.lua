@@ -42,31 +42,31 @@ require('indent_blankline').setup({
 
 require('autoclose').setup({
   keys = {
-    ["*"] = {
+    ['*'] = {
       escape = true,
       close = true,
-      pair = "**",
+      pair = '**',
     },
-    ["^"] = {
+    ['^'] = {
       escape = true,
       close = true,
-      pair = "^^",
+      pair = '^^',
     },
-    ["~"] = {
+    ['~'] = {
       escape = true,
       close = true,
-      pair = "~~",
+      pair = '~~',
     },
     --[[ remove escape for '<>'
-    ["<"] = {
+    ['<'] = {
       escape = false,
       close = false,
-      pair = "<>",
+      pair = '<>',
     },
-    [">"] = {
+    ['>'] = {
       escape = false,
       close = false,
-      pair = "<>",
+      pair = '<>',
     },
     -- ]]
   },
