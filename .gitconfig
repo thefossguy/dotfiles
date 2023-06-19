@@ -5,9 +5,9 @@
 [user]
     name = Pratham Patel
     email = thefirst1322@gmail.com
-#    signingkey =
-#[commit]
-#    gpgsign = true
+    signingkey = ~/.ssh/git
+[commit]
+    gpgsign = true
 [color]
     ui = auto
 [init]
@@ -17,7 +17,7 @@
 [diff]
     tool = meld
 [gpg]
-    program = gpg2
+    format = ssh
 [blame]
     date = iso8601
     showEmail = true
