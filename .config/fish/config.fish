@@ -88,17 +88,17 @@ if status is-interactive
     alias paru="LESS=SRX paru"
     alias clear="clear && printf '\e[3J'"
 
-    if command -q batcat
+    if command -v batcat > /dev/null
         alias bat="$(command -v batcat)"
     end
 
-    if command -q dig
+    if command -v dig > /dev/null
         alias olddig="$(command -v dig)"
         alias digdig="$(command -v dig)"
         alias dig="$(command -v dog)"
     end
 
-    if command -q nvim
+    if command -v nvim > /dev/null
         alias vvim="$(command -v vim)"
         alias vim="$(command -v nvim)"
     end
