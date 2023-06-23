@@ -139,13 +139,69 @@ if status is-interactive
     end
 end
 
-function fish_prompt
-    set -l prompt_symbol '$'
-    fish_is_root_user; and set prompt_symbol '#'
 
-    if test -d ".git"
-        echo -sne [(whoami)@(prompt_hostname)\ :\ (set_color blue)(pwd)(set_color brwhite)\ $status(set_color brred)(fish_git_prompt)(set_color normal)]\n$prompt_symbol\ 
+function __fish_print_pipestatus --description "Print pipestatus for prompt"
+    set -l last_status
+    if set -q __fish_last_status
+        set last_status $__fish_last_status
     else
-        echo -sne [(whoami)@(prompt_hostname)\ :\ (set_color blue)(pwd)(set_color brwhite)\ $status(set_color normal)]\n$prompt_symbol\ 
+        set last_status $argv[-1] # default to $pipestatus[-1]
     end
+    set -l left_brace $argv[1]
+    set -l right_brace $argv[2]
+    set -l separator $argv[3]
+    set -l brace_sep_color $argv[4]
+    set -l status_color $argv[5]
+
+    set -e argv[1 2 3 4 5]
+
+    if not set -q argv[1]
+        echo error: missing argument >&2
+        status print-stack-trace >&2
+        return 1
+    end
+
+    set -l sep $brace_sep_color$separator$status_color
+    set -l last_pipestatus_string (fish_status_to_signal $argv | string join "$sep")
+    set -l last_status_string ""
+    if test "$last_status" -ne "$argv[-1]"
+        set last_status_string " "$status_color$last_status
+    end
+    set -l normal (set_color normal)
+    # The "normal"s are to reset modifiers like bold - see #7771.
+    printf "%s" $normal $brace_sep_color $left_brace \
+        $status_color $last_pipestatus_string \
+        $normal $brace_sep_color $right_brace $normal $last_status_string $normal
+end
+
+function fish_prompt
+    set -l last_pipestatus $pipestatus
+    set -lx __fish_last_status $status # Export for __fish_print_pipestatus.
+    set -q fish_color_status
+    or set -g fish_color_status red
+
+    # Color the prompt differently when we're root
+    set -l fish_color_cwd cyan
+    set -l color_cwd $fish_color_cwd
+    set -l suffix '$'
+    if functions -q fish_is_root_user; and fish_is_root_user
+        if set -q fish_color_cwd_root
+            set color_cwd $fish_color_cwd_root
+        end
+        set suffix '#'
+    end
+
+    # Write pipestatus
+    # If the status was carried over (if no command is issued or if `set` leaves the status untouched), don't bold it.
+    set -l bold_flag --bold
+    set -q __fish_prompt_status_generation; or set -g __fish_prompt_status_generation $status_generation
+    if test $__fish_prompt_status_generation = $status_generation
+        set bold_flag
+    end
+    set __fish_prompt_status_generation $status_generation
+    set -l status_color (set_color $fish_color_status)
+    set -l statusb_color (set_color $bold_flag $fish_color_status)
+    set -l prompt_status (__fish_print_pipestatus "" "" "|" "$status_color" "$statusb_color" $last_pipestatus)
+
+    echo -n -s -e "$(set_color yellow) \n[ $(set_color brred)$hostname: $(set_color white)$USER $(set_color brblack)▶ $(set_color $color_cwd)$PWD$(set_color brwhite)$(fish_vcs_prompt)$(set_color normal) $prompt_status $(set_color yellow)]\n$suffix "
 end
