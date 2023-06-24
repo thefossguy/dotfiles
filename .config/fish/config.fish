@@ -183,7 +183,7 @@ function fish_prompt
     # Color the prompt differently when we're root
     set -l fish_color_cwd cyan
     set -l color_cwd $fish_color_cwd
-    set -l suffix '$'
+    set -l suffix '>'
     if functions -q fish_is_root_user; and fish_is_root_user
         if set -q fish_color_cwd_root
             set color_cwd $fish_color_cwd_root
@@ -203,5 +203,5 @@ function fish_prompt
     set -l statusb_color (set_color $bold_flag $fish_color_status)
     set -l prompt_status (__fish_print_pipestatus "" "" "|" "$status_color" "$statusb_color" $last_pipestatus)
 
-    echo -n -s -e "$(set_color yellow) \n[ $(set_color brred)$hostname: $(set_color white)$USER $(set_color brblack)▶ $(set_color $color_cwd)$PWD$(set_color brwhite)$(fish_vcs_prompt)$(set_color normal) $prompt_status $(set_color yellow)]\n$suffix "
+    echo -n -s -e "\n$(set_color yellow)─┬─[ $(set_color brred)$hostname: $(set_color white)$USER $(set_color brblack)▶ $(set_color $color_cwd)$PWD$(set_color brwhite)$(fish_vcs_prompt)$(set_color normal) $prompt_status $(set_color yellow)]\n ╰─$suffix "
 end
