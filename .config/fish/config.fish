@@ -39,6 +39,24 @@ if status is-interactive
 
     set fish_greeting # disable the "new user" prompt
 
+    # set locale manually because even though NixOS handles the 'en_IN' locale
+    # it doesn't append the string '.UTF-8' to LC_*
+    # but, UTF-8 **is supported**, so just go ahead and set it manually
+    set -gx LANG "en_IN.UTF-8"
+    set -gx LC_ADDRESS "en_IN.UTF-8"
+    set -gx LC_COLLATE "en_IN.UTF-8"
+    set -gx LC_CTYPE "en_IN.UTF-8"
+    set -gx LC_IDENTIFICATION "en_IN.UTF-8"
+    set -gx LC_MEASUREMENT "en_IN.UTF-8"
+    set -gx LC_MESSAGES "en_IN.UTF-8"
+    set -gx LC_MONETARY "en_IN.UTF-8"
+    set -gx LC_NAME "en_IN.UTF-8"
+    set -gx LC_NUMERIC "en_IN.UTF-8"
+    set -gx LC_PAPER "en_IN.UTF-8"
+    set -gx LC_TELEPHONE "en_IN.UTF-8"
+    set -gx LC_TIME "en_IN.UTF-8"
+    set -gx LC_ALL ""
+
     set -g FUNCTIONS_DIR "$HOME/.local/scripts/common-shell-scripts"
 
     # common aliases
