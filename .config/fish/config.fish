@@ -34,12 +34,12 @@ function fish_mode_prompt
 end
 
 function initial_fish_setup
-    set fish_greeting # disable the "new user" prompt
     fish_load_sudo_alias
     fish_vi_key_bindings
 end
 
 if status is-interactive
+    set fish_greeting # disable the "new user" prompt
     initial_fish_setup # call all "setup functions" here
 
     # git prompt options
