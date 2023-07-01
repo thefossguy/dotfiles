@@ -7,7 +7,9 @@ fi
 
 xsetroot -cursor_name left_ptr &
 xrandr -s 3840x2160+0+0
-nvidia-settings --assign CurrentMetaMode="3840x2160+0+0 { ForceFullCompositionPipeline = On }"
+if command -v nvidia-settings > /dev/null; then
+    nvidia-settings --assign CurrentMetaMode="3840x2160+0+0 { ForceFullCompositionPipeline = On }"
+fi
 
 pgrep -x dunst > /dev/null || dunst &
 pgrep -x picom > /dev/null || picom --fade-exclude 'class_g = "xsecurelock"' &
