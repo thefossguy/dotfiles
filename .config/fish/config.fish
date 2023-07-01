@@ -31,7 +31,12 @@ function fish_load_sudo_alias
 end
 
 function initial_fish_setup
+    if not test -f "$HOME/.config/fish/functions/fish_mode_prompt.fish"
+        touch "$HOME/.config/fish/functions/fish_mode_prompt.fish"
+    end
+
     fish_load_sudo_alias
+    fish_vi_key_bindings
 end
 
 if status is-interactive
