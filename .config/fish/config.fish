@@ -30,19 +30,17 @@ function fish_load_sudo_alias
     end
 end
 
-function initial_fish_setup
-    if not test -f "$HOME/.config/fish/functions/fish_mode_prompt.fish"
-        touch "$HOME/.config/fish/functions/fish_mode_prompt.fish"
-    end
+function fish_mode_prompt
+end
 
+function initial_fish_setup
+    set fish_greeting # disable the "new user" prompt
     fish_load_sudo_alias
     fish_vi_key_bindings
 end
 
 if status is-interactive
     initial_fish_setup # call all "setup functions" here
-
-    set fish_greeting # disable the "new user" prompt
 
     # git prompt options
     set -gx __fish_git_prompt_show_informative_status true
@@ -71,7 +69,7 @@ if status is-interactive
     set -gx LC_TIME "en_IN.UTF-8"
     set -gx LC_ALL ""
 
-    set -g FUNCTIONS_DIR "$HOME/.local/scripts/common-shell-scripts"
+    set -gx FUNCTIONS_DIR "$HOME/.local/scripts/common-shell-scripts"
 
     # common aliases
     alias showdiskusage="bash $HOME/.local/scripts/other-common-scripts/show-disk-usage.sh"
