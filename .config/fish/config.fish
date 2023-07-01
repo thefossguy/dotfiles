@@ -39,6 +39,15 @@ if status is-interactive
 
     set fish_greeting # disable the "new user" prompt
 
+    # git prompt options
+    set -gx __fish_git_prompt_show_informative_status true
+    set -gx __fish_git_prompt_showdirtystate true
+    set -gx __fish_git_prompt_showuntrackedfiles true
+    set -gx __fish_git_prompt_showupstream verbose
+    set -gx __fish_git_prompt_showstashstate true
+    set -gx __fish_git_prompt_describe_style branch
+    set -gx __fish_git_prompt_showcolorhints true
+
     # set locale manually because even though NixOS handles the 'en_IN' locale
     # it doesn't append the string '.UTF-8' to LC_*
     # but, UTF-8 **is supported**, so just go ahead and set it manually
