@@ -68,6 +68,18 @@ function ensure_installed_casks() {
         #EOL
 }
 
+if [[ $(uname) != "Darwin" ]]; then
+    echo "You are on a good platform. Do not execute this script."
+    exit
+fi
+
+if ! command -v brew > /dev/null; then
+    if ! xcode-select -p > /dev/null; then
+        xcode-select --install
+    fi
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
 brew analytics off
 brew update --force # upgrade homebrew itself
 ensure_installed_formulas
