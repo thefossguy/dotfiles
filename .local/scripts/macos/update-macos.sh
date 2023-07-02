@@ -14,7 +14,7 @@ function ensure_installed_formulas() {
         fish \
         gcc \
         git \
-        gnused \
+        gnu-sed \
         grep \
         htop \
         imagemagick \
