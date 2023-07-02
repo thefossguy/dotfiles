@@ -6,6 +6,7 @@ function ensure_installed_formulas() {
         bash \
         bat \
         btop \
+        choose-rust \
         coreutils \
         curl \
         dash \
