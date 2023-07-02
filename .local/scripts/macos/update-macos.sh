@@ -77,6 +77,7 @@ function ensure_installed_casks() {
 function ensure_installed_fish_plugins() {
     fisher install \
         acomagu/fish-async-prompt \
+        jethrokuan/z \
         jethrokuan/fzf \
         meaningful-ooo/sponge \
         nickeb96/puffer-fish \
@@ -100,11 +101,19 @@ if ! fisher -v > /dev/null; then
     curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
 fi
 
+if ! command -v rustup > /dev/null; then
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- \
+        -y \
+        --quiet \
+        --profile default
+fi
+
 brew analytics off
 brew update --force # upgrade homebrew itself
 ensure_installed_formulas
 ensure_installed_casks
 ensure_installed_fish_plugins
+bash "$HOME/.local/scripts/other-common-scripts/rust-manage.sh"
 fisher update
 brew upgrade --greedy --greedy-latest --greedy-auto-updates --no-quarantine # upgrade the packages installed by homebrew
 brew autoremove
