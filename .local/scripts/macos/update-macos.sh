@@ -46,9 +46,11 @@ function ensure_installed_casks() {
         bitwarden \
         brave-browser \
         discord \
-        font-sauce-code-pro-nerd-font \
         exifcleaner \
         firefox \
+        font-fira-mono-nerd-font \
+        font-overpass-nerd-font \
+        font-sauce-code-pro-nerd-font \
         google-chrome \
         handbrake \
         keepassx \
