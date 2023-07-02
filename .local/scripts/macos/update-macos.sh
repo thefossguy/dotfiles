@@ -20,6 +20,7 @@ function ensure_installed_formulas() {
         imagemagick \
         iperf \
         iperf3 \
+        minisign \
         mpv \
         neovide \
         neovim \
