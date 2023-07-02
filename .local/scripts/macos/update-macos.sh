@@ -12,6 +12,7 @@ function ensure_installed_formulas() {
         fd \
         ffmpeg \
         fish \
+        fisher \
         gcc \
         git \
         gnu-sed \
