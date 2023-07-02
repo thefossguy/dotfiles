@@ -68,6 +68,7 @@ function ensure_installed_casks() {
         telegram \
         tor-browser \
         utm \
+        whatsapp \
         #EOL
 }
 
