@@ -13,6 +13,7 @@ function ensure_installed_formulas() {
         ffmpeg \
         fish \
         fisher \
+        fzf \
         gcc \
         git \
         gnu-sed \
@@ -73,6 +74,16 @@ function ensure_installed_casks() {
         #EOL
 }
 
+function ensure_installed_fish_plugins() {
+    fisher install \
+        acomagu/fish-async-prompt \
+        jethrokuan/fzf \
+        meaningful-ooo/sponge \
+        nickeb96/puffer-fish \
+        PatrickF1/colored_man_pages.fish \
+        #EOF
+}
+
 if [[ $(uname) != "Darwin" ]]; then
     echo "You are on a good platform. Do not execute this script."
     exit
@@ -85,10 +96,16 @@ if ! command -v brew > /dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
+if ! fisher -v > /dev/null; then
+    curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+fi
+
 brew analytics off
 brew update --force # upgrade homebrew itself
 ensure_installed_formulas
 ensure_installed_casks
+ensure_installed_fish_plugins
+fisher update
 brew upgrade --greedy --greedy-latest --greedy-auto-updates --no-quarantine # upgrade the packages installed by homebrew
 brew autoremove
 brew cleanup --prune=all -s
