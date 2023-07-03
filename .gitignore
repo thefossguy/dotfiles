@@ -35,6 +35,7 @@
 .ssh/*
 .Trashes
 .viminfo
+.Xauthority
 .xsel.log
 .zcompdump
 .zshenv
