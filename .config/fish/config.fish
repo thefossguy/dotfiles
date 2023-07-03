@@ -90,7 +90,6 @@ if status is-interactive
     alias rgvi="rg --hidden -vi"
     alias rgiv="rg --hidden -vi"
     alias unxz="unxz -k"
-    alias dig="$(command -v dog)"
     alias l="ls --group-directories-first --color=auto -v"
     alias ll="ls --group-directories-first --color=auto -1lv --time-style=long-iso"
     alias la="ls --group-directories-first --color=auto -1Av --time-style=long-iso"
