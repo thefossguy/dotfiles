@@ -40,16 +40,17 @@ bspc rule -a "Nvidia-settings" state=floating
 bspc rule -a "VirtualBox Machine" state=pseudo_tiled
 bspc rule -a "Virt-manager" state=psuedo_tiled
 
-bspc desktop --focus ^3
-gnome-disks &
-sleep 2
-bspc desktop --focus ^2
-virt-manager &
-sleep 1
+if [[ ${HOSTNAME} == "flameboi" ]]; then
+    bitwarden-desktop &
+    bspc desktop --focus ^3
+    gnome-disks &
+    sleep 2
+    bspc desktop --focus ^2
+    virt-manager &
+    sleep 1
+fi
 bspc desktop --focus ^1
 firefox &
-sleep 2
 alacritty &
-bitwarden-desktop &
 
 notify-send -u normal "Login manager" "Welcome, $(whoami)"
