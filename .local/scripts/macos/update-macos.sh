@@ -99,8 +99,8 @@ if ! command -v brew > /dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-if ! fisher -v > /dev/null; then
-    curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+if [[ ! -f $HOME/.config/fish/functions/fisher.fish ]]; then
+    fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
 fi
 
 if ! command -v rustup > /dev/null; then
