@@ -153,6 +153,9 @@ if status is-interactive
     #togif
 
     if test $(uname) = "Darwin"
+        fish_add_path -p -g /usr/local/sbin
+        fish_add_path -p -g /usr/local/bin
+
         alias l="$(command -v gls) --group-directories-first --color=auto -v"
         alias ll="$(command -v gls) --group-directories-first --color=auto -1lv --time-style=long-iso"
         alias la="$(command -v gls) --group-directories-first --color=auto -1Av --time-style=long-iso"
