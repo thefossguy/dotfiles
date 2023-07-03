@@ -133,12 +133,14 @@ if status is-interactive
         alias vim="$(command -v nvim)"
     end
 
-    if test $XDG_SESSION_TYPE = "x11"
-        alias clearclipboard="xsel -bc"
-        alias pbcopy="xsel --clipboard --input"
-    else if test $XDG_SESSION_TYPE = "wayland"
-        alias clearclipboard="wl-copy --clear"
-        alias pbcopy="wl-copy"
+    if test $(uname) = "Linux"
+        if test $XDG_SESSION_TYPE = "x11"
+            alias clearclipboard="xsel -bc"
+            alias pbcopy="xsel --clipboard --input"
+        else if test $XDG_SESSION_TYPE = "wayland"
+            alias clearclipboard="wl-copy --clear"
+            alias pbcopy="wl-copy"
+        end
     end
 
     # TODO: functions in $HOME/.local/scripts/common-shell-scripts
