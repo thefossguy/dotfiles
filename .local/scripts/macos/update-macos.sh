@@ -10,6 +10,7 @@ function ensure_installed_formulas() {
         coreutils \
         curl \
         dash \
+        dog \
         fd \
         ffmpeg \
         fish \
