@@ -77,14 +77,14 @@ function ensure_installed_casks() {
 }
 
 function ensure_installed_fish_plugins() {
-    fisher install \
+    fish -c "fisher install \
         acomagu/fish-async-prompt \
         jethrokuan/z \
         jethrokuan/fzf \
         meaningful-ooo/sponge \
         nickeb96/puffer-fish \
         PatrickF1/colored_man_pages.fish \
-        #EOF
+        #EOF"
 }
 
 if [[ $(uname) != "Darwin" ]]; then
@@ -116,7 +116,7 @@ ensure_installed_formulas
 ensure_installed_casks
 ensure_installed_fish_plugins
 bash "$HOME/.local/scripts/other-common-scripts/rust-manage.sh"
-fisher update
+fish -c "fisher update"
 brew upgrade --greedy --greedy-latest --greedy-auto-updates --no-quarantine # upgrade the packages installed by homebrew
 brew autoremove
 brew cleanup --prune=all -s
