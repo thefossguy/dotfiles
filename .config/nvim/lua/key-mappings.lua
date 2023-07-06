@@ -34,3 +34,6 @@ end)
 vim.keymap.set('n', 'T', function()
   require('nvim-tree.api').tree.toggle()
 end)
+
+-- hover when '<leader>i' is pressed
+vim.keymap.set('n', '<leader>i', vim.lsp.buf.hover, {desc = "[I]nfo (hover)"})
