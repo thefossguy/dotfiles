@@ -216,22 +216,11 @@ lspconfig.sumneko_lua.setup({
   },
 })
 
-lspconfig.pylsp.setup({
-  settings = {
-    pylsp = {
-      plugins = {
-        pycodestyle = {
-          ignore = { 'W391' },
-          maxLineLength = 100,
-        },
-      },
-    },
-  },
-})
-
-lspconfig.nil_ls.setup({})
 lspconfig.bashls.setup({})
 lspconfig.clangd.setup({})
+lspconfig.nil_ls.setup({}) -- for the Nix expression language
+lspconfig.ruff_lsp.setup({}) -- a Python linter, written in 🦀
+lspconfig.rust_analyzer.setup({})
 
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

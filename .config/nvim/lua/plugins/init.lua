@@ -45,12 +45,7 @@ require('lazy').setup({
       -- debugging
       'nvim-lua/plenary.nvim',
       'mfussenegger/nvim-dap',
-    }
-
-      -- Python
-      -- Bash
-      -- C/C++
-      -- Lua
+    },
 
   },
 
