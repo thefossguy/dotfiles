@@ -1,3 +1,13 @@
+font:
+  size: 16.0
+
+window:
+  decorations: full
+
+  dimensions:
+    columns: 110
+    lines: 30
+
 key_bindings:
   - { key: Left,           mods: Alt,                             chars: "\x1b[1;5D"       }
   - { key: Right,          mods: Alt,                             chars: "\x1b[1;5C"       }
