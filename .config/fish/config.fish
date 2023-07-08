@@ -79,7 +79,7 @@ if status is-interactive
     alias nixgarbageclean="nix-collect-garbage -d"
     alias mtr="mtr --show-ips --displaymode 0 -o \"LDR AGJMXI\""
     alias update="source $HOME/.config/fish/config.fish"
-    alias custcp="rsync --fsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
+    alias custcp="rsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
     alias pysort="python3 $HOME/.local/scripts/other-common-scripts/sort.py"
     alias download="aria2c -x 16 -k 1M --file-allocation=none --continue=false --seed-time=0"
     alias ytdown="yt-dlp --config-location $HOME/.config/yt-dlp/norm_config --external-downloader aria2c"
@@ -109,7 +109,6 @@ if status is-interactive
     alias pingflameboi="ping 10.0.0.13"
     alias pingsentinel="ping 10.0.0.14"
     alias pingreddish="ping 10.0.0.19"
-    alias ping="ping -W 0.1 -O"
     alias mpv="mpv --geometry=60% --vo=gpu --hwdec=vaapi"
     alias serialterm="clear && sudo picocom --quiet -b 115200 /dev/ttyUSB0"
     alias suslock="bash $HOME/.local/scripts/window-manager/lock-and-suspend.sh"
@@ -133,6 +132,8 @@ if status is-interactive
     end
 
     if test $(uname) = "Linux"
+        alias custcp="rsync --fsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
+        alias ping="ping -W 0.1 -O"
         if test $XDG_SESSION_TYPE = "x11"
             alias clearclipboard="xsel -bc"
             alias pbcopy="xsel --clipboard --input"
