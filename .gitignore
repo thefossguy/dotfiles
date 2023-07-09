@@ -6,6 +6,7 @@
 .cargo/*
 .config/*.xml*
 .config/.gsd-keyboard.settings-ported
+.config/alacritty/load_intermediate.yml
 .config/btop/*
 .config/dconf/*
 .config/dleyna-renderer-service.conf
