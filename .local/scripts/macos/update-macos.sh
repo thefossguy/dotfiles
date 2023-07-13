@@ -70,6 +70,7 @@ function ensure_installed_casks() {
         protonvpn \
         raspberry-pi-imager \
         telegram \
+        thunderbird \
         tor-browser \
         utm \
         whatsapp \
