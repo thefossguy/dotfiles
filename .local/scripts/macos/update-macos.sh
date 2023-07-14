@@ -122,6 +122,6 @@ brew upgrade --greedy --greedy-latest --greedy-auto-updates --no-quarantine # up
 brew autoremove
 brew cleanup --prune=all -s
 brew doctor
-tput -x clear
+/usr/local/Cellar/ncurses/*/bin/tput -x clear
 brew outdated --greedy --greedy-latest --greedy-auto-updates
 brew missing
