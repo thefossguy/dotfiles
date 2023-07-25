@@ -5,8 +5,8 @@ window:
   decorations: full
 
   dimensions:
-    columns: 120
-    lines: 35
+    columns: 115
+    lines: 30
 
 key_bindings:
   - { key: Left,           mods: Alt,                             chars: "\x1b[1;5D"       }
