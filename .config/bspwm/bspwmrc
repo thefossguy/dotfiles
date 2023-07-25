@@ -48,9 +48,10 @@ if [[ ${HOSTNAME} == "flameboi" ]]; then
     bspc desktop --focus ^2
     virt-manager &
     sleep 1
+    bspc desktop --focus ^1
+    firefox &
 fi
 bspc desktop --focus ^1
-firefox &
 alacritty &
 
 notify-send -u normal "Login manager" "Welcome, $(whoami)"
