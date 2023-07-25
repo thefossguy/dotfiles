@@ -40,34 +40,4 @@ require('indent_blankline').setup({
   },
 })
 
-require('autoclose').setup({
-  keys = {
-    ['*'] = {
-      escape = true,
-      close = true,
-      pair = '**',
-    },
-    ['^'] = {
-      escape = true,
-      close = true,
-      pair = '^^',
-    },
-    ['~'] = {
-      escape = true,
-      close = true,
-      pair = '~~',
-    },
-    --[[ remove escape for '<>'
-    ['<'] = {
-      escape = false,
-      close = false,
-      pair = '<>',
-    },
-    ['>'] = {
-      escape = false,
-      close = false,
-      pair = '<>',
-    },
-    -- ]]
-  },
-})
+require('autoclose').setup({})
