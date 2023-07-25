@@ -112,6 +112,7 @@ if status is-interactive
     alias sentinel="ssh sentinel.lan"
     alias reddish="ssh reddish.lan"
     alias vasudev="ssh vasu.dev"
+    alias bodhi="ssh bodhi.comp"
     alias pingflameboi="ping 10.0.0.13"
     alias pingsentinel="ping 10.0.0.14"
     alias pingreddish="ping 10.0.0.19"
