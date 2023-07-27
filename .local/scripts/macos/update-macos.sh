@@ -33,6 +33,7 @@ function ensure_installed_formulas() {
         ripgrep \
         rpm2cpio \
         tmux \
+        totp-cli \
         tree \
         wakeonlan \
         watch \
