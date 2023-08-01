@@ -82,6 +82,8 @@ if status is-interactive
     alias nixrebuild="nixos-rebuild boot"
     alias nixupgrade="nixos-rebuild boot --upgrade"
     alias nixgarbageclean="nix-collect-garbage -d"
+    alias rpmextract="dash $HOME/.local/scripts/other-common-scripts/extract-rpm-files.sh"
+    alias rpmxf="dash $HOME/.local/scripts/other-common-scripts/extract-rpm-files.sh"
     alias mtr="mtr --show-ips --displaymode 0 -o \"LDR AGJMXI\""
     alias update="source $HOME/.config/fish/config.fish"
     alias custcp="rsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
