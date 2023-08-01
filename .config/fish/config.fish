@@ -122,6 +122,7 @@ if status is-interactive
     alias drivetemp="hdparm -CH /dev/sda /dev/sdb /dev/sdc /dev/sdd"
     alias paru="LESS=SRX paru"
     alias clear="clear && printf '\e[3J'"
+    alias lpmount="sudo losetup --partscan --find --show"
 
     if command -v batcat > /dev/null
         alias bat="$(command -v batcat)"
