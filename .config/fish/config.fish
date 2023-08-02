@@ -82,6 +82,7 @@ if status is-interactive
     alias nixrebuild="nixos-rebuild boot"
     alias nixupgrade="nixos-rebuild boot --upgrade"
     alias nixgarbageclean="nix-collect-garbage -d"
+    alias specmacroexpand="rpmspec -P"
     alias rpmgetsrc="spectool -g -R"
     alias getrpmsrc="spectool -g -R"
     alias getspecsrc="spectool -g -R"
