@@ -1,8 +1,8 @@
-#!/usr/bin/env dash
+#!/usr/bin/env bash
 
 set -x
 
-CONTAINER_MOUNT_MASTER='/trayimurti/torrents'
+ZPOOL_MOUNT_PATH='/trayimurti/torrents'
 PODMAN_SECRETS="${HOME}/.local/share/containers/storage/secrets/secrets.json"
 PODMAN_NETWORKS_PATH="${HOME}/.local/share/containers/storage/networks/containers_default.json"
 CONTAINER_VOLUME_PATH="${HOME}/container-data/volumes"
@@ -17,7 +17,8 @@ podman pull \
     docker.io/library/caddy:latest \
     docker.io/library/postgres:15-bookworm \
     docker.io/louislam/uptime-kuma:debian \
-    lscr.io/linuxserver/transmission:latest || exit 1
+    lscr.io/linuxserver/transmission:latest \
+    || exit 1
 
 # setup secrets and network
 if ! grep -q 'nextcloud_database_user_password' "${PODMAN_SECRETS}"; then
@@ -31,11 +32,10 @@ if [ ! -f "${PODMAN_NETWORKS_PATH}" ]; then
 fi
 
 # setup podman volumes
-if [ ! -d "${CONTAINER_VOLUME_PATH}" ]; then
-    mkdir -vp "${CONTAINER_VOLUME_PATH}/caddy/{caddy_{data,config},site,ssl/{private,certs}}"
-    mkdir -vp "${CONTAINER_VOLUME_PATH}/gitea/{database,ssh,web}"
-    mkdir -vp "${CONTAINER_VOLUME_PATH}/uptimekuma"
-fi
+mkdir -vp "${CONTAINER_VOLUME_PATH}/uptimekuma"
+mkdir -vp ${CONTAINER_VOLUME_PATH}/gitea/{database,ssh,web}
+mkdir -vp ${CONTAINER_VOLUME_PATH}/caddy/{caddy_{data,config},site,ssl/{private,certs}}
+chmod 700 "${CONTAINER_VOLUME_PATH}/caddy/ssl/private"
 if [ ! -d "${CONTAINER_VOLUME_PATH}/blog" ]; then
     git clone --recursive https://gitlab.com/thefossguy/blog "${CONTAINER_VOLUME_PATH}/blog" || exit 1
 fi
@@ -47,17 +47,19 @@ if [ ! -f "${CONTAINER_VOLUME_PATH}/caddy/Caddyfile" ]; then
 fi
 if [ ! -f "${CONTAINER_VOLUME_PATH}/caddy/ssl/private/key.pem" ] || [ ! -f "${CONTAINER_VOLUME_PATH}/caddy/ssl/certs/certificate.pem" ]; then
     >&2 echo "$0: Cloudflare certificates not found"
+    >&2 echo "$0: fill: ${CONTAINER_VOLUME_PATH}/caddy/ssl/private/key.pem"
+    >&2 echo "$0: fill: ${CONTAINER_VOLUME_PATH}/caddy/ssl/certs/certificate.pem"
     exit 1
 fi
 
 # finally, at the end, wait for the ZFS pool to be mounted
-while [ ! -d "${CONTAINER_MOUNT_MASTER}" ]; do
-    >&2 echo "$0: directory ${CONTAINER_MOUNT_MASTER} is not mounted (${TIME_TAKEN})"
+while [ ! -d "${ZPOOL_MOUNT_PATH}" ]; do
+    >&2 echo "$0: directory ${ZPOOL_MOUNT_PATH} is not mounted (${TIME_TAKEN})"
     sleep 1s
     TIME_TAKEN=$((TIME_TAKEN + 1))
 
     if [ "${TIME_TAKEN}" -gt 120 ]; then
-        >&2 echo "$0: directory ${CONTAINER_MOUNT_MASTER} is not mounted"
+        >&2 echo "$0: directory ${ZPOOL_MOUNT_PATH} is not mounted"
         >&2 echo "$0: exiting due to previous error..."
         exit 1
     fi
