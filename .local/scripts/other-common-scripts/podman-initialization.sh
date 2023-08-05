@@ -1,5 +1,7 @@
 #!/usr/bin/env dash
 
+set -x
+
 CONTAINER_MOUNT_MASTER='/trayimurti/torrents'
 PODMAN_SECRETS="${HOME}/.local/share/containers/storage/secrets/secrets.json"
 PODMAN_NETWORKS_PATH="${HOME}/.local/share/containers/storage/networks/containers_default.json"
@@ -30,7 +32,7 @@ fi
 
 # setup podman volumes
 if [ ! -d "${CONTAINER_VOLUME_PATH}" ]; then
-    mkdir -vp "${CONTAINER_VOLUME_PATH}/caddy/{site,ssl/{private,certs},caddy_{data,config}}"
+    mkdir -vp "${CONTAINER_VOLUME_PATH}/caddy/{caddy_{data,config},site,ssl/{private,certs}}"
     mkdir -vp "${CONTAINER_VOLUME_PATH}/gitea/{database,ssh,web}"
     mkdir -vp "${CONTAINER_VOLUME_PATH}/uptimekuma"
 fi
