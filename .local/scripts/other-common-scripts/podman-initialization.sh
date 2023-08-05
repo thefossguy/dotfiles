@@ -6,6 +6,8 @@ PODMAN_NETWORKS_PATH="${HOME}/.local/share/containers/storage/networks/container
 CONTAINER_VOLUME_PATH="${HOME}/container-data/volumes"
 TIME_TAKEN=0
 
+systemctl --user enable podman-restart.service
+
 # pull images
 podman pull \
     docker.io/gitea/gitea:latest \
