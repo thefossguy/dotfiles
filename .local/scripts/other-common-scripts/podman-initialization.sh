@@ -51,6 +51,9 @@ if [ ! -f "${CONTAINER_VOLUME_PATH}/caddy/ssl/private/key.pem" ] || [ ! -f "${CO
     >&2 echo "$0: fill: ${CONTAINER_VOLUME_PATH}/caddy/ssl/private/key.pem"
     >&2 echo "$0: fill: ${CONTAINER_VOLUME_PATH}/caddy/ssl/certs/certificate.pem"
     exit 1
+else
+    chmod 700 "${CONTAINER_VOLUME_PATH}/caddy/ssl/private"
+    chmod 600 "${CONTAINER_VOLUME_PATH}/caddy/ssl/private/key.pem"
 fi
 
 # finally, at the end, wait for the ZFS pool to be mounted
