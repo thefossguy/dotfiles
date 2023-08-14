@@ -8,18 +8,27 @@ PODMAN_SECRETS="${HOME}/.local/share/containers/storage/secrets/secrets.json"
 PODMAN_NETWORKS_PATH="${HOME}/.local/share/containers/storage/networks/containers_default.json"
 CONTAINER_VOLUME_PATH="${HOME}/container-data/volumes"
 TIME_TAKEN=0
+CONTAINER_IMAGES=(\
+    "docker.io/gitea/gitea:latest-rootless" \
+    "docker.io/klakegg/hugo:ext-debian" \
+    "docker.io/library/caddy:latest" \
+    "docker.io/library/postgres:15-bookworm" \
+    "docker.io/louislam/uptime-kuma:debian" \
+    "lscr.io/linuxserver/transmission:latest" \
+)
 
 systemctl --user enable podman-restart.service
 
-# pull images
-podman pull \
-    docker.io/gitea/gitea:latest-rootless \
-    docker.io/klakegg/hugo:ext-debian \
-    docker.io/library/caddy:latest \
-    docker.io/library/postgres:15-bookworm \
-    docker.io/louislam/uptime-kuma:debian \
-    lscr.io/linuxserver/transmission:latest \
-    || exit 1
+# make sure necessary images are locally present
+for OCI_IMAGE in "${CONTAINER_IMAGES[@]}"; do
+    podman image list "${OCI_IMAGE}" \
+        | grep "$(echo "${OCI_IMAGE}" | choose 0 --field-separator ':')" \
+        | grep "$(echo "${OCI_IMAGE}" | choose 1 --field-separator ':')" \
+        || (podman pull "${OCI_IMAGE}" || exit 1)
+done
+
+# always check for a new image
+podman pull "${CONTAINER_IMAGES[@]}"
 
 # prune old images
 podman images | grep '<none>' | choose 2 | xargs --max-lines=1 podman rmi
@@ -37,8 +46,8 @@ fi
 
 # setup podman volumes
 mkdir -vp "${CONTAINER_VOLUME_PATH}/uptimekuma"
-mkdir -vp ${CONTAINER_VOLUME_PATH}/gitea/{database,ssh,web}
-mkdir -vp ${CONTAINER_VOLUME_PATH}/caddy/{caddy_{data,config},site,ssl/{private,certs}}
+mkdir -vp "${CONTAINER_VOLUME_PATH}/gitea/"{database,ssh,web}
+mkdir -vp "${CONTAINER_VOLUME_PATH}/caddy/"{caddy_{data,config},site,ssl/{private,certs}}
 chmod 700 "${CONTAINER_VOLUME_PATH}/caddy/ssl/private"
 if [ ! -d "${CONTAINER_VOLUME_PATH}/blog" ]; then
     git clone --recursive https://gitlab.com/thefossguy/blog "${CONTAINER_VOLUME_PATH}/blog" || exit 1
