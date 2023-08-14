@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#! nix-shell -i bash --packages bash coreutils curl git gnugrep openssl podman
+#! nix-shell -i bash --packages bash choose coreutils curl findutils git gnugrep openssl podman
 
 set -x
 
@@ -20,6 +20,9 @@ podman pull \
     docker.io/louislam/uptime-kuma:debian \
     lscr.io/linuxserver/transmission:latest \
     || exit 1
+
+# prune old images
+podman images | grep '<none>' | choose 2 | xargs --max-lines=1 podman rmi
 
 # setup secrets and network
 if ! grep -q 'nextcloud_database_user_password' "${PODMAN_SECRETS}"; then
