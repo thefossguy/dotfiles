@@ -13,7 +13,7 @@ systemctl --user enable podman-restart.service
 
 # pull images
 podman pull \
-    docker.io/gitea/gitea:latest \
+    docker.io/gitea/gitea:latest-rootless \
     docker.io/klakegg/hugo:ext-debian \
     docker.io/library/caddy:latest \
     docker.io/library/postgres:15-bookworm \
