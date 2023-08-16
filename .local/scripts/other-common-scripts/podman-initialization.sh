@@ -9,7 +9,7 @@ PODMAN_NETWORKS_PATH="${HOME}/.local/share/containers/storage/networks/container
 CONTAINER_VOLUME_PATH="${HOME}/container-data/volumes"
 TIME_TAKEN=0
 CONTAINER_IMAGES=(\
-    "docker.io/gitea/gitea:latest-rootless" \
+    "docker.io/gitea/gitea:latest" \
     "docker.io/klakegg/hugo:ext-debian" \
     "docker.io/library/caddy:latest" \
     "docker.io/library/postgres:15-bookworm" \
