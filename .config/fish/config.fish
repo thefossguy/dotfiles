@@ -90,6 +90,8 @@ if status is-interactive
     alias rpmxf="dash $HOME/.local/scripts/other-common-scripts/extract-rpm-files.sh"
     alias mtr="mtr --show-ips --displaymode 0 -o \"LDR AGJMXI\""
     alias update="source $HOME/.config/fish/config.fish"
+    alias writeimage="sudo dd bs=1M oflag=direct,sync status=progress"
+    alias writeimg="sudo dd bs=1M oflag=direct,sync status=progress"
     alias custcp="rsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
     alias pysort="python3 $HOME/.local/scripts/other-common-scripts/sort.py"
     alias download="aria2c -x 16 -k 1M --file-allocation=none --continue=false --seed-time=0"
