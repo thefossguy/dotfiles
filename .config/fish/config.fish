@@ -77,6 +77,8 @@ if status is-interactive
     # Disable the pager for systemctl
     set -gx SYSTEMD_PAGER ""
 
+    # idk why, but XDG_DATA_HOME is't exported...
+    set -gx XDG_DATA_HOME "$HOME/.local/share"
     set -gx FUNCTIONS_DIR "$HOME/.local/scripts/common-shell-scripts"
 
     # common aliases
