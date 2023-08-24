@@ -54,7 +54,10 @@ require('lazy').setup({
     'neovim/nvim-lspconfig',
     dependencies = {
       'folke/neodev.nvim', -- additional lua configuration, makes nvim stuff amazing
-      'j-hui/fidget.nvim', -- useful status updates for LSP
+      {
+        'j-hui/fidget.nvim', -- useful status updates for LSP
+        branch = 'legacy'
+      }
     },
   },
 
