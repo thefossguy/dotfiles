@@ -74,6 +74,9 @@ if status is-interactive
     set -gx LC_TIME "en_IN.UTF-8"
     set -gx LC_ALL ""
 
+    # Disable the pager for systemctl
+    set -gx SYSTEMD_PAGER ""
+
     set -gx FUNCTIONS_DIR "$HOME/.local/scripts/common-shell-scripts"
 
     # common aliases
@@ -123,7 +126,7 @@ if status is-interactive
     alias pingsentinel="ping 10.0.0.14"
     alias pingreddish="ping 10.0.0.19"
     alias mpv="mpv --geometry=60% --vo=gpu --hwdec=vaapi"
-    alias serialterm="clear && sudo picocom --quiet --baud 115200 /dev/ttyUSB0"
+    alias serialterm="clear && picocom --quiet --baud 115200 /dev/ttyUSB0"
     alias suslock="bash $HOME/.local/scripts/window-manager/lock-and-suspend.sh"
     alias drivetemp="hdparm -CH /dev/sda /dev/sdb /dev/sdc /dev/sdd"
     alias paru="LESS=SRX paru"
@@ -158,11 +161,9 @@ if status is-interactive
     end
 
     # TODO: functions in $HOME/.local/scripts/common-shell-scripts
-    #owndisk
-    #containerdisableall
-    #containerenableall
     #containerstopall
     #containerstartall
+    #containerrestartall
     #containerstats
     #towebp
     #togif
