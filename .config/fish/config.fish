@@ -134,6 +134,7 @@ if status is-interactive
     alias paru="LESS=SRX paru"
     alias clear="clear && printf '\e[3J'"
     alias lomount="sudo losetup --partscan --find --show"
+    alias bottom="btm"
 
     if command -v batcat > /dev/null
         alias bat="$(command -v batcat)"
