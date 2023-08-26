@@ -48,6 +48,9 @@ if status is-interactive
     initial_fish_setup # call all "setup functions" here
 
     # git prompt options
+    # these are not in '/etc/nixos/configuration.nix' for following reasons
+    # - I use fish on macOS
+    # - these are not needed system wide, only for the fish shell itself
     set -gx __fish_git_prompt_show_informative_status true
     set -gx __fish_git_prompt_showdirtystate true
     set -gx __fish_git_prompt_showuntrackedfiles true
@@ -55,31 +58,6 @@ if status is-interactive
     set -gx __fish_git_prompt_showstashstate true
     set -gx __fish_git_prompt_describe_style branch
     set -gx __fish_git_prompt_showcolorhints true
-
-    # set locale manually because even though NixOS handles the 'en_IN' locale
-    # it doesn't append the string '.UTF-8' to LC_*
-    # but, UTF-8 **is supported**, so just go ahead and set it manually
-    set -gx LANG "en_IN.UTF-8"
-    set -gx LC_ADDRESS "en_IN.UTF-8"
-    set -gx LC_COLLATE "en_IN.UTF-8"
-    set -gx LC_CTYPE "en_IN.UTF-8"
-    set -gx LC_IDENTIFICATION "en_IN.UTF-8"
-    set -gx LC_MEASUREMENT "en_IN.UTF-8"
-    set -gx LC_MESSAGES "en_IN.UTF-8"
-    set -gx LC_MONETARY "en_IN.UTF-8"
-    set -gx LC_NAME "en_IN.UTF-8"
-    set -gx LC_NUMERIC "en_IN.UTF-8"
-    set -gx LC_PAPER "en_IN.UTF-8"
-    set -gx LC_TELEPHONE "en_IN.UTF-8"
-    set -gx LC_TIME "en_IN.UTF-8"
-    set -gx LC_ALL ""
-
-    # Disable the pager for systemctl
-    set -gx SYSTEMD_PAGER ""
-
-    # idk why, but XDG_DATA_HOME is't exported...
-    set -gx XDG_DATA_HOME "$HOME/.local/share"
-    set -gx FUNCTIONS_DIR "$HOME/.local/scripts/common-shell-scripts"
 
     # common aliases
     alias showdiskusage="bash $HOME/.local/scripts/other-common-scripts/show-disk-usage.sh"
