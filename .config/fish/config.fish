@@ -163,14 +163,6 @@ if status is-interactive
         end
     end
 
-    # TODO: functions in $HOME/.local/scripts/common-shell-scripts
-    #containerstopall
-    #containerstartall
-    #containerrestartall
-    #containerstats
-    #towebp
-    #togif
-
     if test $(uname) = "Darwin"
         fish_add_path -p -g /usr/local/bin
 
