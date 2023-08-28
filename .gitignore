@@ -36,6 +36,7 @@
 .ssh/*
 .Trashes
 .viminfo
+.wget-hsts
 .Xauthority
 .xsel.log
 .zcompdump
