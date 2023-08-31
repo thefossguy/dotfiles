@@ -59,6 +59,32 @@ if status is-interactive
     set -gx __fish_git_prompt_describe_style branch
     set -gx __fish_git_prompt_showcolorhints true
 
+    if test $(uname) = "Linux"
+        set GNU_LS "$(command -v ls)"
+        set GNU_GREP "$(command -v grep)"
+
+        alias custcp="rsync --fsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
+        alias ping="ping -W 0.1 -O"
+
+        if test $XDG_SESSION_TYPE = "x11"
+            alias clearclipboard="xsel -bc"
+            alias pbcopy="xsel --clipboard --input"
+        else if test $XDG_SESSION_TYPE = "wayland"
+            alias clearclipboard="wl-copy --clear"
+            alias pbcopy="wl-copy"
+        end
+    end
+
+    if test $(uname) = "Darwin"
+        set GNU_LS "$(command -v gls)"
+        set GNU_GREP "$(command -v ggrep)"
+
+        fish_add_path -p -g /usr/local/bin
+
+        alias ktb="sudo pkill TouchBarServer; sudo killall ControlStrip"
+        alias mpv="mpv --vo=libmpv"
+    end
+
     # common aliases
     alias showdiskusage="bash $HOME/.local/scripts/other-common-scripts/show-disk-usage.sh"
     alias dotfiles="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
@@ -84,19 +110,19 @@ if status is-interactive
     alias rgvi="rg --hidden --invert-match --ignore-case"
     alias rgiv="rg --hidden --invert-match --ignore-case"
     alias unxz="unxz --keep"
-    alias l="ls --group-directories-first --color=auto -v"
-    alias ll="ls --group-directories-first --color=auto -1lv --time-style=long-iso"
-    alias la="ls --group-directories-first --color=auto -1v --time-style=long-iso --almost-all"
-    alias lo="ls --group-directories-first --color=auto -1v"
-    alias llh="ls --group-directories-first --color=auto -1lv --time-style=long-iso --human-readable"
-    alias lah="ls --group-directories-first --color=auto -1lv --time-style=long-iso --human-readable --almost-all"
-    alias lsh="ls --group-directories-first --color=auto -1lv --time-style=long-iso --human-readable --almost-all"
-    alias ldt="ls --group-directories-first --color=auto -1ltv --time-style=long-iso --almost-all"
-    alias grep="grep --color=auto"
-    alias grepv="grep --color=auto --invert-match"
-    alias grepi="grep --color=auto --ignore-case"
-    alias grepvi="grep --color=auto --invert-match --ignore-case"
-    alias grepiv="grep --color=auto --invert-match --ignore-case"
+    alias l="$GNU_LS --group-directories-first --color=auto -v"
+    alias ll="$GNU_LS --group-directories-first --color=auto -1lv --time-style=long-iso"
+    alias la="$GNU_LS --group-directories-first --color=auto -1v --time-style=long-iso --almost-all"
+    alias lo="$GNU_LS --group-directories-first --color=auto -1v"
+    alias llh="$GNU_LS --group-directories-first --color=auto -1lv --time-style=long-iso --human-readable"
+    alias lah="$GNU_LS --group-directories-first --color=auto -1lv --time-style=long-iso --human-readable --almost-all"
+    alias lsh="$GNU_LS --group-directories-first --color=auto -1lv --time-style=long-iso --human-readable --almost-all"
+    alias ldt="$GNU_LS --group-directories-first --color=auto -1ltv --time-style=long-iso --almost-all"
+    alias grep="$GNU_GREP --color=auto"
+    alias grepv="$GNU_GREP --color=auto --invert-match"
+    alias grepi="$GNU_GREP --color=auto --ignore-case"
+    alias grepvi="$GNU_GREP --color=auto --invert-match --ignore-case"
+    alias grepiv="$GNU_GREP --color=auto --invert-match --ignore-case"
     alias flameboi="ssh flameboi.lan"
     alias sentinel="ssh sentinel.lan"
     alias reddish="ssh reddish.lan"
@@ -121,39 +147,6 @@ if status is-interactive
     if command -v nvim > /dev/null
         alias vvim="$(command -v vim)"
         alias vim="$(command -v nvim)"
-    end
-
-    if test $(uname) = "Linux"
-        alias custcp="rsync --fsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
-        alias ping="ping -W 0.1 -O"
-
-        if test $XDG_SESSION_TYPE = "x11"
-            alias clearclipboard="xsel -bc"
-            alias pbcopy="xsel --clipboard --input"
-        else if test $XDG_SESSION_TYPE = "wayland"
-            alias clearclipboard="wl-copy --clear"
-            alias pbcopy="wl-copy"
-        end
-    end
-
-    if test $(uname) = "Darwin"
-        fish_add_path -p -g /usr/local/bin
-
-        alias l="$(command -v gls) --group-directories-first --color=auto -v"
-        alias ll="$(command -v gls) --group-directories-first --color=auto -1lv --time-style=long-iso"
-        alias la="$(command -v gls) --group-directories-first --color=auto -1v --time-style=long-iso --almost-all"
-        alias lo="$(command -v gls) --group-directories-first --color=auto -1v"
-        alias llh="$(command -v gls) --group-directories-first --color=auto -1lv --time-style=long-iso --human-readable"
-        alias lah="$(command -v gls) --group-directories-first --color=auto -1lv --time-style=long-iso --human-readable --almost-all"
-        alias lsh="$(command -v gls) --group-directories-first --color=auto -1lv --time-style=long-iso --human-readable --almost-all"
-        alias ldt="$(command -v gls) --group-directories-first --color=auto -1ltv --time-style=long-iso --almost-all"
-        alias grep="$(command -v ggrep) --color=auto"
-        alias grepv="$(command -v ggrep) --color=auto --invert-match"
-        alias grepi="$(command -v ggrep) --color=auto --ignore-case"
-        alias grepvi="$(command -v ggrep) --color=auto --invert-match --ignore-case"
-        alias grepiv="$(command -v ggrep) --color=auto --invert-match --ignore-case"
-        alias ktb="sudo pkill TouchBarServer; sudo killall ControlStrip"
-        alias mpv="mpv --vo=libmpv"
     end
 end
 
