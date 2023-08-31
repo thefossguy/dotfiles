@@ -118,7 +118,7 @@ if status is-interactive
         alias bat="$(command -v batcat)"
     end
 
-    if command -v dig > /dev/null
+    if command -v dog > /dev/null
         alias olddig="$(command -v dig)"
         alias digdig="$(command -v dig)"
         alias dig="$(command -v dog)"
