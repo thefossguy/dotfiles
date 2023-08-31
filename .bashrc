@@ -2,6 +2,7 @@
 # The above directive disables https://www.shellcheck.net/wiki/SC2139
 dash "${HOME}/.local/scripts/other-common-scripts/alacritty-import.sh"
 
+unalias -a
 if [[ "$(uname)" == 'Linux' ]]; then
     GNU_LS="$(command -v ls)"
     GNU_GREP="$(command -v grep)"
