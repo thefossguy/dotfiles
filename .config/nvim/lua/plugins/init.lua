@@ -135,7 +135,23 @@ require('lazy').setup({
   -- 'gc' to comment visual regions/lines
   'numToStr/Comment.nvim',
 
-}, {})
+}, {
+  defaults = {
+    lazy = true, -- enable lazy-loading of plugins
+  },
+  checker = {
+    -- automatically check for plugin updates
+    enabled = true,
+    concurrency = nil,
+    notify = true,
+    frequency = 604800, -- check for updates every week
+  },
+  change_detection = {
+    -- automatically check for config file changes and reload the ui
+    enabled = true,
+    notify = true,
+  }
+})
 
 
 --------------------------------------------------------------------------------
