@@ -7,10 +7,11 @@
 .config/*.xml*
 .config/.gsd-keyboard.settings-ported
 .config/alacritty/load_intermediate.yml
+.config/bottom/*
 .config/btop/*
 .config/dconf/*
 .config/dleyna-renderer-service.conf
-.config/environment.d/
+.config/environment.d/*
 .config/evolution/*
 .config/fish/*
 .config/GNOME-xdg-terminals.list
@@ -19,9 +20,10 @@
 .config/ibus/*
 .config/nvim/lazy-lock.json
 .config/pulse/*
+.config/systemd/*
 .config/user-dirs.dirs
 .config/xdg-terminals.list
-.dotfiles/
+.dotfiles/*
 .DS_Store
 .lesshst
 .lldb/*
