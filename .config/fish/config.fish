@@ -118,12 +118,6 @@ if status is-interactive
         alias bat="$(command -v batcat)"
     end
 
-    if command -v dog > /dev/null
-        alias olddig="$(command -v dig)"
-        alias digdig="$(command -v dig)"
-        alias dig="$(command -v dog)"
-    end
-
     if command -v nvim > /dev/null
         alias vvim="$(command -v vim)"
         alias vim="$(command -v nvim)"
@@ -132,6 +126,7 @@ if status is-interactive
     if test $(uname) = "Linux"
         alias custcp="rsync --fsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
         alias ping="ping -W 0.1 -O"
+
         if test $XDG_SESSION_TYPE = "x11"
             alias clearclipboard="xsel -bc"
             alias pbcopy="xsel --clipboard --input"
