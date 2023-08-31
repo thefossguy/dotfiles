@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -xeu
+
 function ensure_installed_formulas() {
     brew install --formula \
         aria2 \
@@ -112,6 +114,7 @@ if ! command -v rustup > /dev/null; then
         --profile default
 fi
 
+bash "${HOME}/.local/scripts/other-common-scripts/dotfiles-pull.sh"
 brew analytics off
 brew update --force # upgrade homebrew itself
 ensure_installed_formulas
