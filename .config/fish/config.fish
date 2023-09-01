@@ -51,13 +51,13 @@ if status is-interactive
     # these are not in '/etc/nixos/configuration.nix' for following reasons
     # - I use fish on macOS
     # - these are not needed system wide, only for the fish shell itself
+    set -gx __fish_git_prompt_describe_style branch
     set -gx __fish_git_prompt_show_informative_status true
+    set -gx __fish_git_prompt_showcolorhints true
     set -gx __fish_git_prompt_showdirtystate true
+    set -gx __fish_git_prompt_showstashstate true
     set -gx __fish_git_prompt_showuntrackedfiles true
     set -gx __fish_git_prompt_showupstream verbose
-    set -gx __fish_git_prompt_showstashstate true
-    set -gx __fish_git_prompt_describe_style branch
-    set -gx __fish_git_prompt_showcolorhints true
 
     if test $(uname) = "Linux"
         set GNU_LS "$(command -v ls)"
