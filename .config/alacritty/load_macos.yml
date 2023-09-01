@@ -5,7 +5,7 @@ window:
   decorations: full
 
   dimensions:
-    columns: 115
+    columns: 125
     lines: 30
 
 key_bindings:
