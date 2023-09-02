@@ -216,9 +216,26 @@ lspconfig.lua_ls.setup({
   },
 })
 
+-- for the Nix expression language
+-- https://github.com/oxalica/nil/blob/main/docs/configuration.md
+lspconfig.nil_ls.setup({
+  autostart = true,
+  settings = {
+    ['nil'] = {
+      formatting = {
+        command = { "nixpkgs-fmt" },
+      },
+      nix = {
+        flake = {
+          autoArchive = true,
+        },
+      },
+    },
+  },
+})
+
 lspconfig.bashls.setup({})
 lspconfig.clangd.setup({})
-lspconfig.nil_ls.setup({}) -- for the Nix expression language
 lspconfig.ruff_lsp.setup({}) -- a Python linter, written in 🦀
 lspconfig.rust_analyzer.setup({})
 
