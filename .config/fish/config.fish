@@ -65,6 +65,7 @@ if status is-interactive
 
         alias custcp="rsync --fsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
         alias ping="ping -W 0.1 -O"
+        alias mpv="mpv --geometry=60% --vo=gpu --hwdec=vaapi"
 
         if test $XDG_SESSION_TYPE = "x11"
             alias clearclipboard="xsel -bc"
@@ -132,7 +133,6 @@ if status is-interactive
     alias pingflameboi="ping 10.0.0.13"
     alias pingsentinel="ping 10.0.0.14"
     alias pingreddish="ping 10.0.0.19"
-    alias mpv="mpv --geometry=60% --vo=gpu --hwdec=vaapi"
     alias serialterm="clear && picocom --quiet --baud 115200 /dev/ttyUSB0"
     alias suslock="bash $HOME/.local/scripts/window-manager/lock-and-suspend.sh"
     alias drivetemp="hdparm -CH /dev/sda /dev/sdb /dev/sdc /dev/sdd"
