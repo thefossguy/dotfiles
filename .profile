@@ -1,5 +1,5 @@
-if command -v fish; then
+if getent passwd $LOGNAME | cut -d: -f7 | grep fish; then
     source $HOME/.config/fish/config.fish
-elif command -v bash; then
+elif getent passwd $LOGNAME | cut -d: -f7 | grep fish; then
     source $HOME/.bashrc
 fi
