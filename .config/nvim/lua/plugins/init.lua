@@ -135,6 +135,8 @@ require('lazy').setup({
   -- 'gc' to comment visual regions/lines
   'numToStr/Comment.nvim',
 
+  -- Nix[OS] things
+
 }, {
   defaults = {
     lazy = true, -- enable lazy-loading of plugins
