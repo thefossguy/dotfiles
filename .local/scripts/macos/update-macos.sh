@@ -72,6 +72,7 @@ function ensure_installed_casks() {
         obs \
         protonvpn \
         raspberry-pi-imager \
+        slack \
         telegram \
         thunderbird \
         tor-browser \
