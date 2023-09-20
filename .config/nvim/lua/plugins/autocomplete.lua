@@ -234,9 +234,13 @@ lspconfig.nil_ls.setup({
   },
 })
 
+-- a Python linter, written in 🦀
+lspconfig.ruff_lsp.setup({
+  cmd = { "ruff" },
+})
+
 lspconfig.bashls.setup({})
 lspconfig.clangd.setup({})
-lspconfig.ruff_lsp.setup({}) -- a Python linter, written in 🦀
 lspconfig.rust_analyzer.setup({})
 
 
