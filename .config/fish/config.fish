@@ -47,6 +47,12 @@ if status is-interactive
     set fish_greeting # disable the "new user" prompt
     initial_fish_setup # call all "setup functions" here
 
+    # for direnv
+    if command -v direnv > /dev/null
+        set -g direnv_fish_mode disable_arrow
+        direnv hook fish | source
+    end
+
     # git prompt options
     # these are not in '/etc/nixos/configuration.nix' for following reasons
     # - I use fish on macOS
@@ -58,6 +64,9 @@ if status is-interactive
     set -gx __fish_git_prompt_showstashstate true
     set -gx __fish_git_prompt_showuntrackedfiles true
     set -gx __fish_git_prompt_showupstream verbose
+
+    # add "$HOME/.cargo/bin" to PATH for 'bindgen'
+    fish_add_path "$HOME/.cargo/bin"
 
     if test $(uname) = "Linux"
         set GNU_LS "$(command -v ls)"
