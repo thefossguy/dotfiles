@@ -101,3 +101,8 @@ if command -v nvim > /dev/null; then
 fi
 
 PS1='[\u@\h \W]\$ '
+
+# for direnv (should always be at the end)
+if command -v direnv > /dev/null; then
+    eval "$(direnv hook bash)"
+fi

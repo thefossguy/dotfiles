@@ -47,12 +47,6 @@ if status is-interactive
     set fish_greeting # disable the "new user" prompt
     initial_fish_setup # call all "setup functions" here
 
-    # for direnv
-    if command -v direnv > /dev/null
-        set -g direnv_fish_mode disable_arrow
-        direnv hook fish | source
-    end
-
     # git prompt options
     # these are not in '/etc/nixos/configuration.nix' for following reasons
     # - I use fish on macOS
@@ -158,6 +152,12 @@ if status is-interactive
     if command -v nvim > /dev/null
         alias vvim="$(command -v vim)"
         alias vim="$(command -v nvim)"
+    end
+
+    # for direnv (should always be at the end)
+    if command -v direnv > /dev/null
+        set -g direnv_fish_mode disable_arrow
+        direnv hook fish | source
     end
 end
 
