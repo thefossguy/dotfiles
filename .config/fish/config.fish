@@ -101,6 +101,7 @@ if status is-interactive
     alias nixrebuild="nixos-rebuild boot"
     alias nixupgrade="nixos-rebuild boot --upgrade"
     alias nixgarbageclean="nix-collect-garbage --delete-old"
+    alias prettynixbuild="nix build --log-format internal-json -v . 2>&1 | nom --json"
     alias specmacroexpand="rpmspec --parse"
     alias getspecsources="spectool --get-files --sourcedir"
     alias rpmextract="dash $HOME/.local/scripts/other-common-scripts/extract-rpm-files.sh"
