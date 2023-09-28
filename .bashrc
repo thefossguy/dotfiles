@@ -38,6 +38,7 @@ fi
 
 alias showdiskusage="bash ${HOME}/.local/scripts/other-common-scripts/show-disk-usage.sh"
 alias dotfiles="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}"
+alias prettynixbuild="nix build --log-format internal-json -v . 2>&1 | nom --json"
 alias nixrebuild="nixos-rebuild boot"
 alias nixupgrade="nixos-rebuild boot --upgrade"
 alias nixgarbageclean="nix-collect-garbage --delete-old"
