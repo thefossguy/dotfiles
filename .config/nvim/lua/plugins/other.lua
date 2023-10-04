@@ -1,3 +1,6 @@
+require('autoclose').setup({})
+require('ibl').setup({})
+
 require('Comment').setup({
   padding = true, -- add a space between the comment and the line
   sticky = true, -- weather the cursor should stay at its position
@@ -25,19 +28,3 @@ require('Comment').setup({
   pre_hook = nil, -- function to call before (un)comment
   post_hook = nil, -- function to call after (un)comment
 })
-
-require('indent_blankline').setup({
-  show_current_context = true,
-  show_current_context_start = true,
-  space_char_blankline = ' ',
-  char_highlight_list = {
-    'IndentBlanklineIndent1',
-    'IndentBlanklineIndent2',
-    'IndentBlanklineIndent3',
-    'IndentBlanklineIndent4',
-    'IndentBlanklineIndent5',
-    'IndentBlanklineIndent6',
-  },
-})
-
-require('autoclose').setup({})
