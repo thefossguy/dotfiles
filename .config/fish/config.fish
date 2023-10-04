@@ -154,15 +154,15 @@ if status is-interactive
 
     # for Zoxide (Z "directory jumper" in Rust)
     if command -v zoxide > /dev/null
-        set -g _ZO_ECHO 1 # always print matched dir before navigating to it
-        set -g _ZO_RESOLVE_SYMLINKS 1
+        set -gx _ZO_ECHO 1 # always print matched dir before navigating to it
+        set -gx _ZO_RESOLVE_SYMLINKS 1
 
         zoxide init fish | source
     end
 
     # for direnv (should always be at the end)
     if command -v direnv > /dev/null
-        set -g direnv_fish_mode disable_arrow
+        set -gx direnv_fish_mode disable_arrow
         direnv hook fish | source
     end
 end
