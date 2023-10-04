@@ -86,7 +86,6 @@ if status is-interactive
         fish_add_path -p -g /usr/local/bin
 
         alias ktb="sudo pkill TouchBarServer; sudo killall ControlStrip"
-        alias mpv="mpv --vo=libmpv"
     end
 
     # common aliases
