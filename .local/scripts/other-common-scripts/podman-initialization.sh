@@ -16,11 +16,39 @@ CONTAINER_IMAGES=(\
     "docker.io/louislam/uptime-kuma:debian" \
     "lscr.io/linuxserver/transmission:latest" \
 )
+function should_pull {
+    if [ ! -f "${XDG_DATA_HOME}/podman-initialization/last-run.txt" ]; then
+        mkdir -p "${XDG_DATA_HOME}/podman-initialization"
+        date > "${XDG_DATA_HOME}/podman-initialization/last-run.txt"
+        return 69
+    fi
+
+    LAST_RUN=$(date +%s -d "$(cat "${XDG_DATA_HOME}/podman-initialization/last-run.txt")")
+    CURRENT_TIME=$(date +%s -d "$(date)")
+    DIFF=$(( (CURRENT_TIME - LAST_RUN) / 86400 )) # 86400 seconds = 24 hours
+
+    if [ ${DIFF} -gt 1 ]; then
+        return 69
+    else
+        return 0
+    fi
+}
 
 systemctl --user enable podman-restart.service
 
-# make sure necessary images are locally present by pulling the "latest" images
-podman pull "${CONTAINER_IMAGES[@]}"
+# make sure necessary images are locally present
+for OCI_IMAGE in "${CONTAINER_IMAGES[@]}"; do
+    podman image list "${OCI_IMAGE}" \
+        | grep "$(echo "${OCI_IMAGE}" | choose 0 --field-separator ':')" \
+        | grep "$(echo "${OCI_IMAGE}" | choose 1 --field-separator ':')" \
+        || (podman pull "${OCI_IMAGE}" || exit 1)
+done
+
+# check for a new image if not checked in the last 24 hours
+should_pull
+if [ $? -eq 69 ]; then
+    podman pull "${CONTAINER_IMAGES[@]}"
+fi
 
 # prune old images
 podman images | grep '<none>' | choose 2 | xargs --max-lines=1 podman rmi
