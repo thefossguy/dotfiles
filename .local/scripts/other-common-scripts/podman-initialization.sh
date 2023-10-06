@@ -19,15 +19,7 @@ CONTAINER_IMAGES=(\
 
 systemctl --user enable podman-restart.service
 
-# make sure necessary images are locally present
-for OCI_IMAGE in "${CONTAINER_IMAGES[@]}"; do
-    podman image list "${OCI_IMAGE}" \
-        | grep "$(echo "${OCI_IMAGE}" | choose 0 --field-separator ':')" \
-        | grep "$(echo "${OCI_IMAGE}" | choose 1 --field-separator ':')" \
-        || (podman pull "${OCI_IMAGE}" || exit 1)
-done
-
-# always check for a new image
+# make sure necessary images are locally present by pulling the "latest" images
 podman pull "${CONTAINER_IMAGES[@]}"
 
 # prune old images
