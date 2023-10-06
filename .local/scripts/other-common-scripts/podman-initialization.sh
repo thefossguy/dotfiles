@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#! nix-shell -i bash --packages bash choose coreutils curl findutils git gnugrep openssl podman
+#! nix-shell -i bash --packages bash choose coreutils curl findutils git gnugrep openssl podman systemd
 
 set -x
 
