@@ -34,7 +34,7 @@ function fish_mode_prompt
 end
 
 function setup_alacritty_for_os
-    dash "$HOME/.local/scripts/other-common-scripts/alacritty-import.sh" &
+    bash "$HOME/.local/scripts/other-common-scripts/alacritty-import.sh" &
 end
 
 function initial_fish_setup
