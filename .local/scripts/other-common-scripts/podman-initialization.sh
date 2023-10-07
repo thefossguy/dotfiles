@@ -16,6 +16,9 @@ CONTAINER_IMAGES=(\
     "docker.io/louislam/uptime-kuma:debian" \
     "lscr.io/linuxserver/transmission:latest" \
 )
+if [ -z "${XDG_DATA_HOME}" ]; then
+    export XDG_DATA_HOME="${HOME}/.local/share"
+fi
 function should_pull {
     if [ ! -f "${XDG_DATA_HOME}/podman-initialization/last-run.txt" ]; then
         mkdir -p "${XDG_DATA_HOME}/podman-initialization"
