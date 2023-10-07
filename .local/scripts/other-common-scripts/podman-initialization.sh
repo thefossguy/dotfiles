@@ -3,6 +3,7 @@
 
 set -xeuf -o pipefail
 
+XDG_STATE_HOME="${HOME}/.local/state"
 ZPOOL_MOUNT_PATH='/trayimurti/torrents'
 PODMAN_SECRETS="${HOME}/.local/share/containers/storage/secrets/secrets.json"
 PODMAN_NETWORKS_PATH="${HOME}/.local/share/containers/storage/networks/containers_default.json"
@@ -16,14 +17,11 @@ CONTAINER_IMAGES=(\
     "docker.io/louislam/uptime-kuma:debian" \
     "lscr.io/linuxserver/transmission:latest" \
 )
-if [ -z "${XDG_STATE_HOME}" ]; then
-    export XDG_STATE_HOME="${HOME}/.local/state"
-fi
 function should_pull {
     if [ ! -f "${XDG_STATE_HOME}/podman-initialization/last-run.txt" ]; then
         mkdir -p "${XDG_STATE_HOME}/podman-initialization"
         date > "${XDG_STATE_HOME}/podman-initialization/last-run.txt"
-        return 69
+        echo "69"
     fi
 
     LAST_RUN=$(date +%s -d "$(cat "${XDG_STATE_HOME}/podman-initialization/last-run.txt")")
@@ -31,9 +29,9 @@ function should_pull {
     DIFF=$(( (CURRENT_TIME - LAST_RUN) / 86400 )) # 86400 seconds = 24 hours
 
     if [ ${DIFF} -gt 1 ]; then
-        return 69
+        echo "69"
     else
-        return 0
+        echo "0"
     fi
 }
 
@@ -48,13 +46,14 @@ for OCI_IMAGE in "${CONTAINER_IMAGES[@]}"; do
 done
 
 # check for a new image if not checked in the last 24 hours
-should_pull
-if [ $? -eq 69 ]; then
+PULL_STATUS=$(should_pull)
+if [ "${PULL_STATUS}" == "69" ]; then
     podman pull "${CONTAINER_IMAGES[@]}"
 fi
 
 # prune old images
-podman images | grep '<none>' | choose 2 | xargs --max-lines=1 podman rmi
+podman images | grep '<none>' | choose 2 | xargs --max-lines=1 podman rmi \
+    || echo "No images to prune"
 
 # setup secrets and network
 if ! grep -q 'nextcloud_database_user_password' "${PODMAN_SECRETS}"; then
