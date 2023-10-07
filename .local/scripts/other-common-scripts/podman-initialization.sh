@@ -16,17 +16,17 @@ CONTAINER_IMAGES=(\
     "docker.io/louislam/uptime-kuma:debian" \
     "lscr.io/linuxserver/transmission:latest" \
 )
-if [ -z "${XDG_DATA_HOME}" ]; then
-    export XDG_DATA_HOME="${HOME}/.local/share"
+if [ -z "${XDG_STATE_HOME}" ]; then
+    export XDG_STATE_HOME="${HOME}/.local/state"
 fi
 function should_pull {
-    if [ ! -f "${XDG_DATA_HOME}/podman-initialization/last-run.txt" ]; then
-        mkdir -p "${XDG_DATA_HOME}/podman-initialization"
-        date > "${XDG_DATA_HOME}/podman-initialization/last-run.txt"
+    if [ ! -f "${XDG_STATE_HOME}/podman-initialization/last-run.txt" ]; then
+        mkdir -p "${XDG_STATE_HOME}/podman-initialization"
+        date > "${XDG_STATE_HOME}/podman-initialization/last-run.txt"
         return 69
     fi
 
-    LAST_RUN=$(date +%s -d "$(cat "${XDG_DATA_HOME}/podman-initialization/last-run.txt")")
+    LAST_RUN=$(date +%s -d "$(cat "${XDG_STATE_HOME}/podman-initialization/last-run.txt")")
     CURRENT_TIME=$(date +%s -d "$(date)")
     DIFF=$(( (CURRENT_TIME - LAST_RUN) / 86400 )) # 86400 seconds = 24 hours
 
