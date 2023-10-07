@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -xeu
+set -xeuf -o pipefail
 
 function ensure_installed_formulas() {
     brew install --formula \

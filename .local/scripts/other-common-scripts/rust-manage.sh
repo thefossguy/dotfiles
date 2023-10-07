@@ -1,7 +1,7 @@
 #!/usr/bin/env nix-shell
 #!nix-shell -i dash --packages dash rustup
 
-set -xeu
+set -xeuf -o pipefail
 
 if pgrep "rust-analyzer|cargo|rustc" > /dev/null; then
     >&2 echo "$0: You are probably using components that will be updated, even replaced..."

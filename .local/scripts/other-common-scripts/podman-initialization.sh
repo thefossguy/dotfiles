@@ -1,7 +1,7 @@
 #!/usr/bin/env nix-shell
 #! nix-shell -i bash --packages bash choose coreutils curl findutils git gnugrep openssl podman systemd
 
-set -x
+set -xeuf -o pipefail
 
 ZPOOL_MOUNT_PATH='/trayimurti/torrents'
 PODMAN_SECRETS="${HOME}/.local/share/containers/storage/secrets/secrets.json"

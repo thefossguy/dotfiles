@@ -1,7 +1,7 @@
 #!/usr/bin/env nix-shell
 #!nix-shell -i dash --packages dash git openssh
 
-set -xeu
+set -xeuf -o pipefail
 
 DIRTY_REPO=$(git --git-dir="${HOME}/.dotfiles" --work-tree="${HOME}" status --porcelain=v1 --ignored=no --untracked-files=no)
 if [ -n "${DIRTY_REPO}" ]; then

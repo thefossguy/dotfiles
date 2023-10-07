@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -xeuf -o pipefail
+
 function install_flatpaks_flameboi() {
     flatpak install --user --or-update --assumeyes --noninteractive \
         com.brave.Browser \

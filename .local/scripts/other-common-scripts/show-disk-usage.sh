@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euf -o pipefail
+
 ROOT_DEVICE="/dev/$(ls -l /dev/root | choose -1)"
 
 if [[ ${ROOT_DEVICE} =~ "mmcblk" || ${ROOT_DEVICE} =~ "nvme" ]]; then

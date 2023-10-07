@@ -1,4 +1,6 @@
-#!/usr/bin/env dash
+#!/usr/bin/env bash
+
+set -euf -o pipefail
 
 if [ ! -f "${HOME}/.config/alacritty/load_intermediate.yml" ]; then
     if uname | grep -q Linux; then

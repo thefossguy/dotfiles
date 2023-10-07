@@ -1,7 +1,7 @@
 #!/usr/bin/env nix-shell
 #!nix-shell -i dash --packages dash git openssh
 
-set -xeu
+set -xeuf -o pipefail
 
 GIT_REPO_LOCAL_PATH="${HOME}/my-git-repos/pratham/prathams-nixos/"
 cd "${GIT_REPO_LOCAL_PATH}"
