@@ -12,7 +12,6 @@ function ensure_installed_formulas() {
         coreutils \
         curl \
         dash \
-        dog \
         fd \
         ffmpeg \
         fish \
@@ -68,7 +67,6 @@ function ensure_installed_casks() {
         maccy \
         macs-fan-control \
         meld \
-        microsoft-teams \
         obs \
         protonvpn \
         raspberry-pi-imager \
@@ -118,12 +116,12 @@ fi
 bash "${HOME}/.local/scripts/other-common-scripts/dotfiles-pull.sh"
 brew analytics off
 brew update --force # upgrade homebrew itself
+brew upgrade --greedy --greedy-latest --greedy-auto-updates --no-quarantine # upgrade the packages installed by homebrew
 ensure_installed_formulas
 ensure_installed_casks
 ensure_installed_fish_plugins
 bash "$HOME/.local/scripts/other-common-scripts/rust-manage.sh"
 fish -c "fisher update"
-brew upgrade --greedy --greedy-latest --greedy-auto-updates --no-quarantine # upgrade the packages installed by homebrew
 brew autoremove
 brew cleanup --prune=all -s
 brew doctor
