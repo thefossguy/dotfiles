@@ -2,12 +2,12 @@
 
 set -euf -o pipefail
 
-ROOT_DEVICE="/dev/$(ls -l /dev/root | choose -1)"
+ROOT_DEVICE=$(mount | grep ' on / ')
 
 if [[ ${ROOT_DEVICE} =~ "mmcblk" || ${ROOT_DEVICE} =~ "nvme" ]]; then
-    ROOT_DEVICE=$(echo ${ROOT_DEVICE} | rev | sed -r 's/^.{2}//' | rev)
+    ROOT_DEVICE=$(echo "${ROOT_DEVICE}" | rev | sed -r 's/^.{2}//' | rev)
 elif [[ ${ROOT_DEVICE} =~ "vd" || ${ROOT_DEVICE} =~ "sd" ]]; then
-    ROOT_DEVICE=$(echo ${ROOT_DEVICE} | rev | sed -r 's/^.{1}//' | rev)
+    ROOT_DEVICE=$(echo "${ROOT_DEVICE}" | rev | sed -r 's/^.{1}//' | rev)
 else
     >&2 echo "$0: device type unsupported"
     exit 1
