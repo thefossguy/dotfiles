@@ -48,6 +48,7 @@ done
 # check for a new image if not checked in the last 24 hours
 PULL_STATUS=$(should_pull)
 if [ "${PULL_STATUS}" == "69" ]; then
+    date > "${XDG_STATE_HOME}/podman-initialization/last-run.txt"
     podman pull "${CONTAINER_IMAGES[@]}"
 fi
 
