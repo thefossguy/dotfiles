@@ -2,7 +2,7 @@
 
 set -euf -o pipefail
 
-ROOT_DEVICE=$(mount | grep ' on / ')
+ROOT_DEVICE=$(mount | grep ' on / ' | awk '{print $1}')
 
 if [[ ${ROOT_DEVICE} =~ "mmcblk" || ${ROOT_DEVICE} =~ "nvme" ]]; then
     ROOT_DEVICE=$(echo "${ROOT_DEVICE}" | rev | sed -r 's/^.{2}//' | rev)
