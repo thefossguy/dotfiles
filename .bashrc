@@ -29,12 +29,14 @@ if [[ "$(uname)" == 'Darwin' ]]; then
 
     case ":$PATH:" in
         *":/usr/local/bin:"*) :;; # already there
-        *) PATH="/usr/local/bin:$PATH";; # absent, so add
+        *) PATH="$PATH:/usr/local/bin";; # absent, so add
     esac
 
     alias ktb="sudo pkill TouchBarServer; sudo killall ControlStrip"
     alias mpv="mpv --vo=libmpv"
 fi
+
+export PATH="$PATH:$HOME/.cargo/bin"
 
 alias showdiskusage="bash ${HOME}/.local/scripts/other-common-scripts/show-disk-usage.sh"
 alias dotfiles="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}"
