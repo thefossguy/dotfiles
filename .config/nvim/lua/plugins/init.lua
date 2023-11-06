@@ -136,6 +136,7 @@ require('lazy').setup({
   'numToStr/Comment.nvim',
 
   -- Nix[OS] things
+  'oxalica/nil',
 
 }, {
   defaults = {
