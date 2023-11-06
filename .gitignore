@@ -20,6 +20,7 @@
 .config/ibus/*
 .config/nvim/lazy-lock.json
 .config/pulse/*
+.config/startkderc
 .config/systemd/*
 .config/user-dirs.dirs
 .config/xdg-terminals.list
@@ -38,6 +39,7 @@
 .ssh/*
 .Trashes
 .viminfo
+.vms/*
 .wget-hsts
 .Xauthority
 .xsel.log
