@@ -105,6 +105,17 @@ require('lazy').setup({
   -- adds git signs to the gutter, as well as utilities for managing changes
   'lewis6991/gitsigns.nvim',
 
+  {
+    -- other git integration
+    'NeogitOrg/neogit',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'sindrets/diffview.nvim',
+      'ibhagwan/fzf-lua',
+    },
+  },
+
   -- incrementally rename
   'smjonas/inc-rename.nvim',
 
@@ -164,6 +175,7 @@ require('lazy').setup({
 require('plugins/theme')
 require('plugins/lualine')
 require('plugins/gitsigns')
+require('plugins/neogit')
 require('plugins/tree-view')
 require('plugins/notifs') -- nvim-notify, noice.nvim
 require('plugins/other') -- Comment.nvim, indent-blankline.nvim
