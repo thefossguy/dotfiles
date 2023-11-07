@@ -32,8 +32,7 @@ QEMU_COMMON="-machine virt \
     -bios ${HOME}/.vms/result/u-boot.bin \
     -sandbox on \
     -netdev user,id=mynet0,hostfwd=tcp::6969-:22 \
-    -device e1000,netdev=mynet0 \
-"
+    -device virtio-net-pci,netdev=mynet0"
 if [ -z "$2" ]; then
     taskset --cpu-list 4-7 \
         qemu-kvm \
