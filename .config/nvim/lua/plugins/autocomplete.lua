@@ -87,12 +87,7 @@ require('nvim-mapper').setup({
 require('telescope').load_extension('mapper')
 
 
-vim.keymap.set('n', '<leader>?',       require('telescope.builtin').oldfiles,    { desc = 'Telescope: [?] find recently opened files' })
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers,     { desc = 'Telescope: [ ] ind existing buffers' })
-vim.keymap.set('n', '<leader>sf',      require('telescope.builtin').find_files,  { desc = 'Telescope: [s]earch [f]iles' })
-vim.keymap.set('n', '<leader>sh',      require('telescope.builtin').help_tags,   { desc = 'Telescope: [s]earch [h]elp' })
-vim.keymap.set('n', '<leader>sw',      require('telescope.builtin').grep_string, { desc = 'Telescope: [s]earch current [w]ord' })
-vim.keymap.set('n', '<leader>sg',      require('telescope.builtin').live_grep,   { desc = 'Telescope: [s]earch by [g]rep' })
+vim.keymap.set('n', '<leader><space>',      require('telescope.builtin').live_grep,   { desc = 'Telescope: live grep' })
 vim.keymap.set('n', '<leader>sd',      require('telescope.builtin').diagnostics, { desc = 'Telescope: [s]earch [d]iagnostics' })
 vim.keymap.set('n', '<leader>/', function()
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({

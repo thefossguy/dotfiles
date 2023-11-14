@@ -106,7 +106,7 @@ require('lazy').setup({
   'lewis6991/gitsigns.nvim',
 
   {
-    -- other git integration
+    -- git operations inside the editor
     'NeogitOrg/neogit',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -115,6 +115,9 @@ require('lazy').setup({
       'ibhagwan/fzf-lua',
     },
   },
+
+  -- to view diffs "side-by-side"
+  'sindrets/diffview.nvim',
 
   -- incrementally rename
   'smjonas/inc-rename.nvim',
