@@ -32,23 +32,19 @@ MARCH="$(uname -m)"
 DNF_RELEASEVER="$(dnf config-manager --dump-variables | grep 'releasever' | awk '{print $3}')"
 MOCK_ROOT="$ID-$DNF_RELEASEVER-$MARCH"
 MOCK_OUT="$HOME/mockbuild/out"
-MOCK_COMMON="
-    $3 \
-    --isolation nspawn \
-    --root $MOCK_ROOT \
-    --resultdir $MOCK_OUT \
-    --sources $1"
 
 if [[ ! -d "/var/lib/mock/$MOCK_ROOT" ]]; then
     mock --root "$MOCK_ROOT" --init
 fi
 
 # shellcheck disable=SC2086
-# $MOCK_COMMON **must not** be in quotes
-# it **needs** to be expanded for the command expansion "magic" to work
-mock $MOCK_COMMON \
+mock \
+    $3 \
+    --isolation nspawn \
+    --root $MOCK_ROOT \
+    --resultdir $MOCK_OUT \
+    --sources $1 \
+    --no-cleanup-after \
     --buildsrpm \
-    --spec $2
-
-# shellcheck disable=SC2086
-mock $MOCK_COMMON --no-cleanup-after $MOCK_OUT/*.src.rpm
+    --spec $2 \
+    --rebuild
