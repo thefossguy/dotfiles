@@ -4,7 +4,7 @@ set -x
 
 if (! command -v mock > /dev/null) || (! groups | grep 'mock' > /dev/null); then
     # shellcheck disable=SC2088
-    echo '~/.local/scripts/el/rhel-setup.sh'
+    echo 'run ~/.local/scripts/el/rhel-setup.sh to perform necessary setup'
     exit 1
 fi
 
@@ -12,9 +12,17 @@ if [[ -z $1 ]]; then
     echo "Need a SOURCES directory."
     exit 1
 fi
+if [[ ! -d $1 ]]; then
+    echo "'$1' is not a directory"
+    exit 1
+fi
 
 if [[ -z $2 ]]; then
     echo "Need an RPM SPEC file."
+    exit 1
+fi
+if [[ ! -f $2 ]]; then
+    echo "'$2' is not a file"
     exit 1
 fi
 
