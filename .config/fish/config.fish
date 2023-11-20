@@ -142,6 +142,7 @@ if status is-interactive
     alias clear="clear && printf '\e[3J'"
     alias lomount="sudo losetup --partscan --find --show"
     alias bottom="btm"
+    alias syncsync="$HOME/.local/scripts/other-common-scripts/paranoid-sync.sh"
 
     if command -v batcat > /dev/null
         alias bat="$(command -v batcat)"
