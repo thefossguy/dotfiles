@@ -33,11 +33,11 @@ DNF_RELEASEVER="$(dnf config-manager --dump-variables | grep 'releasever' | awk 
 MOCK_ROOT="$ID-$DNF_RELEASEVER-$MARCH"
 MOCK_OUT="$HOME/mockbuild/out"
 MOCK_COMMON="
-    --verbose \
+    $3 \
     --isolation nspawn \
     --root $MOCK_ROOT \
     --resultdir $MOCK_OUT \
-    --sources $1 "
+    --sources $1"
 
 if [[ ! -d "/var/lib/mock/$MOCK_ROOT" ]]; then
     mock --root "$MOCK_ROOT" --init
