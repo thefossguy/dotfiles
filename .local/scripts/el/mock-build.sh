@@ -38,7 +38,7 @@ if [[ ! -d "/var/lib/mock/$MOCK_ROOT" ]]; then
 fi
 
 # shellcheck disable=SC2086
-mock \
+time mock \
     $3 \
     --isolation nspawn \
     --root $MOCK_ROOT \
