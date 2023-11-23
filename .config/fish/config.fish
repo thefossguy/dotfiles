@@ -143,6 +143,7 @@ if status is-interactive
     alias lomount="sudo losetup --partscan --find --show"
     alias bottom="btm"
     alias syncsync="$HOME/.local/scripts/other-common-scripts/paranoid-sync.sh"
+    alias narrowdiff="git --no-pager diff --word-diff --unified=0"
 
     if command -v batcat > /dev/null
         alias bat="$(command -v batcat)"
