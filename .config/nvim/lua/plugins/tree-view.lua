@@ -7,6 +7,7 @@ require('nvim-tree').setup({
     width = 30,
     number = true,
     relativenumber = true,
+    side = "right",
   },
   renderer = {
     group_empty = false,
@@ -33,4 +34,3 @@ require('nvim-tree').setup({
     dotfiles = true,
   },
 })
-
