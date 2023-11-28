@@ -1,8 +1,5 @@
 # ~/.config/zsh_confs/20_aliases: my [zsh] shell aliases
 
-# hostname
-MACHINE_HOSTNAME=$(cat /etc/hostname)
-
 # export everything first
 #export TERM="xterm-256color"
 export TIMEFMT=$'\nJob\t%J\n\nCPU\t%P\nuser\t%U\nsystem\t%S\ntotal\t%E'
@@ -221,22 +218,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     [[ -d /sbin ]] && export PATH=/sbin:$PATH
     [[ -d /bin ]] && export PATH=/bin:$PATH
     typeset -U PATH
-
-    # aliases for ls
-    alias l="/usr/local/bin/gls --group-directories-first --color=auto -v"
-    alias ll="/usr/local/bin/gls --group-directories-first --color=auto -1lv --time-style=long-iso"
-    alias la="/usr/local/bin/gls --group-directories-first --color=auto -1Av --time-style=long-iso"
-    alias lo="/usr/local/bin/gls --group-directories-first --color=auto -1v"
-    alias llh="/usr/local/bin/gls --group-directories-first --color=auto -1hlv --time-style=long-iso"
-    alias lah="/usr/local/bin/gls --group-directories-first --color=auto -1Ahlv --time-style=long-iso"
-    alias ldt="/usr/local/bin/gls --group-directories-first --color=auto -1Altv --time-style=long-iso"
-
-    # aliases for grep
-    alias grep="/usr/local/bin/ggrep --color=auto"
-    alias greplv="/usr/local/bin/ggrep --color=auto -lv"
-    alias grepli="/usr/local/bin/ggrep --color=auto -li"
-    alias grepv="/usr/local/bin/ggrep --color=auto -v"
-    alias grepi="/usr/local/bin/ggrep --color=auto -i"
 
     # other aliases
     alias xargs="/usr/local/opt/findutils/libexec/gnubin/xargs"
