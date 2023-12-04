@@ -3,13 +3,24 @@
 
 set -xef -o pipefail
 
-# $1: disk image
-# $2: ISO
+# $1: host port for SSH
+# $2: disk image
+# $3: ISO
 
 if [ -z "$1" ]; then
+    echo "ERROR: expecting a binding port for SSH"
+    exit 1
+fi
+
+
+if [ -z "$2" ]; then
     echo "ERROR: expecting a disk image"
     exit 1
 fi
+
+HOST_PORT="$1"
+HDA="$2"
+CDR="$3"
 
 [ -d "${HOME}/.vms" ] || mkdir "${HOME}/.vms"
 if [ ! -f "${HOME}/.vms/result/u-boot.bin" ]; then
@@ -34,15 +45,15 @@ QEMU_COMMON="--all-tasks --cpu-list 4-7 \
         -nographic \
         -bios ${HOME}/.vms/result/u-boot.bin \
         -sandbox on \
-        -netdev user,id=mynet0,hostfwd=tcp::6969-:22 \
+        -netdev user,id=mynet0,hostfwd=tcp::${HOST_PORT}-:22 \
         -device virtio-net-pci,netdev=mynet0"
-if [ -z "$2" ]; then
+if [ -z "${CDR}" ]; then
     taskset \
         ${QEMU_COMMON} \
-        -hda "$1"
+        -hda "${HDA}"
 else
     taskset \
         ${QEMU_COMMON} \
-        -hda "$2" \
-        -hdb "$1"
+        -hda "${CDR}" \
+        -hdb "${HDA}"
 fi
