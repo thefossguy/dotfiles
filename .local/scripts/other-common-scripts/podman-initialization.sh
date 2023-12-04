@@ -35,8 +35,6 @@ function should_pull {
     fi
 }
 
-systemctl --user enable podman-restart.service
-
 # make sure necessary images are locally present
 for OCI_IMAGE in "${CONTAINER_IMAGES[@]}"; do
     podman image list "${OCI_IMAGE}" \
