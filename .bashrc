@@ -36,7 +36,7 @@ if [[ "$(uname)" == 'Darwin' ]]; then
     alias mpv="mpv --vo=libmpv"
 fi
 
-export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/.cargo/bin:$HOME/.local/bin"
 
 alias showdiskusage="bash ${HOME}/.local/scripts/other-common-scripts/show-disk-usage.sh"
 alias dotfiles="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}"
