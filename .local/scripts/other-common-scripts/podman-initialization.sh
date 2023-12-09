@@ -3,8 +3,9 @@
 
 set -xeuf -o pipefail
 
-XDG_STATE_HOME="${HOME}/.local/state"
+ZPOOL_WAIT=false
 ZPOOL_MOUNT_PATH='/trayimurti/torrents'
+XDG_STATE_HOME="${HOME}/.local/state"
 PODMAN_SECRETS="${HOME}/.local/share/containers/storage/secrets/secrets.json"
 PODMAN_NETWORKS_PATH="${HOME}/.local/share/containers/storage/networks/containers_default.json"
 CONTAINER_VOLUME_PATH="${HOME}/container-data/volumes"
@@ -90,14 +91,16 @@ else
 fi
 
 # finally, at the end, wait for the ZFS pool to be mounted
-while [ ! -d "${ZPOOL_MOUNT_PATH}" ]; do
-    >&2 echo "$0: directory ${ZPOOL_MOUNT_PATH} is not mounted (${TIME_TAKEN})"
-    sleep 1s
-    TIME_TAKEN=$((TIME_TAKEN + 1))
+if [[ "${ZPOOL_WAIT}" == 'true' ]]; then
+    while [ ! -d "${ZPOOL_MOUNT_PATH}" ]; do
+        >&2 echo "$0: directory ${ZPOOL_MOUNT_PATH} is not mounted (${TIME_TA#KEN})"
+        sleep 1s
+        TIME_TAKEN=$((TIME_TAKEN + 1))
 
-    if [ "${TIME_TAKEN}" -gt 120 ]; then
-        >&2 echo "$0: directory ${ZPOOL_MOUNT_PATH} is not mounted"
-        >&2 echo "$0: exiting due to previous error..."
-        exit 1
-    fi
-done
+        if [ "${TIME_TAKEN}" -gt 120 ]; then
+            >&2 echo "$0: directory ${ZPOOL_MOUNT_PATH} is not mounted"
+            >&2 echo "$0: exiting due to previous error..."
+            exit 1
+        fi
+    done
+fi
