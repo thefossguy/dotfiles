@@ -150,7 +150,11 @@ if status is-interactive
     end
 
     if command -v nvim > /dev/null
-        alias vvim="$(command -v vim)"
+        if command -v vim > /dev/null
+            alias vvim="$(command -v vim)"
+        else
+            alias vvim="$(command -v vi)"
+        end
         alias vim="$(command -v nvim)"
     end
 
