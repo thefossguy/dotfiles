@@ -79,6 +79,7 @@ elif [[ "$DISTRO" = 'fedora' ]]; then
 fi
 
 sudo dnf install --assumeyes "${PKGS_TO_INSTALL[@]}"
+sudo dnf upgrade --assumeyes
 
 sudo usermod -aG mock "${REAL_USER}"
 
