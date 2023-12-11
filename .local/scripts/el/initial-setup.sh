@@ -7,7 +7,7 @@ if ! command -v tmux; then
     exit 1
 fi
 
-if printenv | grep 'TERM_PROGRAM=tmux' > /dev/null; then
+if ! printenv | grep 'TERM_PROGRAM=tmux' > /dev/null; then
     echo 'Run this script in a terminal multiplexer (tmux).'
     exit 1
 fi
