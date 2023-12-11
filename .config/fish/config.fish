@@ -69,6 +69,7 @@ if status is-interactive
         alias custcp="rsync --fsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
         alias ping="ping -W 0.1 -O"
         alias mpv="mpv --geometry=60% --vo=gpu --hwdec=vaapi"
+        alias mpvrpi="mpv --geometry=60% --vo=x11"
 
         if test $XDG_SESSION_TYPE = "x11"
             alias clearclipboard="xsel -bc"
