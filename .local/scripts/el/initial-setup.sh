@@ -2,6 +2,16 @@
 
 set -xeuf -o pipefail
 
+if ! command -v tmux; then
+    echo 'sudo dnf install -y tmux'
+    exit 1
+fi
+
+if printenv | grep 'TERM_PROGRAM=tmux' > /dev/null; then
+    echo 'Run this script in a terminal multiplexer (tmux).'
+    exit 1
+fi
+
 export REAL_USER="$1"
 export DISTRO="$2"
 
