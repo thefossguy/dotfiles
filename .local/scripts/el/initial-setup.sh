@@ -105,7 +105,7 @@ fi
 
 if command -v fish > /dev/null; then
     if ! getent passwd "${REAL_USER}" | cut -d: -f7 | grep fish > /dev/null; then
-        sudo chsh -s "$(which fish)" "${REAL_USER}"
+        sudo chsh -s "$(command -v fish)" "${REAL_USER}"
     fi
 fi
 
