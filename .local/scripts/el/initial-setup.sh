@@ -24,6 +24,22 @@ if [[ "$DISTRO" != 'el' && "$DISTRO" != 'fedora' ]]; then
     exit 1
 fi
 
+function dnf_conf() {
+    OPTION="$1"
+    VALUE="$2"
+
+    if ! grep "${OPTION}=${VALUE}" /etc/dnf/dnf.conf > /dev/null; then
+        if ! grep "${OPTION}" /etc/dnf/dnf.conf > /dev/null; then
+            echo "${OPTION}=${VALUE}" | sudo tee -a /etc/dnf/dnf.conf > /dev/null
+        else
+            sudo sed -i "s/.*${OPTION}.*/${OPTION}=${VALUE}/" /etc/dnf/dnf.conf
+        fi
+    fi
+}
+dnf_conf 'exit_on_lock' 'True'
+dnf_conf 'installonly_limit' '20'
+dnf_conf 'max_parallel_downloads' '10'
+
 sudo dnf clean expire-cache
 
 PKGS_TO_INSTALL=(
