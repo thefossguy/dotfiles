@@ -12,8 +12,8 @@ if ! printenv | grep 'TERM_PROGRAM=tmux' > /dev/null; then
     exit 1
 fi
 
-export REAL_USER="$1"
-export DISTRO="$2"
+export REAL_USER="$USER"
+export DISTRO="$1"
 
 if [[ "$DISTRO" = 'alma' || "$DISTRO" = 'rhel' || "$DISTRO" = 'centos' || "$DISTRO" = 'rocky' ]]; then
     DISTRO='el'
