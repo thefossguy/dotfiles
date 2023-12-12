@@ -2,6 +2,11 @@
 
 set -xeuf -o pipefail
 
+if sudo grep '^#.*NOPASSWD.*' /etc/sudoers > /dev/null; then
+    echo 'You forgot to set NOPASSWD.'
+    exit 1
+fi
+
 if ! command -v tmux; then
     echo 'sudo dnf install -y tmux'
     exit 1
