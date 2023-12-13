@@ -29,6 +29,8 @@ if [[ "$DISTRO" != 'el' && "$DISTRO" != 'fedora' ]]; then
     exit 1
 fi
 
+sudo systemctl enable --now sshd
+
 function dnf_conf() {
     OPTION="$1"
     VALUE="$2"
