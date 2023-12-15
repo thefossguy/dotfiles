@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-$HOME/.config/feh/fehbg &
-$HOME/.local/scripts/window-manager/launch-polybar.sh &
+"${HOME}/.config/feh/fehbg" &
+
+NETWORKING_INTERFACE="$(grep -i "eth\|enp\|enabcm\|wl" /proc/net/dev | sort | head -n 1 | awk -F : '{print $1}')"
+export NETWORKING_INTERFACE
+"${HOME}/.local/scripts/window-manager/launch-polybar.sh" &
 
 bspc monitor -d work virtualization bg-apps other extra extraa
 

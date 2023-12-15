@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-NETWORKING_INTERFACE="$(grep -i "eth\|enp\|enabcm\|wl" /proc/net/dev | sort | head -n 1 | awk -F : '{print $1}')"
-export NETWORKING_INTERFACE
-
 USER_X_RESOURCES=$HOME/.Xresources
 if [[ -f "$USER_X_RESOURCES" ]]; then
     xrdb -merge "$USER_X_RESOURCES"
