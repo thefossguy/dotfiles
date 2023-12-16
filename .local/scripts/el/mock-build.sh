@@ -9,7 +9,7 @@ if (! command -v mock > /dev/null) || (! groups | grep 'mock' > /dev/null); then
 fi
 
 if [[ -z $1 ]]; then
-    echo "Need a SOURCES directory."
+    echo 'Need a SOURCES directory.'
     exit 1
 fi
 if [[ ! -d $1 ]]; then
@@ -18,7 +18,7 @@ if [[ ! -d $1 ]]; then
 fi
 
 if [[ -z $2 ]]; then
-    echo "Need an RPM SPEC file."
+    echo 'Need an RPM SPEC file.'
     exit 1
 fi
 if [[ ! -f $2 ]]; then

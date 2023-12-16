@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 
 if [[ -z "$1" ]]; then
-    echo "What do you want to grep for, bud?"
+    echo 'What do you want to grep for, bud?'
     exit 1
 fi
 
 if [[ -z "$2" ]]; then
-    echo "What's the SRC?"
+    echo 'What is the SRC?'
     exit 1
 fi
 
 if [[ -z "$3" ]]; then
-    echo "What's the DST?"
+    echo 'What is the DST?'
     exit 1
 fi
 

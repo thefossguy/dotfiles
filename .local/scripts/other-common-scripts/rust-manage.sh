@@ -3,13 +3,13 @@
 set -xeuf
 
 if ! command -v rustup > /dev/null; then
-    >&2 echo "$0: No rustup? What are you, a monster?"
+    >&2 echo 'No rustup? What are you, a monster?'
     exit 1
 fi
 
-if pgrep "rust-analyzer|cargo|rustc" > /dev/null; then
-    >&2 echo "$0: You are probably using components that will be updated, even replaced..."
-    >&2 echo "$0: Not continuing"
+if pgrep --exact "rust-analyzer|cargo|rustc" > /dev/null; then
+    >&2 echo 'You are probably using components that will be updated, even replaced...'
+    >&2 echo 'Not continuing'
     exit 1
 fi
 

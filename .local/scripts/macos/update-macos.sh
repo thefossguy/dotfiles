@@ -91,7 +91,7 @@ function ensure_installed_fish_plugins() {
 }
 
 if [[ $(uname) != "Darwin" ]]; then
-    echo "You are on a good platform. Do not execute this script."
+    echo 'You are on a good platform. Do not execute this script.'
     exit
 fi
 

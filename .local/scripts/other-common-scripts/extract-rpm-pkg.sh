@@ -1,7 +1,5 @@
 #!/usr/bin/env dash
 
-if [ -z "$1" ]; then
-    echo "ERROR: provide [S]RPM path"
-fi
+set -xeu
 
 rpm2cpio "$1" | cpio -idmv

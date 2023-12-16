@@ -1,13 +1,12 @@
-#!/usr/bin/env nix-shell
-#!nix-shell -i dash --packages dash git openssh
+#!/usr/bin/env dash
 
-set -xeuf -o pipefail
+set -xeuf
 
-GIT_REPO_LOCAL_PATH="${HOME}/my-git-repos/pratham/prathams-nixos/"
-cd "${GIT_REPO_LOCAL_PATH}"
+cd /home/pratham/my-git-repos/pratham/prathams-nixos
 DIRTY_REPO=$(git status --porcelain=v1 --ignored=no --untracked-files=no)
 if [ -n "${DIRTY_REPO}" ]; then
-    >&2 echo "$0: You have unsaved changes, not pulling..."
+    >&2 echo 'You have unsaved changes, not pulling.'
     exit 1
+else
+    git pull
 fi
-git pull

@@ -22,7 +22,7 @@ function should_pull {
     if [ ! -f "${XDG_STATE_HOME}/podman-initialization/last-run.txt" ]; then
         mkdir -p "${XDG_STATE_HOME}/podman-initialization"
         date > "${XDG_STATE_HOME}/podman-initialization/last-run.txt"
-        echo "69"
+        echo '69'
     fi
 
     LAST_RUN=$(date +%s -d "$(cat "${XDG_STATE_HOME}/podman-initialization/last-run.txt")")
@@ -30,9 +30,9 @@ function should_pull {
     DIFF=$(( (CURRENT_TIME - LAST_RUN) / 86400 )) # 86400 seconds = 24 hours
 
     if [ ${DIFF} -gt 1 ]; then
-        echo "69"
+        echo '69'
     else
-        echo "0"
+        echo '0'
     fi
 }
 
@@ -53,7 +53,7 @@ fi
 
 # prune old images
 podman images | grep '<none>' | choose 2 | xargs --max-lines=1 podman rmi \
-    || echo "No images to prune"
+    || echo 'No images to prune'
 
 # setup secrets and network
 if ! grep -q 'nextcloud_database_user_password' "${PODMAN_SECRETS}"; then
@@ -81,9 +81,9 @@ if [ ! -f "${CONTAINER_VOLUME_PATH}/caddy/Caddyfile" ]; then
     curl "https://gitlab.com/thefossguy/my-caddy-config/-/raw/master/Caddyfile" --output "${CONTAINER_VOLUME_PATH}/caddy/Caddyfile" || exit  1
 fi
 if [ ! -f "${CONTAINER_VOLUME_PATH}/caddy/ssl/private/key.pem" ] || [ ! -f "${CONTAINER_VOLUME_PATH}/caddy/ssl/certs/certificate.pem" ]; then
-    >&2 echo "$0: Cloudflare certificates not found"
-    >&2 echo "$0: fill: ${CONTAINER_VOLUME_PATH}/caddy/ssl/private/key.pem"
-    >&2 echo "$0: fill: ${CONTAINER_VOLUME_PATH}/caddy/ssl/certs/certificate.pem"
+    >&2 echo 'Cloudflare certificates not found'
+    >&2 echo "Fill: ${CONTAINER_VOLUME_PATH}/caddy/ssl/private/key.pem"
+    >&2 echo "Fill: ${CONTAINER_VOLUME_PATH}/caddy/ssl/certs/certificate.pem"
     exit 1
 else
     chmod 700 "${CONTAINER_VOLUME_PATH}/caddy/ssl/private"
@@ -93,13 +93,12 @@ fi
 # finally, at the end, wait for the ZFS pool to be mounted
 if [[ "${ZPOOL_WAIT}" == 'true' ]]; then
     while [ ! -d "${ZPOOL_MOUNT_PATH}" ]; do
-        >&2 echo "$0: directory ${ZPOOL_MOUNT_PATH} is not mounted (${TIME_TA#KEN})"
+        >&2 echo "Directory ${ZPOOL_MOUNT_PATH} is not mounted (${TIME_TA#KEN})"
         sleep 1s
         TIME_TAKEN=$((TIME_TAKEN + 1))
 
         if [ "${TIME_TAKEN}" -gt 120 ]; then
-            >&2 echo "$0: directory ${ZPOOL_MOUNT_PATH} is not mounted"
-            >&2 echo "$0: exiting due to previous error..."
+            >&2 echo "Directory ${ZPOOL_MOUNT_PATH} is not mounted"
             exit 1
         fi
     done
