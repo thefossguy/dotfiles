@@ -27,7 +27,7 @@ else
 fi
 
 if [[ "${KERNEL_UPGRADE}" || "${UNCONDITIONAL_UPGRADE}" ]]; then
-    nixos-rebuild dry-build --upgrade
+    nixos-rebuild boot --upgrade-all
 else
     echo 'Nothing to upgrade today.'
 fi
