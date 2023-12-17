@@ -6,10 +6,11 @@ unalias -a
 if [[ "$(uname)" == 'Linux' ]]; then
     GNU_LS="$(command -v ls)"
     GNU_GREP="$(command -v grep)"
+    RSYNC_CMD="rsync --fsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
     export GNU_LS
     export GNU_GREP
+    export RSYNC_CMD
 
-    alias custcp="rsync --fsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
     alias ping="ping -W 0.1 -O"
 
     if [[ "${XDG_SESSION_TYPE}" == 'x11' ]]; then
@@ -24,8 +25,10 @@ fi
 if [[ "$(uname)" == 'Darwin' ]]; then
     GNU_LS="$(command -v gls)"
     GNU_GREP="$(command -v ggrep)"
+    RSYNC_CMD="rsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
     export GNU_LS
     export GNU_GREP
+    export RSYNC_CMD
 
     case ":$PATH:" in
         *":/usr/local/bin:"*) :;; # already there
@@ -53,7 +56,8 @@ alias mtr="mtr --show-ips --displaymode 0 -o \"LDR AGJMXI\""
 alias update="source ${HOME}/.bashrc"
 alias writeimage="sudo dd bs=1M oflag=direct,sync status=progress"
 alias writeimg="sudo dd bs=1M oflag=direct,sync status=progress"
-alias custcp="rsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
+alias custcp="${RSYNC_CMD}"
+alias nixcheckconf="${RSYNC_CMD} --dry-run --checksum ~/my-git-repos/pratham/prathams-nixos/nixos-configuration/ /etc/nixos/"
 alias pysort="python3 ${HOME}/.local/scripts/other-common-scripts/sort.py"
 alias download="aria2c --max-connection-per-server=16 --min-split-size=1M --file-allocation=none --continue=false --seed-time=0"
 alias ytdown="yt-dlp --config-location ${HOME}/.config/yt-dlp/norm_config --external-downloader aria2c"

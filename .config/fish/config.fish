@@ -66,7 +66,7 @@ if status is-interactive
         set GNU_LS "$(command -v ls)"
         set GNU_GREP "$(command -v grep)"
 
-        alias custcp="rsync --fsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
+        set RSYNC_CMD "rsync --fsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
         alias ping="ping -W 0.1 -O"
         alias mpv="mpv --geometry=60% --vo=gpu --hwdec=vaapi"
         alias mpvrpi="mpv --geometry=60% --vo=x11"
@@ -83,6 +83,7 @@ if status is-interactive
     if test $(uname) = "Darwin"
         set GNU_LS "$(command -v gls)"
         set GNU_GREP "$(command -v ggrep)"
+        set RSYNC_CMD "rsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
 
         fish_add_path -p -g /usr/local/bin
 
@@ -105,7 +106,8 @@ if status is-interactive
     alias update="source $HOME/.config/fish/config.fish"
     alias writeimage="sudo dd bs=1M oflag=direct,sync status=progress"
     alias writeimg="sudo dd bs=1M oflag=direct,sync status=progress"
-    alias custcp="rsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
+    alias custcp="$RSYNC_CMD"
+    alias nixcheckconf="$RSYNC_CMD --dry-run --checksum ~/my-git-repos/pratham/prathams-nixos/nixos-configuration/ /etc/nixos/"
     alias pysort="python3 $HOME/.local/scripts/other-common-scripts/sort.py"
     alias download="aria2c --max-connection-per-server=16 --min-split-size=1M --file-allocation=none --continue=false --seed-time=0"
     alias ytdown="yt-dlp --config-location $HOME/.config/yt-dlp/norm_config --external-downloader aria2c"
