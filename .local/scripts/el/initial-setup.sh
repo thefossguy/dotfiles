@@ -60,6 +60,7 @@ PKGS_TO_INSTALL=(
     gzip
     hdparm
     htop
+    kernel-headers
     mock
     parallel
     perl-Digest-SHA
