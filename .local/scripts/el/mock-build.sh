@@ -29,7 +29,7 @@ fi
 # shellcheck disable=SC1090
 source <(grep ID /etc/os-release)
 MARCH="$(uname -m)"
-DNF_RELEASEVER="$(dnf config-manager --dump-variables | grep 'releasever' | awk '{print $3}')"
+DNF_RELEASEVER="$(dnf config-manager --dump-variables | grep 'releasever' | head -n 1 | awk '{print $3}')"
 MOCK_ROOT="$ID-$DNF_RELEASEVER-$MARCH"
 MOCK_OUT="$HOME/mockbuild/out"
 
