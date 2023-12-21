@@ -71,10 +71,10 @@ if status is-interactive
         alias mpv="mpv --geometry=60% --vo=gpu --hwdec=vaapi"
         alias mpvrpi="mpv --geometry=60% --vo=x11"
 
-        if test $XDG_SESSION_TYPE = "x11"
+        if test $XDG_SESSION_TYPE = "x11"; or command -v xsel > /dev/null
             alias clearclipboard="xsel -bc"
             alias pbcopy="xsel --clipboard --input"
-        else if test $XDG_SESSION_TYPE = "wayland"
+        else if test $XDG_SESSION_TYPE = "wayland"; or command -v wl-copy > /dev/null
             alias clearclipboard="wl-copy --clear"
             alias pbcopy="wl-copy"
         end
