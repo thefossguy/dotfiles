@@ -1,37 +1,31 @@
 #!/usr/bin/env bash
 
 if [[ -z "$1" ]]; then
-    echo 'What do you want to grep for, bud?'
-    exit 1
-fi
-
-if [[ -z "$2" ]]; then
     echo 'What is the SRC?'
     exit 1
 fi
 
-if [[ -z "$3" ]]; then
+if [[ -z "$2" ]]; then
     echo 'What is the DST?'
     exit 1
 fi
 
-SRC_FILE="$2"
-SRC_MATCHES=($(grep -o "CONFIG_.*$1.*\ i\|CONFIG_.*$1.*=[m,y]" "${SRC_FILE}" | tr " i" ".i"))
+SRC_FILE="$1"
+DST_FILE="$2"
 
-DST_FILE="$3"
-DST_MATCHES=($(grep -o "CONFIG_.*$1.*\ i\|CONFIG_.*$1.*=[m,y]" "${DST_FILE}" | tr " i" ".i"))
+# do a "s/ i/.i/" to preserve whitespaces when substituting it with newlines
+# and then do a "s/.i/ /" to remove unnecessary characters for grep-ing
+SRC_CONFIGS=($(grep -o "CONFIG_.* i\|CONFIG_.*=[m,y]" "${SRC_FILE}" | tr ' i' '.i'))
+CONFIG_LIST=($(echo "${SRC_CONFIGS[@]}" | tr " " "\n"))
 
-ALL_CONFIGS=()
+for OPTION in "${CONFIG_LIST[@]}"; do
+    NEW_OPTION="$(echo "${OPTION}" | tr '.i' ' ' | rev | cut -c 2- | rev)"
+    SRC_CONFIG="$(grep "${NEW_OPTION}" "${SRC_FILE}")"
+    DST_CONFIG="$(grep "${NEW_OPTION}" "${DST_FILE}")"
 
-for OPTION in "${SRC_MATCHES[@]}" "${DST_MATCHES[@]}"; do
-    NEW_OPTION=$(echo "${OPTION}" | rev | cut -c 3- | rev)
-    ALL_CONFIGS+=( "${NEW_OPTION}" )
-done
-
-NEW_CONFIGS=($(echo "${ALL_CONFIGS[@]}" | tr " " "\n" | sort | uniq))
-
-for OPTION in "${NEW_CONFIGS[@]}"; do
-    echo '----'
-    echo -n 'SRC: ' && (grep --color=yes "${OPTION}" "$SRC_FILE" || echo "")
-    echo -n 'DST: ' && (grep --color=yes "${OPTION}" "$DST_FILE" || echo "")
+    if [[ "${SRC_CONFIG}" != "${DST_CONFIG}" ]]; then
+        echo '--------'
+        echo -n 'SRC: ' && (grep --color=yes "${NEW_OPTION}" "${SRC_FILE}" || echo "")
+        echo -n 'DST: ' && (grep --color=yes "${NEW_OPTION}" "${DST_FILE}" || echo "")
+    fi
 done
