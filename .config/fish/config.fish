@@ -66,7 +66,6 @@ if status is-interactive
         set GNU_LS "$(command -v ls)"
         set GNU_GREP "$(command -v grep)"
 
-        set RSYNC_CMD "rsync --fsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
         alias ping="ping -W 0.1 -O"
         alias mpv="mpv --geometry=60% --vo=gpu --hwdec=vaapi"
         alias mpvrpi="mpv --geometry=60% --vo=x11"
@@ -83,11 +82,17 @@ if status is-interactive
     if test $(uname) = "Darwin"
         set GNU_LS "$(command -v gls)"
         set GNU_GREP "$(command -v ggrep)"
-        set RSYNC_CMD "rsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
 
         fish_add_path -p -g /usr/local/bin
 
         alias ktb="sudo pkill TouchBarServer; sudo killall ControlStrip"
+    end
+
+    # determine if '--fsync' is an available option or not
+    if rsync --fsync 2>&1 | grep 'rsync: --fsync: unknown option' > /dev/null
+        set RSYNC_CMD "rsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
+    else
+        set RSYNC_CMD "rsync --fsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
     end
 
     # common aliases

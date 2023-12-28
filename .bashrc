@@ -6,7 +6,6 @@ unalias -a
 if [[ "$(uname)" == 'Linux' ]]; then
     GNU_LS="$(command -v ls)"
     GNU_GREP="$(command -v grep)"
-    RSYNC_CMD="rsync --fsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
     export GNU_LS
     export GNU_GREP
     export RSYNC_CMD
@@ -25,7 +24,6 @@ fi
 if [[ "$(uname)" == 'Darwin' ]]; then
     GNU_LS="$(command -v gls)"
     GNU_GREP="$(command -v ggrep)"
-    RSYNC_CMD="rsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
     export GNU_LS
     export GNU_GREP
     export RSYNC_CMD
@@ -37,6 +35,12 @@ if [[ "$(uname)" == 'Darwin' ]]; then
 
     alias ktb="sudo pkill TouchBarServer; sudo killall ControlStrip"
     alias mpv="mpv --vo=libmpv"
+fi
+
+if rsync --fsync 2>&1 | grep 'rsync: --fsync: unknown option' > /dev/null; then
+    RSYNC_CMD="rsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
+else
+    RSYNC_CMD="rsync --fsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes"
 fi
 
 export PATH="$PATH:$HOME/.cargo/bin:$HOME/.local/bin"
