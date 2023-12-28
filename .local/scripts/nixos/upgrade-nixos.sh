@@ -30,7 +30,7 @@ else
     UNCONDITIONAL_UPGRADE=false
 fi
 
-if [[ "${KERNEL_UPGRADE}" || "${UNCONDITIONAL_UPGRADE}" ]]; then
+if [[ "${KERNEL_UPGRADE}" == 'true' || "${UNCONDITIONAL_UPGRADE}" == 'true' ]]; then
     nixos-rebuild boot --upgrade-all
 else
     echo '*yawn*'
