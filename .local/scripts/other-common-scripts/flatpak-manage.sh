@@ -2,36 +2,41 @@
 
 set -xeuf -o pipefail
 
-function install_flatpaks_flameboi() {
-    flatpak install --user --or-update --assumeyes --noninteractive \
-        com.brave.Browser \
-        com.discordapp.Discord \
-        com.github.tchx84.Flatseal \
-        fr.handbrake.ghb \
-        io.gitlab.librewolf-community \
-        org.gnome.gitlab.YaLTeR.Identity \
-        org.gnome.gitlab.YaLTeR.VideoTrimmer \
-        org.gnome.Logs \
-        org.gnome.meld \
-        org.raspberrypi.rpi-imager \
-        #EOF
-}
+COMMON_PKGS=(
+    com.brave.Browser
+    com.github.tchx84.Flatseal
+    io.gitlab.librewolf-community
+    org.gnome.gitlab.YaLTeR.Identity
+    org.gnome.gitlab.YaLTeR.VideoTrimmer
+    org.gnome.Logs
+    org.gnome.meld
+    org.raspberrypi.rpi-imager
+)
+AMD_PKGS=(
+    com.discordapp.Discord
+    fr.handbrake.ghb
+)
+ARM_PKGS=()
+RISCV_PKGS=() # lol
 
-function install_flatpaks_vm() {
-    flatpak install --user --or-update --assumeyes --noninteractive \
-        com.brave.Browser \
-        io.gitlab.librewolf-community \
-        #EOF
-}
+if [[ "$(uname -m)" == 'x86_64' ]]; then
+    ALL_PKGS=( "${COMMON_PKGS[@]}" "${AMD_PKGS[@]}" )
+elif [[ "$(uname -m)" == 'aarch64' ]]; then
+    ALL_PKGS=( "${COMMON_PKGS[@]}" "${ARM_PKGS[@]}" )
+elif [[ "$(uname -m)" == 'riscv64' ]]; then
+    ALL_PKGS=( "${COMMON_PKGS[@]}" "${RISCV_PKGS[@]}" )
+else
+    echo 'Unsupported CPU ISA'
+    exit 1
+fi
 
-if command -v flatpak > /dev/null; then
+if [[ -x '/run/current-system/sw/bin/flatpak' ]]; then
     flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    if [[ ${HOSTNAME} == "flameboi" ]]; then
-        install_flatpaks_flameboi
-    elif [[ ${HOSTNAME} =~ "virt" || ${HOSTNAME} =~ "nix" || ${HOSTNAME} =~ "vm" ]]; then
-        install_flatpaks_vm
-    fi
+    flatpak install --user --or-update --assumeyes --noninteractive "${ALL_PKGS[@]}"
     flatpak update --user --assumeyes --noninteractive
     flatpak uninstall --user --unused --assumeyes --noninteractive --delete-data
     flatpak repair --user
+else
+    echo 'Flatpak not found, exiting cleanly nonetheless'
+    exit 0
 fi
