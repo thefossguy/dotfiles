@@ -6,6 +6,7 @@ COMMON_PKGS=(
     com.brave.Browser
     com.github.tchx84.Flatseal
     io.gitlab.librewolf-community
+    md.obsidian.Obsidian
     org.gnome.gitlab.YaLTeR.Identity
     org.gnome.gitlab.YaLTeR.VideoTrimmer
     org.gnome.Logs
