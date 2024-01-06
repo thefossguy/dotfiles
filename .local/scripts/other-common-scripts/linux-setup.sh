@@ -131,16 +131,29 @@ function nix_setup() {
         fi
 
         "${HOME}/.detsys-nix/nix-installer" install linux --no-confirm
-        /nix/var/nix/profiles/default/bin/nix-channel --add https://nixos.org/channels/nixos-23.11 nixos
-        /nix/var/nix/profiles/default/bin/nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz home-manager
+        /nix/var/nix/profiles/default/bin/nix-channel --add 'https://nixos.org/channels/nixos-23.11' nixos
+        /nix/var/nix/profiles/default/bin/nix-channel --add 'https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz' home-manager
         /nix/var/nix/profiles/default/bin/nix-channel --update
-
-        /nix/var/nix/profiles/default/bin/nix-shell '<home-manager>' -A install
     fi
+}
+function home_manager_setup() {
+    if [[ ! -f "${HOME}/.config/home-manager/home.nix" ]]; then
+        if [[ "$(uname -s)" == 'Linux' ]]; then
+            if ! grep 'ID=nixos' /etc/os-release > /dev/null; then
+                ln -s "${HOME}/.config/home-manager/"{common,home}.nix
+                ln -s "${HOME}/.config/home-manager/"{linux,platform}.nix
+            fi
+        elif [[ "$(uname -s)" == 'Darwin' ]]; then
+            ln -s "${HOME}/.config/home-manager/"{common,home}.nix
+            ln -s "${HOME}/.config/home-manager/"{darwin,platform}.nix
+        fi
+    fi
+    /nix/var/nix/profiles/default/bin/nix-shell '<home-manager>' -A install
 }
 function common_setup() {
     install_dotfiles
     nix_setup
+    home_manager_setup
 }
 
 
