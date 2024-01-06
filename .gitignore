@@ -16,6 +16,8 @@
 .config/fish/*
 .config/GNOME-xdg-terminals.list
 .config/gtk-3.0/bookmarks
+.config/home-manager/home.nix
+.config/home-manager/platform.nix
 .config/htop/*
 .config/ibus/*
 .config/nvim/lazy-lock.json
