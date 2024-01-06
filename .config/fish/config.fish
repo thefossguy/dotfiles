@@ -33,12 +33,9 @@ end
 function fish_mode_prompt
 end
 
-function setup_alacritty_for_os
-    bash "$HOME/.local/scripts/other-common-scripts/alacritty-import.sh" &
-end
 
 function initial_fish_setup
-    setup_alacritty_for_os
+    bash "$HOME/.local/scripts/other-common-scripts/alacritty-import.sh" &
     fish_load_sudo_alias
     fish_vi_key_bindings
 end

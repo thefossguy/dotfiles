@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-set -euf
+set -eu
 
-if [ ! -f "${HOME}/.config/alacritty/load_intermediate.yml" ]; then
-    if uname | grep -q Linux; then
-        ln -s "${HOME}/.config/alacritty/load_linux.yml" "${HOME}/.config/alacritty/load_intermediate.yml"
-    else
-        ln -s "${HOME}/.config/alacritty/load_macos.yml" "${HOME}/.config/alacritty/load_intermediate.yml"
+if [[ ! -f "${HOME}/.config/alacritty/platform.yml" ]]; then
+    if [[ "$(uname -s)" == 'Linux' ]]; then
+        ln -s "${HOME}/.config/alacritty/"{linux,platform}.yml
+    elif [[ "$(uname -s)" == 'Darwin' ]]; then
+        ln -s "${HOME}/.config/alacritty/"{darwin,platform}.yml
     fi
 fi

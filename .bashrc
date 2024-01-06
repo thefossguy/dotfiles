@@ -1,6 +1,6 @@
 # shellcheck disable=SC2139
 # The above directive disables https://www.shellcheck.net/wiki/SC2139
-dash "${HOME}/.local/scripts/other-common-scripts/alacritty-import.sh"
+bash "${HOME}/.local/scripts/other-common-scripts/alacritty-import.sh" &
 
 unalias -a
 if [[ "$(uname)" == 'Linux' ]]; then

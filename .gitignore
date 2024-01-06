@@ -6,7 +6,7 @@
 .cargo/*
 .config/*.xml*
 .config/.gsd-keyboard.settings-ported
-.config/alacritty/load_intermediate.yml
+.config/alacritty/platform.yml
 .config/bottom/*
 .config/btop/*
 .config/dconf/*
