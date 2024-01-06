@@ -122,7 +122,7 @@ if ! command -v direnv > /dev/null; then
 
     mkdir -vp "${HOME}/.local/bin"
     pushd "${HOME}/.local/bin"
-    curl -s https://api.github.com/repos/direnv/direnv/releases/latest | grep "direnv.linux-$DIRENV_ARCH" | cut -d : -f 2,3 | tr -d \" | wget -qi -
+    curl -s https://api.github.com/repos/direnv/direnv/releases/latest | grep "direnv.linux-$DIRENV_ARCH" | cut -d : -f 2,3 | tr -d \" | grep 'https' | wget -qi -
     mv "direnv.linux-$DIRENV_ARCH" direnv
     chmod +x direnv
     popd
