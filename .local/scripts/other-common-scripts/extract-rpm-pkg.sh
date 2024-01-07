@@ -1,5 +1,5 @@
-#!/usr/bin/env dash
+#!/usr/bin/env bash
 
 set -xeu
 
-rpm2cpio "$1" | cpio -idmv
+rpm2cpio "$1" | cpio -idm
