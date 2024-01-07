@@ -30,6 +30,7 @@
 .DS_Store
 .lesshst
 .lldb/*
+.local/scripts/other-common-scripts/git-prompt.sh
 .local/share/*
 .local/state/*
 .mozilla/*
