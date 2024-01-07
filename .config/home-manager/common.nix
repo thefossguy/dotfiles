@@ -11,14 +11,7 @@
     packages = with pkgs; [
       neovim
       direnv
-    ] ++ (with pkgs.fishPlugins; [
-      async-prompt
-      colored-man-pages
-      fzf
-      puffer
-      sponge
-      z
-    ]);
+    ];
   };
 
   nix = {
@@ -28,9 +21,6 @@
       experimental-features = [ "nix-command" "flakes" ];
     };
   };
-
-  programs.fish.enable = true;
-  xdg.configFile."fish/config.fish".enable = false; # no need to overwrite config.fish
 
   services = {
     home-manager.autoUpgrade = {
