@@ -133,8 +133,8 @@ function nix_setup() {
         fi
 
         "${HOME}/.detsys-nix/nix-installer" install linux --no-confirm
-        /nix/var/nix/profiles/default/bin/nix-channel --add 'https://nixos.org/channels/nixos-23.11' nixos
-        /nix/var/nix/profiles/default/bin/nix-channel --add 'https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz' home-manager
+        /nix/var/nix/profiles/default/bin/nix-channel --add 'https://nixos.org/channels/nixos-unstable' nixos
+        /nix/var/nix/profiles/default/bin/nix-channel --add 'https://github.com/nix-community/home-manager/archive/master.tar.gz' home-manager
         /nix/var/nix/profiles/default/bin/nix-channel --update
     fi
 }
