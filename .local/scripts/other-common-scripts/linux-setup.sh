@@ -174,7 +174,7 @@ elif grep "ID=fedora" /etc/os-release > /dev/null; then
         install_pkgs_fedora
         common_setup
     }
-elif grep "ID=alma\|ID=centos\|ID=rhel\|ID=rocky" /etc/os-release > /dev/null; then
+elif grep "ID_LIKE=*.rhel*." /etc/os-release > /dev/null; then
     RHEL_VERSION="$(grep VERSION_ID /etc/os-release | awk -F"=" '{print $2}')"
     function linux_setup() {
         enable_ssh_daemon_fedora
