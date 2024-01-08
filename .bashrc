@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2139
 
+# only run in an interactive shell
+[[ $- == *i* ]] || return
+
 unalias -a
 
 function path_add() {
