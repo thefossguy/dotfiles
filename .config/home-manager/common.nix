@@ -82,7 +82,7 @@
     direnv = {
       enable = true;
       enableBashIntegration = true;
-    }
+    };
     neovim.enable = true;
   };
 
