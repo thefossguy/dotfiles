@@ -116,20 +116,8 @@ if command -v nvim > /dev/null; then
 fi
 
 # PS1 setup
-_RED="$(tput setaf 1)"
-_BR_RED="$(tput bold)${_RED}"
-_GREEN="$(tput setaf 2)"
-_BR_GREEN="$(tput bold)${_GREEN}"
-_RESET="$(tput sgr0)"
-function __prompt_status() {
-    if [[ "$1" -ne 0 ]]; then
-        echo -n "${_BR_RED}$1${_RESET}"
-    else
-        echo -n "${_BR_GREEN}$1${_RESET}"
-    fi
-}
 PS0="\t\n" # display time in HH:MM:SS format
-PS1="\n[\u@\h:\$PWD \$(__prompt_status \$?)]\$ "
+PS1="\n[\u@\h:\$PWD \$?]\$ "
 export PS0 PS1
 
 # zoxide setup
