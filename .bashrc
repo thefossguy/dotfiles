@@ -6,6 +6,12 @@
 
 unalias -a
 
+shopt -s histappend
+HISTCONTROL='ignorespace:ignoredups:erasedups'
+HISTFILESIZE=100000
+HISTIGNORE="clear:history:exit:date:* --help:* -help:* -h:whoami:ls:lah:lo"
+HISTSIZE=10000
+
 function path_add() {
     if [[ -d "$1" ]] && [[ ":$PATH:" != *:$1:* ]]; then
         PATH="$PATH:$1"
@@ -105,37 +111,12 @@ if command -v nvim > /dev/null; then
     alias vim="$(command -v nvim)"
 fi
 
-# the 'git-prompt.sh' file exists at different locations in different distributions
-# so tell shellcheck to ignore checking that file
-# shellcheck source=/dev/null
-[[ -f "${SCRIPTS_DIR}/git-prompt.sh" ]] && source "${SCRIPTS_DIR}/git-prompt.sh"
+# PS1 setup
 _RED="$(tput setaf 1)"
 _BR_RED="$(tput bold)${_RED}"
 _GREEN="$(tput setaf 2)"
 _BR_GREEN="$(tput bold)${_GREEN}"
-_YELLOW="$(tput setaf 3)"
-_BR_YELLOW="$(tput bold)${_YELLOW}"
-_MAGENTA="$(tput setaf 5)"
-_BR_MAGENTA="$(tput bold)${_MAGENTA}"
-_CYAN="$(tput setaf 6)"
-_BR_CYAN="$(tput bold)${_CYAN}"
-_WHITE="$(tput setaf 7)"
-_BR_WHITE="$(tput bold)${_WHITE}"
-_GRAY="$(tput setaf 244)"
-_BR_GRAY="$(tput bold)${_GRAY}"
 _RESET="$(tput sgr0)"
-function __prompt_begin() {
-    echo -ne "\n\[${_YELLOW}\]─┬─[\[${_RESET}\]"
-}
-function __prompt_hostname() {
-    echo -n "\[${_RED}\]\h\[${_RESET}\]\[${_CYAN}\]:\[${_RESET}\]"
-}
-function __prompt_username() {
-    echo -n "\[${_CYAN}\]\u\[${_RESET}\]"
-}
-function __prompt_git() {
-    __git_ps1 " (%s)"
-}
 function __prompt_status() {
     if [[ "$1" -ne 0 ]]; then
         echo -n "${_BR_RED}$1${_RESET}"
@@ -143,17 +124,9 @@ function __prompt_status() {
         echo -n "${_BR_GREEN}$1${_RESET}"
     fi
 }
-function __prompt_end() {
-    echo -ne "\[${_YELLOW}\]]\n ╰─>\[${_RESET}\] "
-}
-export GIT_PS1_SETCONFLICTSPACE=1
-export GIT_PS1_SHOWCOLORHINTS=1
-export GIT_PS1_SHOWDIRTYSTATE=1
-export GIT_PS1_SHOWSTASHSTATE=1
-export GIT_PS1_SHOWUNTRACKEDFILES=1
-export GIT_PS1_SHOWUPSTREAM="verbose"
-PS1="$(__prompt_begin) $(__prompt_hostname) $(__prompt_username) \[${_GRAY}\]▶\[${_RESET}\] \[${_CYAN}\]\$PWD\[${_RESET}\]\$(__git_ps1) \$(__prompt_status \$?) $(__prompt_end)"
-export PS1
+PS0="\t\n" # display time in HH:MM:SS format
+PS1="\n[\u@\h:\$PWD \$(__prompt_status \$?)]\$ "
+export PS0 PS1
 
 # zoxide setup
 if command -v zoxide > /dev/null; then
