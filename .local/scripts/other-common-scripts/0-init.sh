@@ -10,10 +10,10 @@ if [[ ! -f "${HOME}/.config/alacritty/platform.yml" ]]; then
     fi
 fi
 
-if ! command -v nixos-rebuild > /dev/null; then
-    if [[ ! -f "${HOME}/.local/scripts/other-common-scripts/git-prompt.sh" ]]; then
-        pushd "${HOME}/.local/scripts/other-common-scripts"
-        wget 'https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh'
-        popd
+# for some reason Fedora/RHEL does not have a '/etc/ssl/certs/ca-certificates.crt'
+# instead they have a '/etc/pki/tls/certs/ca-bundle.crt'
+if [[ "$(uname -s)" == 'Linux' ]]; then
+    if grep "ID_LIKE=*.rhel*." /etc/os-release > /dev/null; then
+        sudo ln -s /etc/pki/tls/certs/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt
     fi
 fi
