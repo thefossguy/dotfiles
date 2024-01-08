@@ -6,6 +6,10 @@
 
 unalias -a
 
+shopt -s checkjobs
+shopt -s checkwinsize
+shopt -s extglob
+shopt -s globstar
 shopt -s histappend
 HISTCONTROL='ignorespace:ignoredups:erasedups'
 HISTFILESIZE=100000
