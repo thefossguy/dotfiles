@@ -89,9 +89,6 @@ function install_pkgs_fedora() {
         wget
         git
     )
-    if dnf list --installed | grep "kernel\.$(uname -m)" > /dev/null; then
-        PKGS_TO_INSTALL+=(kernel-devel-matched)
-    fi
     sudo dnf clean expire-cache
     sudo dnf install --assumeyes "${PKGS_TO_INSTALL[@]}"
     sudo dnf upgrade --assumeyes
