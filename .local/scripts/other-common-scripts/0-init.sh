@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -eu
+set -xeu
 
 if [[ ! -f "${HOME}/.config/alacritty/platform.yml" ]]; then
     if [[ "$(uname -s)" == 'Linux' ]]; then
@@ -13,7 +13,9 @@ fi
 # for some reason Fedora/RHEL does not have a '/etc/ssl/certs/ca-certificates.crt'
 # instead they have a '/etc/pki/tls/certs/ca-bundle.crt'
 if [[ "$(uname -s)" == 'Linux' ]]; then
-    if grep "ID_LIKE=*.rhel*." /etc/os-release > /dev/null; then
-        sudo ln -s /etc/pki/tls/certs/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt
+    if [[ ! -f '/etc/ssl/certs/ca-certificates.crt' ]]; then
+        if grep "ID_LIKE=*.rhel*." /etc/os-release > /dev/null; then
+            sudo ln -s /etc/pki/tls/certs/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt
+        fi
     fi
 fi
