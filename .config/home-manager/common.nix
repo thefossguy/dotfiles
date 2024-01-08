@@ -9,15 +9,82 @@
   home = {
     username = "pratham";
     packages = with pkgs; [
-      neovim
-      direnv
+      gawk
+      gnugrep
+      gnused
+      parallel
+      pv
+      python3Minimal
+      rsync
+      tmux
+      tree
+      wol
+
+      dash
+
+      aria2
+      yt-dlp
+
+      bzip2
+      gnutar
+      gzip
+      unzip
+      xz
+      zip
+      zstd
+
+      b4
+      rustup
+
+      clang-tools
+      lldb
+      ruff
+      shellcheck
+      tree-sitter
+
+      btop
+      htop
+      iperf
+
+      #buildah #1. needs to be built for some reason; 2. git is a build requirement
+      fzf
+      picocom
+      podman
+
+      bat
+      broot
+      choose
+      du-dust
+      dua
+      fd
+      ripgrep
+      sd
+      skim
+      zoxide
+
+      nix-output-monitor
     ];
+  };
+
+  # home-manager does not need to overwrite these files in $HOME
+  home.file = {
+    ".bash_profile".enable = false;
+    ".bashrc".enable = false;
+    ".profile".enable = false;
+  };
+
+  programs = {
+    bash = {
+      enable = true;
+      enableCompletion = true;
+    };
+    command-not-found.enable = true;
+    neovim.enable = true;
   };
 
   nix = {
     package = pkgs.nix;
     settings = {
-      trusted-users = [ "root" "pratham" ];
       experimental-features = [ "nix-command" "flakes" ];
     };
   };
