@@ -34,6 +34,7 @@
       zstd
 
       b4
+      gcc # for neovim [plugins]
       rustup
 
       clang-tools
