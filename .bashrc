@@ -76,7 +76,6 @@ alias serialterm='clear && picocom --quiet --baud 115200 /dev/ttyUSB0'
 alias sudo='sudo --preserve-env=PATH env'
 alias unxz='unxz --keep' # override 'unxz' with this to always keep the archive
 alias update="source ${HOME}/.bashrc"
-alias rgvi='rg --hidden --invert-match --ignore-case'
 
 # rsync
 alias custcp="rsync ${RSYNC_OPTIONS}"
@@ -89,8 +88,9 @@ alias ytslow="yt-dlp --config-location ${HOME}/.config/yt-dlp/norm_config --no-p
 
 # ripgrep
 alias rgi='rg --hidden --ignore-case'
-alias rgiv='rg --hidden --invert-match --ignore-case'
 alias rgv='rg --hidden --invert-match'
+alias rgiv='rg --hidden --invert-match --ignore-case'
+alias rgvi='rg --hidden --invert-match --ignore-case'
 
 # these only exist because I need to use 'g{ls,grep}' on macOS
 alias grep="${GNU_GREP} --color=auto"
