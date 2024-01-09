@@ -73,6 +73,7 @@ alias mtr='mtr --show-ips --displaymode 0 -o "LDR AGJMXI"'
 alias nixcheckconf="rsync --fsync ${RSYNC_OPTIONS} --dry-run --checksum ${HOME}/my-git-repos/pratham/prathams-nixos/nixos-configuration/ /etc/nixos/"
 alias prettynixbuild='nix build --log-format internal-json -v . 2>&1 | nom --json'
 alias serialterm='clear && picocom --quiet --baud 115200 /dev/ttyUSB0'
+alias sudo='sudo --preserve-env=PATH env'
 alias unxz='unxz --keep' # override 'unxz' with this to always keep the archive
 alias update="source ${HOME}/.bashrc"
 alias rgvi='rg --hidden --invert-match --ignore-case'
