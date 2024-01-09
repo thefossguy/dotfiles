@@ -49,26 +49,13 @@ function dnf_conf() {
     dnf_conf_inner 'installonly_limit' '20'
     dnf_conf_inner 'max_parallel_downloads' '10'
 }
-function apt_sources() {
-    URL=$1
-    OS=$2
-    VER=$3
-
-    echo "deb ${URL}/${OS} ${VER} main non-free-firmware
-    deb-src ${URL}/${OS} ${VER} main non-free-firmware
-
-    deb ${URL}/${OS}-security ${VER}-security main non-free-firmware
-    deb-src ${URL}/${OS}-security ${VER}-security main non-free-firmware
-
-    deb ${URL}/${OS} ${VER}-updates main non-free-firmware
-    deb-src ${URL}/${OS} ${VER}-updates main non-free-firmware" | sudo tee /etc/apt/sources.list
-}
 
 
 function install_pkgs_debian() {
     PKGS_TO_INSTALL=(
         curl
         git
+        openssh-server
         wget
     )
     sudo apt-get update
@@ -80,14 +67,15 @@ function install_pkgs_fedora() {
     PKGS_TO_INSTALL=(
         appliance-tools
         curl
+        git
         mock
+        openssh-server
         procps-ng
         pykickstart
         rpm-build
         rpmdevtools
         rpmlint
         wget
-        git
     )
     sudo dnf clean expire-cache
     sudo dnf install --assumeyes "${PKGS_TO_INSTALL[@]}"
@@ -156,27 +144,25 @@ function common_setup() {
 }
 
 
-if grep "ID=debian" /etc/os-release > /dev/null; then
-    DEBIAN_VERSION="$(grep VERSION_CODENAME /etc/os-release | awk -F"=" '{print $2}')"
+if grep "ID=debian\|ID=ubuntu" /etc/os-release > /dev/null; then
     function linux_setup() {
-        enable_ssh_daemon_debian
-        apt_sources 'http://deb.debian.org' 'debian' "${DEBIAN_VERSION}"
         install_pkgs_debian
+        enable_ssh_daemon_debian
         common_setup
     }
 elif grep "ID=fedora" /etc/os-release > /dev/null; then
     function linux_setup() {
-        enable_ssh_daemon_fedora
         dnf_conf
         install_pkgs_fedora
+        enable_ssh_daemon_fedora
         common_setup
     }
 elif grep "ID_LIKE=*.rhel*." /etc/os-release > /dev/null; then
     RHEL_VERSION="$(grep VERSION_ID /etc/os-release | awk -F"=" '{print $2}')"
     function linux_setup() {
-        enable_ssh_daemon_fedora
         dnf_conf
         install_pkgs_rhel "${RHEL_VERSION}"
+        enable_ssh_daemon_fedora
         common_setup
     }
 else
