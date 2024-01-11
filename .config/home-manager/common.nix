@@ -100,4 +100,11 @@
       frequency = "daily";
     };
   };
+
+  manual = {
+    html.enable = false;
+    json.enable = false;
+    manpages.enable = false; # no need to re-enable this, '--help' works
+  };
+  news.display = "silent";
 }
