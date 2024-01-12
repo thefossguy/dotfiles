@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+if [[ "$(uname -s)" == 'Linux' ]]; then
+    if grep 'ID=nixos' /etc/os-release > /dev/null; then
+        echo 'You are on NixOS, no need, have a great day, bye!'
+        exit 0
+    fi
+fi
+
 if sudo grep '^#.*NOPASSWD.*' /etc/sudoers > /dev/null; then
     echo 'You forgot to set NOPASSWD.'
     exit 1
@@ -126,10 +133,8 @@ function nix_setup() {
 function home_manager_setup() {
     if [[ ! -f "${HOME}/.config/home-manager/home.nix" ]]; then
         if [[ "$(uname -s)" == 'Linux' ]]; then
-            if ! grep 'ID=nixos' /etc/os-release > /dev/null; then
                 ln -s "${HOME}/.config/home-manager/"{common,home}.nix
                 ln -s "${HOME}/.config/home-manager/"{linux,platform}.nix
-            fi
         elif [[ "$(uname -s)" == 'Darwin' ]]; then
             ln -s "${HOME}/.config/home-manager/"{common,home}.nix
             ln -s "${HOME}/.config/home-manager/"{darwin,platform}.nix
