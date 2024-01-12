@@ -77,6 +77,13 @@ alias sudo='sudo '
 alias unxz='unxz --keep' # override 'unxz' with this to always keep the archive
 alias update="source ${HOME}/.bashrc"
 
+# git
+alias gadd='git add'
+alias gdiff='git --no-pager diff'
+alias gsdiff='git --no-pager diff --staged'
+alias gstat='git status'
+alias gwt='git worktree'
+
 # rsync
 alias custcp="rsync ${RSYNC_OPTIONS}"
 alias fcustcp="rsync --fsync ${RSYNC_OPTIONS}"
