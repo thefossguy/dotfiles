@@ -119,8 +119,18 @@ if command -v batcat > /dev/null; then
 fi
 
 if command -v nvim > /dev/null; then
-    alias vvim="$(command -v vim)"
+    alias e="$(command -v nvim)"
+    if command -v vim > /dev/null; then
+        alias vvim="$(command -v vim)"
+    else
+        alias vvim="$(command -v vi)"
+    fi
     alias vim="$(command -v nvim)"
+elif command -v vim > /dev/null; then
+    alias e="$(command -v vim)"
+elif command -v vi > /dev/null; then
+    alias e="$(command -v vi)"
+    alias vim="$(command -v vi)"
 fi
 
 # PS1 setup
