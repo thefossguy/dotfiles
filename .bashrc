@@ -83,6 +83,12 @@ alias gdiff='git --no-pager diff'
 alias gsdiff='git --no-pager diff --staged'
 alias gstat='git status'
 alias gwt='git worktree'
+# git, but dotfiles
+alias dotfiles="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}"
+alias dotadd="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME} add"
+alias dotdiff="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME} --no-pager diff"
+alias dotsdiff="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME} --no-pager diff --staged"
+alias dotstat="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME} status"
 
 # rsync
 alias custcp="rsync ${RSYNC_OPTIONS}"
