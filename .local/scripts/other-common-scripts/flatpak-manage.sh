@@ -31,7 +31,7 @@ else
     exit 1
 fi
 
-if [[ -x '/run/current-system/sw/bin/flatpak' ]]; then
+if command -v flatpak > /dev/null; then
     flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     flatpak install --user --or-update --assumeyes --noninteractive "${ALL_PKGS[@]}"
     flatpak update --user --assumeyes --noninteractive
