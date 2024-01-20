@@ -20,11 +20,11 @@ AMD_PKGS=(
 ARM_PKGS=()
 RISCV_PKGS=() # lol
 
-if [[ "$(uname -m)" == 'x86_64' ]]; then
+if grep 'x86_64' /proc/sys/kernel/arch > /dev/null; then
     ALL_PKGS=( "${COMMON_PKGS[@]}" "${AMD_PKGS[@]}" )
-elif [[ "$(uname -m)" == 'aarch64' ]]; then
+elif grep 'aarch64' /proc/sys/kernel/arch > /dev/null; then
     ALL_PKGS=( "${COMMON_PKGS[@]}" "${ARM_PKGS[@]}" )
-elif [[ "$(uname -m)" == 'riscv64' ]]; then
+elif grep 'riscv64' /proc/sys/kernel/arch > /dev/null; then
     ALL_PKGS=( "${COMMON_PKGS[@]}" "${RISCV_PKGS[@]}" )
 else
     echo 'Unsupported CPU ISA'
