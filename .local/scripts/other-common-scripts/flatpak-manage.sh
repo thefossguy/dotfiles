@@ -37,12 +37,16 @@ else
 fi
 
 if command -v flatpak > /dev/null; then
-    flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    flatpak install --user --or-update --assumeyes --noninteractive "${ALL_PKGS[@]}"
-    flatpak update --user --assumeyes --noninteractive
-    flatpak uninstall --user --unused --assumeyes --noninteractive --delete-data
-    flatpak repair --user
+    FLATPAK_BIN="$(command -v flatpak)"
+elif [[ -x '/run/current-system/sw/bin/flatpak' ]]; then
+    FLATPAK_BIN='/run/current-system/sw/bin/flatpak'
 else
     echo 'Flatpak not found, exiting cleanly nonetheless'
     exit 0
 fi
+
+${FLATPAK_BIN} remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+${FLATPAK_BIN} install --user --or-update --assumeyes --noninteractive "${ALL_PKGS[@]}"
+${FLATPAK_BIN} update --user --assumeyes --noninteractive
+${FLATPAK_BIN} uninstall --user --unused --assumeyes --noninteractive --delete-data
+${FLATPAK_BIN} repair --user
