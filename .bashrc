@@ -52,6 +52,14 @@ path_add "${HOME}/.cargo/bin"
 path_add "${HOME}/.local/bin"
 export PATH
 
+function list_open_ports() {
+    if [[ -n "$1" ]]; then
+        nc -z -v "$1" 1-65535 2>&1 | grep -v 'Connection refused'
+    else
+        echo 'Please provide an [IP] address.'
+    fi
+}
+
 # alias wrappers to call scripts
 SCRIPTS_DIR="${HOME}/.local/scripts/other-common-scripts"
 alias debextract="${SCRIPTS_DIR}/extract-deb-pkg.sh"
