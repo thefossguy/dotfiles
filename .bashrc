@@ -44,6 +44,7 @@ elif [[ "$(uname -s)" == 'Darwin' ]]; then
 
     alias ktb='sudo pkill TouchBarServer; sudo killall ControlStrip'
     alias mpv='mpv --vo=libmpv'
+    alias ownefivars="chmod +uw ${HOME}/Library/Containers/com.utmapp.UTM/Data/Documents/*.utm/Data/efi_vars.fd"
 
     path_add '/usr/local/bin'
 fi
