@@ -61,6 +61,18 @@ function list_open_ports() {
     fi
 }
 
+function tty_serial() {
+    if [[ -n "$1" ]]; then
+        if [[ -n "$2" ]]; then
+            picocom --quiet --baud "$2" "/dev/ttyUSB$1"
+        else
+            picocom --quiet --baud 115200 "/dev/ttyUSB$1"
+        fi
+    else
+        picocom --quiet --baud 115200 /dev/ttyUSB0
+    fi
+}
+
 # alias wrappers to call scripts
 SCRIPTS_DIR="${HOME}/.local/scripts/other-common-scripts"
 alias debextract="${SCRIPTS_DIR}/extract-deb-pkg.sh"
@@ -81,7 +93,7 @@ alias drivetemp='hdparm -CH'
 alias mtr='mtr --show-ips --displaymode 0 -o "LDR AGJMXI"'
 alias nixcheckconf="rsync --fsync ${RSYNC_OPTIONS} --dry-run --checksum ${HOME}/my-git-repos/pratham/prathams-nixos/nixos-configuration/ /etc/nixos/"
 alias prettynixbuild='nix build --log-format internal-json -v . 2>&1 | nom --json'
-alias serialterm='clear && picocom --quiet --baud 115200 /dev/ttyUSB0'
+alias serialterm="tty_serial"
 alias sudo='sudo '
 alias unxz='unxz --keep' # override 'unxz' with this to always keep the archive
 alias update="source ${HOME}/.bashrc"
