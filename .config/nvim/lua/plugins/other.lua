@@ -1,4 +1,21 @@
-require('autoclose').setup({})
+require('autoclose').setup({
+  keys = {
+    -- LEGEND:
+    -- close: toggle autoclosing
+    -- escape: useful when pair consists of the same characters; when pressed
+    --         twice, escape the sequence of pairs instead of **nesting**
+    --         (disabled): pressing ** would result in **<cursor>** (nesting)
+    --         (enabled): pressing ** would result in **<cursor> (!nesting)
+
+    -- disable autoclosing of single quotes; this is insanity!
+    ["'"] = { close = false, escape = false, pair = "''" },
+
+    -- specific to markdown
+    ['*'] = { close = true, escape = false, pair = '**', enabled_filetypes = { 'markdown' } },
+    ['_'] = { close = true, escape = false, pair = '__', enabled_filetypes = { 'markdown' } },
+    ['~'] = { close = true, escape = false, pair = '~~', enabled_filetypes = { 'markdown' } },
+  },
+})
 require('ibl').setup({})
 
 require('Comment').setup({
