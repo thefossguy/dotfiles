@@ -82,6 +82,7 @@
     command-not-found.enable = true;
     direnv = {
       enable = true;
+      package = pkgs.nix-direnv;
       enableBashIntegration = true;
     };
     neovim.enable = true;
