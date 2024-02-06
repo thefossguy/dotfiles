@@ -26,7 +26,7 @@ set -xeuf -o pipefail
 
 
 function enable_ssh_daemon_common() {
-    if [[ "$(sudo systemctl is-enabled $"1.service")" != 'enabled' ]]; then
+    if [[ "$(sudo systemctl is-enabled "$1.service")" != 'enabled' ]]; then
         sudo systemctl enable --now "$1.service"
     fi
 }
