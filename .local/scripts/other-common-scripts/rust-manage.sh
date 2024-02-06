@@ -2,7 +2,8 @@
 
 set -xeuf
 
-if ! command -v rustup > /dev/null; then
+RUSTUP_BIN="${1:-$(command -v rustup)}"
+if [ -z "${RUSTUP_BIN}" ]; then
     >&2 echo 'No rustup? What are you, a monster?'
     exit 1
 fi
@@ -15,16 +16,16 @@ if [ "$(uname -s)" = 'Linux' ]; then
     fi
 fi
 
-rustup default stable
-rustup update stable
-rustup component add rust-src rust-analysis rust-analyzer clippy
+${RUSTUP_BIN} default stable
+${RUSTUP_BIN} update stable
+${RUSTUP_BIN} component add rust-src rust-analysis rust-analyzer clippy
 
 if echo "${SHELL}" | grep 'bash' > /dev/null; then
     mkdir -p "${HOME}/.local/share/bash-completion/completions"
-    rustup completions bash > "${HOME}/.local/share/bash-completion/completions/rustup"
-    rustup completions bash cargo > "${HOME}/.local/share/bash-completion/completions/cargo"
+    ${RUSTUP_BIN} completions bash > "${HOME}/.local/share/bash-completion/completions/rustup"
+    ${RUSTUP_BIN} completions bash cargo > "${HOME}/.local/share/bash-completion/completions/cargo"
 elif echo "${SHELL}" | grep 'fish' > /dev/null; then
     mkdir -p "${HOME}/.config/fish/completions"
-    rustup completions fish > "${HOME}/.config/fish/completions/rustup.fish"
-    rustup completions fish cargo > "${HOME}/.config/fish/completions/cargo.fish"
+    ${RUSTUP_BIN} completions fish > "${HOME}/.config/fish/completions/rustup.fish"
+    ${RUSTUP_BIN} completions fish cargo > "${HOME}/.config/fish/completions/cargo.fish"
 fi
