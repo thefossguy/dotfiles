@@ -142,10 +142,14 @@ function home_manager_setup() {
     fi
     /nix/var/nix/profiles/default/bin/nix-shell '<home-manager>' -A install
 }
+function run_rustup() {
+    "${HOME}"/.local/scripts/other-common-scripts/rust-manage.sh "${HOME}"/.nix-profile/bin/rustup
+}
 function common_setup() {
     install_dotfiles
     nix_setup
     home_manager_setup
+    run_rustup
 }
 
 
