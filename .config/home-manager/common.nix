@@ -34,14 +34,7 @@
       zstd
 
       b4
-      gcc # for neovim [plugins]
       rustup
-
-      clang-tools
-      lldb
-      ruff
-      shellcheck
-      tree-sitter
 
       btop
       htop
@@ -85,7 +78,20 @@
       enableBashIntegration = true;
       nix-direnv.enable = true;
     };
-    neovim.enable = true;
+    neovim = {
+      enable = true;
+      extraPackages = with pkgs; [
+        clang-tools # provides clangd
+        gcc # for nvim-tree's parsers
+        lldb # provides lldb-vscode
+        lua-language-server
+        nil # language server for Nix
+        nodePackages.bash-language-server
+        ruff
+        shellcheck
+        tree-sitter # otherwise nvim complains that the binary 'tree-sitter' is not found
+      ];
+    };
   };
 
   nix = {
