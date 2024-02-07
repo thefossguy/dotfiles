@@ -51,6 +51,7 @@ fi
 
 path_add "${HOME}/.cargo/bin"
 path_add "${HOME}/.local/bin"
+path_add '/sbin'
 export PATH
 
 function list_open_ports() {
