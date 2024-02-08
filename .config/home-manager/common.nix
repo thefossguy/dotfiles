@@ -86,6 +86,7 @@
         lldb # provides lldb-vscode
         lua-language-server
         nil # language server for Nix
+        nixpkgs-fmt
         nodePackages.bash-language-server
         ruff
         shellcheck
