@@ -54,7 +54,7 @@ function dnf_conf() {
 
     dnf_conf_inner 'exit_on_lock' 'True'
     dnf_conf_inner 'installonly_limit' '20'
-    dnf_conf_inner 'max_parallel_downloads' '10'
+    dnf_conf_inner 'max_parallel_downloads' '20'
 }
 
 
