@@ -125,22 +125,25 @@ function nix_setup() {
         fi
 
         "${HOME}/.detsys-nix/nix-installer" install linux --no-confirm
-        /nix/var/nix/profiles/default/bin/nix-channel --add 'https://nixos.org/channels/nixos-unstable' nixos
-        /nix/var/nix/profiles/default/bin/nix-channel --add 'https://github.com/nix-community/home-manager/archive/master.tar.gz' home-manager
-        /nix/var/nix/profiles/default/bin/nix-channel --update
     fi
 }
 function home_manager_setup() {
-    if [[ ! -f "${HOME}/.config/home-manager/home.nix" ]]; then
-        if [[ "$(uname -s)" == 'Linux' ]]; then
-                ln -s "${HOME}/.config/home-manager/"{common,home}.nix
-                ln -s "${HOME}/.config/home-manager/"{linux,platform}.nix
-        elif [[ "$(uname -s)" == 'Darwin' ]]; then
-            ln -s "${HOME}/.config/home-manager/"{common,home}.nix
-            ln -s "${HOME}/.config/home-manager/"{darwin,platform}.nix
-        fi
+    if ! command -v home-manager > /dev/null; then
+        # pushd-ing because otherwise the flake.nix points to
+        # '/home/pratham/.config/home-manager/hm.flake.nix' but home-manager,
+        # for some reason does not like it; probably because it assumes the
+        # source to be **outside of $HOME**; so make it point to './<file>'
+        pushd "${HOME}/.config/home-manager"
+        [[ ! -f 'flake.nix' ]] && ln -s {hm.,}flake.nix
+        [[ ! -f 'home.nix' ]] && ln -s {common,home}.nix
+        popd
+
+        # PATH needs to be modified temporarily
+        # otherwise you get a 'command not found' error like this
+        # /nix/store/bpdrgm43y8mgjd5g6q13yfydj9057gly-home-manager/bin/home-manager: line 510: nix-build: command not found
+        export PATH="${HOME}/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
+        nix run home-manager/master -- init --switch
     fi
-    /nix/var/nix/profiles/default/bin/nix-shell '<home-manager>' -A install
 }
 function run_rustup() {
     "${HOME}"/.local/scripts/other-common-scripts/rust-manage.sh "${HOME}"/.nix-profile/bin/rustup
