@@ -1,6 +1,10 @@
 { config, lib, pkgs, ... }:
+let
+  me = "pratham";
+in
 
 {
-  home.homeDirectory = "/home/pratham";
+  home.username = "${me}";
+  home.homeDirectory = "/home/${me}";
   targets.genericLinux.enable = true;
 }

@@ -1,13 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./platform.nix ];
-
-  home.stateVersion = "24.05";
   programs.home-manager.enable = true;
 
   home = {
-    username = "pratham";
     packages = with pkgs; [
       gawk
       gnugrep

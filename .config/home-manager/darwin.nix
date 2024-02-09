@@ -1,7 +1,11 @@
 { config, lib, pkgs, ... }:
+let
+  me = "pratham";
+in
 
 {
-  home.homeDirectory = "/Users/pratham";
+  home.username = "${me}";
+  home.homeDirectory = "/Users/${me}";
 
   targets.darwin = {
     currentHostDefaults = {
