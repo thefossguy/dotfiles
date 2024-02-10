@@ -41,7 +41,7 @@ if [[ "$(uname -s)" == 'Linux' ]]; then
     # source the vars only if we are not on NixOS
     if ! grep 'ID=nixos' /etc/os-release > /dev/null; then
         [[ -f "${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh" ]] && \
-            "${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh"
+            source "${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh"
     fi
 
 elif [[ "$(uname -s)" == 'Darwin' ]]; then
