@@ -7,6 +7,10 @@ if [[ "${EUID}" -ne 0 ]]; then
     exit 1
 fi
 
+if [[ -z "${1:-}" ]]; then
+    echo 'USAGE: <image> <uboot> <seek> <bs> <dev>'
+fi
+
 IMAGE="$1"
 UBOOT="$2"
 SEEK="$3"
