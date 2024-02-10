@@ -29,8 +29,8 @@ fi
 # shellcheck disable=SC1090
 source <(grep ID /etc/os-release)
 MARCH="$(uname -m)"
-DNF_RELEASEVER="$(dnf config-manager --dump-variables | grep 'releasever' | head -n 1 | awk '{print $3}')"
-MOCK_ROOT="$ID-$DNF_RELEASEVER-$MARCH"
+VERSION_ID="$(source <(grep VERSION_ID /etc/os-release) && awk -F '.' '{print $1}' <<< $VERSION_ID)"
+MOCK_ROOT="$ID-$VERSION_ID-$MARCH"
 MOCK_OUT="$HOME/mockbuild/out"
 
 if [[ ! -d "/var/lib/mock/$MOCK_ROOT" ]]; then
