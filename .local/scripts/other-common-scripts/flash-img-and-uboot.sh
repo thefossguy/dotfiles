@@ -9,6 +9,7 @@ fi
 
 if [[ -z "${1:-}" ]]; then
     echo 'USAGE: <image> <uboot> <seek> <bs> <dev>'
+    exit 1
 fi
 
 IMAGE="$1"
