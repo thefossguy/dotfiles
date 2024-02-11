@@ -93,6 +93,7 @@
 
   nix = {
     package = pkgs.nix;
+    checkConfig = true;
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
     };
