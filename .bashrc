@@ -114,7 +114,7 @@ alias gstat='git status'
 alias gwt='git worktree'
 # git, but dotfiles
 alias dotfiles="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}"
-alias dotadd="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME} add"
+alias dotadd="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME} add -f"
 alias dotdiff="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME} --no-pager diff"
 alias dotsdiff="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME} --no-pager diff --staged"
 alias dot0diff="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME} --no-pager diff --unified=0"
