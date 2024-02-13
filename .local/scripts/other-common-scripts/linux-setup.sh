@@ -62,7 +62,7 @@ function install_pkgs_debian() {
     PKGS_TO_INSTALL=(
         curl
         git
-        openssh-server
+        vim
         wget
     )
     sudo apt-get update
@@ -76,7 +76,6 @@ function install_pkgs_fedora() {
         curl
         git
         mock
-        openssh-server
         procps-ng
         pykickstart
         rpm-build

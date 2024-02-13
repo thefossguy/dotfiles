@@ -25,3 +25,5 @@
     showEmail = true
 [log]
     date = iso8601
+[advice]
+    addIgnoredFile = false
