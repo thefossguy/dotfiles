@@ -55,8 +55,8 @@ elif [[ "$(uname -s)" == 'Darwin' ]]; then
     path_add '/usr/local/bin'
 fi
 
-path_add "${HOME}/.cargo/bin"
-path_add "${HOME}/.local/bin"
+mkdir -p "${HOME}/.cargo/bin" && path_add "${HOME}/.cargo/bin"
+mkdir -p "${HOME}/.local/bin" && path_add "${HOME}/.local/bin"
 path_add '/sbin'
 export PATH
 
