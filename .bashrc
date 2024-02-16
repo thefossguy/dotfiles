@@ -42,6 +42,10 @@ if [[ "$(uname -s)" == 'Linux' ]]; then
     if ! grep 'ID=nixos' /etc/os-release > /dev/null; then
         [[ -f "${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh" ]] && \
             source "${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh"
+    elif grep 'debian' /etc/os-release > /dev/null; then
+        export NEEDRESTART_MODE='a'
+        export DEBIAN_FRONTEND='noninteractive'
+        export APT_LISTCHANGES_FRONTEND='none'
     fi
 
 elif [[ "$(uname -s)" == 'Darwin' ]]; then
