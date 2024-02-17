@@ -20,6 +20,7 @@
 .config/GNOME-xdg-terminals.list
 .config/gtk-3.0/bookmarks
 .config/home-manager/flake.*
+.config/home-manager/home.nix
 .config/htop/*
 .config/ibus/*
 .config/libvirt/qemu.conf
