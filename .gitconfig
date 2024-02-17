@@ -8,6 +8,7 @@
     signingkey = ~/.ssh/git
 [commit]
     gpgsign = true
+    verbose = true
 [color]
     ui = auto
 [init]
