@@ -34,19 +34,17 @@ HDA="$2"
 CDR="$3"
 
 [ -d "${HOME}/.vms" ] || mkdir "${HOME}/.vms"
-if [ ! -f "${HOME}/.vms/result/u-boot.bin" ]; then
-    if [ "$(uname -m)" == 'aarch64' ]; then
-        NIX_UBOOT_ARCH='Aarch64'
-        QEMU_MACHINE='virt'
-    elif [ "$(uname -m)" == 'x86_64' ]; then
-        NIX_UBOOT_ARCH='X86'
-        QEMU_MACHINE='pc'
-    fi
-    NIX_UBOOT_PKG="nixpkgs#ubootQemu${NIX_UBOOT_ARCH}"
-    pushd "${HOME}/.vms"
-    nix build "${NIX_UBOOT_PKG}"
-    popd
+pushd "${HOME}/.vms"
+if [ "$(uname -m)" == 'aarch64' ]; then
+    NIX_UBOOT_ARCH='Aarch64'
+    QEMU_MACHINE='virt'
+elif [ "$(uname -m)" == 'x86_64' ]; then
+    NIX_UBOOT_ARCH='X86'
+    QEMU_MACHINE='pc'
 fi
+NIX_UBOOT_PKG="nixpkgs#ubootQemu${NIX_UBOOT_ARCH}"
+nix build "${NIX_UBOOT_PKG}"
+popd
 
 QEMU_COMMON="--all-tasks --cpu-list 4-7 \
     qemu-kvm \
