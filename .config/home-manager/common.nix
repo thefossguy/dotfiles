@@ -16,6 +16,8 @@
       tree
       wol
 
+      qemu_kvm
+
       dash
 
       aria2
