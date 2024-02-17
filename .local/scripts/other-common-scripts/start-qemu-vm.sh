@@ -7,6 +7,17 @@ set -xef -o pipefail
 # $2: disk image
 # $3: ISO
 
+if [ ! -c '/dev/kvm' ]; then
+    echo 'ERROR: /dev/kvm does not exist, no KVM accel'
+    exit 1
+else
+    if ! groups | grep kvm > /dev/null; then
+        # shellcheck disable=SC2016
+        echo 'ERROR: sudo usermod -aG kvm $USER'
+        exit 1
+    fi
+fi
+
 if [ -z "$1" ]; then
     echo "ERROR: expecting a binding port for SSH"
     exit 1
@@ -26,8 +37,10 @@ CDR="$3"
 if [ ! -f "${HOME}/.vms/result/u-boot.bin" ]; then
     if [ "$(uname -m)" == 'aarch64' ]; then
         NIX_UBOOT_ARCH='Aarch64'
+        QEMU_MACHINE='virt'
     elif [ "$(uname -m)" == 'x86_64' ]; then
         NIX_UBOOT_ARCH='X86'
+        QEMU_MACHINE='pc'
     fi
     NIX_UBOOT_PKG="nixpkgs#ubootQemu${NIX_UBOOT_ARCH}"
     pushd "${HOME}/.vms"
@@ -37,7 +50,7 @@ fi
 
 QEMU_COMMON="--all-tasks --cpu-list 4-7 \
     qemu-kvm \
-        -machine virt \
+        -machine ${QEMU_MACHINE} \
         -cpu host \
         -smp 4,sockets=1,cores=4,threads=1 \
         -accel kvm \
