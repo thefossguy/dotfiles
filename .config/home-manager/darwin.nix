@@ -1,9 +1,6 @@
-{ config, lib, pkgs, whoAmI, ... }:
+{ config, lib, pkgs, ... }:
 
 {
-  home.username = "${whoAmI}";
-  home.homeDirectory = "/Users/${whoAmI}";
-
   targets.darwin = {
     currentHostDefaults = {
       "com.apple.controlcenter".BatteryShowPercentage = true;

@@ -1,4 +1,13 @@
-{ config, lib, pkgs, OVMFPkg, OVMFBinName, ... }:
+{ config, lib, pkgs, ... }:
+
+let
+  OVMFPkg = (pkgs.OVMF.override{
+    secureBoot = true;
+    tpmSupport = true;
+    }).fd;
+  OVMFBinName = if pkgs.stdenv.isAarch64 then "AAVMF"
+    else "OVMF";
+in
 
 {
   programs.home-manager.enable = true;

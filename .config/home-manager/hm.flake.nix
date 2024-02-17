@@ -14,15 +14,6 @@
           inherit system;
           config.allowUnfree = true;
         };
-        OVMFPkg = (pkgs.OVMF.override{
-          secureBoot = true;
-          tpmSupport = true;
-          }).fd;
-        OVMFBinName = if pkgs.stdenv.isAarch64 then "AAVMF"
-          else (
-            if pkgs.stdenv.isx86_64 then "OVMF"
-            else ""
-          );
         whoAmI = "pratham";
       in
       {
@@ -30,10 +21,15 @@
           "${whoAmI}" = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             modules = [
-              ./home.nix OVMFPkg OVMFBinName
-              (if pkgs.stdenv.isLinux then ./linux.nix whoAmI else ./darwin.nix whoAmI)
+              ./home.nix
+              (if pkgs.stdenv.isLinux then ./linux.nix else ./darwin.nix)
               {
-                home.stateVersion = "23.11";
+                home = {
+                  stateVersion = "23.11";
+                  username = "${whoAmI}";
+                  homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${whoAmI}"
+                    else "/home/${whoAmI}";
+                };
               }
             ];
           };

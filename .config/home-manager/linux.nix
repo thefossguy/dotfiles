@@ -1,11 +1,9 @@
-{ config, lib, pkgs, whoAmI, ... }:
+{ config, lib, pkgs, ... }:
 
 {
-  home.username = "${whoAmI}";
-  home.homeDirectory = "/home/${whoAmI}";
   targets.genericLinux.enable = true;
 
-  environment.systemPackages = with pkgs; [
+  home.packages = with pkgs; [
     virt-manager
     libvirt
   ];
