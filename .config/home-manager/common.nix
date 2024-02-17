@@ -1,5 +1,17 @@
 { config, lib, pkgs, ... }:
 
+let
+  OVMFPkg = (pkgs.OVMF.override{
+    secureBoot = true;
+    tpmSupport = true;
+    }).fd;
+  OVMFBinName = if pkgs.stdenv.isAarch64 then "AAVMF"
+    else (
+      if pkgs.stdenv.isx86_64 then "OVMF"
+      else ""
+    );
+in
+
 {
   programs.home-manager.enable = true;
 
@@ -90,6 +102,15 @@
         shellcheck
         tree-sitter # otherwise nvim complains that the binary 'tree-sitter' is not found
       ];
+    };
+  };
+
+  xdg.configFile = {
+    "libvirt/qemu.conf" = {
+      enable = true;
+      text = ''
+        nvram = [ "${OVMFPkg}/FV/${OVMFBinName}_CODE.fd:${OVMFPkg}/FV/${OVMFBinName}_VARS.fd" ]
+      '';
     };
   };
 
