@@ -24,6 +24,7 @@
 .config/htop/*
 .config/ibus/*
 .config/libvirt/qemu.conf
+.config/libvirt/storage/*
 .config/nix/*
 .config/nvim/lazy-lock.json
 .config/pulse/*
