@@ -33,18 +33,17 @@ HOST_PORT="$1"
 HDA="$2"
 CDR="$3"
 
-[ -d "${HOME}/.vms" ] || mkdir "${HOME}/.vms"
-pushd "${HOME}/.vms"
 if [ "$(uname -m)" == 'aarch64' ]; then
-    NIX_UBOOT_ARCH='Aarch64'
+    [[ -d "${HOME}/.vms" ]] || mkdir "${HOME}/.vms"
+    pushd "${HOME}/.vms"
+    nix build 'nixpkgs#ubootQemuAarch64'
+    popd
     QEMU_MACHINE='virt'
+    BIOS="-bios ${HOME}/.vms/result/u-boot.bin"
 elif [ "$(uname -m)" == 'x86_64' ]; then
-    NIX_UBOOT_ARCH='X86'
     QEMU_MACHINE='pc'
+    BIOS=''
 fi
-NIX_UBOOT_PKG="nixpkgs#ubootQemu${NIX_UBOOT_ARCH}"
-nix build "${NIX_UBOOT_PKG}"
-popd
 
 QEMU_COMMON="--all-tasks --cpu-list 4-7 \
     qemu-kvm \
@@ -54,7 +53,7 @@ QEMU_COMMON="--all-tasks --cpu-list 4-7 \
         -accel kvm \
         -m 8192 \
         -nographic \
-        -bios ${HOME}/.vms/result/u-boot.bin \
+        ${BIOS} \
         -sandbox on \
         -netdev user,id=mynet0,hostfwd=tcp::${HOST_PORT}-:22 \
         -device virtio-net-pci,netdev=mynet0"
