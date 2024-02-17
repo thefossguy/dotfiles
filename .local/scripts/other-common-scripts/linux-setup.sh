@@ -194,3 +194,4 @@ fi
 
 
 linux_setup
+rm -v "$(dirname "$0")/$0"
