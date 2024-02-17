@@ -42,7 +42,8 @@ if [ "$(uname -m)" == 'aarch64' ]; then
     BIOS="-bios ${HOME}/.vms/result/u-boot.bin"
 elif [ "$(uname -m)" == 'x86_64' ]; then
     QEMU_MACHINE='pc'
-    BIOS=''
+    BIOS="-drive file=${HOME}/.local/share/edk2/EDKII_CODE,if=pflash,format=raw,unit=0,readonly=on \
+          -drive file=${HOME}/.local/share/edk2/EDKII_VARS,if=pflash,format=raw,unit=1"
 fi
 
 QEMU_COMMON="--all-tasks --cpu-list 4-7 \
