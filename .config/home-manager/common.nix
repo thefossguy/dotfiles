@@ -1,16 +1,4 @@
-{ config, lib, pkgs, ... }:
-
-let
-  OVMFPkg = (pkgs.OVMF.override{
-    secureBoot = true;
-    tpmSupport = true;
-    }).fd;
-  OVMFBinName = if pkgs.stdenv.isAarch64 then "AAVMF"
-    else (
-      if pkgs.stdenv.isx86_64 then "OVMF"
-      else ""
-    );
-in
+{ config, lib, pkgs, OVMFPkg, OVMFBinName, ... }:
 
 {
   programs.home-manager.enable = true;
@@ -105,6 +93,30 @@ in
     };
   };
 
+  # for raw QEMU VMs
+  home.activation = {
+    OVMFActivation = lib.hm.dag.entryAfter [ "installPackages" ] (if pkgs.stdenv.isx86_64 then ''
+        EDKII_CODE_NIX="${OVMFPkg}/FV/${OVMFBinName}_CODE.fd"
+        EDKII_VARS_NIX="${OVMFPkg}/FV/${OVMFBinName}_VARS.fd"
+
+        EDKII_DIR_HOME="$HOME/.local/share/edk2"
+        EDKII_CODE_HOME="$EDKII_DIR_HOME/EDKII_CODE"
+        EDKII_VARS_HOME="$EDKII_DIR_HOME/EDKII_VARS"
+
+        if [ -d "$EDKII_DIR_HOME" ]; then
+            rm -rf "$EDKII_DIR_HOME"
+        fi
+        mkdir -vp "$EDKII_DIR_HOME"
+
+        cp "$EDKII_CODE_NIX" "$EDKII_CODE_HOME"
+        cp "$EDKII_VARS_NIX" "$EDKII_VARS_HOME"
+
+        chown pratham:pratham "$EDKII_CODE_HOME" "$EDKII_VARS_HOME"
+        chmod 644 "$EDKII_CODE_HOME" "$EDKII_VARS_HOME"
+      '' else "");
+  };
+
+  # for libvirt, virt-manager, virsh
   xdg.configFile = {
     "libvirt/qemu.conf" = {
       enable = true;

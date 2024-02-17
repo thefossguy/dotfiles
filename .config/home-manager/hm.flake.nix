@@ -14,14 +14,24 @@
           inherit system;
           config.allowUnfree = true;
         };
+        OVMFPkg = (pkgs.OVMF.override{
+          secureBoot = true;
+          tpmSupport = true;
+          }).fd;
+        OVMFBinName = if pkgs.stdenv.isAarch64 then "AAVMF"
+          else (
+            if pkgs.stdenv.isx86_64 then "OVMF"
+            else ""
+          );
+        whoAmI = "pratham";
       in
       {
         packages.homeConfigurations = {
-          "pratham" = home-manager.lib.homeManagerConfiguration {
+          "${whoAmI}" = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             modules = [
-              ./home.nix
-              (if pkgs.stdenv.isLinux then ./linux.nix else ./darwin.nix)
+              ./home.nix OVMFPkg OVMFBinName
+              (if pkgs.stdenv.isLinux then ./linux.nix whoAmI else ./darwin.nix whoAmI)
               {
                 home.stateVersion = "23.11";
               }

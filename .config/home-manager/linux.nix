@@ -1,12 +1,14 @@
-{ config, lib, pkgs, ... }:
-let
-  me = "pratham";
-in
+{ config, lib, pkgs, whoAmI, ... }:
 
 {
-  home.username = "${me}";
-  home.homeDirectory = "/home/${me}";
+  home.username = "${whoAmI}";
+  home.homeDirectory = "/home/${whoAmI}";
   targets.genericLinux.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    virt-manager
+    libvirt
+  ];
 
   systemd.user = {
     timers = {
