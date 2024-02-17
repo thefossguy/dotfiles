@@ -19,16 +19,19 @@
 .config/fish/*
 .config/GNOME-xdg-terminals.list
 .config/gtk-3.0/bookmarks
+.config/home-manager/flake.*
 .config/home-manager/home.nix
 .config/home-manager/platform.nix
 .config/htop/*
 .config/ibus/*
+.config/nix/*
 .config/nvim/lazy-lock.json
 .config/pulse/*
 .config/startkderc
 .config/systemd/*
 .config/user-dirs.dirs
 .config/xdg-terminals.list
+.detsys-nix/*
 .dotfiles/*
 .DS_Store
 .lesshst
@@ -43,6 +46,7 @@
 .rustup/*
 .Spotlight-V100
 .ssh/*
+.sudo_as_admin_successful
 .Trashes
 .viminfo
 .vms/*
