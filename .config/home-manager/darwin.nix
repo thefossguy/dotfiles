@@ -37,5 +37,5 @@
     };
   };
 
-  services.caffeinate.enable = true;
+  services.caffeine.enable = true;
 }
