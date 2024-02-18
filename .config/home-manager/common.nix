@@ -143,13 +143,6 @@ in
     };
   };
 
-  services = {
-    home-manager.autoUpgrade = {
-      enable = true;
-      frequency = "daily";
-    };
-  };
-
   manual = {
     html.enable = false;
     json.enable = false;
