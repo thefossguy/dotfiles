@@ -32,10 +32,6 @@
     ghc
     rustup # provides rustfmt, cargo-clippy, rustup, cargo, rust-lldb, rust-analyzer, rustc, rust-gdb, cargo-fmt
 
-    # dealing with other distro's packages
-    dpkg
-    rpm
-
     # network monitoring
     iperf # this is iperf3
     iperf2 # this is what is usually 'iperf' on other distros
@@ -47,10 +43,7 @@
     asciinema
     #buildah # 1. needs to be built for some reason; 2. git is a build requirement
     fzf
-    parted
     picocom
-    ubootTools
-    ventoy
 
     # utilities written in Rust
     choose

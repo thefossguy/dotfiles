@@ -15,6 +15,15 @@ in
     smartmontools
     wol
 
+    # dealing with other distro's packages
+    dpkg
+    rpm
+
+    # other utilities
+    parted
+    ubootTools
+    ventoy
+
     # virtualisation
     libvirt
     qemu_kvm
