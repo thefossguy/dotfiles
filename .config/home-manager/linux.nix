@@ -4,6 +4,7 @@
   targets.genericLinux.enable = true;
 
   home.packages = with pkgs; [
+    wol
     virt-manager
     libvirt
   ];

@@ -23,7 +23,6 @@ in
       rsync
       tmux
       tree
-      wol
 
       qemu_kvm
 
