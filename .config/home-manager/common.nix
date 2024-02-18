@@ -1,60 +1,11 @@
 { config, lib, pkgs, ... }:
 
 {
-  programs.home-manager.enable = true;
+  home.packages = with pkgs; [
+  ];
 
-  home = {
-    packages = with pkgs; [
-      gawk
-      gnugrep
-      gnused
-      parallel
-      pv
-      python3Minimal
-      rsync
-      tmux
-      tree
-
-      qemu_kvm
-
-      dash
-
-      aria2
-      yt-dlp
-
-      bzip2
-      gnutar
-      gzip
-      unzip
-      xz
-      zip
-      zstd
-
-      b4
-      rustup
-
-      btop
-      htop
-      iperf
-
-      #buildah #1. needs to be built for some reason; 2. git is a build requirement
-      fzf
-      picocom
-      podman
-
-      bat
-      broot
-      choose
-      du-dust
-      dua
-      fd
-      ripgrep
-      sd
-      skim
-      zoxide
-
-      nix-output-monitor
-    ];
+  programs = {
+    home-manager.enable = true;
   };
 
   # home-manager does not need to overwrite these files in $HOME

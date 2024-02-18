@@ -10,12 +10,7 @@ let
 in
 
 {
-  targets.genericLinux.enable = true;
-
   home.packages = with pkgs; [
-    libvirt
-    virt-manager
-    wol
   ];
 
   systemd.user = {
@@ -95,4 +90,6 @@ in
       '';
     };
   };
+
+  targets.genericLinux.enable = true;
 }
