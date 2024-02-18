@@ -36,6 +36,4 @@
       "^\Uf703" = "moveWordRight:"; # Ctrl-<Right>
     };
   };
-
-  services.caffeine.enable = true;
 }
