@@ -2,7 +2,49 @@
 
 {
   home.packages = with pkgs; [
+    # base system packages + packages what I *need*
+    coreutils-prefixed
+    gawk
+    gnugrep
+    gnused
+
+    # for media consumption, manipulation and metadata info
+    ffmpeg
+    imagemagick
+    mediainfo
+
+    # GUI apps
+    meld
+    utm
+
+    # fonts
+    (nerdfonts.override {
+      fonts = [
+        "FiraCode"
+        "Overpass"
+        "SourceCodePro"
+      ];
+    })
   ];
+
+  programs = {
+    mpv.enable = true;
+    alacritty.enable = true;
+    tmux.enable = true;
+    bash = {
+      enable = true;
+      enableCompletion = true;
+    };
+  };
+
+  # home-manager does not need to overwrite these files in $HOME
+  xdg.configFile = {
+  };
+  home.file = {
+    ".bash_profile".enable = false;
+    ".bashrc".enable = false;
+    ".profile".enable = false;
+  };
 
   targets.darwin = {
     currentHostDefaults = {

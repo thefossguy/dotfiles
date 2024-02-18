@@ -11,6 +11,14 @@ in
 
 {
   home.packages = with pkgs; [
+    # base system packages + packages what I *need*
+    smartmontools
+    wol
+
+    # virtualisation
+    libvirt
+    qemu_kvm
+    virt-manager
   ];
 
   systemd.user = {
