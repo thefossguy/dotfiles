@@ -24,6 +24,8 @@ fi
 
 set -xeuf -o pipefail
 
+export REAL_USER="$USER"
+
 
 function enable_ssh_daemon_common() {
     if [[ "$(sudo systemctl is-enabled "$1.service")" != 'enabled' ]]; then
@@ -44,7 +46,6 @@ function darwin_init_setup() {
         # shellcheck disable=SC2034
         read -r WAIT_FOR_XCODE_SELECT
     fi
-
 }
 function dnf_conf() {
     function dnf_conf_inner() {
@@ -87,7 +88,6 @@ function install_pkgs_debian() {
     sudo apt-get upgrade --assume-yes
 }
 function install_pkgs_fedora() {
-    REAL_USER="$USER"
     PKGS_TO_INSTALL=(
         appliance-tools
         curl
@@ -172,12 +172,21 @@ function home_manager_setup() {
 function run_rustup() {
     "${HOME}"/.local/scripts/other-common-scripts/rust-manage.sh "${HOME}"/.nix-profile/bin/rustup
 }
+function chsh_to_bash() {
+    if [[ "$(uname -s)" == 'Darwin' ]]; then
+        BREW_BASH="$(brew --prefix)/bin/bash"
+
+        echo "${BREW_BASH}" | sudo tee -a /etc/shells
+        sudo chsh -s "${BREW_BASH}" "${REAL_USER}"
+    fi
+}
 function common_setup() {
     install_dotfiles
     install_pkgs_darwin
     nix_setup
     home_manager_setup
     run_rustup
+    chsh_to_bash
 }
 
 
