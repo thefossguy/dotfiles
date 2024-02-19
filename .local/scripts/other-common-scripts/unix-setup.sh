@@ -176,8 +176,14 @@ function chsh_to_bash() {
     if [[ "$(uname -s)" == 'Darwin' ]]; then
         BREW_BASH="$(brew --prefix)/bin/bash"
 
-        echo "${BREW_BASH}" | sudo tee -a /etc/shells
-        sudo chsh -s "${BREW_BASH}" "${REAL_USER}"
+        # /etc/shells is world readable, so no need to `sudo` unless modifying
+        if ! grep "${BREW_BASH}" /etc/shells > /dev/null; then
+            echo "${BREW_BASH}" | sudo tee -a /etc/shells
+        fi
+
+        if ! finger "${REAL_USER}" | grep -oP "${BREW_BASH}"; then
+            sudo chsh -s "${BREW_BASH}" "${REAL_USER}"
+        fi
     fi
 }
 function common_setup() {
