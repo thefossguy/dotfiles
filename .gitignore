@@ -4,6 +4,7 @@
 .bash_profile
 .cache/*
 .cargo/*
+.CFUserTextEncoding
 .config/*.xml*
 .config/.gsd-keyboard.settings-ported
 .config/alacritty/platform.yml
@@ -56,8 +57,16 @@
 .xsel.log
 .zcompdump
 .zshenv
+Applications/*
+Desktop/*
+Documents/*
 Downloads/*
+Library/*
+Movies/*
+Music/*
 my-git-repos/*
 Pictures/*
+Public/*
 Thumbs.db
 veeams/*
+VirtualBox VMs/*
