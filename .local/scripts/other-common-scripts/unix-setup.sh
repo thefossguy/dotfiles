@@ -155,17 +155,19 @@ function home_manager_setup() {
 function run_rustup() {
     "${HOME}"/.local/scripts/other-common-scripts/rust-manage.sh "${HOME}"/.nix-profile/bin/rustup
 }
+function darwin_setup() {
+    if [[ "$(uname -s)" == 'Darwin' ]]; then
+        # TODO: xcode thingy
+        # TODO: homebrew setup
+        echo "WIP"
+    fi
+}
 function common_setup() {
     install_dotfiles
     nix_setup
+    darwin_setup
     home_manager_setup
     run_rustup
-}
-
-function darwin_setup() {
-    # TODO: xcode thingy
-    # TODO: homebrew setup
-    echo "WIP"
 }
 
 
@@ -202,7 +204,6 @@ if [[ "$(uname -s)" == 'Linux' ]]; then
 elif [[ "$(uname -s)" == 'Darwin' ]]; then
     function unix_setup() {
         common_setup
-        darwin_setup
     }
 else
     echo 'Unsupported OS.'
