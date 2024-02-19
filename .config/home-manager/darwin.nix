@@ -27,8 +27,7 @@
   # TODO: install the following with brew
   # alacritty
   # bash
-  # meld
-  # mpv
+  # homebrew/cask/mpv
   # utm
 
   # home-manager does not need to overwrite these files in $HOME
