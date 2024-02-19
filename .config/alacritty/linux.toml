@@ -15,7 +15,7 @@ key = "C"
 mods = "Control|Shift"
 
 [[keyboard.bindings]]
-chars = "\x0c"
+chars = "\f"
 key = "L"
 mods = "Control"
 
