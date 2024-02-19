@@ -7,15 +7,12 @@
     gawk
     gnugrep
     gnused
+    tmux
 
     # for media consumption, manipulation and metadata info
     ffmpeg
     imagemagick
     mediainfo
-
-    # GUI apps
-    meld
-    utm
 
     # fonts
     (nerdfonts.override {
@@ -27,15 +24,12 @@
     })
   ];
 
-  programs = {
-    mpv.enable = true;
-    alacritty.enable = true;
-    tmux.enable = true;
-    bash = {
-      enable = true;
-      enableCompletion = true;
-    };
-  };
+  # TODO: install the following with brew
+  # alacritty
+  # bash
+  # meld
+  # mpv
+  # utm
 
   # home-manager does not need to overwrite these files in $HOME
   xdg.configFile = {
