@@ -162,6 +162,12 @@ function common_setup() {
     run_rustup
 }
 
+function darwin_setup() {
+    # TODO: xcode thingy
+    # TODO: homebrew setup
+    echo "WIP"
+}
+
 
 if [[ "$(uname -s)" == 'Linux' ]]; then
     if grep "ID=debian\|ID=ubuntu" /etc/os-release > /dev/null; then
@@ -195,7 +201,8 @@ if [[ "$(uname -s)" == 'Linux' ]]; then
     fi
 elif [[ "$(uname -s)" == 'Darwin' ]]; then
     function unix_setup() {
-        echo "WIP"
+        common_setup
+        darwin_setup
     }
 else
     echo 'Unsupported OS.'
