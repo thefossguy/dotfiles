@@ -162,36 +162,45 @@ function common_setup() {
 }
 
 
-if grep "ID=debian\|ID=ubuntu" /etc/os-release > /dev/null; then
-    function linux_setup() {
-        install_pkgs_debian
-        enable_ssh_daemon_debian
-        common_setup
-    }
-elif grep "ID=fedora" /etc/os-release > /dev/null; then
-    function linux_setup() {
-        dnf_conf
-        install_pkgs_fedora
-        enable_ssh_daemon_fedora
-        common_setup
-    }
-elif grep "ID_LIKE=*.rhel*." /etc/os-release > /dev/null; then
-    RHEL_VERSION="$(grep VERSION_ID /etc/os-release | awk -F"=" '{print $2}')"
-    function linux_setup() {
-        dnf_conf
-        install_pkgs_rhel "${RHEL_VERSION}"
-        install_64k_kernel
-        enable_ssh_daemon_fedora
-        common_setup
-        echo '64K kernel has been installed and will be what gets used upon the next boot.'
-        # shellcheck disable=SC2016
-        echo 'Please run `sudo dnf erase kernel` upon the next boot.'
+if [[ "$(uname -s)" == 'Linux' ]]; then
+    if grep "ID=debian\|ID=ubuntu" /etc/os-release > /dev/null; then
+        function unix_setup() {
+            install_pkgs_debian
+            enable_ssh_daemon_debian
+            common_setup
+        }
+    elif grep "ID=fedora" /etc/os-release > /dev/null; then
+        function unix_setup() {
+            dnf_conf
+            install_pkgs_fedora
+            enable_ssh_daemon_fedora
+            common_setup
+        }
+    elif grep "ID_LIKE=*.rhel*." /etc/os-release > /dev/null; then
+        RHEL_VERSION="$(grep VERSION_ID /etc/os-release | awk -F"=" '{print $2}')"
+        function unix_setup() {
+            dnf_conf
+            install_pkgs_rhel "${RHEL_VERSION}"
+            install_64k_kernel
+            enable_ssh_daemon_fedora
+            common_setup
+            echo '64K kernel has been installed and will be what gets used upon the next boot.'
+            # shellcheck disable=SC2016
+            echo 'Please run `sudo dnf erase kernel` upon the next boot.'
+        }
+    else
+        echo 'Unsupported Linux distribution.'
+        exit 1
+    fi
+elif [[ "$(uname -s)" == 'Darwin' ]]; then
+    function unix_setup() {
+        echo "WIP"
     }
 else
-    echo 'Unsupported Linux distribution.'
+    echo 'Unsupported OS.'
     exit 1
 fi
 
 
-linux_setup
-rm -v "$(dirname "$0")/$0"
+unix_setup
+rm -v "$0"
