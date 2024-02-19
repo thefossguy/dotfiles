@@ -125,12 +125,13 @@ function nix_setup() {
             mkdir -vp "${HOME}/.detsys-nix"
             pushd "${HOME}/.detsys-nix"
 
-            curl -sL -o nix-installer "https://install.determinate.systems/nix/nix-installer-$(uname -m)-linux"
+            platform="$(uname -s | awk '{print tolower($0)}')"
+            curl -sL -o nix-installer "https://install.determinate.systems/nix/nix-installer-$(uname -m)-${platform}"
             chmod +x nix-installer
             popd
         fi
 
-        "${HOME}/.detsys-nix/nix-installer" install linux --no-confirm
+        "${HOME}/.detsys-nix/nix-installer" install --no-confirm
     fi
 }
 function home_manager_setup() {
