@@ -47,6 +47,7 @@ brew install --cask "${BREW_CASKS[@]}"
 
 brew autoremove
 brew cleanup --prune=all -s
-brew doctor
+# shellcheck disable=SC2016
+brew doctor || echo 'WARNING: `brew doctor` found some issues!'
 brew outdated --greedy --greedy-latest --greedy-auto-updates
 brew missing
