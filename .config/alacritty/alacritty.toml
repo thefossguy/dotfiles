@@ -1,0 +1,46 @@
+import = [ "~/.config/alacritty/platform.toml" ]
+live_config_reload = true
+
+[colors]
+draw_bold_text_with_bright_colors = false
+
+[colors.cursor]
+text = "0xffffff"
+
+[colors.selection]
+text = "0x000000"
+
+[cursor]
+blink_interval = 750
+unfocused_hollow = true
+
+[cursor.style]
+blinking = "On"
+shape = "Block"
+
+[font.bold]
+family = "SauceCodePro Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "SauceCodePro Nerd Font Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "SauceCodePro Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "SauceCodePro Nerd Font Mono"
+style = "Regular"
+
+[scrolling]
+history = 10000
+
+[window]
+dynamic_title = true
+opacity = 0.85
+
+[window.class]
+general = "Alacritty"
+instance = "Alacritty"

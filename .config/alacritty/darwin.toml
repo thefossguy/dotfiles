@@ -1,0 +1,44 @@
+[font]
+size = 16.0
+
+[window]
+decorations = "full"
+
+[window.dimensions]
+columns = 125
+lines = 30
+
+[[keyboard.bindings]]
+chars = "\x1b[1;5D"
+key = "Left"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\x1b[1;5C"
+key = "Right"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\x0c"
+key = "L"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\x1e"
+key = "Key6"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "ResetFontSize"
+key = "Key0"
+mods = "Command"

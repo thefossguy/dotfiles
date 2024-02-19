@@ -7,7 +7,7 @@
 .CFUserTextEncoding
 .config/*.xml*
 .config/.gsd-keyboard.settings-ported
-.config/alacritty/platform.yml
+.config/alacritty/platform.toml
 .config/aria2/*
 .config/bottom/*
 .config/broot/*
