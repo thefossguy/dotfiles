@@ -26,6 +26,7 @@
 .config/ibus/*
 .config/libvirt/qemu.conf
 .config/libvirt/storage/*
+.config/nix-darwin/*
 .config/nix/*
 .config/nvim/lazy-lock.json
 .config/pulse/*
@@ -33,9 +34,11 @@
 .config/systemd/*
 .config/user-dirs.dirs
 .config/xdg-terminals.list
+.config/zed/*
 .detsys-nix/*
 .dotfiles/*
 .DS_Store
+.gnupg/*
 .lesshst
 .lldb/*
 .local/scripts/other-common-scripts/git-prompt.sh
@@ -49,6 +52,7 @@
 .Spotlight-V100
 .ssh/*
 .sudo_as_admin_successful
+.terminfo/*
 .Trashes
 .viminfo
 .vms/*
