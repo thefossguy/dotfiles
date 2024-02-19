@@ -8,6 +8,7 @@
     pinentry # pkg summary: GnuPG’s interface to passphrase input
     pv
     python3Minimal
+    rename
     rsync
     tree
     vim # it is a necessity
