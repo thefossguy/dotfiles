@@ -42,7 +42,7 @@ brew analytics off
 brew update --force # upgrade homebrew itself
 brew upgrade --greedy --greedy-latest --greedy-auto-updates --no-quarantine # upgrade the packages installed by homebrew
 
-brew install --forumla "${BREW_FORUMLAS[@]}"
+brew install --formula "${BREW_FORUMLAS[@]}"
 brew install --cask "${BREW_CASKS[@]}"
 
 brew autoremove
