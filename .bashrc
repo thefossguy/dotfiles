@@ -85,8 +85,8 @@ function tty_serial() {
     fi
 }
 
-if [ "$SOURCE_HM_VARS" -eq 1 ]; then
-    [ -f "${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh" ] && \
+if [[ "${SOURCE_HM_VARS}" == '1' ]]; then
+    [[ -f "${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh" ]] && \
         source "${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh"
 fi
 
