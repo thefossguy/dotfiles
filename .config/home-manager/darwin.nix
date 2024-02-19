@@ -8,6 +8,7 @@
     gnugrep
     gnused
     tmux
+    watch
 
     # for media consumption, manipulation and metadata info
     ffmpeg
