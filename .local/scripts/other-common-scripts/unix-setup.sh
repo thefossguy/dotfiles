@@ -38,6 +38,14 @@ function enable_ssh_daemon_fedora() {
 }
 
 
+function darwin_init_setup() {
+    if ! [[ -e '/Library/Developer/CommandLineTools/usr/bin/git' ]]; then
+        xcode-select --install
+        # shellcheck disable=SC2034
+        read -r WAIT_FOR_XCODE_SELECT
+    fi
+
+}
 function dnf_conf() {
     function dnf_conf_inner() {
         OPTION="$1"
@@ -58,6 +66,15 @@ function dnf_conf() {
 }
 
 
+function install_pkgs_darwin() {
+    if [[ "$(uname -s)" == 'Darwin' ]]; then
+        if ! command -v brew > /dev/null; then
+            echo "WIP"
+        fi
+
+        "${HOME}/.local/scripts/macos/brew-script.sh"
+    fi
+}
 function install_pkgs_debian() {
     PKGS_TO_INSTALL=(
         curl
@@ -155,17 +172,10 @@ function home_manager_setup() {
 function run_rustup() {
     "${HOME}"/.local/scripts/other-common-scripts/rust-manage.sh "${HOME}"/.nix-profile/bin/rustup
 }
-function darwin_setup() {
-    if [[ "$(uname -s)" == 'Darwin' ]]; then
-        # TODO: xcode thingy
-        # TODO: homebrew setup
-        echo "WIP"
-    fi
-}
 function common_setup() {
     install_dotfiles
+    install_pkgs_darwin
     nix_setup
-    darwin_setup
     home_manager_setup
     run_rustup
 }
@@ -203,6 +213,7 @@ if [[ "$(uname -s)" == 'Linux' ]]; then
     fi
 elif [[ "$(uname -s)" == 'Darwin' ]]; then
     function unix_setup() {
+        darwin_init_setup
         common_setup
     }
 else
