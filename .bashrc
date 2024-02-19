@@ -15,6 +15,7 @@ HISTCONTROL='ignorespace:ignoredups:erasedups'
 HISTFILESIZE=100000
 HISTIGNORE="clear:history*:exit:date:* --help:* -help:* -h:whoami:ls:lah:lo"
 HISTSIZE=10000
+FILES_TO_SOURCE=()
 
 function path_add() {
     if [[ -d "$1" ]] && [[ ":$PATH:" != *:$1:* ]]; then
@@ -41,7 +42,7 @@ if [[ "$(uname -s)" == 'Linux' ]]; then
 
     # source the vars only if we are not on NixOS
     if ! grep 'ID=nixos' /etc/os-release > /dev/null; then
-        SOURCE_HM_VARS=1
+        FILES_TO_SOURCE+=("${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh")
     elif grep 'debian' /etc/os-release > /dev/null; then
         export NEEDRESTART_MODE='a'
         export DEBIAN_FRONTEND='noninteractive'
@@ -51,7 +52,8 @@ if [[ "$(uname -s)" == 'Linux' ]]; then
 elif [[ "$(uname -s)" == 'Darwin' ]]; then
     GNU_LS="$(command -v gls)"
     GNU_GREP="$(command -v ggrep)"
-    SOURCE_HM_VARS=1
+    FILES_TO_SOURCE+=("${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh")
+    FILES_TO_SOURCE+=("${HOME}/.local/share/nix-bash/bash_completion.sh")
 
     alias ktb='sudo pkill TouchBarServer; sudo killall ControlStrip'
     alias mpv='mpv --vo=libmpv'
@@ -85,14 +87,12 @@ function tty_serial() {
     fi
 }
 
-if [[ "${SOURCE_HM_VARS}" == '1' ]]; then
-    [[ -f "${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh" ]] && \
-        source "${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh"
-fi
-
-# shellcheck disable=SC1091
-[ -f "${HOME}/.local/share/nix-bash/bash_completion.sh" ] && \
-    source "${HOME}/.local/share/nix-bash/bash_completion.sh"
+for fts in "${FILES_TO_SOURCE[@]}"; do
+    if [[ -f "${fts}" ]]; then
+        # shellcheck disable=SC1090
+        source "${fts}"
+    fi
+done
 
 # alias wrappers to call scripts
 SCRIPTS_DIR="${HOME}/.local/scripts/other-common-scripts"
