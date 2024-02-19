@@ -40,6 +40,14 @@
     ".profile".enable = false;
   };
 
+  xdg.dataFile = {
+    "nix-bash/bash_completion.sh" = {
+      enable = true;
+      executable = true;
+      source = "${pkgs.bash-completion}/etc/profile.d/bash_completion.sh";
+    };
+  };
+
   targets.darwin = {
     currentHostDefaults = {
       "com.apple.controlcenter".BatteryShowPercentage = true;
