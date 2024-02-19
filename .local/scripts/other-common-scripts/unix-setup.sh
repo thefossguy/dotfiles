@@ -70,7 +70,7 @@ function dnf_conf() {
 function install_pkgs_darwin() {
     if [[ "$(uname -s)" == 'Darwin' ]]; then
         if ! command -v brew > /dev/null; then
-            echo "WIP"
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         fi
 
         "${HOME}/.local/scripts/macos/brew-script.sh"
