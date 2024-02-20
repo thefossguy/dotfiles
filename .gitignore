@@ -5,13 +5,16 @@
 .cache/*
 .cargo/*
 .CFUserTextEncoding
+.compose-cache/*
 .config/*.xml*
 .config/.gsd-keyboard.settings-ported
 .config/alacritty/platform.toml
 .config/aria2/*
+.config/asciinema/*
 .config/bottom/*
 .config/broot/*
 .config/btop/*
+.config/chromium/*
 .config/dconf/*
 .config/direnv/*
 .config/dleyna-renderer-service.conf
@@ -26,12 +29,14 @@
 .config/ibus/*
 .config/libvirt/qemu.conf
 .config/libvirt/storage/*
+.config/mimeapps.list
 .config/nix-darwin/*
 .config/nix/*
 .config/nvim/lazy-lock.json
 .config/pulse/*
 .config/startkderc
 .config/systemd/*
+.config/Thunar/*
 .config/user-dirs.dirs
 .config/xdg-terminals.list
 .config/zed/*
@@ -47,6 +52,7 @@
 .mozilla/*
 .nix*
 .nvim/undodir/*
+.pki/*
 .profile
 .rustup/*
 .Spotlight-V100
@@ -54,6 +60,7 @@
 .sudo_as_admin_successful
 .terminfo/*
 .Trashes
+.var/*
 .viminfo
 .vms/*
 .wget-hsts
