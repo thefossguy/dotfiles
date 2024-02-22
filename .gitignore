@@ -22,6 +22,7 @@
 .config/evolution/*
 .config/fish/*
 .config/GNOME-xdg-terminals.list
+.config/google-chrome/*
 .config/gtk-3.0/bookmarks
 .config/home-manager/flake.*
 .config/home-manager/home.nix
@@ -37,6 +38,7 @@
 .config/startkderc
 .config/systemd/*
 .config/Thunar/*
+.config/ubuntu-xdg-terminals.list
 .config/user-dirs.dirs
 .config/xdg-terminals.list
 .config/zed/*
@@ -78,6 +80,7 @@ Music/*
 my-git-repos/*
 Pictures/*
 Public/*
+snap/*
 Thumbs.db
 veeams/*
 VirtualBox VMs/*
