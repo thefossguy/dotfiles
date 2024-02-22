@@ -188,6 +188,7 @@ if command -v batcat > /dev/null; then
 fi
 
 if command -v nvim > /dev/null; then
+    EDITOR=nvim
     alias e="$(command -v nvim)"
     if command -v vim > /dev/null; then
         alias vvim="$(command -v vim)"
@@ -196,11 +197,14 @@ if command -v nvim > /dev/null; then
     fi
     alias vim="$(command -v nvim)"
 elif command -v vim > /dev/null; then
+    EDITOR=vim
     alias e="$(command -v vim)"
 elif command -v vi > /dev/null; then
+    EDITOR=vim
     alias e="$(command -v vi)"
     alias vim="$(command -v vi)"
 fi
+export EDITOR
 
 # PS1 setup
 PS0="\t\n" # display time in HH:MM:SS format
