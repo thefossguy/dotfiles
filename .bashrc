@@ -67,6 +67,24 @@ mkdir -p "${HOME}/.local/bin" && path_add "${HOME}/.local/bin"
 path_add '/sbin'
 export PATH
 
+if command -v rustc > /dev/null; then
+    rust_toolchains=($(rustup toolchain list | awk '{ print $1 }'))
+    PYTHONPATH=''
+
+    for toolchain in "${rust_toolchains[@]}"; do
+        toolchain_path="${HOME}/.rustup/toolchains/${toolchain}/lib/rustlib/etc"
+        if [[ -d "${toolchain_path}" ]] && [[ ":$PYTHONPATH:" != *:${toolchain_path}:* ]]; then
+            if [[ -z "${PYTHONPATH}" ]]; then
+                PYTHONPATH="${toolchain_path}"
+            else
+                PYTHONPATH="$PYTHONPATH:${toolchain_path}"
+            fi
+        fi
+    done
+
+    export PYTHONPATH
+fi
+
 function list_open_ports() {
     if [[ -n "$1" ]]; then
         nc -z -v "$1" 1-65535 2>&1 | grep -v 'Connection refused'
