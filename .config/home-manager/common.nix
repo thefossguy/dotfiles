@@ -42,6 +42,7 @@
     # other utilities
     android-tools
     asciinema
+    asciinema-agg
     #buildah # 1. needs to be built for some reason; 2. git is a build requirement
     fzf
     picocom
