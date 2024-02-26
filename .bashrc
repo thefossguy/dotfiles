@@ -113,14 +113,18 @@ for fts in "${FILES_TO_SOURCE[@]}"; do
 done
 
 # alias wrappers to call scripts
-SCRIPTS_DIR="${HOME}/.local/scripts/other-common-scripts"
+COMMON_SCRIPTS_DIR="${HOME}/.local/scripts"
+SCRIPTS_DIR="${COMMON_SCRIPTS_DIR}/other-common-scripts"
+EL_SCRIPTS_DIR="${COMMON_SCRIPTS_DIR}/el"
 alias debextract="${SCRIPTS_DIR}/extract-deb-pkg.sh"
+alias installrpmdeps="${EL_SCRIPTS_DIR}/install-rpm-package-build-deps.sh"
+alias mockbuild="${EL_SCRIPTS_DIR}/mock-build.sh"
 alias pysort="${SCRIPTS_DIR}/sort.py"
 alias rpmextract="${SCRIPTS_DIR}/extract-rpm-pkg.sh"
 alias showdiskusage="${SCRIPTS_DIR}/show-disk-usage.sh"
+alias startvm="${SCRIPTS_DIR}/start-qemu-vm.sh"
 alias suslock="${HOME}/.local/scripts/window-manager/lock-and-suspend.sh"
 alias syncsync="${SCRIPTS_DIR}/paranoid-flush.sh"
-alias startvm="${SCRIPTS_DIR}/start-qemu-vm.sh"
 
 # actual aliases (generic ones)
 RSYNC_OPTIONS='--verbose --recursive --size-only --human-readable --progress --stats --itemize-changes'
