@@ -35,9 +35,12 @@ CDR="$3"
 
 if [ "$(uname -m)" == 'aarch64' ]; then
     [[ -d "${HOME}/.vms" ]] || mkdir "${HOME}/.vms"
-    pushd "${HOME}/.vms"
-    nix build 'nixpkgs#ubootQemuAarch64'
-    popd
+    BIOS="${HOME}/.vms/result/u-boot.bin"
+    if [[ ! -f "${BIOS}" ]]; then
+        pushd "${HOME}/.vms"
+        nix build 'nixpkgs#ubootQemuAarch64'
+        popd
+    fi
     QEMU_MACHINE='virt'
     BIOS="-bios ${HOME}/.vms/result/u-boot.bin"
 elif [ "$(uname -m)" == 'x86_64' ]; then
