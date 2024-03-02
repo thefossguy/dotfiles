@@ -21,14 +21,21 @@ if [[ ! -b "${DEVICE}" ]]; then
     exit 3
 fi
 
+if [[ -z "${3:-}" ]]; then
+    FLASH_CMD="${DD_COMMON} of=${DEVICE} if=${UBOOT}"
+else
+    FLASH_CMD="${DD_COMMON} bs=$3 seek=$4 of=${DEVICE} if=${UBOOT}"
+fi
+
+echo 'Following command will be executed, is that okay?'
+echo -e "\n${FLASH_CMD}\n"
+# shellcheck disable=SC2034
+read -r WAIT_INFINITELY
+
+
 ${DD_COMMON} bs=1M count=64 of="${DEVICE}" if=/dev/urandom
 sync
 ${DD_COMMON} bs=1M count=64 of="${DEVICE}" if=/dev/zero
 sync
-
-if [[ -n "${3:-}" ]]; then
-    ${DD_COMMON} bs=512 seek=64 of="${DEVICE}" if="${UBOOT}"
-else
-    ${DD_COMMON} bs="$3" seek="$4" of="${DEVICE}" if="${UBOOT}"
-fi
+${FLASH_CMD}
 sync
