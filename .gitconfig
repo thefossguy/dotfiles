@@ -15,6 +15,7 @@
     defaultBranch = master
 [push]
     default = simple
+    followTags = true
 [diff]
     tool = meld
 [gpg]
