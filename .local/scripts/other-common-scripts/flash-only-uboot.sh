@@ -34,7 +34,9 @@ read -r WAIT_INFINITELY
 
 
 ${DD_COMMON} bs=1M count=64 of="${DEVICE}" if=/dev/urandom
+${DD_COMMON} bs=1M count=64 of="${DEVICE}" if=/dev/zero
 sync
+${DD_COMMON} bs=1M count=64 of="${DEVICE}" if=/dev/urandom
 ${DD_COMMON} bs=1M count=64 of="${DEVICE}" if=/dev/zero
 sync
 ${FLASH_CMD}
