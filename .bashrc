@@ -210,9 +210,16 @@ elif command -v vi > /dev/null; then
 fi
 export EDITOR
 
+function nixos_needsreboot() {
+    NIXOS_NEEDSREBOOT_FILE='/var/run/reboot-required'
+    if [[ -f "${NIXOS_NEEDSREBOOT_FILE}" ]]; then
+        echo -e "\nNewer version of $(cat "${NIXOS_NEEDSREBOOT_FILE}") is available!"
+    fi
+}
+
 # PS1 setup
 PS0="\t\n" # display time in HH:MM:SS format
-PS1="\n[\u@\h:\$PWD \$?]\$ "
+PS1='$(nixos_needsreboot)'"\n[\u@\h:\$PWD \$?]\$ "
 export PS0 PS1
 
 # zoxide setup
