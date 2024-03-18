@@ -11,10 +11,6 @@ in
     smartmontools
     wol
 
-    # dealing with other distro's packages
-    dpkg
-    rpm
-
     # other utilities
     parted
     ubootTools
@@ -84,7 +80,7 @@ in
         if [ -d "$EDKII_DIR_HOME" ]; then
             rm -rf "$EDKII_DIR_HOME"
         fi
-        mkdir -vp "$EDKII_DIR_HOME"
+        mkdir -p "$EDKII_DIR_HOME"
 
         cp "$EDKII_CODE_NIX" "$EDKII_CODE_HOME"
         cp "$EDKII_VARS_NIX" "$EDKII_VARS_HOME"
@@ -92,6 +88,21 @@ in
         chown pratham:pratham "$EDKII_CODE_HOME" "$EDKII_VARS_HOME"
         chmod 644 "$EDKII_CODE_HOME" "$EDKII_VARS_HOME"
       '' else "");
+
+    otherPkgMgrActivation = lib.hm.dag.entryAfter [ "installPackages" ] ''
+        EXTRA_BIN_PATH="$HOME/.local/$USER/bin"
+
+        if [ -d "" ]; then
+            rm -rf "$EXTRA_BIN_PATH"
+        fi
+        mkdir -p "$EXTRA_BIN_PATH"
+
+        pushd "$EXTRA_BIN_PATH"
+        for deb_bin in ${pkgs.binutils}/bin/* ${pkgs.rpm}/bin/*; do
+            ln -s "$deb_bin" "$(basename $deb_bin")
+        done
+        popd
+    '';
   };
 
   # for libvirt, virt-manager, virsh
