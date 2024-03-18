@@ -48,6 +48,7 @@
 .gnupg/*
 .lesshst
 .lldb/*
+.local/*/bin*
 .local/scripts/other-common-scripts/git-prompt.sh
 .local/share/*
 .local/state/*
