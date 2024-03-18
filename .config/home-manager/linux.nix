@@ -99,7 +99,7 @@ in
 
         pushd "$EXTRA_BIN_PATH"
         for deb_bin in ${pkgs.binutils}/bin/* ${pkgs.rpm}/bin/*; do
-            ln -s "$deb_bin" "$(basename $deb_bin")
+            ln -s "$deb_bin" "$(basename "$deb_bin")"
         done
         popd
     '';
