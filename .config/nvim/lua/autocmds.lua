@@ -16,3 +16,9 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = {'*.rs'},
   command = 'lua vim.lsp.buf.format(nil, 200)',
 })
+-- thank you, Prime
+-- https://github.com/ThePrimeagen/neovimrc/blob/4d7a467091706a75684ee9a32b1e1e8f2e187e39/lua/theprimeagen/init.lua#L44-L48
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = "*",
+  command = [[%s/\s\+$//e]],
+})
