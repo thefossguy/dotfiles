@@ -145,6 +145,13 @@ function nix_setup() {
     fi
 }
 function home_manager_setup() {
+    # PATH needs to be modified temporarily
+    # otherwise you get a 'command not found' error like this
+    # /nix/store/bpdrgm43y8mgjd5g6q13yfydj9057gly-home-manager/bin/home-manager: line 510: nix-build: command not found
+    export PATH="${HOME}/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
+
+    nix_setup
+
     if ! command -v home-manager > /dev/null; then
         # pushd-ing because otherwise the flake.nix points to
         # '/home/pratham/.config/home-manager/hm.flake.nix' but home-manager,
@@ -155,10 +162,6 @@ function home_manager_setup() {
         [[ ! -f 'home.nix' ]] && ln -s {common,home}.nix
         popd
 
-        # PATH needs to be modified temporarily
-        # otherwise you get a 'command not found' error like this
-        # /nix/store/bpdrgm43y8mgjd5g6q13yfydj9057gly-home-manager/bin/home-manager: line 510: nix-build: command not found
-        export PATH="${HOME}/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
         nix run home-manager/master -- init --switch
     fi
 }
@@ -182,7 +185,6 @@ function chsh_to_bash() {
 function common_setup() {
     install_dotfiles
     install_pkgs_darwin
-    nix_setup
     home_manager_setup
     run_rustup
     chsh_to_bash
