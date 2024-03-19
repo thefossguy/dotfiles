@@ -190,27 +190,29 @@ function common_setup() {
 
 
 if [[ "$(uname -s)" == 'Linux' ]]; then
-    if grep "ID=debian\|ID=ubuntu" /etc/os-release > /dev/null; then
+    if grep 'debian' /etc/os-release > /dev/null; then
         function unix_setup() {
             install_pkgs_debian
             enable_ssh_daemon_debian
             common_setup
         }
-    elif grep "ID=fedora" /etc/os-release > /dev/null; then
-        function unix_setup() {
-            dnf_conf
-            install_pkgs_fedora
-            enable_ssh_daemon_fedora
-            common_setup
-        }
-    elif grep "ID_LIKE=*.rhel*." /etc/os-release > /dev/null; then
-        RHEL_VERSION="$(grep VERSION_ID /etc/os-release | awk -F"=" '{print $2}')"
-        function unix_setup() {
-            dnf_conf
-            install_pkgs_rhel "${RHEL_VERSION}"
-            enable_ssh_daemon_fedora
-            common_setup
-        }
+    elif grep 'fedora' /etc/os-release > /dev/null; then
+        if grep 'rhel' /etc/os-release > /dev/null; then
+            RHEL_VERSION="$(grep VERSION_ID /etc/os-release | awk -F"=" '{print $2}')"
+            function unix_setup() {
+                dnf_conf
+                install_pkgs_rhel "${RHEL_VERSION}"
+                enable_ssh_daemon_fedora
+                common_setup
+            }
+        else
+            function unix_setup() {
+                dnf_conf
+                install_pkgs_fedora
+                enable_ssh_daemon_fedora
+                common_setup
+            }
+        fi
     else
         echo 'Unsupported Linux distribution.'
         exit 1
