@@ -124,6 +124,8 @@ for fts in "${FILES_TO_SOURCE[@]}"; do
     if [[ -f "${fts}" ]]; then
         # shellcheck disable=SC1090
         source "${fts}"
+    else
+        echo "WARNING: '${fts}' does not exist."
     fi
 done
 
