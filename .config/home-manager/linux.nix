@@ -92,7 +92,7 @@ in
     otherPkgMgrActivation = lib.hm.dag.entryAfter [ "installPackages" ] ''
         EXTRA_BIN_PATH="$HOME/.local/$USER/bin"
 
-        if [ -d "" ]; then
+        if [ -d "$EXTRA_BIN_PATH" ]; then
             rm -rf "$EXTRA_BIN_PATH"
         fi
         mkdir -p "$EXTRA_BIN_PATH"
