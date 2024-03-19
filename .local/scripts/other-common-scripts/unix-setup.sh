@@ -116,13 +116,6 @@ function enable_epel() {
         sudo dnf install --assumeyes epel-release
     fi
 }
-function install_64k_kernel() {
-    sudo dnf install -y kernel-64k
-    KERNEL_64K=$(echo /boot/vmlinuz*64k)
-    sudo grubby --set-default="${KERNEL_64K}" \
-        --update-kernel="${KERNEL_64K}" \
-        --args='crashkernel=2G-:640M'
-}
 function install_pkgs_rhel() {
     sudo dnf clean expire-cache
     enable_epel "$1"
@@ -215,12 +208,8 @@ if [[ "$(uname -s)" == 'Linux' ]]; then
         function unix_setup() {
             dnf_conf
             install_pkgs_rhel "${RHEL_VERSION}"
-            install_64k_kernel
             enable_ssh_daemon_fedora
             common_setup
-            echo '64K kernel has been installed and will be what gets used upon the next boot.'
-            # shellcheck disable=SC2016
-            echo 'Please run `sudo dnf erase kernel` upon the next boot.'
         }
     else
         echo 'Unsupported Linux distribution.'
