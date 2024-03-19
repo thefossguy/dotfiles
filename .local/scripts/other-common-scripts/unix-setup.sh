@@ -77,8 +77,12 @@ function install_pkgs_darwin() {
     fi
 }
 function install_pkgs_debian() {
+    export DEBIAN_FRONTEND=noninteractive
+    export NEEDRESTART_SUSPEND=true
     PKGS_TO_INSTALL=(
         curl
+        debhelper
+        dpkg-dev
         git
         vim
         wget
