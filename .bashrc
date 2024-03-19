@@ -15,6 +15,7 @@ HISTCONTROL='ignorespace:ignoredups:erasedups'
 HISTFILESIZE=100000
 HISTIGNORE="clear:history*:exit:date:* --help:* -help:* -h:whoami:ls:lah:lo"
 HISTSIZE=10000
+PS0_HORIZONTAL_RULE='++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
 FILES_TO_SOURCE=()
 
 function path_add() {
@@ -214,7 +215,7 @@ fi
 function nixos_needsreboot() {
     NIXOS_NEEDSREBOOT_FILE='/var/run/reboot-required'
     if [[ -f "${NIXOS_NEEDSREBOOT_FILE}" ]]; then
-        echo -e "\nNewer version of $(cat "${NIXOS_NEEDSREBOOT_FILE}") is available!"
+        echo -e "\n$(tput bold)${PS0_HORIZONTAL_RULE}\nNewer version of $(cat "${NIXOS_NEEDSREBOOT_FILE}") is available!\n${PS0_HORIZONTAL_RULE}$(tput sgr0)"
     fi
 }
 
