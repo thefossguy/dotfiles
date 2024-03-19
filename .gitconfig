@@ -4,7 +4,7 @@
     editor = nvim
 [user]
     name = Pratham Patel
-    email = thefirst1322@gmail.com
+    email = prathampatel@thefossguy.com
     signingkey = ~/.ssh/git
 [commit]
     gpgsign = true
