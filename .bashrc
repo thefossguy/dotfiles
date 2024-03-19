@@ -41,12 +41,18 @@ if [[ "$(uname -s)" == 'Linux' ]]; then
 
 
     # source the vars only if we are not on NixOS
-    if ! grep 'ID=nixos' /etc/os-release > /dev/null; then
+    if grep 'nixos' /etc/os-release > /dev/null; then
+        EDITOR=nvim
+
+    else
+        EDITOR=vim
         FILES_TO_SOURCE+=("${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh")
-    elif grep 'debian' /etc/os-release > /dev/null; then
-        export NEEDRESTART_MODE='a'
-        export DEBIAN_FRONTEND='noninteractive'
-        export APT_LISTCHANGES_FRONTEND='none'
+
+        if grep 'debian' /etc/os-release > /dev/null; then
+            export NEEDRESTART_MODE='a'
+            export DEBIAN_FRONTEND='noninteractive'
+            export APT_LISTCHANGES_FRONTEND='none'
+        fi
     fi
 
 elif [[ "$(uname -s)" == 'Darwin' ]]; then
@@ -55,12 +61,14 @@ elif [[ "$(uname -s)" == 'Darwin' ]]; then
     FILES_TO_SOURCE+=("${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh")
     FILES_TO_SOURCE+=("${HOME}/.local/share/nix-bash/bash_completion.sh")
 
+    EDITOR=vim
     alias ktb='sudo pkill TouchBarServer; sudo killall ControlStrip'
     alias mpv='mpv --vo=libmpv'
     alias ownefivars="chmod +uw ${HOME}/Library/Containers/com.utmapp.UTM/Data/Documents/*.utm/Data/efi_vars.fd"
 
     path_add '/usr/local/bin'
 fi
+export EDITOR
 
 mkdir -p "${HOME}/.cargo/bin" && path_add "${HOME}/.cargo/bin"
 mkdir -p "${HOME}/.local/bin" && path_add "${HOME}/.local/bin"
@@ -133,6 +141,7 @@ alias clear="clear && printf '\e[3J'"
 alias dotfiles="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}"
 alias download='aria2c --max-connection-per-server=16 --min-split-size=1M --file-allocation=none --continue=false --seed-time=0'
 alias drivetemp='hdparm -CH'
+alias e="$(command -v nvim)"
 alias mtr='mtr --show-ips --displaymode 0 -o "LDR AGJMXI"'
 alias nixcheckconf="rsync --fsync ${RSYNC_OPTIONS} --dry-run --checksum ${HOME}/my-git-repos/pratham/prathams-nixos/nixos-configuration/ /etc/nixos/"
 alias prettynixbuild='nix build --log-format internal-json -v . 2>&1 | nom --json'
@@ -140,6 +149,8 @@ alias serialterm="tty_serial"
 alias sudo='sudo '
 alias unxz='unxz --keep' # override 'unxz' with this to always keep the archive
 alias update="source ${HOME}/.bashrc"
+alias vim="$(command -v nvim)"
+alias vvim="$(command -v vim)"
 
 # git
 alias gadd='git add'
@@ -190,25 +201,6 @@ alias lsh="${GNU_LS} --group-directories-first --color=auto -1lv --time-style=lo
 if command -v batcat > /dev/null; then
     alias bat="$(command -v batcat)"
 fi
-
-if command -v nvim > /dev/null; then
-    EDITOR=nvim
-    alias e="$(command -v nvim)"
-    if command -v vim > /dev/null; then
-        alias vvim="$(command -v vim)"
-    else
-        alias vvim="$(command -v vi)"
-    fi
-    alias vim="$(command -v nvim)"
-elif command -v vim > /dev/null; then
-    EDITOR=vim
-    alias e="$(command -v vim)"
-elif command -v vi > /dev/null; then
-    EDITOR=vim
-    alias e="$(command -v vi)"
-    alias vim="$(command -v vi)"
-fi
-export EDITOR
 
 function nixos_needsreboot() {
     NIXOS_NEEDSREBOOT_FILE='/var/run/reboot-required'
