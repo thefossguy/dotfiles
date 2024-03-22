@@ -2,22 +2,50 @@
     helper = store
 [core]
     editor = nvim
+    compression = 9
+    fsmonitor = true # no workey on penguin
+[checkout]
+    workers = 0 # < 1 means use all **logical** cores
+    thresholdForParallelism = 1000 # perform parallel checkout only if files are > 1000
 [user]
     name = Pratham Patel
     email = prathampatel@thefossguy.com
     signingkey = ~/.ssh/git
 [commit]
     gpgsign = true
-    verbose = true
+    verbose = true # show the diff in the editor opened by `git commit` (as a comment)
+    status = true # show status info in the editor opened by `git commit` (as a comment)
 [color]
-    ui = auto
+    ui = always
+    advice = always
+    branch = always
+    diff = always
+    grep = always
+    interactive = always
+    push = always
+    remote = always
+    showBranch = always
+    status = always
+    transport = always
+[column]
+    ui = auto,column,nodense # should cover all supported commands; I hope
 [init]
     defaultBranch = master
 [push]
     default = simple
     followTags = true
 [diff]
-    tool = meld
+    guitool = meld # overrides `merge.guitool`
+[difftool]
+    guiDefault = false # do **NOT** open `diff.guitool` even if `DISPLAY` is set
+[fetch]
+    parallel = 0 # multi-threaded fetching
+[format]
+    numbered = true
+    cc = thefirst1322@gmail.com # my other email
+    signOff = true
+[fsmonitor]
+    allowRemote = false
 [gpg]
     format = ssh
     [ssh]
