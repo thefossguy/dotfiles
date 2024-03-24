@@ -34,6 +34,7 @@
 .config/nix-darwin/*
 .config/nix/*
 .config/nvim/lazy-lock.json
+.config/protonmail/*
 .config/pulse/*
 .config/startkderc
 .config/systemd/*
@@ -45,6 +46,7 @@
 .detsys-nix/*
 .dotfiles/*
 .DS_Store
+.git-credentials
 .gnupg/*
 .lesshst
 .lldb/*
@@ -85,5 +87,3 @@ snap/*
 Thumbs.db
 veeams/*
 VirtualBox VMs/*
-.git-credentials
-.config/protonmail/*
