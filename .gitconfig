@@ -57,3 +57,9 @@
     date = iso8601
 [advice]
     addIgnoredFile = false
+[sendemail]
+    smtpServer = 127.0.0.1
+    smtpServerPort = 1025
+    smtpUser = prathampatel@thefossguy.com
+    smtpEncryption = none
+    smtpPass =
