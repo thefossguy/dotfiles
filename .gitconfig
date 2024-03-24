@@ -62,4 +62,5 @@
     smtpServerPort = 1025
     smtpUser = prathampatel@thefossguy.com
     smtpEncryption = none
+    supresscc = self
     smtpPass =
