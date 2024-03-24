@@ -85,3 +85,5 @@ snap/*
 Thumbs.db
 veeams/*
 VirtualBox VMs/*
+.git-credentials
+.config/protonmail/*
