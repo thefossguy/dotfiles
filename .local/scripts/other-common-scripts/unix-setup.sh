@@ -77,6 +77,7 @@ function install_pkgs_darwin() {
     fi
 }
 function install_pkgs_debian() {
+    EXTRA_APT_CONF='/etc/apt/conf.d/90noinstallsuggests'
     export DEBIAN_FRONTEND=noninteractive
     export NEEDRESTART_SUSPEND=true
     PKGS_TO_INSTALL=(
@@ -88,7 +89,9 @@ function install_pkgs_debian() {
         wget
     )
     sudo apt-get update
+    echo 'APT::Install-Suggests "0"' | sudo tee "${EXTRA_APT_CONF}"
     sudo apt-get install --assume-yes --no-install-recommends "${PKGS_TO_INSTALL[@]}"
+    sudo rm "${EXTRA_APT_CONF}"
     sudo apt-get upgrade --assume-yes
 }
 function install_pkgs_fedora() {
