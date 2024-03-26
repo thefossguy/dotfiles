@@ -26,6 +26,7 @@
     status = true # show status info in the editor opened by `git commit` (as a comment)
     verbose = true # show the diff in the editor opened by `git commit` (as a comment)
 [core]
+    abbrev = 12
     compression = 9
     editor = nvim
     fsmonitor = true # no workey on penguin
@@ -51,6 +52,8 @@
     defaultBranch = master
 [log]
     date = iso8601
+[pretty]
+    fixes = Fixes: %h (\"%s\")
 [push]
     default = simple
     followTags = true
