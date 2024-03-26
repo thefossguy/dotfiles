@@ -64,6 +64,7 @@
 .ssh/*
 .sudo_as_admin_successful
 .terminfo/*
+.thunderbird/*
 .Trashes
 .var/*
 .viminfo
