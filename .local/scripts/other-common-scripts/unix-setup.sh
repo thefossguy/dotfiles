@@ -77,7 +77,7 @@ function install_pkgs_darwin() {
     fi
 }
 function install_pkgs_debian() {
-    EXTRA_APT_CONF='/etc/apt/conf.d/90noinstallsuggests'
+    EXTRA_APT_CONF='/etc/apt/apt.conf.d/90noinstallsuggests'
     export DEBIAN_FRONTEND=noninteractive
     export NEEDRESTART_SUSPEND=true
     PKGS_TO_INSTALL=(
