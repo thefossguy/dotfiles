@@ -55,7 +55,7 @@ if [[ "$(uname -s)" == 'Linux' ]]; then
             export APT_LISTCHANGES_FRONTEND='none'
 
             if grep 'ID=debian' /etc/os-release > /dev/null; then
-                LANG="$(grep -v '^# ' /etc/locale.gen | head -n 1 | sed -e 's/ /./')"
+                LANG="$(grep -v '^# ' /etc/locale.gen | grep -v '^$' | head -n 1 | sed -e 's/ /./')"
                 export LANG
             fi
         fi
