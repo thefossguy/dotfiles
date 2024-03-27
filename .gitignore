@@ -8,6 +8,7 @@
 .compose-cache/*
 .config/*.xml*
 .config/.gsd-keyboard.settings-ported
+.config/aerc/accounts.conf
 .config/alacritty/platform.toml
 .config/aria2/*
 .config/asciinema/*
