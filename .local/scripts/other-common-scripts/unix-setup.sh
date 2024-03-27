@@ -87,9 +87,13 @@ function install_pkgs_debian() {
         git
         vim
         wget
+        gcc-
     )
     sudo apt-get update
-    echo 'APT::Install-Suggests "0"' | sudo tee "${EXTRA_APT_CONF}"
+    cat << EOF | sudo tee "${EXTRA_APT_CONF}"
+APT::Install-Recommends "0";
+APT::Install-Suggests "0";
+EOF
     sudo apt-get install --assume-yes --no-install-recommends "${PKGS_TO_INSTALL[@]}"
     sudo rm "${EXTRA_APT_CONF}"
     sudo apt-get upgrade --assume-yes
