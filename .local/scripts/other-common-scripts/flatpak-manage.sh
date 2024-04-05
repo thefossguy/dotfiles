@@ -45,7 +45,7 @@ else
     exit 0
 fi
 
-${FLATPAK_BIN} remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+${FLATPAK_BIN} remote-add --user --if-not-exists --subset=verified flathub https://flathub.org/repo/flathub.flatpakrepo
 ${FLATPAK_BIN} install --user --or-update --assumeyes --noninteractive "${ALL_PKGS[@]}"
 ${FLATPAK_BIN} update --user --assumeyes --noninteractive
 ${FLATPAK_BIN} uninstall --user --unused --assumeyes --noninteractive --delete-data
