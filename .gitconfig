@@ -7,17 +7,17 @@
     thresholdForParallelism = 1000 # perform parallel checkout only if files are > 1000
     workers = 0 # < 1 means use all **logical** cores
 [color]
-    ui = always
-    advice = always
-    branch = always
-    diff = always
-    grep = always
-    interactive = always
-    push = always
-    remote = always
-    showBranch = always
-    status = always
-    transport = always
+    ui = auto
+    advice = auto
+    branch = auto
+    diff = auto
+    grep = auto
+    interactive = auto
+    push = auto
+    remote = auto
+    showBranch = auto
+    status = auto
+    transport = auto
 [column]
     ui = auto,column,nodense # should cover all supported commands; I hope
     status = never # show one entry of 'untracked files' per line
