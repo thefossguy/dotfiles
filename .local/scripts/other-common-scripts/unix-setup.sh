@@ -85,6 +85,7 @@ function install_pkgs_debian() {
         debhelper
         dpkg-dev
         git
+        openssh-server
         vim
         wget
         gcc-
@@ -195,10 +196,8 @@ function chsh_to_bash() {
 }
 function common_setup() {
     install_dotfiles
-    install_pkgs_darwin
     home_manager_setup
     run_rustup
-    chsh_to_bash
 }
 
 
@@ -233,7 +232,9 @@ if [[ "$(uname -s)" == 'Linux' ]]; then
 elif [[ "$(uname -s)" == 'Darwin' ]]; then
     function unix_setup() {
         darwin_init_setup
+        install_pkgs_darwin
         common_setup
+        chsh_to_bash
     }
 else
     echo 'Unsupported OS.'
