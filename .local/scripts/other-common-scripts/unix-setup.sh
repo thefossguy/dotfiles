@@ -168,7 +168,8 @@ function home_manager_setup() {
     if ! command -v home-manager > /dev/null; then
         mkdir -vp "${HM_CONFIG_PATH}"
         git clone https://gitlab.com/thefossguy/prathams-nixos "${HM_CONFIG_PATH}"
-        nix run home-manager/master -- --print-build-logs init --switch --flake "${HM_CONFIG_PATH}"
+        nix flake update --flake "${HM_CONFIG_PATH}"
+        nix run home-manager/master -- switch --print-build-logs --show-trace --flake "${HM_CONFIG_PATH}"
     fi
 }
 function run_rustup() {
