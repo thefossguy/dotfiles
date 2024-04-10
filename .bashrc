@@ -216,6 +216,10 @@ if command -v batcat > /dev/null; then
     alias bat="$(command -v batcat)"
 fi
 
+if command -v fdfind > /dev/null; then
+    alias fd="$(command -v fdfind)"
+fi
+
 function nixos_needsreboot() {
     NIXOS_NEEDSREBOOT_FILE='/var/run/reboot-required'
     if [[ -f "${NIXOS_NEEDSREBOOT_FILE}" ]]; then
