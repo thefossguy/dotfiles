@@ -161,20 +161,14 @@ function home_manager_setup() {
     # otherwise you get a 'command not found' error like this
     # /nix/store/bpdrgm43y8mgjd5g6q13yfydj9057gly-home-manager/bin/home-manager: line 510: nix-build: command not found
     export PATH="${HOME}/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
+    HM_CONFIG_PATH="${HOME}/my-git-repos/$(whoami)/prathams-nixos"
 
     nix_setup
 
     if ! command -v home-manager > /dev/null; then
-        # pushd-ing because otherwise the flake.nix points to
-        # '/home/pratham/.config/home-manager/hm.flake.nix' but home-manager,
-        # for some reason does not like it; probably because it assumes the
-        # source to be **outside of $HOME**; so make it point to './<file>'
-        pushd "${HOME}/.config/home-manager"
-        [[ ! -f 'flake.nix' ]] && ln -s {hm.,}flake.nix
-        [[ ! -f 'home.nix' ]] && ln -s {common,home}.nix
-        popd
-
-        nix run home-manager/master -- init --switch
+        mkdir -vp "${HM_CONFIG_PATH}"
+        git clone https://gitlab.com/thefossguy/prathams-nixos "${HM_CONFIG_PATH}"
+        nix run home-manager/master -- --print-build-logs init --switch --flake "${HM_CONFIG_PATH}"
     fi
 }
 function run_rustup() {
