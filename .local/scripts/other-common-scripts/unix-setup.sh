@@ -174,7 +174,7 @@ function home_manager_setup() {
 function run_rustup() {
     RUSTUP_PATH="${HOME}"/.nix-profile/bin/rustup
 
-    if [[ -x "${RUSTUP_PATH}" ]]; then
+    if [[ -x "${RUSTUP_PATH}" && "${PERFORM_RUSTUP_SETUP:-0}" == 1 ]]; then
         "${HOME}"/.local/scripts/other-common-scripts/rust-manage.sh "${HOME}"/.nix-profile/bin/rustup
     fi
 }
