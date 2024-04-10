@@ -178,7 +178,11 @@ function home_manager_setup() {
     fi
 }
 function run_rustup() {
-    "${HOME}"/.local/scripts/other-common-scripts/rust-manage.sh "${HOME}"/.nix-profile/bin/rustup
+    RUSTUP_PATH="${HOME}"/.nix-profile/bin/rustup
+
+    if [[ -x "${RUSTUP_PATH}" ]]; then
+        "${HOME}"/.local/scripts/other-common-scripts/rust-manage.sh "${HOME}"/.nix-profile/bin/rustup
+    fi
 }
 function chsh_to_bash() {
     if [[ "$(uname -s)" == 'Darwin' ]]; then
