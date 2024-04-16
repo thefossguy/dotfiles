@@ -152,6 +152,7 @@ alias clear="clear && printf '\e[3J'"
 alias dotfiles="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}"
 alias download='aria2c --max-connection-per-server=16 --min-split-size=1M --file-allocation=none --continue=false --seed-time=0'
 alias drivetemp='hdparm -CH'
+alias mksshkey='ssh-keygen -t ed25519 -f'
 alias mtr='mtr --show-ips --displaymode 0 -o "LDR AGJMXI"'
 alias nixcheckconf="rsync --fsync ${RSYNC_OPTIONS} --dry-run --checksum ${HOME}/my-git-repos/pratham/prathams-nixos/nixos-configuration/ /etc/nixos/"
 alias prettynixbuild='nix build --log-format internal-json -v . 2>&1 | nom --json'
