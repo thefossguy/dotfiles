@@ -232,7 +232,7 @@ function nixos_needsreboot() {
 }
 
 # PS1 setup
-PS0="\t" # display time in HH:MM:SS format
+PS0="\t|\n--------+" # display time in HH:MM:SS format
 # the function needs to be called **everytime** and is in single quotes
 # shellcheck disable=SC2016
 PS0+='$(nixos_needsreboot)'"\n"
