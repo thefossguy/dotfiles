@@ -86,6 +86,7 @@ function install_pkgs_debian() {
         dpkg-dev
         git
         openssh-server
+        rsync
         vim
         wget
         gcc-
