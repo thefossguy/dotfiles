@@ -1,3 +1,6 @@
+-- clear the highlighted search on <Esc> in normal mode
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
 -- jump to start and end of line using the home row keys
 vim.keymap.set('n', 'H', '^')
 vim.keymap.set('n', 'L', '$')
