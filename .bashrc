@@ -49,6 +49,10 @@ if [[ "$(uname -s)" == 'Linux' ]]; then
         EDITOR=vim
         FILES_TO_SOURCE+=("${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh")
 
+        if command -v nix > /dev/null; then
+            alias sudo='sudo --preserve-env=PATH env'
+        fi
+
         if grep 'debian' /etc/os-release > /dev/null; then
             export NEEDRESTART_MODE='a'
             export DEBIAN_FRONTEND='noninteractive'
@@ -71,6 +75,7 @@ elif [[ "$(uname -s)" == 'Darwin' ]]; then
     alias ktb='sudo pkill TouchBarServer; sudo killall ControlStrip'
     alias mpv='mpv --vo=libmpv'
     alias ownefivars="chmod +uw ${HOME}/Library/Containers/com.utmapp.UTM/Data/Documents/*.utm/Data/efi_vars.fd"
+    alias sudo='sudo --preserve-env=PATH env'
 
     path_add '/usr/local/bin'
 fi
