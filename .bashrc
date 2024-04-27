@@ -4,6 +4,7 @@
 # only run in an interactive shell
 [[ $- == *i* ]] || return
 
+[[ -f /etc/bashrc ]] && source /etc/bashrc
 unalias -a
 
 shopt -s checkjobs
