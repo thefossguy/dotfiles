@@ -81,6 +81,9 @@ elif [[ "$(uname -s)" == 'Darwin' ]]; then
 fi
 export EDITOR
 
+HM_CONFIG_PATH="${HOME}/my-git-repos/$(whoami)/prathams-nixos"
+export HM_CONFIG_PATH
+
 mkdir -p "${HOME}/.cargo/bin" && path_add "${HOME}/.cargo/bin"
 mkdir -p "${HOME}/.local/bin" && path_add "${HOME}/.local/bin"
 path_add '/sbin'
