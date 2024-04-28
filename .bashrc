@@ -48,9 +48,9 @@ if [[ "$(uname -s)" == 'Linux' ]]; then
 
     else
         EDITOR=vim
-        FILES_TO_SOURCE+=("${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh")
 
         if command -v nix > /dev/null; then
+            FILES_TO_SOURCE+=("${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh")
             alias sudo='sudo --preserve-env=PATH env'
         fi
 
@@ -69,8 +69,11 @@ if [[ "$(uname -s)" == 'Linux' ]]; then
 elif [[ "$(uname -s)" == 'Darwin' ]]; then
     GNU_LS="$(command -v gls)"
     GNU_GREP="$(command -v ggrep)"
-    FILES_TO_SOURCE+=("${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh")
-    FILES_TO_SOURCE+=("${HOME}/.local/share/nix-bash/bash_completion.sh")
+
+    if command -v nix > /dev/null; then
+        FILES_TO_SOURCE+=("${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh")
+        FILES_TO_SOURCE+=("${HOME}/.local/share/nix-bash/bash_completion.sh")
+    fi
 
     EDITOR=vim
     alias ktb='sudo pkill TouchBarServer; sudo killall ControlStrip'
