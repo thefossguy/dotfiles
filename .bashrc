@@ -14,7 +14,7 @@ shopt -s globstar
 shopt -s histappend
 HISTCONTROL='ignorespace:ignoredups:erasedups'
 HISTFILESIZE=100000
-HISTIGNORE="clear:history*:exit:date:* --help:* -help:* -h:whoami:ls:lah:lo"
+HISTIGNORE="clear:history*:exit:date:whoami:ls:lah:lo"
 HISTSIZE=10000
 PS0_HORIZONTAL_RULE='++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
 FILES_TO_SOURCE=()
