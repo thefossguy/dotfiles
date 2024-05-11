@@ -59,6 +59,7 @@
 .nix*
 .nvim/undodir/*
 .pki/*
+.prathams-nixos
 .profile
 .rustup/*
 .Spotlight-V100
