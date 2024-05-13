@@ -1,0 +1,10 @@
+[profile.release]
+lto = true
+incremental = false
+# `codegen-units`: how many "parallel jobs" **for a crate**
+# lesser `codegen-uints` means higher perf
+codegen-units = 1
+
+[profile.test]
+overflow-checks = true
+panic = "unwind"
