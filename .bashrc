@@ -175,9 +175,12 @@ alias update="source ${HOME}/.bashrc"
 
 
 # yes, the order is | e -> vvim -> vim |
-alias e="$(command -v nvim)"
-alias vvim="$(command -v vim)"
-alias vim="$(command -v nvim)"
+path_nvim="$(command -v nvim)"
+path_vim="$(command -v vim)"
+path_vi="$(command -v vi)"
+alias e="${path_nvim}"
+alias vvim="${path_vim}"
+alias vim="${path_vi}"
 
 # git
 alias gadd='git add'
