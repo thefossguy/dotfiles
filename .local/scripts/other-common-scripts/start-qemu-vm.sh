@@ -68,6 +68,6 @@ if [ -z "${CDR}" ]; then
 else
     taskset \
         ${QEMU_COMMON} \
-        -hda "${CDR}" \
-        -hdb "${HDA}"
+        -cdrom "${CDR}" \
+        -hda "${HDA}"
 fi
