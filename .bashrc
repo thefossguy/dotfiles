@@ -215,11 +215,12 @@ alias rgiv='rg --hidden --invert-match --ignore-case'
 alias rgvi='rg --hidden --invert-match --ignore-case'
 
 # these only exist because I need to use 'g{ls,grep}' on macOS
-alias grep="${GNU_GREP} --color=auto"
-alias grepi="${GNU_GREP} --color=auto --ignore-case"
-alias grepv="${GNU_GREP} --color=auto --invert-match"
-alias grepiv="${GNU_GREP} --color=auto --invert-match --ignore-case"
-alias grepvi="${GNU_GREP} --color=auto --invert-match --ignore-case"
+common_ggrep_cmd="${GNU_GREP} --color=auto"
+alias   grep="${common_ggrep_cmd}"
+alias  grepi="${common_ggrep_cmd} --ignore-case"
+alias  grepv="${common_ggrep_cmd} --invert-match"
+alias grepiv="${common_ggrep_cmd} --invert-match --ignore-case"
+alias grepvi="${common_ggrep_cmd} --invert-match --ignore-case"
 alias l="${GNU_LS} --group-directories-first --color=auto -v"
 alias lo="${GNU_LS} --group-directories-first --color=auto -1v"
 alias ll="${GNU_LS} --group-directories-first --color=auto -1lv --time-style=long-iso"
