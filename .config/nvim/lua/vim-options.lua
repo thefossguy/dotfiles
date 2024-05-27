@@ -50,13 +50,13 @@ vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.hlsearch = true
-vim.o.nogdefault = true -- diable global substitution by default, let me specify it
+vim.opt.nogdefault = true -- diable global substitution by default, let me specify it
 
 -- speed up
 vim.opt.timeout = true
-vim.o.timeoutlen = '300'
-vim.o.updatetime = '250'
-vim.o.noswapfile = true
+vim.opt.timeoutlen = '300'
+vim.opt.updatetime = '250'
+vim.opt.noswapfile = true
 
 -- auto-completion
 vim.opt.completeopt = 'menuone,preview,noinsert,noselect'
@@ -65,7 +65,7 @@ vim.opt.completeopt = 'menuone,preview,noinsert,noselect'
 vim.opt.shortmess:append('c')
 
 -- undo
-vim.o.undolevels = '200'
+vim.opt.undolevels = '200'
 vim.opt.undodir = vim.fn.expand('~/.nvim/undodir')
 vim.opt.undofile = true
 
