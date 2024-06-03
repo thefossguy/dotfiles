@@ -158,6 +158,11 @@ alias suslock="${HOME}/.local/scripts/window-manager/lock-and-suspend.sh"
 alias syncsync="${SCRIPTS_DIR}/paranoid-flush.sh"
 
 # actual aliases (generic ones)
+if command -v wget2 > /dev/null; then
+    wget_cmd='wget2'
+else
+    wget_cmd='wget'
+fi
 RSYNC_OPTIONS='--verbose --recursive --size-only --human-readable --progress --stats --itemize-changes'
 alias bottom='btm'
 alias clear="clear && printf '\e[3J'"
@@ -172,6 +177,7 @@ alias serialterm="tty_serial"
 alias sudo='sudo '
 alias unxz='unxz --keep' # override 'unxz' with this to always keep the archive
 alias update="source ${HOME}/.bashrc"
+alias wget="${wget_cmd}"
 
 
 # yes, the order is | e -> vvim -> vim |
