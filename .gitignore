@@ -12,6 +12,7 @@
 .config/alacritty/platform.toml
 .config/aria2/*
 .config/asciinema/*
+.config/autostart/*
 .config/bottom/*
 .config/broot/*
 .config/btop/*
@@ -29,6 +30,7 @@
 .config/home-manager/home.nix
 .config/htop/*
 .config/ibus/*
+.config/ksnip/*
 .config/libvirt/qemu.conf
 .config/libvirt/storage/*
 .config/mimeapps.list
@@ -37,6 +39,7 @@
 .config/nvim/lazy-lock.json
 .config/protonmail/*
 .config/pulse/*
+.config/QtProject.conf
 .config/startkderc
 .config/systemd/*
 .config/Thunar/*
