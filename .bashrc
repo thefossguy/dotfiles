@@ -4,6 +4,7 @@
 # only run in an interactive shell
 [[ $- == *i* ]] || return
 
+# shellcheck disable=SC1091
 [[ -f /etc/bashrc ]] && source /etc/bashrc
 unalias -a
 
@@ -250,9 +251,9 @@ if command -v fdfind > /dev/null; then
 fi
 
 function nixos_needsreboot() {
-    NIXOS_NEEDSREBOOT_FILE='/var/run/reboot-required'
-    if [[ -f "${NIXOS_NEEDSREBOOT_FILE}" ]]; then
-        echo -e "\n$(tput bold)${PS0_HORIZONTAL_RULE}\nNewer version of $(cat "${NIXOS_NEEDSREBOOT_FILE}") is available!\n${PS0_HORIZONTAL_RULE}$(tput sgr0)"
+    local profiles_path='/nix/var/nix/profiles'
+    if [[ "$(readlink ${profiles_path}/$(readlink ${profiles_path}/system))" != "$(readlink /run/booted-system)" ]]; then
+        echo -e "\n$(tput bold)${PS0_HORIZONTAL_RULE}\nYou might want to reboot.\n${PS0_HORIZONTAL_RULE}$(tput sgr0)"
     fi
 }
 
