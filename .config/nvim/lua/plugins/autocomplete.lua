@@ -231,7 +231,7 @@ lspconfig.nil_ls.setup({
 
 -- a Python linter, written in 🦀
 lspconfig.ruff_lsp.setup({
-  cmd = { "ruff" },
+  cmd = { "ruff", "server", "--preview" },
 })
 
 lspconfig.bashls.setup({})
