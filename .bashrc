@@ -181,6 +181,11 @@ alias update="source ${HOME}/.bashrc"
 alias wget="${wget_cmd}"
 
 
+# bat
+bat_cmd=$(command -v bat)
+alias bat="${bat_cmd} --paging=never"
+alias pbat="${bat_cmd} --paging=always"
+
 # yes, the order is | e -> vvim -> vim |
 path_nvim="$(command -v nvim)"
 path_vim="$(command -v vim)"
