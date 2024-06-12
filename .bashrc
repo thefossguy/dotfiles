@@ -7,7 +7,6 @@
 # shellcheck disable=SC1091
 [[ -f /etc/bashrc ]] && source /etc/bashrc
 unalias -a
-export PAGER=''
 
 shopt -s checkjobs
 shopt -s checkwinsize
