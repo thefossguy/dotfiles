@@ -13,9 +13,7 @@ COMMON_PKGS=(
     "${BROWSERS_COMMON[@]}"
     com.github.tchx84.Flatseal
     md.obsidian.Obsidian
-    org.gnome.gitlab.YaLTeR.Identity
     org.gnome.gitlab.YaLTeR.VideoTrimmer
-    org.gnome.Logs
     org.gnome.meld
     org.raspberrypi.rpi-imager
 )
@@ -58,7 +56,7 @@ else
     exit 0
 fi
 
-${FLATPAK_BIN} remote-add --user --if-not-exists --subset=verified flathub https://flathub.org/repo/flathub.flatpakrepo
+${FLATPAK_BIN} remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 ${FLATPAK_BIN} install --user --or-update --assumeyes --noninteractive "${ALL_PKGS[@]}"
 ${FLATPAK_BIN} update --user --assumeyes --noninteractive
 ${FLATPAK_BIN} uninstall --user --unused --assumeyes --noninteractive --delete-data
