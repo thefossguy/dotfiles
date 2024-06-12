@@ -2,11 +2,11 @@
 
 set -xeuf -o pipefail
 
+# no need to use a browser as a flatpak except for filesystem ($HOME) sandboxing
 BROWSERS_AMD=(
     com.google.Chrome
 )
 BROWSERS_COMMON=(
-    com.brave.Browser
     io.gitlab.librewolf-community
 )
 COMMON_PKGS=(
@@ -64,8 +64,6 @@ ${FLATPAK_BIN} update --user --assumeyes --noninteractive
 ${FLATPAK_BIN} uninstall --user --unused --assumeyes --noninteractive --delete-data
 ${FLATPAK_BIN} repair --user
 
-# Brave is in nixpkgs 24.05 and later
-# no need to use a browser as a flatpak except for filesystem ($HOME) sandboxing
 for flatpak_pkg in "${ALL_PKGS[@]}"; do
     if [[ "${BROWSERS_ALL[*]}" == *"${flatpak_pkg}"* ]]; then
         flatpak override --user --reset "${flatpak_pkg}"
