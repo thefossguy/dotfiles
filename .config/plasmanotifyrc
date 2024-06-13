@@ -1,0 +1,12 @@
+[Applications][chromium-browser]
+Seen=true
+
+[Applications][firefox]
+Seen=true
+
+[Applications][org.gnome.Fractal]
+Seen=true
+
+[Notifications]
+LowPriorityHistory=true
+NormalAlwaysOnTop=true
