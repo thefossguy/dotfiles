@@ -4,10 +4,6 @@ size = 16.0
 [window]
 decorations = "full"
 
-[window.dimensions]
-columns = 125
-lines = 30
-
 [[keyboard.bindings]]
 chars = "\u001B[1;5D"
 key = "Left"
