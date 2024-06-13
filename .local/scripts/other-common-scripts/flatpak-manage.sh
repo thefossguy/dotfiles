@@ -11,7 +11,6 @@ BROWSERS_COMMON=(
 )
 COMMON_PKGS=(
     "${BROWSERS_COMMON[@]}"
-    com.github.tchx84.Flatseal
     md.obsidian.Obsidian
     org.gnome.gitlab.YaLTeR.VideoTrimmer
     org.gnome.meld
@@ -57,6 +56,8 @@ else
 fi
 
 ${FLATPAK_BIN} remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+# always install Flatseal
+${FLATPAK_BIN} install --user --or-update --assumeyes --noninteractive com.github.tchx84.Flatseal
 ${FLATPAK_BIN} install --user --or-update --assumeyes --noninteractive "${ALL_PKGS[@]}"
 ${FLATPAK_BIN} update --user --assumeyes --noninteractive
 ${FLATPAK_BIN} uninstall --user --unused --assumeyes --noninteractive --delete-data
