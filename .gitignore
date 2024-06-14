@@ -41,11 +41,15 @@
 .config/ibus/*
 .config/kactivitymanagerd*
 .config/kalk/
+.config/katerc
+.config/katevirc
 .config/kconf_updaterc
 .config/kde.org/*
+.config/KDE/UserFeedback.conf
 .config/kded*rc
 .config/kdeglobals
 .config/kglobalshortcutsrc
+.config/kinfocenterrc
 .config/konsolerc
 .config/konsolesshconfig
 .config/ksnip/*
