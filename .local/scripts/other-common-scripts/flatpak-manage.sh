@@ -7,6 +7,7 @@ BROWSERS_AMD=(
     com.google.Chrome
 )
 BROWSERS_COMMON=(
+    com.vivaldi.Vivaldi
     io.gitlab.librewolf-community
 )
 COMMON_PKGS=(
