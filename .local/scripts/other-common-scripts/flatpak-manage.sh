@@ -7,7 +7,7 @@ BROWSERS_AMD=(
     com.google.Chrome
 )
 BROWSERS_COMMON=(
-    com.vivaldi.Vivaldi
+    com.brave.Browser
     io.gitlab.librewolf-community
 )
 COMMON_PKGS=(
@@ -69,3 +69,4 @@ for flatpak_pkg in "${ALL_PKGS[@]}"; do
         flatpak override --user --reset "${flatpak_pkg}"
     fi
 done
+sed -i 's@^Name=Brave$@Name=Brave (flatpak)@g' ~/.local/share/flatpak/exports/share/applications/com.brave.Browser.desktop
