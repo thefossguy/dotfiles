@@ -128,7 +128,11 @@ function enable_epel() {
         sudo dnf install --assumeyes "https://dl.fedoraproject.org/pub/epel/epel-release-latest-${REL_VER}.noarch.rpm"
     else
         sudo dnf config-manager --set-enabled crb
-        sudo dnf install --assumeyes epel-release
+        epel_targets=('epel-release')
+        if grep 'NAME="CentOS Stream"' /etc/os-release > /dev/null; then
+            epel_targets+=('epel-next-release')
+        fi
+        sudo dnf install --assumeyes "${epel_targets[@]}"
     fi
 }
 function install_pkgs_rhel() {
