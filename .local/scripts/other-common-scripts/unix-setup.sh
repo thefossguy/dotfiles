@@ -85,7 +85,6 @@ function install_pkgs_debian() {
         debhelper
         dpkg-dev
         git
-        just
         openssh-server
         rsync
         vim
@@ -106,7 +105,6 @@ function install_pkgs_fedora() {
         appliance-tools
         curl
         git
-        just
         mock
         procps-ng
         pykickstart
