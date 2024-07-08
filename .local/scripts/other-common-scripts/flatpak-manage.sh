@@ -11,6 +11,8 @@ BROWSERS_COMMON=(
     io.gitlab.librewolf-community
 )
 COMMON_PKGS=(
+    # always install Flatseal
+    com.github.tchx84.Flatseal
     "${BROWSERS_COMMON[@]}"
     md.obsidian.Obsidian
     org.gnome.gitlab.YaLTeR.VideoTrimmer
@@ -56,12 +58,12 @@ else
     exit 0
 fi
 
+flatpak_uninstall_cmd="${FLATPAK_BIN} uninstall --user --assumeyes --noninteractive --delete-data"
+${FLATPAK_BIN} list --user --app --columns=application | grep -v "$(echo "${ALL_PKGS[@]}" | sed -e 's/ /\\|/g')" | xargs -r ${flatpak_uninstall_cmd}
 ${FLATPAK_BIN} remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-# always install Flatseal
-${FLATPAK_BIN} install --user --or-update --assumeyes --noninteractive com.github.tchx84.Flatseal
 ${FLATPAK_BIN} install --user --or-update --assumeyes --noninteractive "${ALL_PKGS[@]}"
 ${FLATPAK_BIN} update --user --assumeyes --noninteractive
-${FLATPAK_BIN} uninstall --user --unused --assumeyes --noninteractive --delete-data
+${flatpak_uninstall_cmd} --unused
 ${FLATPAK_BIN} repair --user
 
 for flatpak_pkg in "${ALL_PKGS[@]}"; do
@@ -69,5 +71,6 @@ for flatpak_pkg in "${ALL_PKGS[@]}"; do
         ${FLATPAK_BIN} override --user --reset "${flatpak_pkg}"
     fi
 done
+
 sed -i 's@^Name=Brave$@Name=Brave Browser (flatpak)@g' ~/.local/share/flatpak/exports/share/applications/com.brave.Browser.desktop
 update-desktop-database
