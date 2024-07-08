@@ -69,4 +69,5 @@ for flatpak_pkg in "${ALL_PKGS[@]}"; do
         ${FLATPAK_BIN} override --user --reset "${flatpak_pkg}"
     fi
 done
-sed -i 's@^Name=Brave$@Name=Brave (flatpak)@g' ~/.local/share/flatpak/exports/share/applications/com.brave.Browser.desktop
+sed -i 's@^Name=Brave$@Name=Brave Browser (flatpak)@g' ~/.local/share/flatpak/exports/share/applications/com.brave.Browser.desktop
+update-desktop-database
