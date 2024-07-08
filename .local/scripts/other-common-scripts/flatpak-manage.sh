@@ -66,7 +66,7 @@ ${FLATPAK_BIN} repair --user
 
 for flatpak_pkg in "${ALL_PKGS[@]}"; do
     if [[ "${BROWSERS_ALL[*]}" == *"${flatpak_pkg}"* ]]; then
-        flatpak override --user --reset "${flatpak_pkg}"
+        ${FLATPAK_BIN} override --user --reset "${flatpak_pkg}"
     fi
 done
 sed -i 's@^Name=Brave$@Name=Brave (flatpak)@g' ~/.local/share/flatpak/exports/share/applications/com.brave.Browser.desktop
