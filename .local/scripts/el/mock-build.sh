@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -x
+set -xu -o pipefail
 
 if (! command -v mock > /dev/null) || (! groups | grep 'mock' > /dev/null); then
     # shellcheck disable=SC2088
@@ -30,8 +30,9 @@ fi
 source <(grep ID /etc/os-release)
 MARCH="$(uname -m)"
 VERSION_ID="$(source <(grep VERSION_ID /etc/os-release) && awk -F '.' '{print $1}' <<< $VERSION_ID)"
-MOCK_ROOT="$ID-$VERSION_ID-$MARCH"
-MOCK_OUT="$HOME/mockbuild/out"
+REAL_MOCK_ROOT="$ID-$VERSION_ID-$MARCH"
+MOCK_ROOT="${MOCK_ROOT:-${REAL_MOCK_ROOT}}"
+MOCK_OUT="$HOME/rpm-mockbuild/${MOCK_ROOT}"
 
 if [[ ! -d "/var/lib/mock/$MOCK_ROOT" ]]; then
     mock --root "$MOCK_ROOT" --init
@@ -49,3 +50,5 @@ time mock \
     --buildsrpm \
     --spec "$2" \
     --rebuild
+
+createrepo "${MOCK_OUT}"
