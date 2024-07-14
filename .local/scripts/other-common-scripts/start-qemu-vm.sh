@@ -49,25 +49,24 @@ elif [ "$(uname -m)" == 'x86_64' ]; then
           -drive file=${HOME}/.local/share/edk2/EDKII_VARS,if=pflash,format=raw,unit=1"
 fi
 
-QEMU_COMMON="--all-tasks --cpu-list 4-7 \
-    qemu-kvm \
-        -machine ${QEMU_MACHINE} \
-        -cpu host \
-        -smp 4,sockets=1,cores=4,threads=1 \
-        -accel kvm \
-        -m 8192 \
-        -nographic \
-        ${BIOS} \
-        -sandbox on \
-        -netdev user,id=mynet0,hostfwd=tcp::${HOST_PORT}-:22 \
-        -device virtio-net-pci,netdev=mynet0"
+#taskset --all-tasks --cpu-list 4-7 <CMD>
+#-drive file=/home/pratham/veeams/nvme0n1.img,if=none,id=nvme0n1 -device nvme,serial=deadbeea,drive=nvme0n1
+QEMU_COMMON="qemu-kvm \
+    -machine ${QEMU_MACHINE} \
+    -cpu host \
+    -smp 8 \
+    -accel kvm \
+    -m 4096 \
+    ${BIOS} \
+    -sandbox on \
+    -netdev user,id=mynet0,hostfwd=tcp::${HOST_PORT}-:22 \
+    -device virtio-net-pci,netdev=mynet0"
+
 if [ -z "${CDR}" ]; then
-    taskset \
-        ${QEMU_COMMON} \
+    ${QEMU_COMMON} \
         -hda "${HDA}"
 else
-    taskset \
-        ${QEMU_COMMON} \
+    ${QEMU_COMMON} \
         -cdrom "${CDR}" \
         -hda "${HDA}"
 fi
