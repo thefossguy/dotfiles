@@ -166,7 +166,7 @@ function home_manager_setup() {
     # otherwise you get a 'command not found' error like this
     # /nix/store/bpdrgm43y8mgjd5g6q13yfydj9057gly-home-manager/bin/home-manager: line 510: nix-build: command not found
     export PATH="${HOME}/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
-    HM_CONFIG_PATH="${HOME}/my-git-repos/$(whoami)/prathams-nixos"
+    HM_CONFIG_PATH="${HOME}/.prathams-nixos"
 
     nix_setup
 
@@ -178,10 +178,10 @@ function home_manager_setup() {
     fi
 }
 function run_rustup() {
-    RUSTUP_PATH="${HOME}"/.nix-profile/bin/rustup
+    RUSTUP_PATH="${HOME}/.nix-profile/bin/rustup"
 
     if [[ -x "${RUSTUP_PATH}" && "${PERFORM_RUSTUP_SETUP:-0}" == 1 ]]; then
-        "${HOME}"/.local/scripts/other-common-scripts/rust-manage.sh "${HOME}"/.nix-profile/bin/rustup
+        "${HOME}"/.local/scripts/other-common-scripts/rust-manage.sh "${RUSTUP_PATH}"
     fi
 }
 function chsh_to_bash() {
