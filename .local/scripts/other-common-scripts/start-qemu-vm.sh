@@ -58,6 +58,7 @@ QEMU_COMMON="qemu-kvm \
     -accel kvm \
     -m 4096 \
     ${BIOS} \
+    -nographic \
     -sandbox on \
     -netdev user,id=mynet0,hostfwd=tcp::${HOST_PORT}-:22 \
     -device virtio-net-pci,netdev=mynet0"
