@@ -6,6 +6,7 @@
 
 # shellcheck disable=SC1091
 [[ -f /etc/bashrc ]] && source /etc/bashrc
+[[ -x "${HOME}/.local/scripts/other-common-scripts/0-init.sh" ]] && "${HOME}/.local/scripts/other-common-scripts/0-init.sh"
 unalias -a
 
 shopt -s checkjobs

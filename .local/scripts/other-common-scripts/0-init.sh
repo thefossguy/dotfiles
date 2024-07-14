@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 
-set -xeu
-
-if [[ ! -f "${HOME}/.config/alacritty/platform.yml" ]]; then
+if [[ ! -f "${HOME}/.config/alacritty/platform.toml" ]]; then
     if [[ "$(uname -s)" == 'Linux' ]]; then
-        ln -s "${HOME}/.config/alacritty/"{linux,platform}.yml
+        ln -s "${HOME}/.config/alacritty/"{linux,platform}.toml
     elif [[ "$(uname -s)" == 'Darwin' ]]; then
-        ln -s "${HOME}/.config/alacritty/"{darwin,platform}.yml
+        ln -s "${HOME}/.config/alacritty/"{darwin,platform}.toml
     fi
 fi
 
@@ -14,7 +12,7 @@ fi
 # instead they have a '/etc/pki/tls/certs/ca-bundle.crt'
 if [[ "$(uname -s)" == 'Linux' ]]; then
     if [[ ! -f '/etc/ssl/certs/ca-certificates.crt' ]]; then
-        if grep "ID_LIKE=*.rhel*." /etc/os-release > /dev/null; then
+        if grep -q "ID_LIKE=*.rhel*." /etc/os-release; then
             sudo ln -s /etc/pki/tls/certs/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt
         fi
     fi
