@@ -1,8 +1,8 @@
-#!/usr/bin/env dash
+#!/usr/bin/env bash
 
-set -xeuf
+set -xeuf -o pipefail
 
-cd /home/pratham/my-git-repos/pratham/prathams-nixos
+pushd "${HOME}/.prathams-nixos"
 DIRTY_REPO=$(git status --porcelain=v1 --ignored=no --untracked-files=no)
 if [ -n "${DIRTY_REPO}" ]; then
     >&2 echo 'You have unsaved changes, not pulling.'
@@ -10,3 +10,4 @@ if [ -n "${DIRTY_REPO}" ]; then
 else
     git pull
 fi
+popd

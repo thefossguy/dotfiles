@@ -1,6 +1,6 @@
-#!/usr/bin/env dash
+#!/usr/bin/env bash
 
-set -xeuf
+set -xeuf -o pipefail
 
 DIRTY_REPO=$(git --git-dir="${HOME}/.dotfiles" --work-tree="${HOME}" status --porcelain=v1 --ignored=no --untracked-files=no)
 if [ -n "${DIRTY_REPO}" ]; then
