@@ -54,7 +54,7 @@ fi
 QEMU_COMMON="qemu-kvm \
     -machine ${QEMU_MACHINE} \
     -cpu host \
-    -smp 8 \
+    -smp 2 \
     -accel kvm \
     -m 4096 \
     ${BIOS} \
