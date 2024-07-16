@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-pgrep -x swww        || swww init &
+pgrep -x swww        || swww-daemon &
 pgrep -x nm-applet   || nm-applet --indicator & # pkgs.networkmanagerapplet
 pgrep -x waybar      || waybar &
 pgrep -x mako        || mako &
