@@ -35,6 +35,12 @@ if [[ "$(uname -s)" == 'Linux' ]]; then
     alias mpv='mpv --geometry=60% --vo=gpu --hwdec=vaapi'
     alias mpvrpi='mpv --geometry=60% --vo=x11'
 
+    xdg_runtime_dir="/run/user/$(id -u)"
+    if [[ -z "${XDG_RUNTIME_DIR:-}" ]] && [[ -d "${xdg_runtime_dir}" ]]; then
+            XDG_RUNTIME_DIR="${xdg_runtime_dir}"
+            export XDG_RUNTIME_DIR
+    fi
+
     if [[ "${XDG_SESSION_TYPE}" == 'x11' ]]; then
         alias clearclipboard='xsel -bc'
         alias pbcopy='xsel --clipboard --input'
