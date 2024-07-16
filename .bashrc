@@ -45,7 +45,11 @@ if [[ "$(uname -s)" == 'Linux' ]]; then
         alias clearclipboard='xsel -bc'
         alias pbcopy='xsel --clipboard --input'
     elif [[ "${XDG_SESSION_TYPE}" == 'wayland' ]]; then
-        alias clearclipboard='wl-copy --clear'
+        if [[ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]]; then
+            alias clearclipboard='cliphist wipe'
+        else
+            alias clearclipboard='wl-copy --clear'
+        fi
         alias pbcopy='wl-copy'
     fi
 
