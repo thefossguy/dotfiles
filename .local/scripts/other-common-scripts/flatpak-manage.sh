@@ -59,7 +59,6 @@ else
 fi
 
 flatpak_uninstall_cmd="${FLATPAK_BIN} uninstall --user --assumeyes --noninteractive --delete-data"
-${FLATPAK_BIN} list --user --app --columns=application | grep -v "$(echo "${ALL_PKGS[@]}" | sed -e 's/ /\\|/g')" | xargs -r ${flatpak_uninstall_cmd}
 ${FLATPAK_BIN} remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 ${FLATPAK_BIN} install --user --or-update --assumeyes --noninteractive "${ALL_PKGS[@]}"
 ${FLATPAK_BIN} update --user --assumeyes --noninteractive
