@@ -29,10 +29,15 @@
 
     // Modules configuration
     "hyprland/workspaces": {
+        "format": "{name}: {icon}",
+        "format-icons": {
+            "active": "◉",
+            "default": "◌"
+        },
         "active-only": false
     },
     "hyprland/window": {
-        "format": "| {title}",
+        "format": "{title}",
         "separate-outputs": false,
         "icon": true,
         "icon-size": 20
