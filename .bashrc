@@ -35,10 +35,13 @@ if [[ "$(uname -s)" == 'Linux' ]]; then
     alias mpv='mpv --geometry=60% --vo=gpu --hwdec=vaapi'
     alias mpvrpi='mpv --geometry=60% --vo=x11'
 
-    xdg_runtime_dir="/run/user/$(id -u)"
-    if [[ -z "${XDG_RUNTIME_DIR:-}" ]] && [[ -d "${xdg_runtime_dir}" ]]; then
-            XDG_RUNTIME_DIR="${xdg_runtime_dir}"
-            export XDG_RUNTIME_DIR
+    if [[ -z "${XDG_RUNTIME_DIR:-}" ]]; then
+        RUNTIME_MOUNT_UNIT="run-user-$(id -u).mount"
+        if systemctl --user is-active --quiet "${RUNTIME_MOUNT_UNIT}"; then
+            XDG_RUNTIME_DIR="$(systemctl --user show "${RUNTIME_MOUNT_UNIT}" | grep 'Where=' | awk -F '=' '{ print $2 }')"
+            # export only if this directory exists (i.e. no problems were encountered during parsing and that the value is valid)
+            [[ -d "${XDG_RUNTIME_DIR:-}" ]] && export XDG_RUNTIME_DIR
+        fi
     fi
 
     if [[ "${XDG_SESSION_TYPE}" == 'x11' ]]; then
