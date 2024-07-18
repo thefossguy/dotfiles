@@ -5,6 +5,7 @@ set -xeuf -o pipefail
 # no need to use a browser as a flatpak except for filesystem ($HOME) sandboxing
 BROWSERS_AMD=(
     com.google.Chrome
+    org.mozilla.firefox
 )
 BROWSERS_COMMON=(
     com.brave.Browser
@@ -94,4 +95,5 @@ for CHROMIUM_FLAGS_FILE in "${CHROMIUM_FLAGS_FILES[@]}"; do
 done
 
 sed -i 's@^Name=Brave$@Name=Brave Browser (flatpak)@g' ~/.local/share/flatpak/exports/share/applications/com.brave.Browser.desktop
+sed -i 's@^Name=Firefox Web Browser$@Name=Firefox (flatpak)@g' ~/.local/share/flatpak/exports/share/applications/org.mozilla.firefox.desktop
 update-desktop-database
