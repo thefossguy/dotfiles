@@ -80,7 +80,6 @@ CHROMIUM_FLAGS=(
     '--enable-features=UseOzonePlatform' # enable the Ozone Wayland thingy
     '--ozone-platform-hint=auto' # two-finger zoom on wayland
     '--enable-features=TouchpadOverscrollHistoryNavigation' # enable two-finger swipe for forward/backward history navigation
-    '--password-store=basic' # disables the password prompt for the "wallet"
     '--disable-sync-preferences' # disable syncing chromium preferences with a sync account
 )
 
