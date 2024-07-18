@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+brightnessctl set 15%
 pidof -q hypridle    || hypridle &
 pidof -q wl-paste    || wl-paste --watch cliphist store &
 pidof -q mako        || mako &
