@@ -71,5 +71,28 @@ for flatpak_pkg in "${ALL_PKGS[@]}"; do
     fi
 done
 
+
+CHROMIUM_FLAGS_FILES=(
+    "${HOME}/.var/app/com.brave.Browser/config/brave-flags.conf"
+    "${HOME}/.var/app/com.google.Chrome/config/chrome-flags.conf"
+)
+CHROMIUM_FLAGS=(
+    '--enable-features=UseOzonePlatform' # enable the Ozone Wayland thingy
+    '--ozone-platform-hint=auto' # two-finger zoom on wayland
+    '--enable-features=TouchpadOverscrollHistoryNavigation' # enable two-finger swipe for forward/backward history navigation
+    '--password-store=basic' # disables the password prompt for the "wallet"
+    '--disable-sync-preferences' # disable syncing chromium preferences with a sync account
+)
+
+for CHROMIUM_FLAGS_FILE in "${CHROMIUM_FLAGS_FILES[@]}"; do
+    mkdir -p "$(dirname "${CHROMIUM_FLAGS_FILE}")"
+
+    for CHROMIUM_FLAG in "${CHROMIUM_FLAGS[@]}"; do
+        if ! grep -q "^${CHROMIUM_FLAG}" "${CHROMIUM_FLAGS_FILE}"; then
+            echo "${CHROMIUM_FLAG}" | tee -a "${CHROMIUM_FLAGS_FILE}"
+        fi
+    done
+done
+
 sed -i 's@^Name=Brave$@Name=Brave Browser (flatpak)@g' ~/.local/share/flatpak/exports/share/applications/com.brave.Browser.desktop
 update-desktop-database
