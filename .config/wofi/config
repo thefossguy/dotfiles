@@ -1,0 +1,4 @@
+show=drun
+hide_scroll=false
+matching=fuzzy
+insensitive=true
