@@ -66,13 +66,6 @@ ${FLATPAK_BIN} update --user --assumeyes --noninteractive
 ${flatpak_uninstall_cmd} --unused
 ${FLATPAK_BIN} repair --user
 
-for flatpak_pkg in "${ALL_PKGS[@]}"; do
-    if [[ "${BROWSERS_ALL[*]}" == *"${flatpak_pkg}"* ]]; then
-        ${FLATPAK_BIN} override --user --reset "${flatpak_pkg}"
-    fi
-done
-
-
 CHROMIUM_FLAGS_FILES=(
     "${HOME}/.var/app/com.brave.Browser/config/brave-flags.conf"
     "${HOME}/.var/app/com.google.Chrome/config/chrome-flags.conf"
