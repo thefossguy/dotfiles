@@ -1,0 +1,16 @@
+# binding
+on-button-left=dismiss
+on-button-middle=dismiss
+on-button-right=dismiss
+on-touch=dismiss
+
+# syle
+background-color=#000000
+text-color=#FFFFFF
+border-size=1
+border-color=#FFFFFF
+border-radius=10
+progress-color=#FF0000
+default-timeout=0
+max-visible=5
+anchor=top-right
