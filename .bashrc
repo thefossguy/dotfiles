@@ -234,11 +234,16 @@ alias playdl="yt-dlp --config-location ${HOME}/.config/yt-dlp/plst_config --exte
 alias ytdown="yt-dlp --config-location ${HOME}/.config/yt-dlp/norm_config --external-downloader aria2c"
 alias ytslow="yt-dlp --config-location ${HOME}/.config/yt-dlp/norm_config --no-part --concurrent-fragments 1 --limit-rate 4M"
 
+# fd-find
+alias  fd='fd --hidden --no-ignore --follow --glob'
+alias fdi='fd --hidden --no-ignore --follow --glob --ignore-case'
+
 # ripgrep
-alias rgi='rg --hidden --ignore-case'
-alias rgv='rg --hidden --invert-match'
-alias rgiv='rg --hidden --invert-match --ignore-case'
-alias rgvi='rg --hidden --invert-match --ignore-case'
+ripgrep_common='rg --hidden --follow --glob'
+alias  rgi="${ripgrep_common} --glob-case-insensitive"
+alias  rgv="${ripgrep_common} --invert-match"
+alias rgiv="${ripgrep_common} --invert-match --glob-case-insensitive"
+alias rgvi="${ripgrep_common} --invert-match --glob-case-insensitive"
 
 # these only exist because I need to use 'g{ls,grep}' on macOS
 common_ggrep_cmd="${GNU_GREP} --color=auto"
