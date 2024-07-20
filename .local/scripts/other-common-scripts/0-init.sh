@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
 if [[ ! -f "${HOME}/.config/alacritty/platform.toml" ]]; then
+    pushd "${HOME}/.config/alacritty/" || exit 0
     if [[ "$(uname -s)" == 'Linux' ]]; then
-        ln -s "${HOME}/.config/alacritty/"{linux,platform}.toml
+        ln -s linux.toml platform.toml
     elif [[ "$(uname -s)" == 'Darwin' ]]; then
-        ln -s "${HOME}/.config/alacritty/"{darwin,platform}.toml
+        ln -s darwin.toml platform.toml
     fi
+    popd || exit 0
 fi
 
 # for some reason Fedora/RHEL does not have a '/etc/ssl/certs/ca-certificates.crt'
