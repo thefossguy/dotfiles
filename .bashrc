@@ -295,6 +295,7 @@ alias fdi='fd --hidden --no-ignore --follow --glob --ignore-case'
 
 # ripgrep
 ripgrep_common='rg --hidden --follow --glob'
+alias   rg="${ripgrep_common}"
 alias  rgi="${ripgrep_common} --glob-case-insensitive"
 alias  rgv="${ripgrep_common} --invert-match"
 alias rgiv="${ripgrep_common} --invert-match --glob-case-insensitive"
