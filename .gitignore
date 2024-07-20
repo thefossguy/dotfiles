@@ -43,6 +43,7 @@
 .config/home-manager/flake.*
 .config/home-manager/home.nix
 .config/htop/*
+.config/hypr/host-monitor.conf
 .config/ibus/*
 .config/kactivitymanagerd*
 .config/kalk/*
