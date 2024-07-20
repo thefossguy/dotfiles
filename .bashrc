@@ -290,16 +290,16 @@ alias vvim="${path_vim}"
 alias vim="${path_vi}"
 
 # fd-find
-alias  fd='fd --hidden --no-ignore --follow --glob'
-alias fdi='fd --hidden --no-ignore --follow --glob --ignore-case'
+alias  fd='fd --hidden --no-ignore --follow'
+alias fdi='fd --hidden --no-ignore --follow --ignore-case'
 
 # ripgrep
-ripgrep_common='rg --hidden --follow --glob'
+ripgrep_common='rg --hidden --follow '
 alias   rg="${ripgrep_common}"
-alias  rgi="${ripgrep_common} --glob-case-insensitive"
+alias  rgi="${ripgrep_common} --ignore-case"
 alias  rgv="${ripgrep_common} --invert-match"
-alias rgiv="${ripgrep_common} --invert-match --glob-case-insensitive"
-alias rgvi="${ripgrep_common} --invert-match --glob-case-insensitive"
+alias rgiv="${ripgrep_common} --invert-match --ignore-case"
+alias rgvi="${ripgrep_common} --invert-match --ignore-case"
 
 # these only exist because I need to use 'g{ls,grep}' on macOS
 common_ggrep_cmd="$(command -v "${GNU_GREP}") --color=auto"
