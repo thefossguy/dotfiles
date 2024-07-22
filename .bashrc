@@ -243,8 +243,8 @@ alias update="source ${HOME}/.bashrc"
 
 # rsync aliases
 rsync_common_cmd='rsync --verbose --recursive --size-only --human-readable --progress --stats --itemize-changes'
-alias custcp="rsync ${RSYNC_OPTIONS}"
-alias fcustcp="rsync --fsync ${RSYNC_OPTIONS}"
+alias custcp="${rsync_common_cmd}"
+alias fcustcp="${rsync_common_cmd} --fsync"
 alias nixcheckconf="${rsync_common_cmd} --fsync --checksum --exclude='.git' ${HOME}/my-git-repos/pratham/prathams-nixos/nixos-configuration/ /etc/nixos/ --dry-run"
 
 # git
