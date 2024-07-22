@@ -1,8 +1,8 @@
 # binding
 on-button-left=dismiss
-on-button-middle=dismiss
-on-button-right=dismiss
-on-touch=dismiss
+on-button-middle=invoke-default-action
+on-button-right=invoke-default-action
+on-touch=invoke-default-action
 
 # syle
 background-color=#000000
