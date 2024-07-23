@@ -6,7 +6,7 @@
 
 
 #------------------------------------------------------------------------------#
-# Early setup
+# Early setup, mostly sourcing files
 global_bashrc='/etc/bashrc'
 if [[ -f "${global_bashrc}" ]]; then
     # shellcheck disable=SC1090
@@ -14,6 +14,28 @@ if [[ -f "${global_bashrc}" ]]; then
     unalias -a
 fi
 
+darwin_nix_bash_completion="${HOME}/.local/share/nix-bash/bash_completion.sh"
+if [[ -f "${darwin_nix_bash_completion}" ]]; then
+    # shellcheck disable=SC1090
+    source "${darwin_nix_bash_completion}"
+fi
+
+# this, among other things, handles the following:
+# 1. Sets LOCALE_ARCHIVE* for nixpkgs binaries, absense of which, when running
+#    binaries from nixpkgs on non-NixOS operating systems
+# 2. Set NIX_SSL_CERT_FILE which prevents an SSL certificate error when
+#    downloading files over internet with binaries from nixpkgs on non-NixOS
+#    operating systems
+home_manager_session_vars="${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh"
+if [[ -f "${home_manager_session_vars}" ]]; then
+    # shellcheck disable=SC1090
+    source "${home_manager_session_vars}"
+    # unset __HM_SESS_VARS_SOURCED so that `update` (re-sourcing ~/.bashrc) works when hm-session-vars.sh is updated
+    # this happens when the nixpkgs expression changes and as a result PATHs change as well
+    unset __HM_SESS_VARS_SOURCED
+fi
+
+# the only, actual "setup"
 init_setup_script="${HOME}/.local/scripts/other-common-scripts/0-init.sh"
 [[ -x "${init_setup_script}" ]] && "${init_setup_script}"
 
@@ -34,7 +56,6 @@ HISTSIZE=10000
 #------------------------------------------------------------------------------#
 # Global vars/flags/switches
 PS0_HORIZONTAL_RULE='++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
-FILES_TO_SOURCE=()
 if ! command -v nix >/dev/null; then
     HAS_NIX=0
 else
@@ -43,13 +64,13 @@ fi
 if [[ "$(uname -s)" == 'Linux' ]]; then
     PLATFORM_IS_LINUX=1
     if grep -q 'ID=nixos' /etc/os-release; then
-        OS_TYPE='0'
+        OS_TYPE=0
     else
-        OS_TYPE='1'
+        OS_TYPE=1
     fi
 elif [[ "$(uname -s)" == 'Darwin' ]]; then
     PLATFORM_IS_LINUX=0
-    OS_TYPE='2'
+    OS_TYPE=2
 fi
 
 
@@ -85,13 +106,6 @@ function tty_serial() {
 #------------------------------------------------------------------------------#
 # Platform-specific, conditional logic
 # **ONLY DEFINE STUFF, AVOID ACTING ON STUFF
-if [[ "${HAS_NIX}" -eq 1 ]]; then
-    FILES_TO_SOURCE+=("${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh")
-    if [[ "${OS_TYPE}" -eq 2 ]]; then
-        FILES_TO_SOURCE+=("${HOME}/.local/share/nix-bash/bash_completion.sh")
-    fi
-fi
-
 if [[ "${PLATFORM_IS_LINUX}" -eq 1 ]]; then
     GNU_LS='ls'
     GNU_GREP='grep'
@@ -99,18 +113,6 @@ elif [[ "${PLATFORM_IS_LINUX}" -eq 0 ]]; then
     GNU_LS='gls'
     GNU_GREP='ggrep'
 fi
-
-
-#------------------------------------------------------------------------------#
-# Other, more different file sourcing
-for fts in "${FILES_TO_SOURCE[@]}"; do
-    if [[ -f "${fts}" ]]; then
-        # shellcheck disable=SC1090
-        source "${fts}"
-    else
-        echo "WARNING: '${fts}' does not exist."
-    fi
-done
 
 
 #------------------------------------------------------------------------------#
@@ -124,9 +126,12 @@ export PATH
 
 #------------------------------------------------------------------------------#
 # Exports go here
-EDITOR=vim
-if [[ "${OS_TYPE}" -eq 0 ]]; then
-    EDITOR=nvim
+if command -v nvim >/dev/null; then
+    EDITOR='nvim'
+elif command -v vim >/dev/null; then
+    EDITOR='vim'
+else
+    EDITOR='vi'
 fi
 export EDITOR
 
@@ -162,7 +167,7 @@ if [[ "${PLATFORM_IS_LINUX}" -eq 1 ]]; then
     fi
 fi
 
-if command -v rustc > /dev/null; then
+if command -v rustc >/dev/null; then
     # this actually needs to be a split for loop's iteration
     # shellcheck disable=SC2207
     rust_toolchains=($(rustup toolchain list | awk '{ print $1 }'))
@@ -281,13 +286,15 @@ alias ytslow="${ytdlp_common_cmd}norm_config --no-part --concurrent-fragments 1 
 alias  bat='bat --paging=never'
 alias pbat='bat --paging=always'
 
-# yes, the order is | e -> vvim -> vim |
-path_nvim="$(command -v nvim)"
-path_vim="$(command -v vim)"
-path_vi="$(command -v vi)"
-alias e="${path_nvim}"
-alias vvim="${path_vim}"
-alias vim="${path_vi}"
+# nvim/vim/vi
+if command -v vim >/dev/null; then
+    vi_vim_cmd='vim'
+else
+    vi_vim_cmd='vi'
+fi
+alias    e="${EDITOR}" # depending on what's installed, nvim or vim or vi (in that order)
+alias vvim="${vi_vim_cmd}"
+alias  vim="${vi_vim_cmd}"
 
 # fd-find
 alias  fd='fd --hidden --no-ignore --follow'
