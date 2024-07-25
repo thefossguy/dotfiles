@@ -83,6 +83,7 @@
 .config/nix-darwin/*
 .config/nix/*
 .config/nvim/lazy-lock.json
+.config/okularpartrc
 .config/okularrc
 .config/org.kde.keysmith/Keysmith.conf
 .config/pcmanfm/*
