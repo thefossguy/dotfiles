@@ -35,6 +35,13 @@ if [[ -f "${home_manager_session_vars}" ]]; then
     unset __HM_SESS_VARS_SOURCED
 fi
 
+# secrets, mostly work-related
+secrets_file="${HOME}/.local/secrets/0-all-secrets.sh"
+if [[ -f "${secrets_file}" ]]; then
+    # shellcheck disable=SC1090
+    source "${secrets_file}"
+fi
+
 # the only, actual "setup"
 init_setup_script="${HOME}/.local/scripts/other-common-scripts/0-init.sh"
 [[ -x "${init_setup_script}" ]] && "${init_setup_script}"
@@ -329,6 +336,25 @@ alias lah="${long_long_gls_cmd}"
 alias lha="${long_long_gls_cmd}"
 alias lsh="${long_long_gls_cmd}"
 
+# RPM land thingies
+export PERIDOT_CLIENT_ID=''
+export PERIDOT_CLIENT_SECRET=''
+export PERIDOT_ENDPOINT=''
+export PERIDOT_HDR_ENDPOINT=''
+export RAAS_ENDPOINT=''
+export RAAS_CLIENT_ID="${PERIDOT_CLIENT_ID}"
+export RAAS_CLIENT_SECRET="${PERIDOT_CLIENT_SECRET}"
+export RAAS_HDR_ENDPOINT="${PERIDOT_HDR_ENDPOINT}"
+
+# this function is intentionally kept here to make the future cleanup easier
+function create_hashed_repo() {
+    if [[ -z "${2:-}" ]]; then
+        echo 'Need project ID ($1) and hashed-repo name ($2).'
+    else
+        peridot --project-id "$1" project create-hashed-repos "$2"
+    fi
+}
+alias peridotupload='peridot lookaside upload'
 
 #------------------------------------------------------------------------------#
 # PS1 setup
