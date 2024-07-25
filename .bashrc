@@ -337,14 +337,14 @@ alias lha="${long_long_gls_cmd}"
 alias lsh="${long_long_gls_cmd}"
 
 # RPM land thingies
-export PERIDOT_CLIENT_ID=''
-export PERIDOT_CLIENT_SECRET=''
-export PERIDOT_ENDPOINT=''
-export PERIDOT_HDR_ENDPOINT=''
-export RAAS_ENDPOINT=''
-export RAAS_CLIENT_ID="${PERIDOT_CLIENT_ID}"
-export RAAS_CLIENT_SECRET="${PERIDOT_CLIENT_SECRET}"
-export RAAS_HDR_ENDPOINT="${PERIDOT_HDR_ENDPOINT}"
+export PERIDOT_CLIENT_ID="${PERIDOT_CLIENT_ID:-}"
+export PERIDOT_CLIENT_SECRET="${PERIDOT_CLIENT_SECRET:-}"
+export PERIDOT_ENDPOINT="${PERIDOT_ENDPOINT:-}"
+export PERIDOT_HDR_ENDPOINT="${PERIDOT_HDR_ENDPOINT:-}"
+export RAAS_ENDPOINT="${RAAS_ENDPOINT:-}"
+export RAAS_CLIENT_ID="${PERIDOT_CLIENT_ID:-}"
+export RAAS_CLIENT_SECRET="${PERIDOT_CLIENT_SECRET:-}"
+export RAAS_HDR_ENDPOINT="${PERIDOT_HDR_ENDPOINT:-}"
 
 # this function is intentionally kept here to make the future cleanup easier
 function create_hashed_repo() {
