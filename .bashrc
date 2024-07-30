@@ -390,6 +390,5 @@ fi
 #------------------------------------------------------------------------------#
 # Hyprland launch shenanigans
 if [[ "$(tty)" == '/dev/tty1' ]] && command -v Hyprland >/dev/null && ! pgrep --uid "$(id -u)" Hyprland >/dev/null; then
-    [[ -x "${NIXOS_PAM_KWALLET_INIT_FILE:-}" ]] && $NIXOS_PAM_KWALLET_INIT_FILE
     exec Hyprland
 fi
