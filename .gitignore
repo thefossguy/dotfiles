@@ -1,7 +1,6 @@
 .*history
 ._*
 .bash_logout
-.bash_profile
 .boto
 .cache/*
 .cargo/*

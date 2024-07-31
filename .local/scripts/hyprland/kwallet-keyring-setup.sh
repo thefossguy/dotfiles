@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-KWALLET_FLAG_FILE="${XDG_RUNTIME_DIR}/${USER}/tmp/.kde_wallet_init_done"
-if [[ -x "${NIXOS_PAM_KWALLET_INIT_FILE:-}" ]] && [[ ! -f "${KWALLET_FLAG_FILE}" ]]; then
-    mkdir -p "$(dirname "${KWALLET_FLAG_FILE}")"
+# for some reason, the PAM_KWALLET5_LOGIN socket exist but doesn't work
+# so re-execute the pam_kwallet_init file
+if [[ -x "${NIXOS_PAM_KWALLET_INIT_FILE:-}" ]]; then
     $NIXOS_PAM_KWALLET_INIT_FILE
-    touch "${KWALLET_FLAG_FILE}"
 fi
