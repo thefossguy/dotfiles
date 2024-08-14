@@ -81,6 +81,7 @@ function install_pkgs_debian() {
     export DEBIAN_FRONTEND=noninteractive
     export NEEDRESTART_SUSPEND=true
     PKGS_TO_INSTALL=(
+        bridge-utils
         curl
         debhelper
         dpkg-dev
@@ -103,6 +104,7 @@ EOF
 function install_pkgs_fedora() {
     PKGS_TO_INSTALL=(
         appliance-tools
+        bridge-utils
         curl
         git
         mock
