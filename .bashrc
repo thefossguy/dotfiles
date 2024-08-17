@@ -251,6 +251,7 @@ alias mtr='mtr --show-ips --displaymode 0 -o "LDR AGJMXI"'
 alias prettynixbuild='nix build --log-format internal-json -v . 2>&1 | nom --json'
 alias serialterm="tty_serial"
 alias sudo='sudo '
+alias tmux="tmux -f ${HOME}/.config/tmux/tmux.conf" # tmux 3.2 and later source $XDG_CONFIG_DIR/tmux/tmux.conf, so a workaround for that
 alias unxz='unxz --keep' # override 'unxz' with this to always keep the archive
 alias update="source ${HOME}/.bashrc"
 
