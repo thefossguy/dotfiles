@@ -197,33 +197,6 @@ fi
 
 #------------------------------------------------------------------------------#
 # Aliases go here
-if [[ "${OS_TYPE}" -eq 0 ]]; then
-    alias sudo='sudo --preserve-env=PATH env'
-fi
-
-if [[ "${PLATFORM_IS_LINUX}" -eq 1 ]]; then
-    alias ping='ping -W 0.1 -O'
-    alias mpv='mpv --geometry=60% --vo=gpu --hwdec=vaapi'
-    alias mpvrpi='mpv --geometry=60% --vo=x11'
-
-    if [[ "${XDG_SESSION_TYPE:-}" == 'x11' ]]; then
-        alias clearclipboard='xsel -bc'
-        alias pbcopy='xsel --clipboard --input'
-    elif [[ "${XDG_SESSION_TYPE:-}" == 'wayland' ]]; then
-        if [[ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]]; then
-            alias clearclipboard='cliphist wipe && wl-copy --clear'
-        else
-            alias clearclipboard='wl-copy --clear'
-        fi
-        alias pbcopy='wl-copy'
-    fi
-
-elif [[ "${OS_TYPE}" -eq 2 ]]; then
-    alias ktb='sudo pkill TouchBarServer; sudo killall ControlStrip'
-    alias mpv='mpv --vo=libmpv'
-    alias ownefivars="chmod +uw ${HOME}/Library/Containers/com.utmapp.UTM/Data/Documents/*.utm/Data/efi_vars.fd"
-fi
-
 # alias wrappers to call scripts
 COMMON_SCRIPTS_DIR="${HOME}/.local/scripts"
 SCRIPTS_DIR="${COMMON_SCRIPTS_DIR}/other-common-scripts"
@@ -337,6 +310,34 @@ alias alh="${long_long_gls_cmd}"
 alias lah="${long_long_gls_cmd}"
 alias lha="${long_long_gls_cmd}"
 alias lsh="${long_long_gls_cmd}"
+
+# Platform specific overrides go here
+if [[ "${OS_TYPE}" -eq 0 ]]; then
+    alias sudo='sudo --preserve-env=PATH env'
+fi
+
+if [[ "${PLATFORM_IS_LINUX}" -eq 1 ]]; then
+    alias ping='ping -W 0.1 -O'
+    alias mpv='mpv --geometry=60% --vo=gpu --hwdec=vaapi'
+    alias mpvrpi='mpv --geometry=60% --vo=x11'
+
+    if [[ "${XDG_SESSION_TYPE:-}" == 'x11' ]]; then
+        alias clearclipboard='xsel -bc'
+        alias pbcopy='xsel --clipboard --input'
+    elif [[ "${XDG_SESSION_TYPE:-}" == 'wayland' ]]; then
+        if [[ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]]; then
+            alias clearclipboard='cliphist wipe && wl-copy --clear'
+        else
+            alias clearclipboard='wl-copy --clear'
+        fi
+        alias pbcopy='wl-copy'
+    fi
+
+elif [[ "${OS_TYPE}" -eq 2 ]]; then
+    alias ktb='sudo pkill TouchBarServer; sudo killall ControlStrip'
+    alias mpv='mpv --vo=libmpv'
+    alias ownefivars="chmod +uw ${HOME}/Library/Containers/com.utmapp.UTM/Data/Documents/*.utm/Data/efi_vars.fd"
+fi
 
 # RPM land thingies
 export PERIDOT_CLIENT_ID="${PERIDOT_CLIENT_ID:-}"
