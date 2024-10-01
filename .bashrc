@@ -197,7 +197,7 @@ fi
 
 #------------------------------------------------------------------------------#
 # Aliases go here
-if [[ "${OS_TYPE}" -ne 0 ]]; then
+if [[ "${OS_TYPE}" -eq 0 ]]; then
     alias sudo='sudo --preserve-env=PATH env'
 fi
 
