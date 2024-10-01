@@ -314,6 +314,7 @@ alias lsh="${long_long_gls_cmd}"
 # Platform specific overrides go here
 if [[ "${OS_TYPE}" -eq 0 ]]; then
     alias sudo='sudo --preserve-env=PATH env'
+    alias nixosgencompare='readlink /nix/var/nix/profiles/$(readlink /nix/var/nix/profiles/system) /run/booted-system'
 fi
 
 if [[ "${PLATFORM_IS_LINUX}" -eq 1 ]]; then
