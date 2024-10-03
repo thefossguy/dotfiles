@@ -312,8 +312,14 @@ alias lha="${long_long_gls_cmd}"
 alias lsh="${long_long_gls_cmd}"
 
 # Platform specific overrides go here
+if [[ "${OS_TYPE}" -ne 0 ]]; then
+    if [[ "${HAS_NIX}" -eq 1 ]]; then
+        # This alias exists to enable me to execute binaries provided by home-manager with `sudo`.
+        # Only needed on Darwin/non-NixOS Linux distros when Nix is installed.
+        alias sudo='sudo --preserve-env=PATH env'
+    fi
+fi
 if [[ "${OS_TYPE}" -eq 0 ]]; then
-    alias sudo='sudo --preserve-env=PATH env'
     alias nixosgencompare='readlink /nix/var/nix/profiles/$(readlink /nix/var/nix/profiles/system) /run/booted-system'
 fi
 
