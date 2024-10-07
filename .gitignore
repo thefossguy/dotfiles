@@ -1,9 +1,11 @@
 .*history
 ._*
+.aws/credentials
 .bash_logout
 .boto
 .cache/*
 .cargo/*
+.cert/
 .CFUserTextEncoding
 .compose-cache/*
 .config/*.xml*
@@ -93,6 +95,7 @@
 .config/plasmaparc
 .config/plasmashellrc
 .config/powermanagementprofilesrc
+.config/Proton/VPN/app-config.json
 .config/protonmail/*
 .config/pulse/*
 .config/QtProject.conf
@@ -114,6 +117,7 @@
 .detsys-nix/*
 .dotfiles/*
 .DS_Store
+.flox/
 .git-credentials
 .gnupg/*
 .gtkrc-2.0
@@ -136,6 +140,8 @@
 .terminfo/*
 .thunderbird/*
 .tmp/*
+.tor project/
+.tor/
 .Trashes
 .var/*
 .viminfo
