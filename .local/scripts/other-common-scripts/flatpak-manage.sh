@@ -94,6 +94,6 @@ flatpak_override_cmd="${FLATPAK_BIN} override --user"
 ${flatpak_override_cmd} --nodevice=all --device=dri --nofilesystem=host-etc com.brave.Browser
 ${flatpak_override_cmd} --nodevice=all --device=dri --nosocket=fallback-x11 --disallow=devel --talk-name=org.freedesktop.Notifications org.mozilla.firefox
 
-sed -i 's@^Name=Brave$@Name=Brave Browser (flatpak)@g' ~/.local/share/flatpak/exports/share/applications/com.brave.Browser.desktop
-sed -i 's@^Name=Firefox Web Browser$@Name=Firefox (flatpak)@g' ~/.local/share/flatpak/exports/share/applications/org.mozilla.firefox.desktop
+sed -i 's@^Name=.*$@Name=Brave Browser (flatpak)@g' ~/.local/share/flatpak/exports/share/applications/com.brave.Browser.desktop
+sed -i 's@^Name=.*$@Name=Firefox (flatpak)@g' ~/.local/share/flatpak/exports/share/applications/org.mozilla.firefox.desktop
 update-desktop-database
