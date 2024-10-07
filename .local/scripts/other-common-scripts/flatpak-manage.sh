@@ -5,11 +5,14 @@ set -xeuf -o pipefail
 # no need to use a browser as a flatpak except for filesystem ($HOME) sandboxing
 BROWSERS_AMD=(
     com.google.Chrome
+    com.google.ChromeDev
+    io.github.zen_browser.zen
     org.mozilla.firefox
 )
 BROWSERS_COMMON=(
     com.brave.Browser
     io.gitlab.librewolf-community
+    org.chromium.Chromium
 )
 COMMON_PKGS=(
     # always install Flatseal
