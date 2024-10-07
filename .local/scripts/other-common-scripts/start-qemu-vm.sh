@@ -49,6 +49,12 @@ elif [ "$(uname -m)" == 'x86_64' ]; then
           -drive file=${HOME}/.local/share/edk2/EDKII_VARS,if=pflash,format=raw,unit=1"
 fi
 
+if [[ -z "${DISPLAY:-}" ]]; then
+    QEMU_GRAPHIC_OPTION='-nographic'
+else
+    QEMU_GRAPHIC_OPTION='-display gtk,zoom-to-fit=on'
+fi
+
 #taskset --all-tasks --cpu-list 4-7 <CMD>
 #-drive file=/home/pratham/veeams/nvme0n1.img,if=none,id=nvme0n1 -device nvme,serial=deadbeea,drive=nvme0n1
 QEMU_COMMON="qemu-kvm \
@@ -58,7 +64,7 @@ QEMU_COMMON="qemu-kvm \
     -accel kvm \
     -m 4096 \
     ${BIOS} \
-    -nographic \
+    ${QEMU_GRAPHIC_OPTION} \
     -sandbox on \
     -netdev user,id=mynet0,hostfwd=tcp::${HOST_PORT}-:22 \
     -device virtio-net-pci,netdev=mynet0"
