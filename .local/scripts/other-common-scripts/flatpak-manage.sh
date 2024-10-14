@@ -18,6 +18,7 @@ COMMON_PKGS=(
     # always install Flatseal
     com.github.tchx84.Flatseal
     "${BROWSERS_COMMON[@]}"
+    com.github.johnfactotum.Foliate
     md.obsidian.Obsidian
     org.gnome.gitlab.YaLTeR.VideoTrimmer
     org.gnome.meld
