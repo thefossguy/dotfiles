@@ -109,6 +109,10 @@ function tty_serial() {
     fi
 }
 
+function neovim_clean_slate() {
+    rm -rf "${HOME}"/.local/{state,share}/nvim
+}
+
 
 #------------------------------------------------------------------------------#
 # Platform-specific, conditional logic
@@ -221,6 +225,7 @@ alias download='aria2c --max-connection-per-server=16 --min-split-size=1M --file
 alias drivetemp='hdparm -CH'
 alias mksshkey='ssh-keygen -t ed25519 -f'
 alias mtr='mtr --show-ips --displaymode 0 -o "LDR AGJMXI"'
+alias performneovimcleanup="neovim_clean_slate"
 alias prettynixbuild='nix build --log-format internal-json -v . 2>&1 | nom --json'
 alias serialterm="tty_serial"
 alias sudo='sudo '
