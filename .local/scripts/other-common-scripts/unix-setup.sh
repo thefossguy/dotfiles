@@ -5,11 +5,32 @@ if [[ "$(uname -s)" == 'Linux' ]]; then
         echo 'You are on NixOS, no need, have a great day, bye!'
         exit 0
     fi
-fi
+elif [[ "$(uname -s)" == 'Darwin' ]]; then
 
-if sudo grep '^#.*NOPASSWD.*' /etc/sudoers > /dev/null; then
-    echo 'You forgot to set NOPASSWD.'
-    exit 1
+    if ! xcode-select --print-path 2>/dev/null; then
+        touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
+        XCODE_CLI_TOOLS=$(softwareupdate -l | grep "\*.*Command Line" | tail -n 1 | sed 's/^[^C]* //')
+        softwareupdate --install "${XCODE_CLI_TOOLS}" --verbose;
+    fi
+
+    # TODO: This is specific to `aarch64-darwin`; `x86_64-darwin` doesn't **need** to be supported.
+    if [[ ! -x /opt/homebrew/bin/brew ]]; then
+        # Add the user to the `admin` group for a non-interactive installation of homebrew.
+        if ! groups | grep -q admin; then
+            sudo dseditgroup -o edit -a "${LOGNAME}" -t user admin
+        fi
+        # A "nonsense" `sudo` to enter the password-less timeout window for
+        # really non-interactive homebrew installation.
+        sudo ls >/dev/null
+        NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
+
+    PATH="$PATH:/opt/homebrew/bin:/opt/homebrew/sbin"
+    export PATH
+    brew analytics off
+    if ! command -v tmux; then
+        brew install tmux
+    fi
 fi
 
 if ! command -v tmux; then
@@ -18,13 +39,17 @@ if ! command -v tmux; then
 fi
 
 if ! printenv | grep 'TERM_PROGRAM=tmux' > /dev/null; then
-    echo 'Run this script in tmux.'
-    exit 1
+    exec tmux
 fi
 
 set -xeuf -o pipefail
 
-export REAL_USER="$USER"
+export REAL_USER="$LOGNAME"
+
+if [[ -z "${REAL_USER}" ]]; then
+    echo 'For some reason, $LOGNAME is empty.'
+    exit 1
+fi
 
 
 function enable_ssh_daemon_common() {
@@ -40,13 +65,6 @@ function enable_ssh_daemon_fedora() {
 }
 
 
-function darwin_init_setup() {
-    if ! [[ -e '/Library/Developer/CommandLineTools/usr/bin/git' ]]; then
-        xcode-select --install
-        # shellcheck disable=SC2034
-        read -r WAIT_FOR_XCODE_SELECT
-    fi
-}
 function dnf_conf() {
     function dnf_conf_inner() {
         OPTION="$1"
@@ -68,13 +86,7 @@ function dnf_conf() {
 
 
 function install_pkgs_darwin() {
-    if [[ "$(uname -s)" == 'Darwin' ]]; then
-        if ! command -v brew > /dev/null; then
-            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        fi
-
-        "${HOME}/.local/scripts/macos/brew-script.sh"
-    fi
+    "${HOME}/.local/scripts/macos/brew-script.sh"
 }
 function install_pkgs_debian() {
     EXTRA_APT_CONF='/etc/apt/apt.conf.d/90noinstallsuggests'
@@ -187,17 +199,15 @@ function run_rustup() {
     fi
 }
 function chsh_to_bash() {
-    if [[ "$(uname -s)" == 'Darwin' ]]; then
-        BREW_BASH="$(brew --prefix)/bin/bash"
+    BREW_BASH="$(brew --prefix)/bin/bash"
 
-        # /etc/shells is world readable, so no need to `sudo` unless modifying
-        if ! grep "${BREW_BASH}" /etc/shells > /dev/null; then
-            echo "${BREW_BASH}" | sudo tee -a /etc/shells
-        fi
+    # /etc/shells is world readable, so no need to `sudo` unless modifying
+    if ! grep "${BREW_BASH}" /etc/shells > /dev/null; then
+        echo "${BREW_BASH}" | sudo tee -a /etc/shells
+    fi
 
-        if ! finger "${REAL_USER}" | grep -oP "${BREW_BASH}"; then
-            sudo chsh -s "${BREW_BASH}" "${REAL_USER}"
-        fi
+    if ! dscl . -read "${HOME}" UserShell | sed -s 's/UserShell: //' | grep -q "${BREW_BASH}"; then
+        sudo chsh -s "${BREW_BASH}" "${REAL_USER}"
     fi
 }
 function common_setup() {
@@ -237,7 +247,6 @@ if [[ "$(uname -s)" == 'Linux' ]]; then
     fi
 elif [[ "$(uname -s)" == 'Darwin' ]]; then
     function unix_setup() {
-        darwin_init_setup
         install_pkgs_darwin
         common_setup
         chsh_to_bash
