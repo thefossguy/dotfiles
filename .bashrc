@@ -119,10 +119,8 @@ function neovim_clean_slate() {
 # **ONLY DEFINE STUFF, AVOID ACTING ON STUFF
 if [[ "${PLATFORM_IS_LINUX}" -eq 1 ]]; then
     GNU_LS='ls'
-    GNU_GREP='grep'
 elif [[ "${PLATFORM_IS_LINUX}" -eq 0 ]]; then
     GNU_LS='gls'
-    GNU_GREP='ggrep'
 fi
 
 
@@ -298,7 +296,7 @@ alias rgiv="${ripgrep_common} --invert-match --ignore-case"
 alias rgvi="${ripgrep_common} --invert-match --ignore-case"
 
 # these only exist because I need to use 'g{ls,grep}' on macOS
-common_ggrep_cmd="$(command -v "${GNU_GREP}") --color=auto"
+common_ggrep_cmd="$(command -v grep) --color=auto"
 alias   grep="${common_ggrep_cmd}"
 alias  grepi="${common_ggrep_cmd} --ignore-case"
 alias  grepv="${common_ggrep_cmd} --invert-match"
