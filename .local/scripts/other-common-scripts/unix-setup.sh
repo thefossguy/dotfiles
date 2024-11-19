@@ -164,16 +164,11 @@ function nix_setup() {
     if ! command -v nix > /dev/null; then
         if [[ ! -f "${HOME}/.detsys-nix/nix-installer" ]]; then
             mkdir -vp "${HOME}/.detsys-nix"
-            pushd "${HOME}/.detsys-nix"
+            pushd "${HOME}/.detsys-nix" || exit 1
 
-            platform_kernel="$(uname -s | awk '{print tolower($0)}')"
-            platform_arch="$(uname -m)"
-            if [[ "${platform_arch}" == 'arm64' ]]; then
-                platform_arch='aarch64'
-            fi
             curl -sL -o nix-installer "https://install.determinate.systems/nix/nix-installer-${platform_arch}-${platform_kernel}"
             chmod +x nix-installer
-            popd
+            popd || exit 1
         fi
 
         "${HOME}/.detsys-nix/nix-installer" install --no-confirm
@@ -191,8 +186,12 @@ function home_manager_setup() {
     if ! command -v home-manager > /dev/null; then
         mkdir -vp "${HM_CONFIG_PATH}"
         git clone https://gitlab.com/thefossguy/prathams-nixos "${HM_CONFIG_PATH}"
-        nix flake update --flake "${HM_CONFIG_PATH}"
-        nix run home-manager/master -- switch --print-build-logs --show-trace --flake "${HM_CONFIG_PATH}"
+        pushd  "${HM_CONFIG_PATH}" || exit 1
+
+        nix flake update
+        nix build --max-jobs 1 --print-build-logs --show-trace --trace-verbose --verbose .#homeConfigurations."${platform_arch}-${platform_kernel}"."${LOGNAME}".activationPackage
+        ./result/activate
+        popd || exit 1
     fi
 }
 function run_rustup() {
@@ -220,6 +219,14 @@ function common_setup() {
     run_rustup
 }
 
+
+platform_kernel="$(uname -s | awk '{print tolower($0)}')"
+platform_arch="$(uname -m)"
+if [[ "${platform_arch}" == 'arm64' ]]; then
+platform_arch='aarch64'
+fi
+export platform_arch
+export platform_kernel
 
 if [[ "$(uname -s)" == 'Linux' ]]; then
     if grep 'debian' /etc/os-release > /dev/null; then
