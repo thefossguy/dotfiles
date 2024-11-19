@@ -132,6 +132,8 @@ mkdir -p "${HOME}/.cargo/bin" && path_append "${HOME}/.cargo/bin"
 mkdir -p "${HOME}/.local/bin" && path_append "${HOME}/.local/bin"
 path_append '/usr/local/bin'
 path_append '/sbin'
+path_append '/opt/homebrew/bin'
+path_append '/opt/homebrew/sbin'
 export PATH
 
 
