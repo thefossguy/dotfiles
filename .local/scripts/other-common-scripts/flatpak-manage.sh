@@ -75,10 +75,14 @@ CHROMIUM_FLAGS_FILES=(
     "${HOME}/.var/app/com.google.Chrome/config/chrome-flags.conf"
 )
 CHROMIUM_FLAGS=(
-    '--enable-features=UseOzonePlatform' # enable the Ozone Wayland thingy
-    '--ozone-platform-hint=auto' # two-finger zoom on wayland
-    '--enable-features=TouchpadOverscrollHistoryNavigation' # enable two-finger swipe for forward/backward history navigation
     '--disable-sync-preferences' # disable syncing chromium preferences with a sync account
+    '--enable-features=TouchpadOverscrollHistoryNavigation' # enable two-finger swipe for forward/backward history navigation
+    '--enable-features=UseOzonePlatform' # enable the Ozone Wayland thingy
+
+    # when packaged in nixpkgs, these two are included in the [wrapper] script
+    # and enabled/used when NIXOS_OZONE_WL == 1
+    '--enable-features=WaylandWindowDecorations' # enables client-side (?) window decorations on Wayland
+    '--ozone-platform-hint=auto' # two-finger zoom on wayland
 )
 
 for CHROMIUM_FLAGS_FILE in "${CHROMIUM_FLAGS_FILES[@]}"; do
