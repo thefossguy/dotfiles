@@ -166,8 +166,12 @@ function nix_setup() {
             mkdir -vp "${HOME}/.detsys-nix"
             pushd "${HOME}/.detsys-nix"
 
-            platform="$(uname -s | awk '{print tolower($0)}')"
-            curl -sL -o nix-installer "https://install.determinate.systems/nix/nix-installer-$(uname -m)-${platform}"
+            platform_kernel="$(uname -s | awk '{print tolower($0)}')"
+            platform_arch="$(uname -m)"
+            if [[ "${platform_arch}" == 'arm64' ]]; then
+                platform_arch='aarch64'
+            fi
+            curl -sL -o nix-installer "https://install.determinate.systems/nix/nix-installer-${platform_arch}-${platform_kernel}"
             chmod +x nix-installer
             popd
         fi
@@ -247,8 +251,8 @@ if [[ "$(uname -s)" == 'Linux' ]]; then
     fi
 elif [[ "$(uname -s)" == 'Darwin' ]]; then
     function unix_setup() {
-        install_pkgs_darwin
         common_setup
+        install_pkgs_darwin
         chsh_to_bash
     }
 else
