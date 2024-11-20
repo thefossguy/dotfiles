@@ -23,27 +23,23 @@ BREW_CASKS=(
     google-chrome
     handbrake
     keka
-    libreoffice
     librewolf
     maccy
     macs-fan-control
-    meld
     obs
     protonvpn
     raspberry-pi-imager
-    slack
     thunderbird
     tor-browser
     utm
-    whatsapp
 )
 
 brew analytics off
 brew update --force # upgrade homebrew itself
 brew upgrade --greedy --greedy-latest --greedy-auto-updates --no-quarantine # upgrade the packages installed by homebrew
 
-brew install --formula "${BREW_FORUMLAS[@]}"
-brew install --cask "${BREW_CASKS[@]}"
+brew install --no-quarantine --formula "${BREW_FORUMLAS[@]}"
+brew install --no-quarantine --cask "${BREW_CASKS[@]}"
 
 brew autoremove
 brew cleanup --prune=all -s
