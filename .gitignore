@@ -1,5 +1,6 @@
 /.*history
 /._*
+/.aws/
 /.aws/credentials
 /.bash_logout
 /.boto
@@ -77,6 +78,7 @@
 /.config/kwinoutputconfig.json
 /.config/kwinrc
 /.config/libfm/
+/.config/libvirt/
 /.config/libvirt/qemu.conf
 /.config/libvirt/storage/
 /.config/mimeapps.list
@@ -116,6 +118,7 @@
 /.config/xsettingsd/xsettingsd.conf
 /.config/zed/
 /.detsys-nix/
+/.dnf-repos/
 /.dotfiles/
 /.DS_Store
 /.flox/
@@ -126,7 +129,9 @@
 /.lesshst
 /.lldb/
 /.local/*/*bin*
+/.local/dnf_query/
 /.local/scripts/other-common-scripts/git-prompt.sh
+/.local/secrets/
 /.local/share/
 /.local/state/
 /.mozilla/
@@ -152,9 +157,11 @@
 /.wget-hsts
 /.Xauthority
 /.xsel.log
+/.yarn/
 /.zcompdump
 /.zshenv
 /Applications/
+/ciq/
 /Desktop/
 /Documents/
 /Downloads/
@@ -164,7 +171,9 @@
 /my-git-repos/
 /Pictures/
 /Public/
+/redhat/
 /result
+/rpm-mockbuild/
 /snap/
 /Thumbs.db
 /veeams/
