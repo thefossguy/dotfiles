@@ -184,8 +184,7 @@ function home_manager_setup() {
     nix_setup
 
     if ! command -v home-manager > /dev/null; then
-        mkdir -vp "${HM_CONFIG_PATH}"
-        git clone https://gitlab.com/thefossguy/prathams-nixos "${HM_CONFIG_PATH}"
+        [[ -d "${HM_CONFIG_PATH}/.git" ]] || git clone https://gitlab.com/thefossguy/prathams-nixos "${HM_CONFIG_PATH}"
         pushd  "${HM_CONFIG_PATH}" || exit 1
 
         nix flake update
