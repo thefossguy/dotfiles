@@ -20,7 +20,6 @@ BREW_CASKS=(
     discord
     exifcleaner
     firefox
-    google-chrome
     handbrake
     keka
     librewolf
@@ -33,6 +32,12 @@ BREW_CASKS=(
     tor-browser
     utm
 )
+
+# Work machine has Google Chrome installed via the IDM. Using homebrew to do
+# that will fail. So add them only if the username is not what I use on my work machine.
+if [[ "${LOGNAME}" != 'ppatel' ]]; then
+    BREW_CASKS+=( google-chrome )
+fi
 
 brew analytics off
 brew update --force # upgrade homebrew itself
