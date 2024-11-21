@@ -31,6 +31,7 @@ BREW_CASKS=(
     thunderbird
     tor-browser
     utm
+    zen-browser
 )
 
 # Work machine has Google Chrome installed via the IDM. Using homebrew to do
