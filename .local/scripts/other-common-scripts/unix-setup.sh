@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+if true; then # Guard against an incomplete download.
 if [[ "$(uname -s)" == 'Linux' ]]; then
     if grep 'ID=nixos' /etc/os-release > /dev/null; then
         echo 'You are on NixOS, no need, have a great day, bye!'
@@ -273,3 +274,4 @@ fi
 
 unix_setup
 rm -v "$0"
+fi
