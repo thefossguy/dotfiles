@@ -158,6 +158,10 @@ function install_dotfiles() {
     if [[ ! -d "${HOME}/.dotfiles" ]]; then
         git clone --bare https://gitlab.com/thefossguy/dotfiles "${HOME}/.dotfiles"
         git --git-dir="${HOME}/.dotfiles" --work-tree="${HOME}" checkout -f
+
+        if [[ "$(uname -s)" == 'Darwin' ]]; then
+            git --git-dir="${HOME}/.dotfiles" --work-tree="${HOME}" status
+        fi
     fi
 }
 function nix_setup() {
