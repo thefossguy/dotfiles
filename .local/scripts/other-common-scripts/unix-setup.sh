@@ -193,7 +193,7 @@ function home_manager_setup() {
         pushd  "${HM_CONFIG_PATH}" || exit 1
 
         nix flake update
-        nix build --max-jobs 1 --print-build-logs --show-trace --trace-verbose --verbose .#homeConfigurations."${platform_arch}-${platform_kernel}"."${LOGNAME}".activationPackage
+        nix run nixpkgs#nix-output-monitor -- build --max-jobs 1 --print-build-logs --show-trace --trace-verbose --verbose .#homeConfigurations."${platform_arch}-${platform_kernel}"."${LOGNAME}".activationPackage
         ./result/activate
         popd || exit 1
     fi
