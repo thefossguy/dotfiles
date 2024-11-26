@@ -26,6 +26,7 @@ BREW_CASKS=(
     maccy
     macs-fan-control
     obs
+    proton-pass
     protonvpn
     raspberry-pi-imager
     thunderbird
