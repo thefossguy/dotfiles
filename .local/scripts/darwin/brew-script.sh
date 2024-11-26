@@ -43,9 +43,9 @@ fi
 
 brew analytics off
 brew update --force # upgrade homebrew itself
-brew upgrade --greedy --greedy-latest --greedy-auto-updates --no-quarantine # upgrade the packages installed by homebrew
+brew upgrade --greedy --greedy-latest --greedy-auto-updates --no-quarantine --force # upgrade the packages installed by homebrew
 
-brew install --no-quarantine --formula "${BREW_FORMULAE[@]}"
+brew install --no-quarantine --formula --force "${BREW_FORMULAE[@]}"
 
 for HB_CASK in "${BREW_CASKS[@]}"; do
     if ! brew list --cask "${HB_CASK}" 1>/dev/null; then
