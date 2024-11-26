@@ -41,6 +41,35 @@ if [[ "${LOGNAME}" != 'ppatel' ]]; then
     BREW_CASKS+=( google-chrome )
 fi
 
+# Kill the processes that automatically start on login so that the upgrade
+# does not error out because the cask can't be replace as it is running.
+function pkill_process() {
+    PROCESS_NAME="${1:-}"
+    if [[ -z "${PROCESS_NAME}" ]]; then
+        echo 'No process specified to pkill.'
+        exit 1
+    fi
+
+    pkill -o "${PROCESS_NAME}" || echo "${PROCESS_NAME} is not running, doing nothing"
+}
+PROCESSES_TO_KILL=(
+    'Bitwarden'
+    'Discord'
+    'Maccy'
+    'Macs Fan Control'
+    'OBS'
+    'Proton Pass'
+    'ProtonVPN'
+    'UTM'
+)
+if pgrep -q QEMULauncher; then
+    echo 'QEMU VMs are running. Please close them in case UTM has an update to install.'
+    exit 1
+fi
+for PROCESS_TO_KILL in "${PROCESSES_TO_KILL[@]}"; do
+    pkill_process "${PROCESS_TO_KILL}"
+done
+
 brew analytics off
 brew update --force # upgrade homebrew itself
 brew upgrade --greedy --greedy-latest --greedy-auto-updates --no-quarantine --force # upgrade the packages installed by homebrew
