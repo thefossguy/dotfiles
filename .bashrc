@@ -156,7 +156,7 @@ fi
 export TERM
 
 if command -v delta >/dev/null; then
-    GIT_PAGER='delta'
+    GIT_PAGER='delta --diff-highlight --diff-so-fancy'
     export GIT_PAGER
 fi
 

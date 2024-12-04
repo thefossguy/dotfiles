@@ -68,3 +68,10 @@
     email = prathampatel@thefossguy.com
     name = Pratham Patel
     signingkey = ~/.ssh/git
+
+# Third party "extension" configuration.
+[delta]
+    dark = true
+    hyperlinks = false
+    line-numbers = true
+    side-by-side = true
