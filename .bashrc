@@ -155,6 +155,11 @@ if [[ "${TERM:-}" != 'xterm-256color' ]] && [[ "${TERM:-}" != 'tmux-256color' ]]
 fi
 export TERM
 
+if command -v delta >/dev/null; then
+    GIT_PAGER='delta'
+    export GIT_PAGER
+fi
+
 if [[ "${PLATFORM_IS_LINUX}" -eq 1 ]]; then
     if [[ -z "${XDG_RUNTIME_DIR:-}" ]]; then
         RUNTIME_MOUNT_UNIT="run-user-$(id -u).mount"
