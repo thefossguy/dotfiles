@@ -183,7 +183,7 @@ if [[ "${PLATFORM_IS_LINUX}" -eq 1 ]]; then
     fi
 fi
 
-if command -v rustc >/dev/null; then
+if command -v rustup >/dev/null; then
     # this actually needs to be a split for loop's iteration
     # shellcheck disable=SC2207
     rust_toolchains=($(rustup toolchain list | awk '{ print $1 }'))
