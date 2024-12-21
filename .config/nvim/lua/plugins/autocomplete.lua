@@ -230,7 +230,7 @@ lspconfig.nil_ls.setup({
 })
 
 -- a Python linter, written in 🦀
-lspconfig.ruff_lsp.setup({
+lspconfig.ruff.setup({
   cmd = { "ruff", "server", "--preview" },
 })
 
