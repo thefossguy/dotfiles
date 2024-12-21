@@ -21,6 +21,6 @@ fi
 ${RUSTUP_BIN} default stable
 ${RUSTUP_BIN} update stable
 ${RUSTUP_BIN} component add rust-src rust-analysis rust-analyzer clippy
-mkdir -p "${COMPLETIONS_DIR}"
+[[ ! -d "${COMPLETIONS_DIR}" ]] && mkdir -p "${COMPLETIONS_DIR}"
 ${RUSTUP_BIN} completions bash rustup > "${COMPLETIONS_DIR}/rustup"
 ${RUSTUP_BIN} completions bash cargo  > "${COMPLETIONS_DIR}/cargo"
