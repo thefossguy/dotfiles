@@ -18,17 +18,11 @@ COMMON_PKGS=(
     # always install Flatseal
     com.github.tchx84.Flatseal
     "${BROWSERS_COMMON[@]}"
-    com.github.johnfactotum.Foliate
-    md.obsidian.Obsidian
-    org.gnome.gitlab.YaLTeR.VideoTrimmer
-    org.gnome.meld
-    org.raspberrypi.rpi-imager
 )
 AMD_PKGS=(
     "${COMMON_PKGS[@]}"
     "${BROWSERS_AMD[@]}"
     com.discordapp.Discord
-    fr.handbrake.ghb
 )
 ARM_PKGS=(
     "${COMMON_PKGS[@]}"
