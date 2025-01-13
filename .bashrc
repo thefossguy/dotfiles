@@ -132,6 +132,9 @@ path_append '/usr/local/bin'
 path_append '/sbin'
 path_append '/opt/homebrew/bin'
 path_append '/opt/homebrew/sbin'
+if command -v rustup >/dev/null; then
+    path_append "${HOME}/.rustup/toolchains/$(rustup toolchain list | grep default | awk '{ print $1 }')/bin"
+fi
 export PATH
 
 
@@ -373,6 +376,7 @@ export RAAS_HDR_ENDPOINT="${PERIDOT_HDR_ENDPOINT:-}"
 # this function is intentionally kept here to make the future cleanup easier
 function create_hashed_repo() {
     if [[ -z "${2:-}" ]]; then
+        # shellcheck disable=SC2016
         echo 'Need project ID ($1) and hashed-repo name ($2).'
     else
         peridot --project-id "$1" project create-hashed-repos "$2"
