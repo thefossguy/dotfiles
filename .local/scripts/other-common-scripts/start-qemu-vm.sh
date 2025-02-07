@@ -1,7 +1,7 @@
 #!/usr/bin/env nix-shell
 #! nix-shell -i bash --packages bash qemu_kvm util-linux
 
-set -xef -o pipefail
+set -xeuf -o pipefail
 
 # $1: host port for SSH
 # $2: disk image
@@ -19,19 +19,13 @@ else
 fi
 
 if [ -z "$1" ]; then
-    echo "ERROR: expecting a binding port for SSH"
-    exit 1
-fi
-
-
-if [ -z "$2" ]; then
     echo "ERROR: expecting a disk image"
     exit 1
 fi
 
-HOST_PORT="$1"
-HDA="$2"
-CDR="$3"
+
+HDA="$1"
+CDR="${2:-}"
 
 if [ "$(uname -m)" == 'aarch64' ]; then
     [[ -d "${HOME}/.vms" ]] || mkdir "${HOME}/.vms"
@@ -55,6 +49,16 @@ else
     QEMU_GRAPHIC_OPTION='-display gtk,zoom-to-fit=on'
 fi
 
+if [[ -x /run/wrappers/bin/qemu-bridge-helper ]]; then
+    QEMU_NET_ARGS="-sandbox elevateprivileges=children \
+        -net bridge,br=virbr0,helper=/run/wrappers/bin/qemu-bridge-helper \
+        -net nic,model=virtio,macaddr=52:54:00:00:00:${MAC_ADDR}"
+else
+    QEMU_NET_ARGS="-sandbox on \
+        -netdev user,id=mynet0,hostfwd=tcp::${HOST_PORT}-:22 \
+        -device virtio-net-pci,netdev=mynet0"
+fi
+
 #taskset --all-tasks --cpu-list 4-7 <CMD>
 #-drive file=/home/pratham/veeams/nvme0n1.img,if=none,id=nvme0n1 -device nvme,serial=deadbeea,drive=nvme0n1
 QEMU_COMMON="qemu-kvm \
@@ -65,9 +69,7 @@ QEMU_COMMON="qemu-kvm \
     -m 4096 \
     ${BIOS} \
     ${QEMU_GRAPHIC_OPTION} \
-    -sandbox on \
-    -netdev user,id=mynet0,hostfwd=tcp::${HOST_PORT}-:22 \
-    -device virtio-net-pci,netdev=mynet0"
+    ${QEMU_NET_ARGS}"
 
 if [ -z "${CDR}" ]; then
     ${QEMU_COMMON} \
