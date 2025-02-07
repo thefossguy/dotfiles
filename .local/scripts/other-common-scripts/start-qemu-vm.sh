@@ -51,7 +51,7 @@ fi
 
 if [[ -x /run/wrappers/bin/qemu-bridge-helper ]]; then
     QEMU_NET_ARGS="-sandbox elevateprivileges=children \
-        -net bridge,br=virbr0,helper=/run/wrappers/bin/qemu-bridge-helper \
+        -net bridge,br=${QEMU_BRIDGE_DEV:-virbr0},helper=/run/wrappers/bin/qemu-bridge-helper \
         -net nic,model=virtio,macaddr=52:54:00:00:00:${MAC_ADDR}"
 else
     QEMU_NET_ARGS="-sandbox on \
