@@ -220,7 +220,7 @@ alias ampv='mpv --hwdec=vaapi --no-video'
 alias pysort="${SCRIPTS_DIR}/sort.py"
 alias rpmextract="${SCRIPTS_DIR}/extract-rpm-pkg.sh"
 alias showdiskusage="${SCRIPTS_DIR}/show-disk-usage.sh"
-alias startvm="${SCRIPTS_DIR}/start-qemu-vm.sh"
+alias startvm="env $* ${SCRIPTS_DIR}/start-qemu-vm.sh"
 alias sudosync="${SCRIPTS_DIR}/paranoid-flush.sh"
 alias suslock="${HOME}/.local/scripts/window-manager/lock-and-suspend.sh"
 alias syncsync="${SCRIPTS_DIR}/paranoid-flush.sh"
