@@ -1,6 +1,10 @@
 [font]
 size = 14.0
 
+[window.dimensions]
+columns = 125
+lines = 30
+
 [[keyboard.bindings]]
 action = "Paste"
 key = "V"
