@@ -27,6 +27,10 @@ if [[ -z "${VM_OSVARIANT:-}" ]]; then
     exit 1
 fi
 
+if [[ "${VM_AUTOSTART:-0}" -eq 1 ]]; then
+    VIRT_AUTOSTART_ARGS='--autostart'
+fi
+
 # shellcheck disable=SC2086
 virt-install --connect qemu:///session \
     --name "${VM_NAME}" \
@@ -37,6 +41,6 @@ virt-install --connect qemu:///session \
     ${VIRT_BRIDGE_ARG:-} \
     --graphics ${VIRT_SPICE_ARGS} \
     --virt-type kvm \
-    --autostart \
+    ${VIRT_AUTOSTART_ARGS:-} \
     --boot uefi \
     "$@"
