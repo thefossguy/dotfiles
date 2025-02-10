@@ -213,10 +213,10 @@ fi
 COMMON_SCRIPTS_DIR="${HOME}/.local/scripts"
 SCRIPTS_DIR="${COMMON_SCRIPTS_DIR}/other-common-scripts"
 EL_SCRIPTS_DIR="${COMMON_SCRIPTS_DIR}/el"
+alias ampv='mpv --hwdec=vaapi --no-video'
 alias debextract="${SCRIPTS_DIR}/extract-deb-pkg.sh"
 alias installrpmdeps="${EL_SCRIPTS_DIR}/install-rpm-package-build-deps.sh"
 alias mockbuild="${EL_SCRIPTS_DIR}/mock-build.sh"
-alias ampv='mpv --hwdec=vaapi --no-video'
 alias pysort="${SCRIPTS_DIR}/sort.py"
 alias rpmextract="${SCRIPTS_DIR}/extract-rpm-pkg.sh"
 alias showdiskusage="${SCRIPTS_DIR}/show-disk-usage.sh"
