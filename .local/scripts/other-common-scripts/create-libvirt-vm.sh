@@ -16,7 +16,7 @@ if [[ -n "${VM_CDROM:-}" ]]; then
     VIRT_DISK_ARGS="--cdrom ${VM_CDROM} \
         --disk size=${VM_SIZE:-64}"
 else
-    VIRT_DISK_ARGS="--disk ${VM_DISK},bus=${VM_DISK_BUS:-virtio} \
+    VIRT_DISK_ARGS="--disk ${VM_DISK},bus=${VM_DISK_BUS:-virtio},format=${VM_DISK_FORMAT:-qcow2} \
         --import"
 fi
 
