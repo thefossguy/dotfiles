@@ -219,6 +219,7 @@ alias debextract="${SCRIPTS_DIR}/extract-deb-pkg.sh"
 alias installrpmdeps="${EL_SCRIPTS_DIR}/install-rpm-package-build-deps.sh"
 alias mockbuild="${EL_SCRIPTS_DIR}/mock-build.sh"
 alias pysort="${SCRIPTS_DIR}/sort.py"
+alias reviewnixpkgspr='nixpkgs-review pr --print-result'
 alias rpmextract="${SCRIPTS_DIR}/extract-rpm-pkg.sh"
 alias showdiskusage="${SCRIPTS_DIR}/show-disk-usage.sh"
 alias startvm="env $* ${SCRIPTS_DIR}/start-qemu-vm.sh"
