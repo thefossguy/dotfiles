@@ -7,9 +7,9 @@ if grep -q "${VM_BRIDGE}" /proc/net/dev; then
 fi
 
 if [[ "${VM_GRAPHICS}" -eq 1 ]]; then
-    VIRT_SPICE_ARGS='spice,listen=0.0.0.0'
+    VIRT_GRAPHCIS_ARGS='spice,listen=0.0.0.0'
 else
-    VIRT_SPICE_ARGS='none'
+    VIRT_GRAPHCIS_ARGS='none'
 fi
 
 if [[ -n "${VM_CDROM:-}" ]]; then
@@ -39,7 +39,7 @@ virt-install --connect qemu:///session \
     ${VIRT_DISK_ARGS:-} \
     --os-variant "${VM_OSVARIANT}" \
     ${VIRT_BRIDGE_ARG:-} \
-    --graphics ${VIRT_SPICE_ARGS} \
+    --graphics ${VIRT_GRAPHCIS_ARGS} \
     --virt-type kvm \
     ${VIRT_AUTOSTART_ARGS:-} \
     --boot uefi \
