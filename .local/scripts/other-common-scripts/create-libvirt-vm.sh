@@ -7,7 +7,7 @@ if grep -q "${VM_BRIDGE}" /proc/net/dev; then
 fi
 
 if [[ "${VM_GRAPHICS}" -eq 1 ]]; then
-    VIRT_GRAPHCIS_ARGS='spice,listen=0.0.0.0'
+    VIRT_GRAPHCIS_ARGS='spice'
 else
     VIRT_GRAPHCIS_ARGS='none'
 fi
