@@ -43,4 +43,5 @@ virt-install --connect qemu:///session \
     --virt-type kvm \
     ${VIRT_AUTOSTART_ARGS:-} \
     --boot uefi \
+    --boot firmware=efi,firmware.feature0.enabled=no,firmware.feature0.name=secure-boot \
     "$@"
