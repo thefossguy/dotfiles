@@ -46,7 +46,8 @@ fi
 if [[ -z "${DISPLAY:-}" ]]; then
     QEMU_GRAPHIC_OPTION='-nographic'
 else
-    QEMU_GRAPHIC_OPTION='-display gtk,zoom-to-fit=on'
+    QEMU_GRAPHIC_OPTION="-device virtio-vga-gl \
+        -display gtk,gl=on,zoom-to-fit=on"
 fi
 
 if [[ -x /run/wrappers/bin/qemu-bridge-helper ]]; then
