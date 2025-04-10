@@ -56,7 +56,7 @@ if [[ ${USE_BRIDGE:-0} -eq 1 ]] && [[ -x /run/wrappers/bin/qemu-bridge-helper ]]
         -net nic,model=virtio,macaddr=52:54:00:00:00:${MAC_ADDR}"
 else
     QEMU_NET_ARGS="-sandbox on \
-        -netdev user,id=mynet0,hostfwd=tcp::${HOST_PORT}-:22 \
+        -netdev user,id=mynet0,hostfwd=tcp::${HOST_PORT:-2222}-:22 \
         -device virtio-net-pci,netdev=mynet0"
 fi
 
