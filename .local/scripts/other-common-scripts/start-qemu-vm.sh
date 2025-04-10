@@ -50,7 +50,7 @@ else
         -display gtk,gl=on,zoom-to-fit=on"
 fi
 
-if [[ -x /run/wrappers/bin/qemu-bridge-helper ]]; then
+if [[ ${USE_BRIDGE:-0} -eq 1 ]] && [[ -x /run/wrappers/bin/qemu-bridge-helper ]]; then
     QEMU_NET_ARGS="-sandbox elevateprivileges=children \
         -net bridge,br=${QEMU_BRIDGE_DEV:-virbr0},helper=/run/wrappers/bin/qemu-bridge-helper \
         -net nic,model=virtio,macaddr=52:54:00:00:00:${MAC_ADDR}"
