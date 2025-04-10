@@ -77,6 +77,6 @@ if [ -z "${CDR}" ]; then
         -hda "${HDA}"
 else
     ${QEMU_COMMON} \
-        -cdrom "${CDR}" \
-        -hda "${HDA}"
+        -hda "${CDR}" \
+        -hdb "${HDA}"
 fi
