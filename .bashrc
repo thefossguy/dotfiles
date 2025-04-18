@@ -140,6 +140,10 @@ export PATH
 
 #------------------------------------------------------------------------------#
 # Exports go here
+
+# Unexport first, though
+export -n NIX_PAGER
+
 if command -v nvim >/dev/null; then
     EDITOR='nvim'
 elif command -v vim >/dev/null; then
