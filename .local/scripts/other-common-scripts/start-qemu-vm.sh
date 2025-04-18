@@ -43,11 +43,11 @@ elif [ "$(uname -m)" == 'x86_64' ]; then
           -drive file=${HOME}/.local/share/edk2/EDK2_VARS,if=pflash,format=raw,unit=1"
 fi
 
-if [[ -z "${DISPLAY:-}" ]]; then
-    QEMU_GRAPHIC_OPTION='-nographic'
-else
+if [[ -n "${DISPLAY:-}" ]] || [[ -n "${WAYLAND_DISPLAY:-}" ]]; then
     QEMU_GRAPHIC_OPTION="-device virtio-vga-gl \
         -display sdl,gl=on"
+else
+    QEMU_GRAPHIC_OPTION='-nographic'
 fi
 
 if [[ ${USE_BRIDGE:-0} -eq 1 ]] && [[ -x /run/wrappers/bin/qemu-bridge-helper ]]; then
