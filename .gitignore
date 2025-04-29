@@ -34,6 +34,7 @@
 /.config/evolution/
 /.config/fish/
 /.config/gcloud/
+/.config/gh/
 /.config/ghc/ghci_history
 /.config/GNOME-xdg-terminals.list
 /.config/google-chrome/
@@ -88,6 +89,7 @@
 /.config/nvim/lazy-lock.json
 /.config/okularpartrc
 /.config/okularrc
+/.config/org.coolercontrol.CoolerControl/
 /.config/org.kde.keysmith/Keysmith.conf
 /.config/pcmanfm/
 /.config/plasma-localerc
@@ -113,6 +115,7 @@
 /.config/Trolltech.conf
 /.config/ubuntu-xdg-terminals.list
 /.config/user-dirs.dirs
+/.config/virt-viewer/
 /.config/xdg-desktop-portal-kderc
 /.config/xdg-terminals.list
 /.config/xsettingsd/xsettingsd.conf
