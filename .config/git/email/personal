@@ -1,0 +1,11 @@
+[format]
+    cc = thefirst1322@gmail.com # my other email
+[sendemail]
+    smtpEncryption = none
+    smtpPass = AAAAAAAAAAAAAAAAAAAAAA
+    smtpServer = 127.0.0.1
+    smtpServerPort = 1025
+    smtpUser = prathampatel@thefossguy.com
+    supresscc = self
+[user]
+    email = prathampatel@thefossguy.com

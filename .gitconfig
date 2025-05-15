@@ -39,7 +39,6 @@
 [fetch]
     parallel = 0 # multi-threaded fetching
 [format]
-    cc = thefirst1322@gmail.com # my other email
     numbered = true
     signOff = true
 [fsmonitor]
@@ -57,17 +56,11 @@
 [push]
     default = simple
     followTags = true
-[sendemail]
-    smtpEncryption = none
-    smtpPass = AAAAAAAAAAAAAAAAAAAAAA
-    smtpServer = 127.0.0.1
-    smtpServerPort = 1025
-    smtpUser = prathampatel@thefossguy.com
-    supresscc = self
 [user]
-    email = prathampatel@thefossguy.com
     name = Pratham Patel
     signingkey = ~/.ssh/git
+[include]
+    path = ~/.config/git/email/gitconfig # author email, format cc and sendmail
 
 # Third party "extension" configuration.
 [delta]
