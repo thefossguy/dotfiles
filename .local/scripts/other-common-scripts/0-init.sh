@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [[ ! -f "${HOME}/.config/alacritty/platform.toml" ]]; then
+if [[ ! -h "${HOME}/.config/alacritty/platform.toml" ]]; then
     pushd "${HOME}/.config/alacritty/" || exit 0
     if [[ "$(uname -s)" == 'Linux' ]]; then
         ln -s linux.toml platform.toml
