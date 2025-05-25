@@ -24,6 +24,7 @@
 /.config/broot/
 /.config/btop/
 /.config/chromium/
+/.config/cosmic/com.system76.CosmicPortal/v1/screenshot
 /.config/dconf/
 /.config/device_automounter_kcmrc
 /.config/direnv/
