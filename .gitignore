@@ -135,7 +135,7 @@
 /.lldb/
 /.local/*/*bin*
 /.local/dnf_query/
-/.local/scripts/automatic-package-upgrades.sh
+/.local/scripts/ansible/
 /.local/scripts/other-common-scripts/git-prompt.sh
 /.local/secrets/
 /.local/share/
