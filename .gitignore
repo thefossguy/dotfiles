@@ -89,6 +89,7 @@
 /.config/nix-darwin/
 /.config/nix/
 /.config/nvim/lazy-lock.json
+/.config/obs-studio/
 /.config/okularpartrc
 /.config/okularrc
 /.config/org.coolercontrol.CoolerControl/
@@ -104,6 +105,7 @@
 /.config/Proton/VPN/app-config.json
 /.config/protonmail/
 /.config/pulse/
+/.config/qalculate/
 /.config/QtProject.conf
 /.config/Raspberry Pi/
 /.config/session/
