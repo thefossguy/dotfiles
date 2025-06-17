@@ -230,9 +230,9 @@ vim.lsp.config('nil_ls', {
   },
 })
 
--- a Python linter + LSP, written in 🦀
-vim.lsp.config('ruff', {
-  cmd = { "ruff", "server", "--preview" },
+-- Python
+vim.lsp.config('pyrefly', {
+  cmd = { "pyrefly", "lsp", "--indexing-mode", "lazy-non-blocking-background", },
 })
 
 vim.lsp.config('bashls', {})
@@ -244,7 +244,7 @@ vim.lsp.enable('bashls')
 vim.lsp.enable('clangd')
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('nil_ls')
-vim.lsp.enable('ruff')
+vim.lsp.enable('pyrefly')
 vim.lsp.enable('rust_analyzer')
 
 
