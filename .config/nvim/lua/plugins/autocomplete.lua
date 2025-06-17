@@ -192,9 +192,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- for Neovim's internal Lua "autocomplete"
 require('neodev').setup({})
 
-local lspconfig = require('lspconfig')
-
-lspconfig.lua_ls.setup({
+vim.lsp.config('lua_ls', {
   settings = {
     Lua = {
       runtime = {
@@ -216,7 +214,7 @@ lspconfig.lua_ls.setup({
 
 -- for the Nix expression language
 -- https://github.com/oxalica/nil/blob/main/docs/configuration.md
-lspconfig.nil_ls.setup({
+vim.lsp.config('nil_ls', {
   autostart = true,
   settings = {
     ['nil'] = {
@@ -232,14 +230,22 @@ lspconfig.nil_ls.setup({
   },
 })
 
--- a Python linter, written in 🦀
-lspconfig.ruff.setup({
+-- a Python linter + LSP, written in 🦀
+vim.lsp.config('ruff', {
   cmd = { "ruff", "server", "--preview" },
 })
 
-lspconfig.bashls.setup({})
-lspconfig.clangd.setup({})
-lspconfig.rust_analyzer.setup({})
+vim.lsp.config('bashls', {})
+vim.lsp.config('clangd', {})
+vim.lsp.config('rust_analyzer', {})
+
+-- now, enable the LSPs
+vim.lsp.enable('bashls')
+vim.lsp.enable('clangd')
+vim.lsp.enable('lua_ls')
+vim.lsp.enable('nil_ls')
+vim.lsp.enable('ruff')
+vim.lsp.enable('rust_analyzer')
 
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
