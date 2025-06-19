@@ -89,6 +89,12 @@ function path_append() {
     fi
 }
 
+function path_prepend() {
+    if [[ -d "$1" ]] && [[ ":$PATH:" != *:$1:* ]]; then
+        PATH="$1:$PATH"
+    fi
+}
+
 function list_open_ports() {
     if [[ -n "$1" ]]; then
         nc -z -v "$1" 1-65535 2>&1 | grep -v 'Connection refused'
@@ -133,7 +139,7 @@ path_append '/sbin'
 path_append '/opt/homebrew/bin'
 path_append '/opt/homebrew/sbin'
 if command -v rustup >/dev/null; then
-    path_append "${HOME}/.rustup/toolchains/$(rustup toolchain list | grep default | awk '{ print $1 }')/bin"
+    path_prepend "${HOME}/.rustup/toolchains/$(rustup toolchain list | grep default | awk '{ print $1 }')/bin"
 fi
 export PATH
 
