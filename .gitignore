@@ -110,6 +110,7 @@
 /.config/Raspberry Pi/
 /.config/session/
 /.config/session/dolphin_dolphin_dolphin
+/.config/Signal/
 /.config/spectaclerc
 /.config/startkderc
 /.config/systemd/
