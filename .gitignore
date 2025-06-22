@@ -39,6 +39,7 @@
 /.config/ghc/ghci_history
 /.config/git/email/gitconfig
 /.config/GNOME-xdg-terminals.list
+/.config/go/
 /.config/google-chrome/
 /.config/gtk-3.0/
 /.config/gtk-3.0/bookmarks
