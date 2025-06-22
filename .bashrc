@@ -132,8 +132,10 @@ fi
 
 #------------------------------------------------------------------------------#
 # PATH modification
-mkdir -p "${HOME}/.cargo/bin" && path_append "${HOME}/.cargo/bin"
-mkdir -p "${HOME}/.local/bin" && path_append "${HOME}/.local/bin"
+mkdir -p "${HOME}/.cargo/bin"
+mkdir -p "${HOME}/.local/bin"
+path_append "${HOME}/.cargo/bin"
+path_append "${HOME}/.local/bin"
 path_append '/usr/local/bin'
 path_append '/sbin'
 path_append '/opt/homebrew/bin'
