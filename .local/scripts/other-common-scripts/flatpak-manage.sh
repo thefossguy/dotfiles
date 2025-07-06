@@ -57,6 +57,12 @@ else
     exit 0
 fi
 
+# If an error is raised because of GPG signature verification failing
+# then try the following steps:
+# 1. `wget https://flathub.org/repo/flathub.gpg`
+# 2. `gpg --import flathub.gpg`
+# 3. `cp flathub.gpg ~/.local/share/flatpak/repo/flathub.trustedkeys.gpg`
+
 flatpak_uninstall_cmd="${FLATPAK_BIN} uninstall --user --assumeyes --noninteractive --delete-data"
 ${FLATPAK_BIN} remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 ${FLATPAK_BIN} install --user --or-update --assumeyes --noninteractive "${ALL_PKGS[@]}"
