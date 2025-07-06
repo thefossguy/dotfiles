@@ -228,6 +228,7 @@ EL_SCRIPTS_DIR="${COMMON_SCRIPTS_DIR}/el"
 alias ampv='mpv --hwdec=vaapi --no-video'
 alias createvm="env $* ${SCRIPTS_DIR}/create-libvirt-vm.sh"
 alias debextract="${SCRIPTS_DIR}/extract-deb-pkg.sh"
+alias flathub='flatpak'
 alias gitsigncommits='git rebase --exec '\''git commit --amend --no-edit -n -S'\'' -i'
 alias installrpmdeps="${EL_SCRIPTS_DIR}/install-rpm-package-build-deps.sh"
 alias mockbuild="${EL_SCRIPTS_DIR}/mock-build.sh"
