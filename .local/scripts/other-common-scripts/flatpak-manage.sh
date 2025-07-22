@@ -57,6 +57,14 @@ else
     exit 0
 fi
 
+# Weird, but if $DISPLAY is set but "empty", then GPG fails with the error
+# `GPG: Unable to complete signature verification: GnuPG: General error`
+# but once $DISPLAY is unexported, it fails with
+# `Can't check signature: public key not found`
+if printenv | grep -q '^DISPLAY=$'; then
+    export -n DISPLAY
+fi
+
 # If an error is raised because of GPG signature verification failing
 # then try the following steps:
 # 1. `wget https://flathub.org/repo/flathub.gpg`
