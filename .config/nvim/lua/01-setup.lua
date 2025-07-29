@@ -32,7 +32,7 @@ vim.o.showmatch = true
 vim.o.smartcase = true
 
 vim.o.clipboard = "unnamedplus"
-vim.o.colorcolumn = "80"
+vim.o.colorcolumn = "72"
 vim.o.cursorcolumn = true
 vim.o.cursorline = true
 vim.o.encoding = "utf-8"
