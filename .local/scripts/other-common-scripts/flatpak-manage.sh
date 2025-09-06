@@ -11,6 +11,7 @@ BROWSERS_AMD=(
 )
 BROWSERS_COMMON=(
     com.brave.Browser
+    io.github.ungoogled_software.ungoogled_chromium
     io.gitlab.librewolf-community
     org.chromium.Chromium
 )
