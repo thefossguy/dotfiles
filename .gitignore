@@ -1,5 +1,6 @@
 /.*history
 /._*
+/.android/
 /.aws/
 /.aws/credentials
 /.bash_logout
@@ -34,6 +35,7 @@
 /.config/environment.d/
 /.config/evolution/
 /.config/fish/
+/.config/freerdp/
 /.config/gcloud/
 /.config/gh/
 /.config/ghc/ghci_history
@@ -109,6 +111,7 @@
 /.config/qalculate/
 /.config/QtProject.conf
 /.config/Raspberry Pi/
+/.config/remmina/
 /.config/session/
 /.config/session/dolphin_dolphin_dolphin
 /.config/Signal/
