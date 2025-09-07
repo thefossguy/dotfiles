@@ -252,6 +252,7 @@ alias mtr='mtr --show-ips --displaymode 0 -o "LDR AGJMXI"'
 alias performneovimcleanup="neovim_clean_slate"
 alias prettynixbuild='nix build --log-format internal-json -v . 2>&1 | nom --json'
 alias serialterm="tty_serial"
+alias showmynixroots="find ${HOME} -iname 'result*' -type l 2>/dev/null"
 alias sudo='sudo '
 alias tmux="tmux -f ${HOME}/.config/tmux/tmux.conf" # tmux 3.2 and later source $XDG_CONFIG_DIR/tmux/tmux.conf, so a workaround for that
 alias unxz='unxz --keep' # override 'unxz' with this to always keep the archive
