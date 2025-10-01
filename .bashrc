@@ -264,10 +264,6 @@ alias custcp="${rsync_common_cmd}"
 alias fcustcp="${rsync_common_cmd} --fsync"
 alias nixcheckconf="${rsync_common_cmd} --fsync --checksum --exclude='.git' ${HOME}/my-git-repos/pratham/prathams-nixos/nixos-configuration/ /etc/nixos/ --dry-run"
 
-if [[ "${OS_TYPE}" -eq 2 ]]; then
-    alias darwindotsync="git -C ${HOME}/.dotfiles pull; ${rsync_common_cmd} --exclude='.git' --checksum ${HOME}/.dotfiles/ ${HOME}/"
-fi
-
 # git
 alias gadd='git add'
 alias gdiff='git --no-pager diff'
