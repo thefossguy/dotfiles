@@ -29,7 +29,7 @@
     abbrev = 12
     compression = 9
     editor = nvim
-    fsmonitor = true # no workey on penguin
+    fsmonitor = false
 [credential]
     helper = store
 [diff]
@@ -41,8 +41,6 @@
 [format]
     numbered = true
     signOff = true
-[fsmonitor]
-    allowRemote = false
 [gpg]
     format = ssh
     [ssh]
