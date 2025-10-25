@@ -48,7 +48,7 @@
     ( modifiers: [ Super, Shift, ], key: "q", ): Close,
     ( modifiers: [ Super, ], key: "bracketright", ): NextWorkspace,
     ( modifiers: [ Super, Ctrl, Shift, ], key: "k", ): Disable,
-    ( modifiers: [ Super, ], key: "slash", ): System(Launcher),
+    ( modifiers: [ Super, ], key: "Space", ): System(Launcher),
     ( modifiers: [ Super, ], key: "Right", ): Disable,
     ( modifiers: [ Super, ], key: "0", ): Disable,
     ( modifiers: [ Super, Ctrl, ], key: "j", ): Disable,
