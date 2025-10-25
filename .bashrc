@@ -231,6 +231,7 @@ alias debextract="${SCRIPTS_DIR}/extract-deb-pkg.sh"
 alias flathub='flatpak'
 alias gitsigncommits='git rebase --exec '\''git commit --amend --no-edit -n -S'\'' -i'
 alias installrpmdeps="${EL_SCRIPTS_DIR}/install-rpm-package-build-deps.sh"
+alias loginwithoutremembering="ssh -o 'StrictHostKeyChecking no' -o 'UserKnownHostsFile /dev/null'"
 alias mockbuild="${EL_SCRIPTS_DIR}/mock-build.sh"
 alias pysort="${SCRIPTS_DIR}/sort.py"
 alias reviewnixpkgspr='nixpkgs-review pr --print-result --eval local'
