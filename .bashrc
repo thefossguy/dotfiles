@@ -289,6 +289,12 @@ else
     alias wget='wget'
 fi
 
+if [[ "${OS_TYPE}" -ne 2 ]]; then
+    alias caffeinate='systemd-inhibit sleep infinity'
+else
+    alias caffeinate='caffeinate -dis'
+fi
+
 # yt-dlp aliases
 ytdlp_common_cmd="yt-dlp --config-location ${HOME}/.config/yt-dlp/"
 alias playdl="${ytdlp_common_cmd}plst_config --external-downloader aria2c"
