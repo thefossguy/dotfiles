@@ -19,8 +19,8 @@
     status = auto
     transport = auto
 [column]
-    ui = auto,column,nodense # should cover all supported commands; I hope
     status = never # show one entry of 'untracked files' per line
+    ui = never
 [commit]
     gpgsign = true
     status = true # show status info in the editor opened by `git commit` (as a comment)
