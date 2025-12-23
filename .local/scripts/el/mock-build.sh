@@ -42,6 +42,10 @@ elif [[ -f "${MOCK_ROOT}" ]]; then
     MOCK_ROOT_PATH="${MOCK_ROOT}"
 fi
 MOCK_ROOT_NAME="$(grep "config_opts\['root'\]" "${MOCK_ROOT_PATH}" | sed -e "s/'//g" | awk '{print $NF}')"
+if [[ -z "${MOCK_ROOT_NAME}" ]]; then
+    MOCK_ROOT_NAME="$(basename "${MOCK_ROOT_PATH}")"
+    MOCK_ROOT_NAME="${MOCK_ROOT_NAME/.cfg/}"
+fi
 
 if [[ ! -d "/var/lib/mock/${MOCK_ROOT_NAME}" ]]; then
     mock --root "${MOCK_ROOT_PATH}" --init
