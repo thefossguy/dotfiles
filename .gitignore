@@ -9,6 +9,8 @@
 /.cargo/
 /.cert/
 /.CFUserTextEncoding
+/.claude.*
+/.claude/
 /.compose-cache/
 /.config/*.xml*
 /.config/.gsd-keyboard.settings-ported
@@ -40,6 +42,7 @@
 /.config/gh/
 /.config/ghc/ghci_history
 /.config/git/email/gitconfig
+/.config/git/ignore
 /.config/GNOME-xdg-terminals.list
 /.config/go/
 /.config/google-chrome/
@@ -117,6 +120,7 @@
 /.config/Signal/
 /.config/spectaclerc
 /.config/startkderc
+/.config/swtpm*
 /.config/systemd/
 /.config/systemmonitorrc
 /.config/systemsettingsrc
@@ -124,11 +128,14 @@
 /.config/Trolltech.conf
 /.config/ubuntu-xdg-terminals.list
 /.config/user-dirs.dirs
+/.config/var/lib/swtpm*
 /.config/virt-viewer/
 /.config/xdg-desktop-portal-kderc
 /.config/xdg-terminals.list
 /.config/xsettingsd/xsettingsd.conf
 /.config/zed/
+/.cpkg-config-ciq/
+/.cpkg/
 /.detsys-nix/
 /.dnf-repos/
 /.dotfiles/
@@ -137,11 +144,15 @@
 /.git-credentials
 /.gnupg/
 /.gtkrc-2.0
+/.guestfish
+/.ipython/
 /.irssi/
 /.lesshst
 /.lldb/
 /.local/*/*bin*
+/.local/bin/
 /.local/dnf_query/
+/.local/lib/
 /.local/scripts/ansible/
 /.local/scripts/other-common-scripts/git-prompt.sh
 /.local/secrets/
@@ -149,6 +160,9 @@
 /.local/state/
 /.mozilla/
 /.nix*
+/.npm-global/
+/.npm/
+/.npmrc
 /.nvim/undodir/
 /.pki/
 /.prathams-nixos
@@ -182,6 +196,7 @@
 /Movies/
 /Music/
 /my-git-repos/
+/node_modules/
 /Pictures/
 /Public/
 /redhat/
