@@ -22,7 +22,7 @@ def parse_arguments():
     parser.add_argument("--hdb",)
     parser.add_argument("--vcpus", "--cpus", "--vcpu", "--cpu",)
     parser.add_argument("--memory", "--mem", "--ram",)
-    parser.add_argument("--no-graphics", "--nographic", "--nographics", "--no-graphic", action="store_true",)
+    parser.add_argument("--no-graphics", "--nographic", "--nographics", "--no-graphic", action="store_true", default=None)
     parser.add_argument("--host-port", type=int,)
     parser.add_argument("--without-hw-accel", action="store_true",)
     args = parser.parse_args()
@@ -38,9 +38,7 @@ def parse_arguments():
     if args.memory == None:
         args.memory = 4096
 
-    # No other way to check if any of the supported options were
-    # specified in the cmdline or if the default value was used by argparse.
-    if "graphic" not in sys.argv:
+    if args.no_graphics == None:
         if os.getenv("DISPLAY") or os.getenv("WAYLAND_DISPLAY"):
             args.no_graphics = False
         else:
