@@ -7,6 +7,7 @@ import json
 import os
 import platform
 import pwd
+import shutil
 import socket
 import stat
 import subprocess
@@ -95,6 +96,21 @@ def check_kvm_char_dev():
 
     return
 
+def qemu_bin_setup():
+    qemu_bins = [ "qemu-kvm", f"qemu-system-{global_varz["qemu_properties"]["m_arch_64"]}" ]
+    for bin in qemu_bins:
+        if shutil.which(bin) == None:
+            if os.path.exists(f"/usr/libexec/{bin}"):
+                global_varz["qemu_properties"]["qemu_bin"] = f"/usr/lib64/{bin}"
+                break
+        else:
+            global_varz["qemu_properties"]["qemu_bin"] = bin
+            break
+    if global_varz["qemu_properties"]["qemu_bin"] == None:
+        print(f"ERROR: Neither `qemu-kvm` nor `{non_generic_bin}` could be located in your system")
+        sys.exit(1)
+    return
+
 def qemu_bios_setup():
     m_arch_64 = platform.machine();
     m_arch_32 = None;
@@ -153,6 +169,7 @@ def qemu_bios_setup():
 
         global_varz["qemu_properties"]["edk2_code"] = json_obj["mapping"]["executable"]["filename"]
         #global_varz["qemu_properties"]["edk2_vars"] = json_obj["mapping"]["nvram-template"]["filename"]
+    global_varz["qemu_properties"]["m_arch_64"] = m_arch_64
     return
 
 def pre_start_checks():
@@ -162,10 +179,12 @@ def pre_start_checks():
 
 def generate_qemu_args():
     global_varz["qemu_properties"] = {}
+    global_varz["qemu_properties"]["qemu_bin"] = None
+    qemu_bin_setup()
     qemu_bios_setup()
 
     global_varz["qemu_properties"]["qemu_args"] = [
-        "qemu-kvm",
+        global_varz["qemu_properties"]["qemu_bin"],
         # kvm: linux
         # xen: linux (seems more enterprise friendly than kvm; upstream)
         # hvf: darwin
