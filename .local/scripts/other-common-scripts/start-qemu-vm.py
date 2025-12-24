@@ -115,6 +115,7 @@ def qemu_bios_setup():
     m_arch_64 = platform.machine();
     m_arch_32 = None;
     global_varz["qemu_properties"]["machine_type"] = "virt"
+    global_varz["qemu_properties"]["virtio_gpu_device"] = "virtio-gpu-gl"
     match m_arch_64:
         case "arm64":
             # running aarch64-linux VMs on aarch64-darwin
@@ -127,6 +128,7 @@ def qemu_bios_setup():
             m_arch_32 = "arm"
         case "x86_64":
             global_varz["qemu_properties"]["machine_type"] = "pc"
+            global_varz["qemu_properties"]["virtio_gpu_device"] = "virtio-vga-gl"
             m_arch_32 = "i386"
         case _:
             print(f"ERROR: Your machine type '{m_arch_64}' is unsupported")
@@ -206,7 +208,7 @@ def generate_qemu_args():
     if global_varz["cli_args"].no_graphics:
         global_varz["qemu_properties"]["qemu_args"].extend(["-nographic"])
     else:
-        global_varz["qemu_properties"]["qemu_args"].extend(["-device", "virtio-vga-gl"])
+        global_varz["qemu_properties"]["qemu_args"].extend(["-device", f"{global_varz["qemu_properties"]["virtio_gpu_device"]}"])
         global_varz["qemu_properties"]["qemu_args"].extend(["-display", "sdl,gl=on"])
 
     if global_varz["cli_args"].cdrom:
