@@ -180,8 +180,8 @@ def pre_start_checks():
 def generate_qemu_args():
     global_varz["qemu_properties"] = {}
     global_varz["qemu_properties"]["qemu_bin"] = None
-    qemu_bin_setup()
     qemu_bios_setup()
+    qemu_bin_setup()
 
     global_varz["qemu_properties"]["qemu_args"] = [
         global_varz["qemu_properties"]["qemu_bin"],
