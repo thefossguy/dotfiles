@@ -23,8 +23,8 @@ def parse_arguments():
     parser.add_argument("--vcpus", "--cpus", "--vcpu", "--cpu",)
     parser.add_argument("--memory", "--mem", "--ram",)
     parser.add_argument("--no-graphics", "--nographic", "--nographics", "--no-graphic", action="store_true",)
-    parser.add_argument("--host-port",)
-    parser.add_argument("--without-hw-accel", action="store_true")
+    parser.add_argument("--host-port", type=int,)
+    parser.add_argument("--without-hw-accel", action="store_true",)
     args = parser.parse_args()
 
     files_to_check = [args.cdrom, args.hda, args.hdb]
