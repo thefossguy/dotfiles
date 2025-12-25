@@ -223,8 +223,8 @@ def generate_qemu_args():
         "-device", "virtio-net-pci,netdev=mynet0",
     ]
 
-    with open(global_varz["qemu_properties"]["qemu_bin"], 'rb') as file:
-        content = file.read()
+    with open(shutil.which(global_varz["qemu_properties"]["qemu_bin"]), 'rb') as file:
+        content = str(file.read())
         if "OpenGL support was not enabled in this build of QEMU" not in content:
             global_varz["qemu_properties"]["display_backend"] = global_varz["qemu_properties"]["display_backend"] + ",gl=on"
 
