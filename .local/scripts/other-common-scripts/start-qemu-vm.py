@@ -5,7 +5,6 @@ import errno
 import grp
 import json
 import os
-import platform
 import pwd
 import shutil
 import socket
@@ -110,7 +109,7 @@ def qemu_bin_setup():
     return
 
 def qemu_bios_setup():
-    m_arch_64 = platform.machine();
+    m_arch_64 = os.uname().machine;
     m_arch_32 = None;
     global_varz["qemu_properties"]["machine_type"] = "virt"
     global_varz["qemu_properties"]["virtio_gpu_device"] = "virtio-gpu-gl"
@@ -136,6 +135,19 @@ def qemu_bios_setup():
         edk2_path = "/run/libvirt/nix-ovmf/"
         global_varz["qemu_properties"]["edk2_code"] = edk2_path + f"edk2-{m_arch_64}-code.fd"
         #global_varz["qemu_properties"]["edk2_vars"] = edk2_path + f"edk2-{m_arch_32}-vars.fd"
+
+    elif os.uname().sysname == "Darwin":
+        qemu_cmd = shutil.which(f"qemu-system-{m_arch_64}")
+        if qemu_cmd != None:
+            qemu_cmd = os.path.realpath(qemu_cmd)
+            qemu_cmd = qemu_cmd.split("bin/")[0]
+            if not qemu_cmd.startswith("/nix/store"):
+                print("ERROR: Cannot determine how to find the EDK2 firmware BIOS to use with QEMU.")
+                sys.exit(1)
+            else:
+                global_varz["qemu_properties"]["edk2_code"] = qemu_cmd + f"share/qemu/edk2-{m_arch_64}-code.fd"
+                #global_varz["qemu_properties"]["edk2_vars"] = qemu_cmd + f"share/qemu/edk2-{m_arch_32}-code.fd"
+
     else:
         edk2_firmware_lookup_dir = "/usr/share/qemu/firmware"
         if not os.path.exists(edk2_firmware_lookup_dir):
