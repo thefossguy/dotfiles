@@ -24,6 +24,7 @@ def parse_arguments():
     parser.add_argument("--no-graphics", "--nographic", "--nographics", "--no-graphic", action="store_true", default=None)
     parser.add_argument("--host-port", type=int,)
     parser.add_argument("--without-hw-accel", action="store_true",)
+    parser.add_argument("--extra-qemu-args",)
     args = parser.parse_args()
 
     files_to_check = [args.cdrom, args.hda, args.hdb]
@@ -38,7 +39,12 @@ def parse_arguments():
         args.memory = 4096
 
     if args.no_graphics == None:
-        if os.getenv("DISPLAY") or os.getenv("WAYLAND_DISPLAY"):
+        if os.uname().sysname == "Darwin":
+            # Even Darwin servers (Xserve) have a fucking GUI
+            # environment by default. Additionally, this can be easily
+            # overridden by simply using the flag.
+            args.no_graphics = False
+        elif os.getenv("DISPLAY") or os.getenv("WAYLAND_DISPLAY"):
             args.no_graphics = False
         else:
             args.no_graphics = True
@@ -68,7 +74,7 @@ def parse_arguments():
     return
 
 def check_kvm_char_dev():
-    if global_varz["cli_args"].without_hw_accel:
+    if global_varz["cli_args"].without_hw_accel or os.uname().sysname != "Linux":
         return
 
     dev_kvm = "/dev/kvm"
@@ -113,9 +119,12 @@ def qemu_bios_setup():
     m_arch_32 = None;
     global_varz["qemu_properties"]["machine_type"] = "virt"
     global_varz["qemu_properties"]["virtio_gpu_device"] = "virtio-gpu-gl"
+    global_varz["qemu_properties"]["display_backend"] = "sdl"
     match m_arch_64:
         case "arm64":
             # running aarch64-linux VMs on aarch64-darwin
+            global_varz["qemu_properties"]["virtio_gpu_device"] = "virtio-gpu"
+            global_varz["qemu_properties"]["display_backend"] = "cocoa"
             m_arch_64 = "aarch64"
             m_arch_32 = "arm"
         case "riscv64":
@@ -210,16 +219,25 @@ def generate_qemu_args():
         f"-drive", f"file={global_varz["qemu_properties"]["edk2_code"]},if=pflash,format=raw,unit=0,readonly=on",
         #f"-drive", f"file={global_varz["qemu_properties"]["edk2_vars"]},if=pflash,format=raw,unit=1",
 
-        "-sandbox", "on",
         "-netdev", f"user,id=mynet0,hostfwd=tcp::{global_varz["cli_args"].host_port}-:22",
         "-device", "virtio-net-pci,netdev=mynet0",
     ]
+
+    with open(global_varz["qemu_properties"]["qemu_bin"], 'rb') as file:
+        content = file.read()
+        if "OpenGL support was not enabled in this build of QEMU" not in content:
+            global_varz["qemu_properties"]["display_backend"] = global_varz["qemu_properties"]["display_backend"] + ",gl=on"
+
+    if os.uname().sysname != "Darwin":
+        global_varz["qemu_properties"]["qemu_args"].extend(["-sandbox", "on",])
+    elif os.uname().sysname == "Darwin":
+        global_varz["qemu_properties"]["qemu_args"].extend(["-device", "qemu-xhci", "-device", "usb-kbd", "-device", "usb-mouse"])
 
     if global_varz["cli_args"].no_graphics:
         global_varz["qemu_properties"]["qemu_args"].extend(["-nographic"])
     else:
         global_varz["qemu_properties"]["qemu_args"].extend(["-device", f"{global_varz["qemu_properties"]["virtio_gpu_device"]}"])
-        global_varz["qemu_properties"]["qemu_args"].extend(["-display", "sdl,gl=on"])
+        global_varz["qemu_properties"]["qemu_args"].extend(["-display", f"{global_varz["qemu_properties"]["display_backend"]}"])
 
     if global_varz["cli_args"].cdrom:
         global_varz["qemu_properties"]["qemu_args"].extend(["-cdrom", global_varz["cli_args"].cdrom])
@@ -227,6 +245,8 @@ def generate_qemu_args():
         global_varz["qemu_properties"]["qemu_args"].extend(["-hda", global_varz["cli_args"].hda])
     if global_varz["cli_args"].hdb:
         global_varz["qemu_properties"]["qemu_args"].extend(["-hdb", global_varz["cli_args"].hdb])
+    if global_varz["cli_args"].extra_qemu_args != None:
+        global_varz["qemu_properties"]["qemu_args"].extend(global_varz["cli_args"].extra_qemu_args.split(" "))
     return
 
 def main():
