@@ -99,27 +99,13 @@ def check_kvm_char_dev():
 
     return
 
-def qemu_bin_setup():
-    qemu_bins = [ "qemu-kvm", f"qemu-system-{global_varz["qemu_properties"]["m_arch_64"]}" ]
-    for bin in qemu_bins:
-        if shutil.which(bin) == None:
-            if os.path.exists(f"/usr/libexec/{bin}"):
-                global_varz["qemu_properties"]["qemu_bin"] = f"/usr/lib64/{bin}"
-                break
-        else:
-            global_varz["qemu_properties"]["qemu_bin"] = bin
-            break
-    if global_varz["qemu_properties"]["qemu_bin"] == None:
-        print(f"ERROR: Neither `qemu-kvm` nor `{non_generic_bin}` could be located in your system")
-        sys.exit(1)
-    return
-
-def qemu_bios_setup():
-    m_arch_64 = os.uname().machine;
-    m_arch_32 = None;
+def qemu_setup():
+    m_arch_64 = os.uname().machine
+    m_arch_32 = None
     global_varz["qemu_properties"]["machine_type"] = "virt"
     global_varz["qemu_properties"]["virtio_gpu_device"] = "virtio-gpu-gl"
     global_varz["qemu_properties"]["display_backend"] = "sdl"
+
     match m_arch_64:
         case "arm64":
             # running aarch64-linux VMs on aarch64-darwin
@@ -140,23 +126,26 @@ def qemu_bios_setup():
             print(f"ERROR: Your machine type '{m_arch_64}' is unsupported")
             sys.exit(1)
 
-    if os.path.exists("/run/booted-system"):
-        edk2_path = "/run/libvirt/nix-ovmf/"
-        global_varz["qemu_properties"]["edk2_code"] = edk2_path + f"edk2-{m_arch_64}-code.fd"
-        #global_varz["qemu_properties"]["edk2_vars"] = edk2_path + f"edk2-{m_arch_32}-vars.fd"
+    qemu_system_bin = f"qemu-system-{m_arch_64}"
+    qemu_system_bin_path = shutil.which(qemu_system_bin)
+    if qemu_system_bin_path == None:
+        qemu_bin_libexec_path = f"/usr/libexec/{qemu_system_bin}"
+        if os.path.exists(qemu_bin_libexec_path):
+            global_varz["qemu_properties"]["qemu_bin"] = qemu_bin_libexec_path
+    else:
+        global_varz["qemu_properties"]["qemu_bin"] = qemu_system_bin_path
+    if global_varz["qemu_properties"]["qemu_bin"] == None:
+        print(f"ERROR: `{qemu_system_bin}` could be located in your system")
+        sys.exit(1)
 
-    elif os.uname().sysname == "Darwin":
-        qemu_cmd = shutil.which(f"qemu-system-{m_arch_64}")
-        if qemu_cmd != None:
-            qemu_cmd = os.path.realpath(qemu_cmd)
-            qemu_cmd = qemu_cmd.split("bin/")[0]
-            if not qemu_cmd.startswith("/nix/store"):
-                print("ERROR: Cannot determine how to find the EDK2 firmware BIOS to use with QEMU.")
-                sys.exit(1)
-            else:
-                global_varz["qemu_properties"]["edk2_code"] = qemu_cmd + f"share/qemu/edk2-{m_arch_64}-code.fd"
-                #global_varz["qemu_properties"]["edk2_vars"] = qemu_cmd + f"share/qemu/edk2-{m_arch_32}-code.fd"
+    # As long as QEMU is provided by Nix, this holds true on NixOS, Linux and Darwin
+    if global_varz["qemu_properties"]["qemu_bin"].startswith("/nix/store"):
+        qemu_closure_path = global_varz["qemu_properties"]["qemu_bin"].split("bin/")[0]
+        global_varz["qemu_properties"]["edk2_code"] = qemu_closure_path + f"share/qemu/edk2-{m_arch_64}-code.fd"
+        #global_varz["qemu_properties"]["edk2_vars"] = qemu_closure_path + f"share/qemu/edk2-{m_arch_32}-code.fd"
 
+    # For cases where QEMU is not provided by Nix, this is the method
+    # with the highest probability of reliability
     else:
         edk2_firmware_lookup_dir = "/usr/share/qemu/firmware"
         if not os.path.exists(edk2_firmware_lookup_dir):
@@ -201,8 +190,7 @@ def pre_start_checks():
 def generate_qemu_args():
     global_varz["qemu_properties"] = {}
     global_varz["qemu_properties"]["qemu_bin"] = None
-    qemu_bios_setup()
-    qemu_bin_setup()
+    qemu_setup()
 
     global_varz["qemu_properties"]["qemu_args"] = [
         global_varz["qemu_properties"]["qemu_bin"],
