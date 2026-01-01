@@ -134,6 +134,7 @@ def qemu_setup():
             global_varz["qemu_properties"]["qemu_bin"] = qemu_bin_libexec_path
     else:
         global_varz["qemu_properties"]["qemu_bin"] = qemu_system_bin_path
+    global_varz["qemu_properties"]["qemu_bin"] = os.path.realpath(global_varz["qemu_properties"]["qemu_bin"])
     if global_varz["qemu_properties"]["qemu_bin"] == None:
         print(f"ERROR: `{qemu_system_bin}` could be located in your system")
         sys.exit(1)
