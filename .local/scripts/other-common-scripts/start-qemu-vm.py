@@ -134,10 +134,10 @@ def qemu_setup():
             global_varz["qemu_properties"]["qemu_bin"] = qemu_bin_libexec_path
     else:
         global_varz["qemu_properties"]["qemu_bin"] = qemu_system_bin_path
-    global_varz["qemu_properties"]["qemu_bin"] = os.path.realpath(global_varz["qemu_properties"]["qemu_bin"])
     if global_varz["qemu_properties"]["qemu_bin"] == None:
         print(f"ERROR: `{qemu_system_bin}` could be located in your system")
         sys.exit(1)
+    global_varz["qemu_properties"]["qemu_bin"] = os.path.realpath(global_varz["qemu_properties"]["qemu_bin"])
 
     # As long as QEMU is provided by Nix, this holds true on NixOS, Linux and Darwin
     if global_varz["qemu_properties"]["qemu_bin"].startswith("/nix/store"):
