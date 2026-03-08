@@ -252,6 +252,7 @@ alias mksshkey='ssh-keygen -t ed25519 -f'
 alias mtr='mtr --show-ips --displaymode 0 -o "LDR AGJMXI"'
 alias performneovimcleanup="neovim_clean_slate"
 alias prettynixbuild='nix build --log-format internal-json -v . 2>&1 | nom --json'
+alias printnixgcroots="nix-store --gc --print-roots | grep '${HOME}'"
 alias serialterm="tty_serial"
 alias showmynixroots="find ${HOME} -iname 'result*' -type l 2>/dev/null"
 alias sudo='sudo '
