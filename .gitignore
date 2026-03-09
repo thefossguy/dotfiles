@@ -96,6 +96,7 @@
 /.config/nix/
 /.config/nvim/lazy-lock.json
 /.config/obs-studio/
+/.config/obsidian/
 /.config/okularpartrc
 /.config/okularrc
 /.config/org.coolercontrol.CoolerControl/
