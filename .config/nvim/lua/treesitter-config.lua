@@ -6,7 +6,7 @@
 --
 -- **USE ONLY WHEN AN LSP IS NOT AVAILABLE (e.g. markup languages)**
 --------------------------------------------------------------------------------
-require ("nvim-treesitter.configs").setup ({
+require ("nvim-treesitter.config").setup ({
   -- list of parsers that must always be installed
   -- typically installed/updated with `:TSUpdate`
   ensure_installed = {
