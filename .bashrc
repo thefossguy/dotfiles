@@ -321,7 +321,7 @@ alias  fd='fd --hidden --no-ignore --follow'
 alias fdi='fd --hidden --no-ignore --follow --ignore-case'
 
 # ripgrep
-ripgrep_common='rg --hidden --follow '
+ripgrep_common='rg --hidden --follow --sort=path'
 alias   rg="${ripgrep_common}"
 alias  rgi="${ripgrep_common} --ignore-case"
 alias  rgv="${ripgrep_common} --invert-match"
