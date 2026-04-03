@@ -229,6 +229,7 @@ alias ampv='mpv --hwdec=vaapi --no-video'
 alias createvm="env $* ${SCRIPTS_DIR}/create-libvirt-vm.sh"
 alias debextract="${SCRIPTS_DIR}/extract-deb-pkg.sh"
 alias flathub='flatpak'
+alias githubapireset="date -d @$(curl https://api.github.com/rate_limit 2>/dev/null | jq '.rate.reset')"
 alias gitsigncommits='git rebase --exec '\''git commit --amend --no-edit -n -S'\'' -i'
 alias installrpmdeps="${EL_SCRIPTS_DIR}/install-rpm-package-build-deps.sh"
 alias loginwithoutremembering="ssh -o 'StrictHostKeyChecking no' -o 'UserKnownHostsFile /dev/null'"
