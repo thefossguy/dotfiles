@@ -170,6 +170,9 @@ if [[ "${TERM:-}" != 'xterm-256color' ]] && [[ "${TERM:-}" != 'tmux-256color' ]]
 fi
 export TERM
 
+LESS='-R'
+export LESS
+
 if command -v delta >/dev/null; then
     GIT_PAGER='delta --diff-highlight --diff-so-fancy'
     export GIT_PAGER
