@@ -18,12 +18,6 @@ BREW_CASKS=(
     zen-browser
 )
 
-# Work machine has Google Chrome installed via the IDM. Using homebrew to do
-# that will fail. So add them only if the username is not what I use on my work machine.
-if [[ "${LOGNAME}" != 'ppatel' ]]; then
-    BREW_CASKS+=( google-chrome )
-fi
-
 # Kill the processes that automatically start on login so that the upgrade
 # does not error out because the cask can't be replace as it is running.
 function pkill_process() {
