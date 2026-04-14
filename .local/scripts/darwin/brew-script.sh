@@ -5,6 +5,7 @@ set -xeuf
 # **INSTALL ONLY WHAT DOESN'T SEEM TO WORK WITH NIX/HOME-MANAGER**
 BREW_FORMULAE=(
     bash
+    mpv
     rpm2cpio
 )
 
