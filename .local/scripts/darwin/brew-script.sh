@@ -5,33 +5,15 @@ set -xeuf
 # **INSTALL ONLY WHAT DOESN'T SEEM TO WORK WITH NIX/HOME-MANAGER**
 BREW_FORMULAE=(
     bash
-    mpv
-    neovide
     rpm2cpio
-    wakeonlan
 )
 
 # "GUI apps" that cannot be handled by home-manager
 BREW_CASKS=(
-    alacritty
-    balenaetcher
-    bitwarden
-    brave-browser
-    discord
-    exifcleaner
-    firefox
-    handbrake
-    keka
-    librewolf
-    maccy
     macs-fan-control
     obs
-    proton-pass
-    protonvpn
     raspberry-pi-imager
-    thunderbird
     tor-browser
-    utm
     zen-browser
 )
 
@@ -53,14 +35,8 @@ function pkill_process() {
     pkill -o "${PROCESS_NAME}" || echo "${PROCESS_NAME} is not running, doing nothing"
 }
 PROCESSES_TO_KILL=(
-    'Bitwarden'
-    'Discord'
-    'Maccy'
     'Macs Fan Control'
     'OBS'
-    'Proton Pass'
-    'ProtonVPN'
-    'UTM'
 )
 if pgrep -q QEMULauncher; then
     echo 'QEMU VMs are running. Please close them in case UTM has an update to install.'
