@@ -68,6 +68,9 @@ def parse_arguments() -> argparse.Namespace:
         "--pr", required=True, type=int, help="The nixpkgs PR number"
     )
     parser.add_argument(
+        "--no-clear-cache", action="store_true", help="Do not clear `$XDG_CACHE_HOME/nixpkgs-review` before calling `nixpkgs-review`"
+    )
+    parser.add_argument(
         "--with-cosmic",
         action="store_true",
         help="Build additional attributes relevant to COSMIC",
@@ -283,6 +286,23 @@ def run():
     ]
     nixpkgs_review_args.extend(with_cosmic(args))
     nixpkgs_review_args.append(str(args.pr))
+
+    if not args.no_clear_cache:
+        xdg_cache_home = os.getenv("XDG_CACHE_HOME")
+        match xdg_cache_home:
+            case "" | None:
+                logging.info("$XDG_CACHE_HOME is either unset or empty")
+                match os.getenv("HOME"):
+                    case "" | None:
+                        logging.error("$HOME is either unset or empty")
+                        sys.exit(1)
+                    case _:
+                        xdg_cache_home = "{}/.cache".format(os.getenv("HOME"))
+            case _:
+                pass
+        nixpkgs_review_cache_dir = "{}/nixpkgs-review".format(xdg_cache_home)
+        shutil.rmtree(nixpkgs_review_cache_dir, ignore_errors=True)
+
     logging.info("Running: {}".format(nixpkgs_review_args))
     nixpkgs_review_cmd = subprocess.run(
         nixpkgs_review_args,
