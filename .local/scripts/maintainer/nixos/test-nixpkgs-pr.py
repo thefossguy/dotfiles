@@ -68,6 +68,9 @@ def parse_arguments() -> argparse.Namespace:
         "--pr", required=True, type=int, help="The nixpkgs PR number"
     )
     parser.add_argument(
+        "--extra-packages", action='append', help="Extra packages to build with nixpkgs-review"
+    )
+    parser.add_argument(
         "--no-clear-cache", action="store_true", help="Do not clear `$XDG_CACHE_HOME/nixpkgs-review` before calling `nixpkgs-review`"
     )
     parser.add_argument(
@@ -285,6 +288,8 @@ def run():
         "--extra-nixpkgs-config",
         "{ allowBroken = false; }",
     ]
+    for extra_pkg in args.extra_packages:
+        nixpkgs_review_args.extend(["--additional-package", extra_pkg, ])
     nixpkgs_review_args.extend(with_cosmic(args))
     nixpkgs_review_args.append(str(args.pr))
 
