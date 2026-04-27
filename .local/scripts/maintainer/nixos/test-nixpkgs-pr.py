@@ -68,7 +68,7 @@ def parse_arguments() -> argparse.Namespace:
         "--pr", required=True, type=int, help="The nixpkgs PR number"
     )
     parser.add_argument(
-        "--extra-packages", action='append', help="Extra packages to build with nixpkgs-review"
+        "--extra-packages", action='append', default=[], help="Extra packages to build with nixpkgs-review"
     )
     parser.add_argument(
         "--no-clear-cache", action="store_true", help="Do not clear `$XDG_CACHE_HOME/nixpkgs-review` before calling `nixpkgs-review`"
