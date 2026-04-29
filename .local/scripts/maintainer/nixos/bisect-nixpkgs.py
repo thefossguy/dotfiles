@@ -60,7 +60,7 @@ def run():
         "run",
         "bash",
         "-c",
-        "if nix-build --keep-going --no-out-link --max-jobs 1 -A {}; then echo 'build passed'; exit 0; else echo 'build failed'; exit 1; fi".format(args.derivation),
+        "if nix-build --keep-going --no-out-link --max-jobs 1 --cores {} -A {}; then echo 'build passed'; exit 0; else echo 'build failed'; exit 1; fi".format(os.cpu_count(), args.derivation),
     ]
     logging.info("Running: {}".format(git_bisect_run_command))
     git_bisect_run_cmd = subprocess.run(git_bisect_run_command, check=True, stdout=sys.stdout, stderr=sys.stderr,)
