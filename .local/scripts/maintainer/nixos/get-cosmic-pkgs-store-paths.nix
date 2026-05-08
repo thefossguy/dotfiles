@@ -1,20 +1,25 @@
 let
-  pkgs = import <nixpkgs> { overlays = []; config.allowAliases = false; };
-  inherit (pkgs) lib;
+  pkgs = import <nixpkgs> {
+    overlays = [ ];
+    config.allowAliases = false;
+  };
 
   exclude = [
     "libcosmicAppHook"
     "cosmic-design-demo"
   ];
 
-  hasCosmicTeam = pkg:
-    let ms = pkg.meta.teams or [];
-    in builtins.elem lib.teams.cosmic (if builtins.isList ms then ms else [ms]);
+  hasCosmicTeam = pkg: builtins.any (t: t.shortName or "" == "COSMIC") (pkg.meta.teams or [ ]);
 
-  cosmicPkgs = builtins.filter (attrName:
-      !(builtins.elem attrName exclude) &&
-      (let r = builtins.tryEval (hasCosmicTeam pkgs.${attrName});
-       in r.success && r.value))
-    (builtins.attrNames pkgs);
+  cosmicPkgs = builtins.filter (
+    attrName:
+    !(builtins.elem attrName exclude)
+    && (
+      let
+        evalResult = builtins.tryEval (hasCosmicTeam pkgs.${attrName});
+      in
+      evalResult.success && evalResult.value
+    )
+  ) (builtins.attrNames pkgs);
 in
-  lib.strings.concatStringsSep " " (map (attrName: pkgs.${attrName}.outPath) cosmicPkgs)
+builtins.concatStringsSep " " (map (attrName: pkgs.${attrName}.outPath) cosmicPkgs)
