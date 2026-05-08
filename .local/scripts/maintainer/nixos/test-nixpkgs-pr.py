@@ -231,7 +231,7 @@ def with_cosmic(args: argparse.Namespace) -> list[str]:
     nix_build_cmd_args = [
         "nix-build",
         "--keep-going",
-        "--no-out-link"
+        "--no-out-link",
         "./nixos/release.nix",
     ]
     for indv_cosmic_test in cosmic_tests:
