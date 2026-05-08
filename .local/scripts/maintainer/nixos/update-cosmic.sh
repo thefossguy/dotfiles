@@ -6,5 +6,5 @@ nix-shell maintainers/scripts/update.nix \
     --argstr keep-going true \
     --argstr max-workers 50 \
     --argstr skip-prompt true \
-    --arg predicate '(path: pkg: let lib = import <nixpkgs/lib>; in lib.lists.elem lib.teams.cosmic (pkg.meta.teams or []))' \
+    --arg predicate '(path: pkg: builtins.any (t: t.shortName or "" == "COSMIC") (pkg.meta.teams or []))' \
     #EOF
