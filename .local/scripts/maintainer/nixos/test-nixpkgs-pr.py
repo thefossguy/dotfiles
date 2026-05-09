@@ -271,7 +271,7 @@ def with_cosmic(args: argparse.Namespace) -> list[str]:
                     "configuration",
                     "./nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares-cosmic.nix",
                     "-A",
-                    "config.system.build.toplevel",
+                    "config.system.build.isoImage",
                 ],
                 capture_output=True,
                 text=True,
