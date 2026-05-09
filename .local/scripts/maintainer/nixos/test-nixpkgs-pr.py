@@ -81,6 +81,11 @@ def parse_arguments() -> argparse.Namespace:
         action="store_true",
         help="Build additional attributes relevant to COSMIC",
     )
+    parser.add_argument(
+        "--without-cosmic-iso",
+        action="store_true",
+        help="Do not build the COSMIC ISO",
+    )
     args = parser.parse_args()
     return args
 
@@ -245,38 +250,41 @@ def with_cosmic(args: argparse.Namespace) -> list[str]:
             ]
         )
 
-    git_cat_file_cmd = subprocess.run(
-        [
-            "git",
-            "cat-file",
-            "-e",
-            "HEAD:nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares-cosmic.nix",
-        ],
-        capture_output=True,
-        check=False,
-        text=True,
-    )
-    if git_cat_file_cmd.returncode == 0:
-        nix_instantiate_iso_cmd = subprocess.run(
+    if not args.without_cosmic_iso:
+        git_cat_file_cmd = subprocess.run(
             [
-                "nix-instantiate",
-                "./nixos",
-                "--arg",
-                "configuration",
-                "./nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares-cosmic.nix",
-                "-A",
-                "config.system.build.toplevel",
+                "git",
+                "cat-file",
+                "-e",
+                "HEAD:nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares-cosmic.nix",
             ],
             capture_output=True,
-            text=True,
             check=False,
+            text=True,
         )
-        if nix_instantiate_iso_cmd.returncode == 0:
-            nix_build_cmd_args.append(nix_instantiate_iso_cmd.stdout)
+        if git_cat_file_cmd.returncode == 0:
+            nix_instantiate_iso_cmd = subprocess.run(
+                [
+                    "nix-instantiate",
+                    "./nixos",
+                    "--arg",
+                    "configuration",
+                    "./nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares-cosmic.nix",
+                    "-A",
+                    "config.system.build.toplevel",
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            if nix_instantiate_iso_cmd.returncode == 0:
+                nix_build_cmd_args.append(nix_instantiate_iso_cmd.stdout)
+            else:
+                logging.info("Not building the COSMIC ISO")
         else:
-            logging.info("Not building the COSMIC ISO")
+            logging.info("The COSMIC ISO module was not found")
     else:
-        logging.info("The COSMIC ISO module was not found")
+            logging.info("The COSMIC ISO will not be built, excluded by the CLI arg")
 
     if args.dry_run:
         logging.info("[DRY-RUN] Running: {}".format(nix_build_cmd_args))
