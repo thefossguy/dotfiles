@@ -82,9 +82,9 @@ def parse_arguments() -> argparse.Namespace:
         help="Build additional attributes relevant to COSMIC",
     )
     parser.add_argument(
-        "--without-cosmic-iso",
+        "--with-cosmic-iso",
         action="store_true",
-        help="Do not build the COSMIC ISO",
+        help="Build the COSMIC ISO",
     )
     args = parser.parse_args()
     return args
@@ -250,7 +250,7 @@ def with_cosmic(args: argparse.Namespace) -> list[str]:
             ]
         )
 
-    if not args.without_cosmic_iso:
+    if args.with_cosmic_iso:
         git_cat_file_cmd = subprocess.run(
             [
                 "git",
