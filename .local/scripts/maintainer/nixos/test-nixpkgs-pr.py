@@ -254,11 +254,29 @@ def with_cosmic(args: argparse.Namespace) -> list[str]:
         ],
         capture_output=True,
         check=False,
+        text=True,
     )
     if git_cat_file_cmd.returncode == 0:
-        nix_build_cmd_args.extend(
-            ["-A", "iso_cosmic.{}-linux".format(nix_arch)]
+        nix_instantiate_iso_cmd = subprocess.run(
+            [
+                "nix-instantiate",
+                "./nixos",
+                "--arg",
+                "configuration",
+                "./nixos/modules/installer/cd-dvd/installation-cd-graphical-calamares-cosmic.nix",
+                "-A",
+                "config.system.build.toplevel",
+            ],
+            capture_output=True,
+            text=True,
+            check=False,
         )
+        if nix_instantiate_iso_cmd.returncode == 0:
+            nix_build_cmd_args.append(nix_instantiate_iso_cmd.stdout)
+        else:
+            logging.info("Not building the COSMIC ISO")
+    else:
+        logging.info("The COSMIC ISO module was not found")
 
     if args.dry_run:
         logging.info("[DRY-RUN] Running: {}".format(nix_build_cmd_args))
