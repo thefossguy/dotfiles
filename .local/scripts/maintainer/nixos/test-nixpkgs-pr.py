@@ -65,10 +65,13 @@ class PreRunCheck:
 def parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument(
+        "--dry-run", action="store_true", help="Perform a dry-run to see what `nixpkgs-review` command will be executed, without actually doing it"
+    )
+    parser.add_argument(
         "--pr", required=True, type=int, help="The nixpkgs PR number"
     )
     parser.add_argument(
-        "--extra-packages", action='append', default=[], help="Extra packages to build with nixpkgs-review"
+        "--extra-packages", action='append', default=[], help="Extra packages to build with `nixpkgs-review`"
     )
     parser.add_argument(
         "--no-clear-cache", action="store_true", help="Do not clear `$XDG_CACHE_HOME/nixpkgs-review` before calling `nixpkgs-review`"
@@ -257,13 +260,16 @@ def with_cosmic(args: argparse.Namespace) -> list[str]:
             ["-A", "iso_cosmic.{}-linux".format(nix_arch)]
         )
 
-    logging.info("Running: {}".format(nix_build_cmd_args))
-    nix_build_cmd = subprocess.run(
-        nix_build_cmd_args,
-        stdout=sys.stdout,
-        stderr=sys.stderr,
-        check=False,
-    )
+    if args.dry_run:
+        logging.info("[DRY-RUN] Running: {}".format(nix_build_cmd_args))
+    else:
+        logging.info("Running: {}".format(nix_build_cmd_args))
+        nix_build_cmd = subprocess.run(
+            nix_build_cmd_args,
+            stdout=sys.stdout,
+            stderr=sys.stderr,
+            check=False,
+        )
 
     git_switch_cmd = subprocess.run(
         ["git", "switch", "-"],
@@ -309,13 +315,17 @@ def run():
         nixpkgs_review_cache_dir = "{}/nixpkgs-review".format(xdg_cache_home)
         shutil.rmtree(nixpkgs_review_cache_dir, ignore_errors=True)
 
-    logging.info("Running: {}".format(nixpkgs_review_args))
-    nixpkgs_review_cmd = subprocess.run(
-        nixpkgs_review_args,
-        stdout=sys.stdout,
-        stderr=sys.stderr,
-        check=False,
-    )
+    if args.dry_run:
+        logging.info("[DRY-RUN] Running: {}".format(nixpkgs_review_args))
+    else:
+        logging.info("Running: {}".format(nixpkgs_review_args))
+        nixpkgs_review_cmd = subprocess.run(
+            nixpkgs_review_args,
+            stdout=sys.stdout,
+            stderr=sys.stderr,
+            check=False,
+        )
+
     return
 
 
