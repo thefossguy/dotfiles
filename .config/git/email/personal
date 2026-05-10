@@ -1,3 +1,5 @@
+[commit]
+    gpgsign = true
 [format]
     cc = thefirst1322@gmail.com # my other email
 [sendemail]

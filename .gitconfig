@@ -22,7 +22,6 @@
     status = never # show one entry of 'untracked files' per line
     ui = never
 [commit]
-    gpgsign = true
     status = true # show status info in the editor opened by `git commit` (as a comment)
     verbose = true # show the diff in the editor opened by `git commit` (as a comment)
 [core]

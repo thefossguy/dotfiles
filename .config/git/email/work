@@ -1,2 +1,4 @@
+[commit]
+    gpgsign = true
 [user]
     email =
