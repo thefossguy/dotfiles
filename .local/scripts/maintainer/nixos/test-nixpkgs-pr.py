@@ -278,7 +278,8 @@ def with_cosmic(args: argparse.Namespace) -> list[str]:
                 check=False,
             )
             if nix_instantiate_iso_cmd.returncode == 0:
-                nix_build_cmd_args.append(nix_instantiate_iso_cmd.stdout)
+                cosmic_iso_drv = nix_instantiate_iso_cmd.stdout.strip()
+                nix_build_cmd_args.append(cosmic_iso_drv)
             else:
                 logging.info("Not building the COSMIC ISO")
         else:
