@@ -6,7 +6,6 @@ set -xeuf -o pipefail
 BROWSERS_AMD=(
     com.google.Chrome
     com.google.ChromeDev
-    app.zen_browser.zen
     org.mozilla.firefox
 )
 BROWSERS_COMMON=(
