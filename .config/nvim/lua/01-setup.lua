@@ -14,6 +14,10 @@ vim.keymap.set ({ "n", "v", "i", "c" }, "<C-k>", "<C-n><C-w>k") -- move to the b
 -- i.e. 3 wrapped lines of single line are treated as 1
 vim.keymap.set ("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true }) -- jump `count` lines up while "skipping wrapped lines"
 vim.keymap.set ("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true }) -- jump `count` lines down while "skipping wrapped lines"
+-- disable mouse clicks (annoying on sensitive laptops)
+vim.keymap.set("n", "<LeftMouse>", "<Nop>")
+vim.keymap.set("n", "<RightMouse>", "<Nop>")
+vim.keymap.set("n", "<MiddleMouse>", "<Nop>")
 
 -- indentation
 vim.o.autoindent = true
