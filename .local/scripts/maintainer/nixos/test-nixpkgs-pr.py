@@ -86,6 +86,11 @@ def parse_arguments() -> argparse.Namespace:
         action="store_true",
         help="Build the COSMIC ISO",
     )
+    parser.add_argument(
+        "--with-cuda",
+        action="store_true",
+        help="Build the packages with CUDA support",
+    )
     args = parser.parse_args()
     return args
 
@@ -310,6 +315,12 @@ def with_cosmic(args: argparse.Namespace) -> list[str]:
 def run():
     _ = PreRunCheck()
     args = parse_arguments()
+    extra_nixpkgs_configs = [
+        "allowBroken = false;",
+    ];
+    if args.with_cuda:
+        extra_nixpkgs_configs.append("cudaSupport = true;")
+    extra_nixpkgs_config = " ".join(extra_nixpkgs_configs)
     nixpkgs_review_args = [
         "nixpkgs-review",
         "pr",
@@ -319,7 +330,7 @@ def run():
         "--build-graph",
         "nix",
         "--extra-nixpkgs-config",
-        "{ allowBroken = false; }",
+        f"{{ {extra_nixpkgs_config} }}",
     ]
     for extra_pkg in args.extra_packages:
         nixpkgs_review_args.extend(["--additional-package", extra_pkg, ])
