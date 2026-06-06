@@ -327,9 +327,7 @@ def run():
     _ = PreRunCheck()
     args = parse_arguments()
 
-    extra_nixpkgs_configs = [
-        "allowBroken = false;",
-    ];
+    extra_nixpkgs_configs = [];
     if args.with_cuda:
         extra_nixpkgs_configs.append("cudaSupport = true;")
     if args.no_allow_broken:
