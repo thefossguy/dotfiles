@@ -96,6 +96,11 @@ def parse_arguments() -> argparse.Namespace:
         action="store_true",
         help="Do not build broken packages",
     )
+    parser.add_argument(
+        "--no-allow-unfree",
+        action="store_true",
+        help="Do not build unfree packages",
+    )
 
     args = parser.parse_args()
     return args
@@ -331,6 +336,10 @@ def run():
         extra_nixpkgs_configs.append("allowBroken = false;")
     else:
         extra_nixpkgs_configs.append("allowBroken = true;")
+    if args.no_allow_unfree:
+        extra_nixpkgs_configs.append("allowUnfree = false;")
+    else:
+        extra_nixpkgs_configs.append("allowUnfree = true;")
     extra_nixpkgs_config = " ".join(extra_nixpkgs_configs)
 
     nixpkgs_review_args = [
