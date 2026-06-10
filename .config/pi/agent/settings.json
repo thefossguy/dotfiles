@@ -1,0 +1,29 @@
+{
+    "theme": "dark",
+    "quietStartup": true,
+    "defaultProjectTrust": "ask",
+    "collapseChangelog": true,
+    "enableInstallTelemetry": false,
+    "doubleEscapeAction": "tree",
+    "editorPaddingX": 0,
+    "showHardwareCursor": true,
+
+    "compaction.enabled": false,
+
+    "retry": {
+        "enabled": true,
+        "maxRetries": 5,
+        "baseDelayMs": 10000
+    },
+
+    "terminal": {
+        "showImages": false,
+        "clearOnShrink": true,
+        "autoResize": true,
+        "blockImages": true
+    },
+
+    "shellCommandPrefix": "setpriv --reset-env --no-new-privs --clear-groups --inh-caps=-all --bounding-set=-all -- ",
+
+    "sessionDir": "~/.config/pi/agent/sessions"
+}
