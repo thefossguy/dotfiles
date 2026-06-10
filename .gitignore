@@ -102,6 +102,9 @@
 /.config/org.coolercontrol.CoolerControl/
 /.config/org.kde.keysmith/Keysmith.conf
 /.config/pcmanfm/
+/.config/pi/agent/auth.json
+/.config/pi/agent/models.json
+/.config/pi/agent/sessions/*
 /.config/plasma-localerc
 /.config/plasma-nm
 /.config/plasma-org.kde.plasma.desktop-appletsrc
@@ -165,6 +168,7 @@
 /.npm/
 /.npmrc
 /.nvim/undodir/
+/.pi/*
 /.pki/
 /.prathams-nixos
 /.profile
