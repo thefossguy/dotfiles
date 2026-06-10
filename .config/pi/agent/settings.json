@@ -6,7 +6,7 @@
     "enableInstallTelemetry": false,
     "doubleEscapeAction": "tree",
     "editorPaddingX": 0,
-    "showHardwareCursor": true,
+    "showHardwareCursor": false,
 
     "compaction.enabled": false,
 
