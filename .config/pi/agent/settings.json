@@ -7,7 +7,9 @@
   "doubleEscapeAction": "tree",
   "editorPaddingX": 0,
   "showHardwareCursor": false,
-  "compaction.enabled": false,
+  "compaction": {
+    "enabled": false
+  },
   "retry": {
     "enabled": true,
     "maxRetries": 5,
@@ -19,6 +21,5 @@
     "autoResize": true,
     "blockImages": true
   },
-  "shellCommandPrefix": "setpriv --reset-env --no-new-privs --clear-groups --inh-caps=-all --bounding-set=-all -- ",
   "sessionDir": "~/.config/pi/agent/sessions"
 }
