@@ -22,6 +22,7 @@ These instructions apply when you are prompted to modify the codebase.
 
 - Do not run any tests unless the user explicitly asks for it. Let the user specify how (if any) tests should be run.
 - Prefer `rg` and `fd` over `grep` and `find` respectively.
+- Only comment when doing something out of the ordinary, no obvious comments.
 - **NEVER COMMIT ANYTHING, EVER.**
 
 ### Rust
