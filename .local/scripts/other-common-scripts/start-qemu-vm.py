@@ -24,6 +24,7 @@ def parse_arguments():
     parser.add_argument("--no-graphics", "--nographic", "--nographics", "--no-graphic", action="store_true", default=None)
     parser.add_argument("--host-port", type=int,)
     parser.add_argument("--without-hw-accel", action="store_true",)
+    parser.add_argument("--no-sandboxing", action="store_true", default=False)
     parser.add_argument("--extra-qemu-args",)
     args = parser.parse_args()
 
@@ -218,7 +219,8 @@ def generate_qemu_args():
             global_varz["qemu_properties"]["display_backend"] = global_varz["qemu_properties"]["display_backend"] + ",gl=on"
 
     if os.uname().sysname != "Darwin":
-        global_varz["qemu_properties"]["qemu_args"].extend(["-sandbox", "on",])
+        if not global_varz["cli_args"].no_sandboxing:
+            global_varz["qemu_properties"]["qemu_args"].extend(["-sandbox", "on",])
     elif os.uname().sysname == "Darwin":
         global_varz["qemu_properties"]["qemu_args"].extend(["-device", "qemu-xhci", "-device", "usb-kbd", "-device", "usb-mouse"])
 
