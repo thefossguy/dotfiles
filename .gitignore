@@ -15,6 +15,7 @@
 /.config/*.xml*
 /.config/.gsd-keyboard.settings-ported
 /.config/aerc/accounts.conf
+/.config/AirPodsTrayApp/AirPodsTrayApp.conf
 /.config/alacritty/platform.toml
 /.config/aria2/
 /.config/arkrc
