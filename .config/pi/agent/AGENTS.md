@@ -52,6 +52,25 @@ These instructions apply when you are prompted to modify the codebase.
 - Prefer helpers from the Nix `builtins` over `nixpkgs`'s `lib`.
 - Don't write unnecessary comments. Expect the reader to be competent enough to read uncommented Nix code.
 
+#### Research sources
+
+For relevant information, you're only allowed to look at the following:
+- GitHub repositories:
+  - <github.com/nixos/nixpkgs>: Contains code for NixOS the its packages
+  - <github.com/nixos/nix>: The Nix package manager, language (including builtins, etc)
+- Reddit
+  - <reddit.com/r/linux>
+  - <reddit.com/r/nix>
+  - <reddit.com/r/nixos>
+- Nix Stable Manual: <nixos.org/manual/nix/stable>
+- nix.dev: <nix.dev>
+- NixOS Discourse: <discourse.nixos.org>
+- NixOS Official Wiki: <wiki.nixos.org>
+- NixOS Unofficial Wiki: <nixos.wiki> (In case some wiki entries haven't been moved to the new, official wiki)
+- NixOS Unstable Manual: <nixos.org/manual/nixos/unstable>
+- Nixpkgs Unstable Reference Manual: <nixos.org/manual/nixpkgs/unstable>
+- Y Combinator's "Hacker News": <news.ycombinator.com>
+
 ## Responses
 
 The reader has ADHD. Output is not just brief. It is shaped so an ADHD brain can act on it.
