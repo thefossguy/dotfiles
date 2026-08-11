@@ -145,7 +145,7 @@ One of the following, with a one-line justification.
   - Multiple unrelated changes should be split into separate commits.
 - Squash trivial fixup commits (e.g., `oh, forgot to insert whitespace`).
 - No trailing period in the commit message's summary line (first line).
-- When adding oneself to `maintainer-list.nix`, make a separate commit with message `maintainers: add <handle>`, placed before commits making changes to the package or module.
+- When adding oneself to `maintainers/maintainer-list.nix`, make a separate commit with message `maintainers: add <handle>`, placed before commits making changes to the package or module.
 - PRs targeting a stable branch must be formatted like so: `[YY.MM] <PR title>`
 
 ### 2.2. Package commit message format
