@@ -15,7 +15,9 @@ vim.keymap.set ({ "n", "v" }, "<Space>", "<Nop>") -- disable <space> in normal a
 
 require ("00-startup-checks")
 require ("01-setup")
-require ("02-plugins-setup")
+if vim.o.loadplugins then
+  require ("02-plugins-setup")
+end
 -- require('vim-options')
 -- require('autocmds')
 -- require('key-mappings')
