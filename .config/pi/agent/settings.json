@@ -1,6 +1,6 @@
 {
   "theme": "dark",
-  "externalEditor": "nvim --noplugins",
+  "externalEditor": "nvim --noplugins -i NONE -n",
   "quietStartup": true,
   "defaultProjectTrust": "ask",
   "collapseChangelog": true,
