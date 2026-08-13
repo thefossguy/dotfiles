@@ -1,6 +1,6 @@
 {
   "theme": "dark",
-  "externalEditor": "nvim --noplugins -i NONE -n",
+  "externalEditor": "env NVIM_LOG_FILE=/dev/null nvim --noplugins -i NONE -n",
   "quietStartup": true,
   "defaultProjectTrust": "ask",
   "collapseChangelog": true,
@@ -22,5 +22,6 @@
     "autoResize": true,
     "blockImages": true
   },
-  "sessionDir": "~/.config/pi/agent/sessions"
+  "sessionDir": "~/.config/pi/agent/sessions",
+  "lastChangelogVersion": "0.84.1"
 }
