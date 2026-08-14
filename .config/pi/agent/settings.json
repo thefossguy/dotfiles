@@ -1,6 +1,6 @@
 {
   "theme": "dark",
-  "externalEditor": "env NVIM_LOG_FILE=/dev/null nvim --noplugins -i NONE -n",
+  "externalEditor": "env NVIM_LOG_FILE=/dev/null NVIM_USE_UNDOFILE=0 nvim --noplugins -i NONE -n",
   "quietStartup": true,
   "defaultProjectTrust": "ask",
   "collapseChangelog": true,
