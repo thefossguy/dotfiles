@@ -59,7 +59,7 @@ vim.o.timeout = true
 vim.o.timeoutlen = 300 -- time in milliseconds to wait for a mapped sequence to complete.
 vim.o.title = true
 vim.o.undodir = vim.fn.expand ("~/.nvim/undodir")
-vim.o.undofile = true
+vim.o.undofile = (os.getenv("NVIM_USE_UNDOFILE") or "1") == 1
 vim.o.undolevels = 200
 vim.o.wildmenu = true -- whether to show completion in typing vim commands
 
