@@ -22,6 +22,5 @@
     "autoResize": true,
     "blockImages": true
   },
-  "sessionDir": "~/.config/pi/agent/sessions",
-  "lastChangelogVersion": "0.84.1"
+  "sessionDir": "~/.config/pi/agent/sessions"
 }
