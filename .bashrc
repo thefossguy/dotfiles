@@ -152,6 +152,9 @@ export PATH
 # Unexport first, though
 export -n NIX_PAGER
 
+export CARGO_HOME="$HOME/.cargo"
+export RUSTUP_HOME="$HOME/.rustup"
+
 if command -v nvim >/dev/null; then
     EDITOR='nvim'
 elif command -v vim >/dev/null; then
