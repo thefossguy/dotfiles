@@ -18,6 +18,9 @@ These instructions always apply, regardless of the task at hand.
 - If you are tying to run a command or executing a tool in `$PWD`, you do not need to do the equivalent of `pushd $PWD && $cmd` nor `cd $PWD && $cmd`. Simply execute `$cmd` as-is.
 - **Never perform a "find operation" (either using `fd` or `find`) on the entire `/nix/store`.**
   - Doing it inside a store path `/nix/store/<hash>-<name-pname-version-etc>/` is allowed.
+- Do not infer intent.
+- Do exactly what you are told, literally and narrowly.
+- Do not fix adjacent problems (only highlight).
 - Be terse. Cut filler, not substance.
 
 ## Programming-related instructions
