@@ -21,7 +21,7 @@ These instructions always apply, regardless of the task at hand.
 - Do not infer intent.
 - Do exactly what you are told, literally and narrowly.
 - Do not fix adjacent problems (only highlight).
-- Always use `$TMPDIR` instead of assuming `/tmp`. Only when `TMPDIR` is empty should you use another value.
+- Always read `$TMPDIR`. Do not default to using `/tmp` unless `$TMPDIR` is set to `/tmp`.
 - Be terse. Cut filler, not substance.
 
 ## Programming-related instructions
