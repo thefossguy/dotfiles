@@ -22,6 +22,8 @@ These instructions always apply, regardless of the task at hand.
 - Do exactly what you are told, literally and narrowly.
 - Do not fix adjacent problems (only highlight).
 - Always read `$TMPDIR`. Do not default to using `/tmp` unless `$TMPDIR` is set to `/tmp`.
+- Always base your answers in the truth, not assumptions neither memories.
+  - Point out when you couldn't verify something.
 - Be terse. Cut filler, not substance.
 
 ## Programming-related instructions
