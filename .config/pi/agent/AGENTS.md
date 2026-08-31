@@ -6,6 +6,7 @@ This file contains all the instructions that must always be followed.
 
 These instructions always apply, regardless of the task at hand.
 
+- If `IN_CLANKER_JAIL` is set to `1`, assume that you are in a sandbox and some operations may fail. Inform the user what you couldn't do due to the sandbox.
 - You are prohibited from querying all the "expensive endpoints" like a 'git blame,' 'every page of every git log,' 'every commit in every repo,' etc. Do not behave in a manner that would cause burden to the git forge's hosting costs, or even something that prevents their resources from serving a human interacting with them properly.
   - A `git blame` on a local checkout is allowed.
 - For accessing a git forge, use their respective CLI client(s). For GitHub, GitLab, Forgejo and Gitea, prefer the `gh`, `glab`, `fj` and `tea` CLI tools respectively. If you don't find those tools in `$PATH`, summarize your status and then abort immediately without proceeding any further.
