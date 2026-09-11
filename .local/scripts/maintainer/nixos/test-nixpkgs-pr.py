@@ -343,6 +343,7 @@ def run():
     nixpkgs_review_args = [
         "nixpkgs-review",
         "pr",
+        "--tests",
         "--print-result",
         "--eval",
         "local",
