@@ -250,6 +250,7 @@ alias suslock="${HOME}/.local/scripts/window-manager/lock-and-suspend.sh"
 alias syncsync="${SCRIPTS_DIR}/paranoid-flush.sh"
 
 # actual aliases (generic ones)
+alias baregitclone='git clone --bare --config '\''remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*'\'' '
 alias bottom='btm'
 alias clear="clear && printf '\e[3J'"
 alias dotfiles="git --git-dir=${HOME}/.dotfiles --work-tree=${HOME}"
