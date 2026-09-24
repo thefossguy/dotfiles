@@ -329,6 +329,7 @@ def run():
 
     extra_nixpkgs_configs = [];
     if args.with_cuda:
+        extra_nixpkgs_configs.append("cudaCapabilities = [ \"12.1\" ];")
         extra_nixpkgs_configs.append("cudaSupport = true;")
     if args.no_allow_broken:
         extra_nixpkgs_configs.append("allowBroken = false;")
