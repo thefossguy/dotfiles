@@ -325,11 +325,22 @@ def with_cosmic(args: argparse.Namespace) -> list[str]:
 
 def run():
     _ = PreRunCheck()
+    current_system_cmd = subprocess.run(
+        ["nix-instantiate", "--eval", "--raw", "--expr", "builtins.currentSystem"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    current_system = current_system_cmd.stdout
+    if not current_system:
+        logging.error("Could not determine the current system")
+        sys.exit(1)
     args = parse_arguments()
 
-    extra_nixpkgs_configs = [];
+    extra_nixpkgs_configs = []
     if args.with_cuda:
-        extra_nixpkgs_configs.append("cudaCapabilities = [ \"12.1\" ];")
+        if current_system == "aarch64-linux":
+            extra_nixpkgs_configs.append('cudaCapabilities = [ "12.1" ];')
         extra_nixpkgs_configs.append("cudaSupport = true;")
     if args.no_allow_broken:
         extra_nixpkgs_configs.append("allowBroken = false;")
