@@ -24,5 +24,6 @@
   },
   "defaultProvider": "anthropic",
   "defaultModel": "claude-opus-5-5",
+  "defaultThinkingLevel": "max",
   "sessionDir": "~/.config/pi/agent/sessions"
 }
