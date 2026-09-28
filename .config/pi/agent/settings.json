@@ -23,6 +23,6 @@
     "blockImages": true
   },
   "defaultProvider": "anthropic",
-  "defaultModel": "claude-opus-4-6",
+  "defaultModel": "claude-opus-5-5",
   "sessionDir": "~/.config/pi/agent/sessions"
 }
