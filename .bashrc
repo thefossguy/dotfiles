@@ -374,13 +374,13 @@ if [[ "${PLATFORM_IS_LINUX}" -eq 1 ]]; then
     alias mpvrpi='mpv --geometry=60% --vo=x11'
 
     if [[ "${XDG_SESSION_TYPE:-}" == 'x11' ]]; then
-        alias clearclipboard='xsel -bc'
+        alias clearclipboard='xsel -bc && uuidgen | sha512sum | tr -d "\n" | awk '\''{printf "%s", $1}'\'' | xsel --clipboard --input'
         alias pbcopy='xsel --clipboard --input'
     elif [[ "${XDG_SESSION_TYPE:-}" == 'wayland' ]]; then
         if [[ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]]; then
-            alias clearclipboard='cliphist wipe && wl-copy --clear'
+            alias clearclipboard='cliphist wipe && wl-copy --clear && uuidgen | sha512sum | tr -d "\n" | awk '\''{printf "%s", $1}'\'' | wl-copy'
         else
-            alias clearclipboard='wl-copy --clear'
+            alias clearclipboard='wl-copy --clear && uuidgen | sha512sum | tr -d "\n" | awk '\''{printf "%s", $1}'\'' | wl-copy'
         fi
         alias pbcopy='wl-copy'
     fi
