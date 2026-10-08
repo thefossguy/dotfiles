@@ -101,6 +101,11 @@ def parse_arguments() -> argparse.Namespace:
         action="store_true",
         help="Do not build unfree packages",
     )
+    parser.add_argument(
+        "--without-tests",
+        action="store_true",
+        help="Do not build tests from the `passthru.tests` attrset",
+    )
 
     args = parser.parse_args()
     return args
@@ -355,7 +360,6 @@ def run():
     nixpkgs_review_args = [
         "nixpkgs-review",
         "pr",
-        "--tests",
         "--print-result",
         "--eval",
         "local",
@@ -364,6 +368,10 @@ def run():
         "--extra-nixpkgs-config",
         f"{{ {extra_nixpkgs_config} }}",
     ]
+
+    if not args.without_tests:
+        nixpkgs_review_args.extend = ["--tests"]
+
     for extra_pkg in args.extra_packages:
         nixpkgs_review_args.extend(["--additional-package", extra_pkg, ])
     nixpkgs_review_args.extend(with_cosmic(args))
