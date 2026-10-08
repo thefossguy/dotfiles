@@ -2,6 +2,7 @@
   "theme": "dark",
   "externalEditor": "env NVIM_LOG_FILE=/dev/null NVIM_USE_UNDOFILE=0 nvim --noplugins -i NONE -n",
   "quietStartup": true,
+  "tuiMode": "regular",
   "defaultProjectTrust": "ask",
   "collapseChangelog": true,
   "enableInstallTelemetry": false,
