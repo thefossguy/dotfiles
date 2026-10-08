@@ -106,6 +106,11 @@ def parse_arguments() -> argparse.Namespace:
         action="store_true",
         help="Do not build tests from the `passthru.tests` attrset",
     )
+    parser.add_argument(
+        "--with-nom",
+        action="store_true",
+        help="Use `nom` as the build graph instead of `nix`",
+    )
 
     args = parser.parse_args()
     return args
@@ -363,14 +368,23 @@ def run():
         "--print-result",
         "--eval",
         "local",
-        "--build-graph",
-        "nix",
         "--extra-nixpkgs-config",
         f"{{ {extra_nixpkgs_config} }}",
     ]
 
     if not args.without_tests:
         nixpkgs_review_args.extend = ["--tests"]
+
+    if args.use_nom:
+        nixpkgs_review_args.extend = [
+            "--build-graph",
+            "nom",
+        ]
+    else:
+        nixpkgs_review_args.extend = [
+            "--build-graph",
+            "nix",
+        ]
 
     for extra_pkg in args.extra_packages:
         nixpkgs_review_args.extend(["--additional-package", extra_pkg, ])
