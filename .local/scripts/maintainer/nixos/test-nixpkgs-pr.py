@@ -301,7 +301,7 @@ def with_cosmic(args: argparse.Namespace) -> list[str]:
         else:
             logging.info("The COSMIC ISO module was not found")
     else:
-            logging.info("The COSMIC ISO will not be built, excluded by the CLI arg")
+        logging.info("The COSMIC ISO will not be built, excluded by the CLI arg")
 
     if args.dry_run:
         logging.info("[DRY-RUN] Running: {}".format(nix_build_cmd_args))
