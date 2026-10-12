@@ -1,0 +1,7 @@
+check_update: false
+duo_cli_auto_download: false
+duo_cli_auto_run: false
+no_prompt: false
+notify_skill_updates: true
+show_whats_new: false
+telemetry: false
