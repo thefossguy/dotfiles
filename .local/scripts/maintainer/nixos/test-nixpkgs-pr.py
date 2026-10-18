@@ -373,18 +373,18 @@ def run():
     ]
 
     if not args.without_tests:
-        nixpkgs_review_args.extend = ["--tests"]
+        nixpkgs_review_args.extend(["--tests"])
 
     if args.use_nom:
-        nixpkgs_review_args.extend = [
+        nixpkgs_review_args.extend([
             "--build-graph",
             "nom",
-        ]
+        ])
     else:
-        nixpkgs_review_args.extend = [
+        nixpkgs_review_args.extend([
             "--build-graph",
             "nix",
-        ]
+        ])
 
     for extra_pkg in args.extra_packages:
         nixpkgs_review_args.extend(["--additional-package", extra_pkg, ])
