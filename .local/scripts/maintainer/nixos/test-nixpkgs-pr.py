@@ -375,7 +375,7 @@ def run():
     if not args.without_tests:
         nixpkgs_review_args.extend(["--tests"])
 
-    if args.use_nom:
+    if args.with_nom:
         nixpkgs_review_args.extend([
             "--build-graph",
             "nom",
